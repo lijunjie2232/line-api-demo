@@ -1,0 +1,270 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   派遣スタッフの満足度を高める「リゾートバイトダイブ」の開発事例
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./technicalcase/resortbaito-dive/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/technicalcase/resortbaito-dive/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <div>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      このページについて
+     </span>
+    </div>
+    <div>
+     <p>
+      このページは、LINE API Use Caseサイト（2026年3月31日に閉鎖）に掲載していた記事を、LINE Developersサイトへ移管したものです。LINEプラットフォームを導入した企業の事例を紹介しています。なお、記事の内容は掲載時点のものです。
+     </p>
+    </div>
+   </div>
+  </div>
+  <p>
+   <img src="/media/messaging-api/technicalcase/resortbaito-dive/ja/resortbaito-dive-logo.png"/>
+  </p>
+  <p>
+   <strong>
+    株式会社ダイブ
+   </strong>
+  </p>
+  <p>
+   株式会社ダイブは、観光施設に特化した人材サービス（リゾートバイト）を基幹事業として展開しているベンチャー企業です。観光産業の大課題である「人手不足」の解決に寄与しており、サービスサイトの登録者数は年間4万人以上、LINE友だち数は15万人を突破。働き手と地域をつなぐ雇用機会を提供し、地方創生や観光産業の発展に取り組んでいます。
+  </p>
+  <hr/>
+  <ul>
+   <li>
+    <a href="#service-overview">
+     サービス概要と解決したい課題
+    </a>
+    <ul>
+     <li>
+      <a href="#service-image">
+       スクリーンショット
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#integration-with-line">
+     LINEとの連携
+    </a>
+    <ul>
+     <li>
+      <a href="#messaging-api-for-staffing">
+       Messaging APIとLINEチャットPlusで解決する派遣業務の課題
+      </a>
+     </li>
+     <li>
+      <a href="#leveraging-collected-data">
+       取得データの活用方法
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#system-overview">
+     システムの概要
+    </a>
+    <ul>
+     <li>
+      <a href="#technology-behind-resort-baito-dive">
+       「リゾートバイトダイブ」を支える技術と効果
+      </a>
+     </li>
+     <li>
+      <a href="#future-outlook">
+       今後の展望
+      </a>
+     </li>
+     <li>
+      <a href="#requests-for-the-lineapi">
+       LINE API開発における要望
+      </a>
+     </li>
+     <li>
+      <a href="#message-to-developers">
+       これから開発される方に一言
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#related-links">
+     ユーザー導入事例関連リンク
+    </a>
+   </li>
+  </ul>
+  <hr/>
+  <h2>
+   <div>
+   </div>
+   <a href="#service-overview">
+    サービス概要と解決したい課題
+   </a>
+  </h2>
+  <p>
+   株式会社ダイブが運営するリゾートバイト専門の人材派遣サービス「リゾートバイトダイブ」では、LINE公式アカウントを通して派遣スタッフと営業担当、カスタマーサポートが日々コミュニケーションを行っています。コミュニケーションの内容は勤務中の日々の困りごとからお仕事探しの相談まで多岐に渡り、コミュニケーションの件数はピーク月では月間送信数63,000件におよびます。1つ1つ丁寧なコミュニケーションを心がけ、派遣スタッフからは非常に良い評価をいただいています。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#service-image">
+    スクリーンショット
+   </a>
+  </h3>
+  <p>
+   <img src="/media/messaging-api/technicalcase/resortbaito-dive/ja/resortbaito-dive-ui-img.png"/>
+  </p>
+  <p>
+   <img src="/media/messaging-api/technicalcase/resortbaito-dive/ja/resortbaito-dive-ui-img-2.png"/>
+  </p>
+  <hr/>
+  <h2>
+   <div>
+   </div>
+   <a href="#integration-with-line">
+    LINEとの連携
+   </a>
+  </h2>
+  <h3>
+   <div>
+   </div>
+   <a href="#messaging-api-for-staffing">
+    Messaging APIとLINEチャットPlusで解決する派遣業務の課題
+   </a>
+  </h3>
+  <p>
+   これまではLINE Official Account Manager（以下、LINE OAM）のチャット機能を利用していましたが、月間送信数63,000件ともなるとLINE OAMのターゲットから外れてしまうこともあり、次のような課題が浮き彫りとなりました。
+  </p>
+  <ul>
+   <li>
+    弊社CRMとのシステム間連携
+   </li>
+   <li>
+    担当者間連携のための大量のタグの付与や管理
+   </li>
+   <li>
+    既読管理・対応漏れ管理
+   </li>
+  </ul>
+  <p>
+   そこで、弊社の強みであるアルバイトスタッフへの丁寧なサポートは残しつつ、Messaging APIやLINEチャットPlusを活用して新たなチャットシステムを開発することとしました。体験設計や開発はLINE総合支援サービスを提供しているクラスメソッド株式会社と共に進めています。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#leveraging-collected-data">
+    取得データの活用方法
+   </a>
+  </h3>
+  <p>
+   弊社CRMの情報とLINE IDで連携することで、チャットシステム側にCRM側の情報を表示させたり、営業担当者を自動で紐づけたりすることができました。この機能によって担当者の割り振りにかかる時間がなくなり、チャットの返信スピードを向上させることができました。
+  </p>
+  <hr/>
+  <h2>
+   <div>
+   </div>
+   <a href="#system-overview">
+    システムの概要
+   </a>
+  </h2>
+  <p>
+   <img src="/media/messaging-api/technicalcase/resortbaito-dive/ja/resortbaito-dive-system.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#technology-behind-resort-baito-dive">
+    「リゾートバイトダイブ」を支える技術と効果
+   </a>
+  </h3>
+  <p>
+   株式会社ダイブのインフラは、AWS上に構築されています。フロントエンドは、CloudFrontとS3を活用して配信し、バックエンドのAPIは、ALB（Application Load Balancer）とECS on Fargateを利用して構築しています。
+  </p>
+  <p>
+   ユーザーからのチャットメッセージを受信するWebhookは、API GatewayとSQS（Simple Queue Service）を組み合わせてメッセージを受け取り、Lambdaでその後の処理を行う構成です。これにより、ユーザーからのメッセージを確実に受信できる仕組みを実現しています。データベースにはAurora Serverless v2を採用し、プロビジョニングを自動化することで運用効率を向上させています。さらに、これらのインフラ構成はAWS CDKを用いてコードベースで管理し、GitHub Actionsを使って自動デプロイを行っています。
+  </p>
+  <p>
+   開発言語としては、フロントエンド、バックエンド、インフラすべてにTypeScriptを採用し、エンジニアの認知的負荷を軽減する環境を整えています。この統一的なアプローチにより、効率的かつ高品質なシステム運用を実現しています。リリースした結果、前日の業務終了後から翌営業日にかけて届いたチャットの対応に、リリース前は午後まで時間がかかっていたものが、リリース後は午前中で対応が完了するようになりました。また、1日に数回実施しているチャットの対応漏れのチェックについても、検索機能が向上したことで、1回あたり約1時間かかっていた作業が30分程度で完了できるようになり、大幅な業務効率化を実現しています。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#future-outlook">
+    今後の展望
+   </a>
+  </h3>
+  <p>
+   チャットのデータが自社内に溜まるようになったため、今後はこのデータを分析に活用してユーザー満足度の向上を図りたいと考えています。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#requests-for-the-lineapi">
+    LINE API開発における要望
+   </a>
+  </h3>
+  <p>
+   グループトーク、複数人トークのメンバーのユーザーID取得APIが、認証済みアカウントでしか実行できないため、開発用アカウントなどでテストができずに困りました。 テストのため、特別な申請をすると未認証アカウントでも実行できるようになると嬉しいです。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-group-member-user-ids">
+     グループトークのメンバーのユーザーIDを取得する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-room-member-user-ids">
+     複数人トークのメンバーのユーザーIDを取得する
+    </a>
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#message-to-developers">
+    これから開発される方に一言
+   </a>
+  </h3>
+  <p>
+   チャットなどユーザーからのメッセージを確実に受け取る必要がある場合、Webhookで受け取ったメッセージをキューに積み、メッセージ受信と処理を分離すると拡張性の高いアーキテクチャになります。
+  </p>
+  <hr/>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-links">
+    ユーザー導入事例関連リンク
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="https://resortbaito-dive.com/">
+     株式会社ダイブ
+    </a>
+   </li>
+   <li>
+    <a href="https://classmethod.jp/">
+     開発会社：クラスメソッド株式会社
+    </a>
+   </li>
+  </ul>
+ </div>
+</main>

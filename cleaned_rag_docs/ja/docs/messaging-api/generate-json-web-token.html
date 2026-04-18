@@ -1,0 +1,1370 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   チャネルアクセストークンv2.1を発行する
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./generate-json-web-token/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/generate-json-web-token/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   LINEプラットフォームでは、
+   <a href="/ja/docs/basics/channel-access-token/#channel-access-token-types">
+    4種類のチャネルアクセストークン
+   </a>
+   が利用可能です。このうち、チャネルアクセストークンv2.1とステートレスチャネルアクセストークンは、JSON Web Token（JWT）を用いて生成することができます。
+  </p>
+  <p>
+   このページでは、アサーション署名キーの仕様と、署名キーからJWTを生成する方法、また生成したJWTを用いてチャネルアクセストークンを発行する方法について、チャネルアクセストークンv2.1を対象に説明します。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#issue-channel-access-token-v2-1-diagram">
+    チャネルアクセストークンv2.1の発行手順
+   </a>
+  </h2>
+  <p>
+   チャネルアクセストークンv2.1の発行手順は下図のとおりです。この図は、次の3つの手順を表しています。
+  </p>
+  <ul>
+   <li>
+    <a href="./generate-json-web-token/#create-an-assertion-signing-key">
+     アサーション署名キーを発行する
+    </a>
+    （図の手順1）
+   </li>
+   <li>
+    <a href="./generate-json-web-token/#generate-jwt">
+     JWTを生成する
+    </a>
+    （図の手順6）
+   </li>
+   <li>
+    <a href="./generate-json-web-token/#issue_a_channel_access_token_v2_1">
+     チャネルアクセストークンv2.1を発行する
+    </a>
+    （図の手順7）
+   </li>
+  </ul>
+  <p>
+   <img src="/media/messaging-api/channel-access-token/channel-access-token-issue-flow.svg"/>
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     チャネルアクセストークンv2.1の仕様
+    </span>
+   </div>
+   <div>
+    <p>
+     チャネルアクセストークンv2.1の発行における認証方式は
+     <a href="https://datatracker.ietf.org/doc/html/rfc7523#section-2.1">
+      「Using JWTs as Authorization Grants」（RFC 7523）
+     </a>
+     に準拠しています。これは
+     <a href="https://datatracker.ietf.org/doc/html/rfc7521#section-4.1">
+      OAuth Assertion Framework（RFC 7521）
+     </a>
+     のAssertion Frameworkにおいて
+     <a href="https://datatracker.ietf.org/doc/html/rfc7519">
+      JSON Web Token（RFC 7519）
+     </a>
+     を利用したものです。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#create-an-assertion-signing-key">
+    アサーション署名キーを発行する
+   </a>
+  </h2>
+  <p>
+   アサーション署名キーの発行は、次の2つの手順で行います。
+  </p>
+  <ul>
+   <li>
+    <a href="#generate-a-key-pair-for-the-assertion-signing-key">
+     1. アサーション署名キーのキーペアを生成する
+    </a>
+   </li>
+   <li>
+    <a href="#register-public-key-and-get-kid">
+     2. 公開鍵を登録し、
+     <code>
+      kid
+     </code>
+     を取得する
+    </a>
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#generate-a-key-pair-for-the-assertion-signing-key">
+    1. アサーション署名キーのキーペアを生成する
+   </a>
+  </h3>
+  <p>
+   JWTを生成するには、アサーション署名キーのキーペア（秘密鍵・公開鍵）をあらかじめ生成する必要があります。
+  </p>
+  <h4>
+   <div>
+   </div>
+   <a href="#assertion-signing-key-specification">
+    アサーション署名キーの仕様
+   </a>
+  </h4>
+  <p>
+   以下の基準を満たす
+   <a href="https://datatracker.ietf.org/doc/html/rfc7517">
+    JSON Web Key（RFC7517）
+   </a>
+   をJWTのアサーション署名キーとして利用できます。
+  </p>
+  <ol>
+   <li>
+    RSA公開鍵である（
+    <code>
+     kty
+    </code>
+    プロパティに
+    <code>
+     RSA
+    </code>
+    が設定されている）こと。
+   </li>
+   <li>
+    RSA鍵長が2048bitであること。
+   </li>
+   <li>
+    署名アルゴリズムにRS256（RSASSA-PKCS1-v1_5 with SHA256）が使われている（
+    <code>
+     alg
+    </code>
+    プロパティに
+    <code>
+     RS256
+    </code>
+    が設定されている）こと。
+   </li>
+   <li>
+    公開鍵を署名に利用することが明示されている（
+    <code>
+     use
+    </code>
+    や
+    <code>
+     key_ops
+    </code>
+    が下表のように設定されている）こと。
+   </li>
+  </ol>
+  <p>
+   したがって、アサーション署名キーの公開鍵には、以下のフィールドが含まれている必要があります。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      プロパティ
+     </th>
+     <th>
+      説明
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <code>
+       kty
+      </code>
+     </td>
+     <td>
+      鍵で使用される暗号アルゴリズムファミリー。
+      <code>
+       RSA
+      </code>
+      を指定してください。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       alg
+      </code>
+     </td>
+     <td>
+      鍵で使用されるアルゴリズム。
+      <code>
+       RS256
+      </code>
+      を指定してください。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       use
+      </code>
+      <sup>
+       *1
+      </sup>
+     </td>
+     <td>
+      鍵の用途。
+      <code>
+       sig
+      </code>
+      を指定してください。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       key_ops
+      </code>
+      <sup>
+       *1
+      </sup>
+     </td>
+     <td>
+      鍵の利用が想定されているオペレーション。
+      <code>
+       ["verify"]
+      </code>
+      のみを指定してください。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       e
+      </code>
+     </td>
+     <td>
+      公開鍵を復元するための絶対値
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       n
+      </code>
+     </td>
+     <td>
+      公開鍵を復元するための暗号指数
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   *1
+   <code>
+    use
+   </code>
+   か
+   <code>
+    key_ops
+   </code>
+   のいずれかを指定してください。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     公開鍵を登録する前に確認すること
+    </span>
+   </div>
+   <div>
+    <p>
+     登録する公開鍵に
+     <code>
+      kid
+     </code>
+     プロパティがないことを確認してください。アサーション署名キーの公開鍵に
+     <code>
+      kid
+     </code>
+     プロパティが含まれているとエラーになります。これは
+     <code>
+      kid
+     </code>
+     がLINE Developersコンソールで公開鍵を登録したときにのみ発行されるためです。
+    </p>
+   </div>
+  </div>
+  <p>
+   アサーション署名キーのキーペアは、公開仕様をもとに開発者が自らプログラムを作成して生成することもできますが、仕様を満たすライブラリ等を利用するとより簡単に生成できます。
+  </p>
+  <p>
+   以下、アサーション署名キーを生成する手順の例を紹介します。
+  </p>
+  <ul>
+   <li>
+    <a href="#use-go-lang">
+     jwx（Go言語のライブラリ）でキーペアを生成する
+    </a>
+   </li>
+   <li>
+    <a href="#use-python">
+     JWCrypto（Pythonのライブラリ）でキーペアを生成する
+    </a>
+   </li>
+   <li>
+    <a href="#use-browser">
+     ブラウザでキーペアを生成する
+    </a>
+   </li>
+  </ul>
+  <h4>
+   <div>
+   </div>
+   <a href="#use-go-lang">
+    jwx（Go言語のライブラリ）でキーペアを生成する
+   </a>
+  </h4>
+  <p>
+   <a href="https://github.com/lestrrat-go/jwx/tree/develop/v2/cmd/jwx">
+    jwxコマンドラインツール
+   </a>
+   でキーペアを生成できます。このコマンドラインツールは、オープンソースのGo言語ライブラリである
+   <a href="https://github.com/lestrrat-go/jwx">
+    jwx
+   </a>
+   の一部で、JWTの実装に使用されます。Go言語の開発環境が整っていない場合は、
+   <a href="https://go.dev/doc/install">
+    Go言語の公式サイト
+   </a>
+   からGoをダウンロードしてください。
+  </p>
+  <p>
+   以下の手順でアサーション署名キーを発行してください。
+  </p>
+  <h5>
+   <div>
+   </div>
+   1. jwxコマンドラインツールをインストールする
+  </h5>
+  <p>
+   以下のコマンドを実行し、jwxコマンドラインツールをインストールします。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>$</span><span> git</span><span> clone</span><span> https://github.com/lestrrat-go/jwx.git
+</span></span><span><span>$</span><span> cd</span><span> jwx
+</span></span><span><span>$</span><span> make</span><span> jwx
+</span></span></code></pre>
+  </div>
+  <p>
+   インストール完了後、jwxコマンドラインツールがインストールされたパスが表示されます。
+  </p>
+  <div>
+   <span>
+    text
+   </span>
+   <pre><code>// インストールされたパスの表示例
+Installed jwx in {インストールされたパス}
+</code></pre>
+  </div>
+  <p>
+   以降の手順でコマンドが実行できるよう、パスの設定を行ってください。
+  </p>
+  <h5>
+   <div>
+   </div>
+   2. 秘密鍵と公開鍵を生成する
+  </h5>
+  <p>
+   以下のコマンドを実行し秘密鍵を生成します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>$</span><span> jwx</span><span> jwk</span><span> generate</span><span> --type</span><span> RSA</span><span> --keysize</span><span> 2048</span><span> --template</span><span> '{"alg":"RS256","use":"sig"}'</span><span> &gt;</span><span> private.key
+</span></span></code></pre>
+  </div>
+  <p>
+   秘密鍵をもとに公開鍵を生成します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>$</span><span> jwx</span><span> jwk</span><span> format</span><span> --public-key</span><span> private.key</span><span> &gt;</span><span> public.key
+</span></span></code></pre>
+  </div>
+  <p>
+   成功すると以下のような秘密鍵と公開鍵が生成されます。
+  </p>
+  <p>
+   <strong>
+    秘密鍵の例：
+   </strong>
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "alg"</span><span>: </span><span>"RS256"</span><span>,
+</span></span><span><span>  "d"</span><span>: </span><span>"JeSJWnvZ......"</span><span>,
+</span></span><span><span>  "dp"</span><span>: </span><span>"gBDRXGg7......"</span><span>,
+</span></span><span><span>  "dq"</span><span>: </span><span>"MjFJ4xM9......"</span><span>,
+</span></span><span><span>  "e"</span><span>: </span><span>"AQ......"</span><span>,
+</span></span><span><span>  "kty"</span><span>: </span><span>"RSA"</span><span>,
+</span></span><span><span>  "n"</span><span>: </span><span>"pTS2jGso......"</span><span>,
+</span></span><span><span>  "p"</span><span>: </span><span>"xQibzkW6......"</span><span>,
+</span></span><span><span>  "q"</span><span>: </span><span>"1qWtyQ9s......"</span><span>,
+</span></span><span><span>  "qi"</span><span>: </span><span>"sdVGblc......"</span><span>,
+</span></span><span><span>  "use"</span><span>: </span><span>"sig"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   <strong>
+    公開鍵の例：
+   </strong>
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "alg"</span><span>: </span><span>"RS256"</span><span>,
+</span></span><span><span>  "e"</span><span>: </span><span>"AQ......"</span><span>,
+</span></span><span><span>  "kty"</span><span>: </span><span>"RSA"</span><span>,
+</span></span><span><span>  "n"</span><span>: </span><span>"pTS2jGso......"</span><span>,
+</span></span><span><span>  "use"</span><span>: </span><span>"sig"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h4>
+   <div>
+   </div>
+   <a href="#use-python">
+    JWCrypto（Pythonのライブラリ）でキーペアを生成する
+   </a>
+  </h4>
+  <p>
+   JWTを実装するためのオープンソースのPythonライブラリである
+   <a href="https://github.com/latchset/jwcrypto">
+    JWCrypto
+   </a>
+   でキーペアを生成できます。JWCryptoを使用するには、Python3とpipがインストールされている必要があります。Python3がインストールされていない場合は、
+   <a href="https://www.python.org/downloads/">
+    Pythonの公式サイト
+   </a>
+   からお使いのOSに対応したインストーラーをダウンロードし、インストールを進めてください。Python3がインストールされると、pipもインストールされます。Python3はインストールされているがpipがインストールされていない場合は、『
+   <a href="https://pip.pypa.io/en/stable/installation/">
+    pip documentation
+   </a>
+   』を参照し、インストールしてください。
+  </p>
+  <p>
+   以下の手順でアサーション署名キーを発行してください。
+  </p>
+  <h5>
+   <div>
+   </div>
+   1. JWCryptoをインストールする
+  </h5>
+  <p>
+   以下のコマンドを実行しJWCryptoをインストールします。
+  </p>
+  <div>
+   <span>
+    python
+   </span>
+   <pre><code><span><span>$</span><span> pip install jwcrypto
+</span></span></code></pre>
+  </div>
+  <h5>
+   <div>
+   </div>
+   2. 秘密鍵と公開鍵を生成するコードを書く
+  </h5>
+  <p>
+   以下のように、
+   <code>
+    kty
+   </code>
+   を
+   <code>
+    RSA
+   </code>
+   、
+   <code>
+    alg
+   </code>
+   を
+   <code>
+    RS256
+   </code>
+   、
+   <code>
+    use
+   </code>
+   を
+   <code>
+    sig
+   </code>
+   、
+   <code>
+    size
+   </code>
+   を
+   <code>
+    2048
+   </code>
+   として引数に指定して、秘密鍵と公開鍵を生成するpythonファイルを作成します。
+  </p>
+  <div>
+   <span>
+    python
+   </span>
+   <pre><code><span><span>from</span><span> jwcrypto </span><span>import</span><span> jwk
+</span></span><span><span>import</span><span> json
+</span></span><span><span>key </span><span>=</span><span> jwk.</span><span>JWK</span><span>.generate(</span><span>kty</span><span>=</span><span>'RSA'</span><span>, </span><span>alg</span><span>=</span><span>'RS256'</span><span>, </span><span>use</span><span>=</span><span>'sig'</span><span>, </span><span>size</span><span>=</span><span>2048</span><span>)
+</span></span><span><span>
+</span></span><span><span>private_key </span><span>=</span><span> key.export_private()
+</span></span><span><span>public_key </span><span>=</span><span> key.export_public()
+</span></span><span><span>
+</span></span><span><span>print</span><span>(</span><span>"=== private key ===</span><span>\n</span><span>"</span><span>+</span><span>json.dumps(json.loads(private_key),</span><span>indent</span><span>=</span><span>2</span><span>))
+</span></span><span><span>print</span><span>(</span><span>"=== public key ===</span><span>\n</span><span>"</span><span>+</span><span>json.dumps(json.loads(public_key),</span><span>indent</span><span>=</span><span>2</span><span>))
+</span></span></code></pre>
+  </div>
+  <p>
+   pythonファイルは任意のファイル名で保存してください。ここでは、
+   <code>
+    app.py
+   </code>
+   とします。
+  </p>
+  <p>
+   保存したpythonファイルと同じディレクトリで、以下のコマンドを実行し、秘密鍵をもとに公開鍵を生成します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>$</span><span> python</span><span> app.py
+</span></span></code></pre>
+  </div>
+  <p>
+   成功すると以下のような秘密鍵と公開鍵が標準出力されます。
+  </p>
+  <p>
+   <strong>
+    秘密鍵の例：
+   </strong>
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "alg"</span><span>: </span><span>"RS256"</span><span>,
+</span></span><span><span>  "d"</span><span>: </span><span>"zKh7iwIIPXXFKYQS..."</span><span>,
+</span></span><span><span>  "dp"</span><span>: </span><span>"u1qKg_43UeuGpZFI..."</span><span>,
+</span></span><span><span>  "dq"</span><span>: </span><span>"69AzYgpcg0ckypUrv..."</span><span>,
+</span></span><span><span>  "e"</span><span>: </span><span>"AQ.."</span><span>,
+</span></span><span><span>  "kty"</span><span>: </span><span>"RSA"</span><span>,
+</span></span><span><span>  "n"</span><span>: </span><span>"_RzHf7cgG_i6Pdo_..."</span><span>,
+</span></span><span><span>  "p"</span><span>: </span><span>"_20iRavoSrMIwWuRPxo..."</span><span>,
+</span></span><span><span>  "q"</span><span>: </span><span>"_a5QodMBbEriAgztXvHi..."</span><span>,
+</span></span><span><span>  "qi"</span><span>: </span><span>"JozdjTtK57IFLeVAB..."</span><span>,
+</span></span><span><span>  "use"</span><span>: </span><span>"sig"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   <strong>
+    公開鍵の例：
+   </strong>
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "alg"</span><span>: </span><span>"RS256"</span><span>,
+</span></span><span><span>  "e"</span><span>: </span><span>"AQAB"</span><span>,
+</span></span><span><span>  "kty"</span><span>: </span><span>"RSA"</span><span>,
+</span></span><span><span>  "n"</span><span>: </span><span>"_RzHf7cgG_i6Pdo..."</span><span>,
+</span></span><span><span>  "use"</span><span>: </span><span>"sig"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h4>
+   <div>
+   </div>
+   <a href="#use-browser">
+    ブラウザでキーペアを生成する
+   </a>
+  </h4>
+  <p>
+   <a href="https://developer.mozilla.org/ja/docs/Web/API/Web_Crypto_API">
+    Web Crypto API
+   </a>
+   に対応しているウェブブラウザを使用している場合、
+   <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/generateKey">
+    <code>
+     SubtleCrypto.generateKey()
+    </code>
+   </a>
+   メソッドを使って秘密鍵と公開鍵を生成できます。たとえば、Google Chromeを使用している場合は、Chromeのデベロッパーツールのコンソールから以下のコードを入力して実行します。
+  </p>
+  <div>
+   <span>
+    javascript
+   </span>
+   <pre><code><span><span>(</span><span>async</span><span> () </span><span>=&gt;</span><span> {
+</span></span><span><span>  const</span><span> pair</span><span> =</span><span> await</span><span> crypto.subtle.</span><span>generateKey</span><span>(
+</span></span><span><span>    {
+</span></span><span><span>      name: </span><span>"RSASSA-PKCS1-v1_5"</span><span>,
+</span></span><span><span>      modulusLength: </span><span>2048</span><span>,
+</span></span><span><span>      publicExponent: </span><span>new</span><span> Uint8Array</span><span>([</span><span>1</span><span>, </span><span>0</span><span>, </span><span>1</span><span>]),
+</span></span><span><span>      hash: </span><span>"SHA-256"</span><span>,
+</span></span><span><span>    },
+</span></span><span><span>    true</span><span>,
+</span></span><span><span>    [</span><span>"sign"</span><span>, </span><span>"verify"</span><span>],
+</span></span><span><span>  );
+</span></span><span><span>
+</span></span><span><span>  console.</span><span>log</span><span>(</span><span>"=== private key ==="</span><span>);
+</span></span><span><span>  console.</span><span>log</span><span>(
+</span></span><span><span>    JSON</span><span>.</span><span>stringify</span><span>(
+</span></span><span><span>      await</span><span> crypto.subtle.</span><span>exportKey</span><span>(</span><span>"jwk"</span><span>, pair.privateKey),
+</span></span><span><span>      null</span><span>,
+</span></span><span><span>      "  "</span><span>,
+</span></span><span><span>    ),
+</span></span><span><span>  );
+</span></span><span><span>
+</span></span><span><span>  console.</span><span>log</span><span>(</span><span>"=== public key ==="</span><span>);
+</span></span><span><span>  console.</span><span>log</span><span>(
+</span></span><span><span>    JSON</span><span>.</span><span>stringify</span><span>(
+</span></span><span><span>      await</span><span> crypto.subtle.</span><span>exportKey</span><span>(</span><span>"jwk"</span><span>, pair.publicKey),
+</span></span><span><span>      null</span><span>,
+</span></span><span><span>      "  "</span><span>,
+</span></span><span><span>    ),
+</span></span><span><span>  );
+</span></span><span><span>})();
+</span></span></code></pre>
+  </div>
+  <p>
+   成功すると以下のような秘密鍵と公開鍵が生成されます。
+  </p>
+  <p>
+   <strong>
+    秘密鍵の例：
+   </strong>
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "alg"</span><span>: </span><span>"RS256"</span><span>,
+</span></span><span><span>  "d"</span><span>: </span><span>"GaDzOmc4......"</span><span>,
+</span></span><span><span>  "dp"</span><span>: </span><span>"WAByrYmh......"</span><span>,
+</span></span><span><span>  "dq"</span><span>: </span><span>"WLwjYun0......"</span><span>,
+</span></span><span><span>  "e"</span><span>: </span><span>"AQ......"</span><span>,
+</span></span><span><span>  "ext"</span><span>: </span><span>true</span><span>,
+</span></span><span><span>  "key_ops"</span><span>: [
+</span></span><span><span>    "sign"
+</span></span><span><span>  ],
+</span></span><span><span>  "kty"</span><span>: </span><span>"RSA"</span><span>,
+</span></span><span><span>  "n"</span><span>: </span><span>"vsbOUoFA......"</span><span>,
+</span></span><span><span>  "p"</span><span>: </span><span>"5QJitCu9......"</span><span>,
+</span></span><span><span>  "q"</span><span>: </span><span>"1ULfGui5......"</span><span>,
+</span></span><span><span>  "qi"</span><span>: </span><span>"2cK4apee......"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   <strong>
+    公開鍵の例：
+   </strong>
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "alg"</span><span>: </span><span>"RS256"</span><span>,
+</span></span><span><span>  "e"</span><span>: </span><span>"AQ......"</span><span>,
+</span></span><span><span>  "ext"</span><span>: </span><span>true</span><span>,
+</span></span><span><span>  "key_ops"</span><span>: [
+</span></span><span><span>    "verify"
+</span></span><span><span>  ],
+</span></span><span><span>  "kty"</span><span>: </span><span>"RSA"</span><span>,
+</span></span><span><span>  "n"</span><span>: </span><span>"vsbOUoFA......"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#register-public-key-and-get-kid">
+    2. 公開鍵を登録し、
+    <code>
+     kid
+    </code>
+    を取得する
+   </a>
+  </h3>
+  <p>
+   キーペアを生成したら、
+   <a href="/console/">
+    LINE Developersコンソール
+   </a>
+   に公開鍵を登録し、
+   <code>
+    kid
+   </code>
+   を取得します。公開鍵を登録するには、コンソールにアクセスし、自分のチャネルのチャネル設定を開きます。［
+   <strong>
+    チャネル基本設定
+   </strong>
+   ］タブをクリックし、次に、アサーション署名キーの横にある［
+   <strong>
+    公開鍵を登録する
+   </strong>
+   ］ボタンをクリックします。公開鍵を入力し、［
+   <strong>
+    登録
+   </strong>
+   ］ボタンで登録を確定します。
+  </p>
+  <p>
+   公開鍵の登録に成功すると、
+   <code>
+    kid
+   </code>
+   を取得できます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#generate-jwt">
+    JWTを生成する
+   </a>
+  </h2>
+  <p>
+   JWTは、ヘッダー、ペイロード、署名からなる文字列です。すべての項目が必須フィールドです。JWTを生成するには、任意の
+   <a href="https://www.jwt.io/ja/libraries">
+    JWTライブラリ
+   </a>
+   を使用することもできますし、アサーション署名キーを使って独自のコードをスクラッチで書くこともできます。
+  </p>
+  <h3>
+   <a href="#header">
+    ヘッダー
+   </a>
+  </h3>
+  <p>
+   ヘッダーには以下のプロパティを含める必要があります。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      プロパティ
+     </th>
+     <th>
+      型
+     </th>
+     <th>
+      説明
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <code>
+       alg
+      </code>
+     </td>
+     <td>
+      String
+     </td>
+     <td>
+      JWT生成のアルゴリズム。
+      <code>
+       RS256
+      </code>
+      を指定します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       typ
+      </code>
+     </td>
+     <td>
+      String
+     </td>
+     <td>
+      トークンのタイプ。
+      <code>
+       JWT
+      </code>
+      を指定します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       kid
+      </code>
+     </td>
+     <td>
+      String
+     </td>
+     <td>
+      キーID。「
+      <a href="#register-public-key-and-get-kid">
+       2. 公開鍵を登録し、kidを取得する
+      </a>
+      」で取得した
+      <code>
+       kid
+      </code>
+      の値を指定します。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   以下は、ヘッダーの値をデコードした例です。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "alg"</span><span>: </span><span>"RS256"</span><span>,
+</span></span><span><span>  "typ"</span><span>: </span><span>"JWT"</span><span>,
+</span></span><span><span>  "kid"</span><span>: </span><span>"536e453c-aa93-4449-8e90-add2608783c6"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#payload">
+    ペイロード
+   </a>
+  </h3>
+  <p>
+   ペイロードには以下のプロパティを含める必要があります。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      プロパティ
+     </th>
+     <th>
+      タイプ
+     </th>
+     <th>
+      説明
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <code>
+       iss
+      </code>
+     </td>
+     <td>
+      String
+     </td>
+     <td>
+      チャネルID。
+      <a href="/console/">
+       LINE Developersコンソール
+      </a>
+      で取得できます。このプロパティの値は
+      <code>
+       sub
+      </code>
+      と同じにする必要があります。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       sub
+      </code>
+     </td>
+     <td>
+      String
+     </td>
+     <td>
+      チャネルID。
+      <a href="/console/">
+       LINE Developersコンソール
+      </a>
+      で取得できます。このプロパティの値は
+      <code>
+       iss
+      </code>
+      と同じにする必要があります。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       aud
+      </code>
+     </td>
+     <td>
+      String
+     </td>
+     <td>
+      <code>
+       https://api.line.me/
+      </code>
+      を指定します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       exp
+      </code>
+     </td>
+     <td>
+      Number
+     </td>
+     <td>
+      JWTの有効期限をUNIX時間（秒）で指定します。JWTアサーションの最大有効期間は30分です。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       token_exp
+      </code>
+     </td>
+     <td>
+      Number
+     </td>
+     <td>
+      チャネルアクセストークンの有効期間を秒単位で指定します。チャネルアクセストークンの最大有効期間は30日です。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   以下は、デコードされたペイロードの例です。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "iss"</span><span>: </span><span>"1234567890"</span><span>,
+</span></span><span><span>  "sub"</span><span>: </span><span>"1234567890"</span><span>,
+</span></span><span><span>  "aud"</span><span>: </span><span>"https://api.line.me/"</span><span>,
+</span></span><span><span>  "exp"</span><span>: </span><span>1559702522</span><span>,
+</span></span><span><span>  "token_exp"</span><span>: </span><span>86400
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#signature">
+    署名
+   </a>
+  </h3>
+  <p>
+   JWTを生成するには、ヘッダーとペイロードに署名する必要があります。
+   <a href="#jwt-use-nodejs">
+    node-jose
+   </a>
+   （Node.jsのライブラリ）または
+   <a href="#jwt-use-python">
+    PyJWT
+   </a>
+   （Pythonのライブラリ）を利用して、署名を作成し、それを使ってJWTを生成する方法を説明します。
+  </p>
+  <h4>
+   <div>
+   </div>
+   <a href="#jwt-use-nodejs">
+    node-jose（Node.jsのライブラリ）でJWTを生成する
+   </a>
+  </h4>
+  <p>
+   Node.jsのライブラリであるnode-joseを使って署名を作成し、JWTを生成するには、
+   <a href="https://nodejs.org/en">
+    Node.js
+   </a>
+   と
+   <a href="https://github.com/cisco/node-jose#installing">
+    node-jose
+   </a>
+   がインストールされていることを確認してください。
+  </p>
+  <p>
+   以下は、node-joseを使って
+   <strong>
+    秘密鍵
+   </strong>
+   で署名してJWTを生成するコードの例です。このコードを使って自分のJWTを生成する場合は、
+   <code>
+    privateKey
+   </code>
+   を自分のアサーション署名キーの
+   <strong>
+    秘密鍵
+   </strong>
+   の値に変更し、
+   <code>
+    header
+   </code>
+   と
+   <code>
+    payload
+   </code>
+   の値をそれぞれ変更してから実行します。内容が改ざんされていないことを証明するために、必ず
+   <strong>
+    秘密鍵
+   </strong>
+   で署名します。node-joseの使い方について詳しくは、
+   <a href="https://github.com/cisco/node-jose#installing">
+    node-jose
+   </a>
+   を参照してください。
+  </p>
+  <div>
+   <span>
+    javascript
+   </span>
+   <pre><code><span><span>let</span><span> jose </span><span>=</span><span> require</span><span>(</span><span>"node-jose"</span><span>);
+</span></span><span><span>
+</span></span><span><span>let</span><span> privateKey </span><span>=</span><span> `
+</span></span><span><span>{
+</span></span><span><span>    "p": "4h8yEw4q9VkzhXMgXZsIZVkEuZ49EmtWYk9zs0hPTa24ejjRMA6KTYh_va0GlaChO9t0MVQVuduznt-OFZyRAinr4svU4MKD2A3gTHJJCxs0xICva8rkHXqxfPwXngpb5L_xFURbXcSTzMcKckWuOpyPznAgY4XsZxw0t7ewj9E",
+</span></span><span><span>    "kty": "RSA",
+</span></span><span><span>    "q": "pVhBdRN5K3MEiZzU4__TsrtSBJDD_stu60m73iIvsHIrvK3Dmfl-J1zhsyOvi3NH9mVXpUimBwP8nTe-BlVM71G7_EotFHeKH1zTmBlx6AOngmrc40W2Hd__OZW0NfC_xOTvI_Ea2BNGoGtcrIGVFLTivJ4y9wAVOKA058zJ0ls",
+</span></span><span><span>    "d": "ObzE_-TROJazDm-ry-8TKRBMGzwcwTK6lMFSk7n-Xp6h7cDauSdRRYnZivC1lh5plVG3I9aUmPTRbVk7nrPqOlp4WWKQ27lyLd5IogbArpXgnBSkp9Zy0lWzvOsI3gHNnYuehyksHB53FIK93t838JfDQoXUUzalNoNwAGfkTNZxT4GIXGMGzNck2Z_urOATMf8-wdad-u4a5IB2KfHugwH2kw-Zig7fbdcN4_DeKWpuigdesa48Yj_hRJRws-mVFp-xHlGJehumnM_v8FLD85ap8L1hwvBqdJQeurcLXYzZbtdp9a5GpJI7gzOTMoEdxIKlEIIbaOKv4rkkztdhoQ",
+</span></span><span><span>    "e": "AQAB",
+</span></span><span><span>    "use": "sig",
+</span></span><span><span>    "kid": "536e453c-aa93-4449-8e90-add2608783c6",
+</span></span><span><span>    "qi": "XQ2puK9LT5yimyJXlXb4nHEBzPGe3sYbaZW_gMK4iHuM8cseImwLNP8ZIeGaNx5X_hZ6ZOzkjtYJjY85fvaWa2UDGdGlEw3ZO-Nk0Qu_exBrqZgZAsua75TjpJRw01Yd1TNBx5MYuvhltJLsjW-uSjcE-rZoO74FEe9pYYeQjI4",
+</span></span><span><span>    "dp": "Qq_wlK4Y_ULRbwoFAZY3Y6xdOGDyofwF_fhwpu8sdDxHq8QV7ZZcM4GOKuJcjsRQyNZv7hxeS_H_h1tnC_igy4KRjtGOdrrnJ1DwVZte72eWqF1LXv73R7pnnfS7AmELuOriruL6Dy1qaXpKGmlyeNazkq5-3tsgXUh0Q7po2AE",
+</span></span><span><span>    "alg": "RS256",
+</span></span><span><span>    "dq": "Wj1ovDT8lLIZb-Ggby9YotuJT-SSk6UDzHZZikquLGajaD6N2qNILsOKivKXBEzOobN9uj-EHaAXZtbdZyd27cZ2CqORJvJ299b5xLFecXpNGeio1YFee7-c1BjYWfgjMZqgycT1GairizINSjkO3FY8ySSuPBBXhKgrN7eVDrE",
+</span></span><span><span>    "n": "kgwP0NPaoAwhSh9iLlRaT7FSRbNsl6T5-j-bB3xAT1UbsxOJ9v06S3_54bpYlEAkjlrO-i1vmSzfSVnqFXnjWThWRvPmBDth3Ka7hQm9UXjiAvTzYxXGFjyhALqa_-DQCtdrqIhi8E4hAuSu--kGgnFKg3G-21KJuqnVzsXrClGkxbmVufx0MJjJxr1YGfkTMG8i0dovS9tnkioDAkt1knupiYk5ir_WiNy4T-70T5s3ktC5_4Uz10hS-rWeUxiihzG8G7ceg84-Kt5jKP_AgUnel-ksRyfgSJCYC9nHyz913a3ALj3Dzt7TBaxwAjlxESrdNz5RE9DNDZfPmNWRSw"
+</span></span><span><span>  }
+</span></span><span><span>`</span><span>;
+</span></span><span><span>
+</span></span><span><span>let</span><span> header </span><span>=</span><span> {
+</span></span><span><span>  alg: </span><span>"RS256"</span><span>,
+</span></span><span><span>  typ: </span><span>"JWT"</span><span>,
+</span></span><span><span>  kid: </span><span>"536e453c-aa93-4449-8e90-add2608783c6"</span><span>,
+</span></span><span><span>};
+</span></span><span><span>
+</span></span><span><span>let</span><span> payload </span><span>=</span><span> {
+</span></span><span><span>  iss: </span><span>"1234567890"</span><span>,
+</span></span><span><span>  sub: </span><span>"1234567890"</span><span>,
+</span></span><span><span>  aud: </span><span>"https://api.line.me/"</span><span>,
+</span></span><span><span>  exp: Math.</span><span>floor</span><span>(</span><span>new</span><span> Date</span><span>().</span><span>getTime</span><span>() </span><span>/</span><span> 1000</span><span>) </span><span>+</span><span> 60</span><span> *</span><span> 30</span><span>,
+</span></span><span><span>  token_exp: </span><span>60</span><span> *</span><span> 60</span><span> *</span><span> 24</span><span> *</span><span> 30</span><span>,
+</span></span><span><span>};
+</span></span><span><span>
+</span></span><span><span>jose.</span><span>JWS</span><span>.</span><span>createSign</span><span>(
+</span></span><span><span>  { format: </span><span>"compact"</span><span>, fields: header },
+</span></span><span><span>  JSON</span><span>.</span><span>parse</span><span>(privateKey),
+</span></span><span><span>)
+</span></span><span><span>  .</span><span>update</span><span>(</span><span>JSON</span><span>.</span><span>stringify</span><span>(payload))
+</span></span><span><span>  .</span><span>final</span><span>()
+</span></span><span><span>  .</span><span>then</span><span>((</span><span>result</span><span>) </span><span>=&gt;</span><span> {
+</span></span><span><span>    console.</span><span>log</span><span>(result);
+</span></span><span><span>  });
+</span></span></code></pre>
+  </div>
+  <p>
+   Base64形式でエンコードされたヘッダーとクレーム・セット、および秘密鍵（rsa_private.pemファイルなど）を、ヘッダーで定義したアルゴリズムを使用して署名します。署名後、Base64形式でエンコードされた結果がJWTです。以下はJWTの例です。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJjNjU4NWYzLThkZGQtNDZjNC05YmUyLWI1NGE3MGFhOTRlYSJ9.eyJpc3MiOiIxNjUzOTQ3MTcyIiwic3ViIjoiMTY1Mzk0NzE3MiIsImF1ZCI6Imh0dHBzOi8vYXBpLmxpbmUubWUvIiwiZXhwIjoiMTU4NTIwMDA2MiIsInRva2VuX2V4cCI6IjI1OTIwMDAifQ.UVG6PAEub-OPbZ3nJuVxRRPjY6Sz_eIHJV9DTTAHCR79YsG4yWvoa9AeIctibb6IJQKgTEV7mF7LsUDmXldEDqYwyEmKs38zj_995Ntc9SYBFphHpr09NqfMoqMphwKqms2NOnqgcHreFs27d9Q0Qv8Rtv2t7SB2cVO__KrsjzYNs3miTvDdkqYLXFo5fXwuzNtHOCAJomd6bhMR8Yd1-vJmtMCBPK4hmA98w8fG_NhcyLbw-B9AuxQ6z92zXiRhNyPlK_3ce2T7HtgUluJ4xJl4xdLJ_C6hvTAqtQxmSiJKzbjUiANF6hVBTomU8vkaIjEKjnlT1uPMihfrsA3pzQ
+</span></span></code></pre>
+  </div>
+  <h4>
+   <div>
+   </div>
+   <a href="#jwt-use-python">
+    PyJWT（Pythonのライブラリ）でJWTを生成する
+   </a>
+  </h4>
+  <p>
+   PyJWTを使って署名し、JWTを生成するには、
+   <a href="https://www.python.org/downloads/">
+    Python
+   </a>
+   と
+   <a href="https://github.com/jpadilla/pyjwt">
+    PyJWT
+   </a>
+   がインストールされている必要があります。
+  </p>
+  <p>
+   以下は、PyJWTを使って
+   <strong>
+    秘密鍵
+   </strong>
+   で署名してJWTを生成するコードの例です。このコードを使って自分のJWTを作成する場合は、
+   <code>
+    privateKey
+   </code>
+   を自分のアサーション署名キーの
+   <strong>
+    秘密鍵
+   </strong>
+   の値に変更し、
+   <code>
+    headers
+   </code>
+   の
+   <code>
+    kid
+   </code>
+   と
+   <code>
+    payload
+   </code>
+   の値をそれぞれ変更してから実行します。コンテンツが改ざんされていないことを証明するために、必ず
+   <strong>
+    秘密鍵
+   </strong>
+   で署名します。PyJWTの使い方について詳しくは、
+   <a href="https://github.com/jpadilla/pyjwt#installing">
+    PyJWT
+   </a>
+   を参照してください。
+  </p>
+  <div>
+   <span>
+    python
+   </span>
+   <pre><code><span><span>import</span><span> jwt
+</span></span><span><span>from</span><span> jwt.algorithms </span><span>import</span><span> RSAAlgorithm
+</span></span><span><span>import</span><span> time
+</span></span><span><span>
+</span></span><span><span>privateKey </span><span>=</span><span> {
+</span></span><span><span>  "alg"</span><span>: </span><span>"RS256"</span><span>,
+</span></span><span><span>  "d"</span><span>: </span><span>"dcA-LXLBRecBQbW7a8LKAriFJhnpXzwu2uNoVF_8-QmGVzI5682FWh_CWhl_B6J0fpmA-d7_EP0WCB3AGhxlyTP6ROoYJo7nygb_KMLREM7n64LFGbvNtw4jk7dmISXl_JuEX6CG09BBx4GLh9AGHSaK4v9B-dDvrNZlAo2mIjISHNcAPENbOl_XIOmZpJd56znjjc1gGKaYGbIm8unxHnPhL66IVYGRu8gxKfG6JUP7o370-VDfFOeaAR0HshTycP6M41jcDSjL6z9-J-Sh0zSZXqGS4u82TNtmwtRTzVwd0w30KQ0TTROTiNsz5apVHjpMvmAxRlbvcW41xIq8sQ"</span><span>,
+</span></span><span><span>  "dp"</span><span>: </span><span>"PAWBMzwnwgc-yixarV30gemH6Wk15HfSUYpR4wJZUHemGx_LE5GXdnKoyy8G9DAl6XMpm7YVH8cPXgXYNh-JlAggvzUeH5A7KAV4ZPTNak4CI844GSbYIu_dPBcVAg0O6sxQWugYpPbPnMDpE7qf4KilSSVG3JKqEMxkYySjZZE"</span><span>,
+</span></span><span><span>  "dq"</span><span>: </span><span>"LBA_q2YYnglCL41-1b3BmzCm-hs7Q-N__otDWO01I03VYnzU-vEQmxy6Fzrh2Y4Fgwp6D8iScu42AOyhE-T-qDNbAsCB0iZeFqm84g6VQAfDbknjIUZtcGvQgzy-zlrl253_QdyJvl2b44KT1hfoF0tDNA1rhOy7WlBM__rH0Pc"</span><span>,
+</span></span><span><span>  "e"</span><span>: </span><span>"AQAB"</span><span>,
+</span></span><span><span>  "kty"</span><span>: </span><span>"RSA"</span><span>,
+</span></span><span><span>  "n"</span><span>: </span><span>"x2glWJ7baQV4vdElnAXA5yu8yFk4LpszkHW3Ey-BKGT3kGVLy3Jk3OvkwjBFOglXWeyTWe_rJkMYkBKuon5syZVjrjb24CmViAXGr6d6IvrYWj8IGZ6ElVABfnjGgZMVywmBb7hIh2p8QR0L8UJEuWjBU5nlwkMBpvnY2HXAVhvir8CN7WRj_GBMxxgg7wSuW1tV-7Qf44grMqJ0Je7zjflS4-TpI8Ox3nhamn0d7NIdQ3jNdTP7IZF61IvETgb_6NdFnfsN-aifJC-Ea3ZwhVcEGJ5z3MMoKSoChJmkJMiV9CldqGRnEDWwBugZHeEtn71eGVE3DAXAzrf525YHYQ"</span><span>,
+</span></span><span><span>  "p"</span><span>: </span><span>"7eH8LAzNkITH6t7CWU5tPAmQlGQPkby66Yfq52tSZ43pQRz0CdtDYCQnGoBXvHzAHhzH4MjmNLOSGVimZK_dIRg5lJaPvVe6hgQ3pYud5WzPWsnQTsC7agQ2rfQglyFUtjwd1gWBIY4gwHj4BYG6Up3g0TlX1sf_juZxcLhkOsc"</span><span>,
+</span></span><span><span>  "q"</span><span>: </span><span>"1pf-Pj2ZPL1nGqVcMVH_hfziIOBtjxc5vMGyHwTaLAA9y2xKfe_SRU8kUK2q5ZykJ8wMckR9Pduuyn-vp4q2FANVSN69G01pUKM2ppkgXuil2S3REmzniGdajZjkpWKaZ6z1tJ_xSv9ghx06Dbro8n___KnpBq6afb022anRxJc"</span><span>,
+</span></span><span><span>  "qi"</span><span>: </span><span>"6L6SgH_pkyqq1Tb6QXPAGmtqVZT58Ljf3QTw6Tx5OdZ9NNvDReHHb64MgbUMLhLzGMeXGqDI5j0WLhtXv4ddCKWkF7OeKLUNuRP7yLpyYMazn8TEOjKHsgLAklenxcSgYaoO_wULh1mze1_ZO2PJNgvkIx_Xzr0XDUAqUp4W0jk"</span><span>,
+</span></span><span><span>  "use"</span><span>: </span><span>"sig"
+</span></span><span><span>}
+</span></span><span><span>
+</span></span><span><span>headers </span><span>=</span><span> {
+</span></span><span><span>    "alg"</span><span>: </span><span>"RS256"</span><span>,
+</span></span><span><span>    "typ"</span><span>: </span><span>"JWT"</span><span>,
+</span></span><span><span>    "kid"</span><span>: </span><span>"9869e446-3489-4516-a83f-ec9214ad94d0"
+</span></span><span><span>}
+</span></span><span><span>
+</span></span><span><span>payload </span><span>=</span><span> {
+</span></span><span><span>  "iss"</span><span>: </span><span>"1234567890"</span><span>,
+</span></span><span><span>  "sub"</span><span>: </span><span>"1234567890"</span><span>,
+</span></span><span><span>  "aud"</span><span>: </span><span>"https://api.line.me/"</span><span>,
+</span></span><span><span>  "exp"</span><span>:</span><span>int</span><span>(time.time())</span><span>+</span><span>(</span><span>60</span><span> *</span><span> 30</span><span>),
+</span></span><span><span>  "token_exp"</span><span>: </span><span>60</span><span> *</span><span> 60</span><span> *</span><span> 24</span><span> *</span><span> 30
+</span></span><span><span>}
+</span></span><span><span>
+</span></span><span><span>key </span><span>=</span><span> RSAAlgorithm.from_jwk(privateKey)
+</span></span><span><span>
+</span></span><span><span>JWT</span><span> =</span><span> jwt.encode(payload, key, </span><span>algorithm</span><span>=</span><span>"RS256"</span><span>, </span><span>headers</span><span>=</span><span>headers, </span><span>json_encoder</span><span>=</span><span>None</span><span>)
+</span></span><span><span>print</span><span>(</span><span>JWT</span><span>)
+</span></span></code></pre>
+  </div>
+  <p>
+   Base64形式でエンコードされたヘッダーとクレーム・セット、および秘密鍵を、ヘッダーで定義したアルゴリズムを使用して署名します。署名後、Base64形式でエンコードされた結果がJWTです。以下はJWTの例です。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ijk4NjllNDQ2LTM0ODktNDUxNi1hODNmLWVjOTIxNGFkOTRkMCJ9.eyJpc3MiOiIxMjM0NTY3ODkwIiwic3ViIjoiMTIzNDU2Nzg5MCIsImF1ZCI6Imh0dHBzOi8vYXBpLmxpbmUubWUvIiwiZXhwIjoxNjIzOTk1NTk5LCJ0b2tlbl9leHAiOjI1OTIwMDB9.Zf32xTqgUHSYw2C2Mlmunqz_AtkaqvGh0msx9XJMX6QYLPT4m4QYF3PsER-zfbhbByNT4rH09JEMRP7bzcNMQ8l4n_WXwTyLkNciZYzF-sTiVHiZu4ucJm4_l8ni5NaqOVEntsCp1wQi8-VLjaMpQlQ7crCdouEMFFeyVwgERfH8ui6UZaJeIlJKRZTnO6iYvKYuLyUsqzowfwZo0hcnnZIXKnjZ81ukjH3_78EHXOD5ivovAT7CtmBoglm3Bvsi0N6PlEONLhHqpCleaYTXRmCykxDLP600JRvi5TYApaN-8n2Bo3FskXJLuxquWLP-LTfMDlkakmfEfcQCiz7daQ
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#issue_a_channel_access_token_v2_1">
+    チャネルアクセストークンv2.1を発行する
+   </a>
+  </h2>
+  <p>
+   <a href="#generate-jwt">
+    生成した
+   </a>
+   JWTアサーションを指定して、
+   <a href="/ja/reference/messaging-api/#issue-channel-access-token-v2-1">
+    チャネルアクセストークンv2.1を発行
+   </a>
+   できます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     キーIDを使ってチャネルアクセストークンv2.1を管理する
+    </span>
+   </div>
+   <div>
+    <ul>
+     <li>
+      チャネルアクセストークンv2.1をリクエストすると、チャネルアクセストークンと一意のキーID（
+      <code>
+       key_id
+      </code>
+      ）のペアがレスポンスとして返されます。チャネルアクセストークンを適切に管理するため、チャネルアクセストークンとキーIDのペアを安全に保管するようにしてください。
+     </li>
+     <li>
+      キーIDは、2020年6月22日にMessaging APIに追加された識別子です。キーIDを持たないチャネルアクセストークンv2.1を使用している場合は、チャネルアクセストークンv2.1を再発行し、トークンとキーIDのペアを保管することをお勧めします。チャネルアクセストークンを再発行した場合は、新しいトークンを使用するようにボットを更新してください。
+     </li>
+    </ul>
+   </div>
+  </div>
+  <p>
+   チャネルアクセストークンv2.1を取得する手順は以下のとおりです。
+  </p>
+  <p>
+   <img src="/media/messaging-api/channel-access-token/using_keyID_procedure_01.png"/>
+  </p>
+  <ol>
+   <li>
+    生成したJWTを指定して、
+    <a href="/ja/reference/messaging-api/#issue-channel-access-token-v2-1">
+     チャネルアクセストークンv2.1を発行する
+    </a>
+    エンドポイントを実行し、チャネルアクセストークンを発行します。
+   </li>
+   <li>
+    チャネルアクセストークンとキーIDがLINEプラットフォームから返ります。
+   </li>
+   <li>
+    チャネルアクセストークンとキーIDをペアにしてデータベースなどに保管します。
+   </li>
+  </ol>
+  <h3>
+   <div>
+   </div>
+   <a href="#revoke-channel-access-token-version-2-1">
+    チャネルアクセストークンv2.1を取り消す
+   </a>
+  </h3>
+  <p>
+   <a href="/ja/reference/messaging-api/#revoke-channel-access-token-v2-1">
+    チャネルアクセストークンv2.1を取り消す
+   </a>
+   エンドポイントを実行することで、有効なチャネルアクセストークンを取り消すことができます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     有効なチャネルアクセストークンの識別
+    </span>
+   </div>
+   <div>
+    <p>
+     無効なチャネルアクセストークンを指定して、
+     <a href="/ja/reference/messaging-api/#revoke-channel-access-token-v2-1">
+      チャネルアクセストークンv2.1を取り消す
+     </a>
+     エンドポイントを実行した場合も、エラーレスポンスは発生しません。
+     <a href="/ja/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1">
+      すべての有効なチャネルアクセストークンv2.1のキーIDを取得する
+     </a>
+     エンドポイントを使って、現在有効なチャネルアクセストークンとペアになるキーIDを取得できます。取得したキーIDを、データベースなどに保管したチャネルアクセストークンとキーIDのペアと照合することで、有効なチャネルアクセストークンを識別できます。
+    </p>
+   </div>
+  </div>
+  <p>
+   チャネルアクセストークンv2.1を取り消す手順は以下のとおりです。
+  </p>
+  <p>
+   <img src="/media/messaging-api/channel-access-token/using_keyID_procedure_02.png"/>
+  </p>
+  <ol>
+   <li>
+    保存したアサーション署名キーからJWTを再生成します。
+   </li>
+   <li>
+    JWTを使って
+    <a href="/ja/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1">
+     すべての有効なチャネルアクセストークンv2.1のキーIDを取得する
+    </a>
+    エンドポイントを実行します。
+   </li>
+   <li>
+    有効なチャネルアクセストークンのキーIDがLINEプラットフォームから返ります。
+   </li>
+   <li>
+    取得したキーIDをデータベースと照合します。
+   </li>
+   <li>
+    取得したキーIDと一致する、チャネルアクセストークンとキーIDのペアがあるかどうかを確認します。
+   </li>
+   <li>
+    有効なチャネルアクセストークンを取得します。
+   </li>
+   <li>
+    有効なチャネルアクセストークンを指定して、
+    <a href="/ja/reference/messaging-api/#revoke-channel-access-token-v2-1">
+     チャネルアクセストークンv2.1を取り消す
+    </a>
+    エンドポイントを実行します。
+   </li>
+   <li>
+    LINEプラットフォームによってチャネルアクセストークンが取り消されます。
+   </li>
+  </ol>
+ </div>
+</main>

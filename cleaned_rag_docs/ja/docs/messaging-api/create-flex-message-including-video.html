@@ -1,0 +1,754 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   動画を含むFlex Messageを作成する
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./create-flex-message-including-video/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/create-flex-message-including-video/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   Flex Messageの動画コンポーネントを使うと、ヒーローの
+   <a href="./flex-message-elements/#block">
+    ブロック
+   </a>
+   に動画を表示できます。Flex Messageの送信について詳しくは、「
+   <a href="./using-flex-messages/">
+    Flex Messageを送信する
+   </a>
+   」を参照してください。
+  </p>
+  <ul>
+   <li>
+    <a href="#use-conditions">
+     動画コンポーネントの使用条件
+    </a>
+   </li>
+   <li>
+    <a href="#aspect-ratio">
+     動画のアスペクト比
+    </a>
+   </li>
+   <li>
+    <a href="#uri-action">
+     動画のURIアクション
+    </a>
+   </li>
+   <li>
+    <a href="#define-flex-message">
+     動画を含むFlex Messageの定義
+    </a>
+   </li>
+   <li>
+    <a href="#how-to-play-video">
+     動画の再生方法
+    </a>
+    <ul>
+     <li>
+      <a href="#chat-room">
+       トークルーム上での自動再生
+      </a>
+     </li>
+     <li>
+      <a href="#video-player">
+       動画プレーヤー上での手動再生
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#alt-content">
+     動画コンポーネントをサポートするバージョン未満のLINEでの表示
+    </a>
+   </li>
+   <li>
+    <a href="#flex-message-simulator">
+     Flex Message Simulatorでの表示
+    </a>
+   </li>
+   <li>
+    <a href="#related-pages">
+     関連ページ
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#use-conditions">
+    動画コンポーネントの使用条件
+   </a>
+  </h2>
+  <p>
+   <a href="./flex-message-elements/#video">
+    動画
+   </a>
+   コンポーネントを使うには、以下の条件をすべて満たす必要があります。
+  </p>
+  <ul>
+   <li>
+    ヒーローの
+    <a href="./flex-message-elements/#block">
+     ブロック
+    </a>
+    のタイプに
+    <code>
+     video
+    </code>
+    を指定する。
+   </li>
+   <li>
+    バブルのサイズに
+    <code>
+     kilo
+    </code>
+    、
+    <code>
+     mega
+    </code>
+    、
+    <code>
+     giga
+    </code>
+    のいずれかを指定する。
+   </li>
+   <li>
+    バブルがカルーセルの子要素ではない。
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#aspect-ratio">
+    動画のアスペクト比
+   </a>
+  </h2>
+  <p>
+   動画が横長すぎたり、縦長すぎたりすると、端末によっては動画の全体が表示されず、一部が欠けて表示される場合があります。動画を正しく表示するには、以下のアスペクト比がすべて同じであることを確認してください。
+  </p>
+  <ul>
+   <li>
+    <code>
+     url
+    </code>
+    プロパティで指定する動画のアスペクト比
+   </li>
+   <li>
+    <code>
+     aspectRatio
+    </code>
+    プロパティで指定するアスペクト比
+   </li>
+   <li>
+    <code>
+     previewUrl
+    </code>
+    プロパティで指定するプレビュー画像のアスペクト比
+   </li>
+  </ul>
+  <p>
+   <img src="/media/messaging-api/messages/image-overlapping-ja.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#uri-action">
+    動画のURIアクション
+   </a>
+  </h2>
+  <p>
+   動画コンポーネントの
+   <code>
+    action
+   </code>
+   プロパティを使うと、
+   <a href="/ja/reference/messaging-api/#uri-action">
+    URIアクション
+   </a>
+   を指定できます。URIアクションを指定すると、ラベルのタップ時にLINE内ブラウザで指定のURLを開いたり、通話アプリで指定の電話番号に電話をかけたりできます。URIアクションのラベルは以下の3箇所で表示されます。
+  </p>
+  <ul>
+   <li>
+    <a href="#chat-room-screen">
+     トークルーム（動画再生終了時）
+    </a>
+   </li>
+   <li>
+    <a href="#video-player-screen1">
+     動画プレーヤー（動画再生時）
+    </a>
+   </li>
+   <li>
+    <a href="#video-player-screen2">
+     動画プレーヤー（動画再生終了時）
+    </a>
+   </li>
+  </ul>
+  <p>
+   <img src="/media/messaging-api/create-flex-message-including-video/label-in-chat-room-ja.png"/>
+   <img src="/media/messaging-api/create-flex-message-including-video/label-in-video-player1-ja.png"/>
+   <img src="/media/messaging-api/create-flex-message-including-video/label-in-video-player2-ja.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#define-flex-message">
+    動画を含むFlex Messageの定義
+   </a>
+  </h2>
+  <p>
+   以下のFlex Messageは、動画だけを含む最も基本的なレイアウトです。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/video-sample.png"/>
+  </p>
+  <p>
+   動画を含めるには、
+   <code>
+    hero
+   </code>
+   ブロックを使う必要があります。動画コンポーネントをサポートしていないバージョンのLINE向けには、ヒーローのブロックの
+   <code>
+    altContent
+   </code>
+   プロパティに、代替コンテンツを指定します。上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "size"</span><span>: </span><span>"mega"</span><span>,
+</span></span><span><span>  "hero"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"video"</span><span>,
+</span></span><span><span>    "url"</span><span>: </span><span>"https://example.com/video.mp4"</span><span>,
+</span></span><span><span>    "previewUrl"</span><span>: </span><span>"https://example.com/video_preview.jpg"</span><span>,
+</span></span><span><span>    "altContent"</span><span>: {
+</span></span><span><span>      "type"</span><span>: </span><span>"image"</span><span>,
+</span></span><span><span>      "size"</span><span>: </span><span>"full"</span><span>,
+</span></span><span><span>      "aspectRatio"</span><span>: </span><span>"20:13"</span><span>,
+</span></span><span><span>      "aspectMode"</span><span>: </span><span>"cover"</span><span>,
+</span></span><span><span>      "url"</span><span>: </span><span>"https://example.com/image.jpg"
+</span></span><span><span>    },
+</span></span><span><span>    "aspectRatio"</span><span>: </span><span>"20:13"
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   また、
+   <a href="/ja/reference/messaging-api/#video-message">
+    動画メッセージ
+   </a>
+   とは異なり、動画を含む複雑なレイアウトのメッセージを構築できます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/create-flex-message-including-video/video.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "size"</span><span>: </span><span>"mega"</span><span>,
+</span></span><span><span>  "hero"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"video"</span><span>,
+</span></span><span><span>    "url"</span><span>: </span><span>"https://example.com/video.mp4"</span><span>,
+</span></span><span><span>    "previewUrl"</span><span>: </span><span>"https://example.com/video_preview.png"</span><span>,
+</span></span><span><span>    "altContent"</span><span>: {
+</span></span><span><span>      "type"</span><span>: </span><span>"image"</span><span>,
+</span></span><span><span>      "size"</span><span>: </span><span>"full"</span><span>,
+</span></span><span><span>      "aspectRatio"</span><span>: </span><span>"20:13"</span><span>,
+</span></span><span><span>      "aspectMode"</span><span>: </span><span>"cover"</span><span>,
+</span></span><span><span>      "url"</span><span>: </span><span>"https://example.com/image.png"
+</span></span><span><span>    },
+</span></span><span><span>    "action"</span><span>: {
+</span></span><span><span>      "type"</span><span>: </span><span>"uri"</span><span>,
+</span></span><span><span>      "label"</span><span>: </span><span>"詳細はこちら"</span><span>,
+</span></span><span><span>      "uri"</span><span>: </span><span>"http://example.com/"
+</span></span><span><span>    },
+</span></span><span><span>    "aspectRatio"</span><span>: </span><span>"20:13"
+</span></span><span><span>  },
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"Brown Cafe"</span><span>,
+</span></span><span><span>        "weight"</span><span>: </span><span>"bold"</span><span>,
+</span></span><span><span>        "size"</span><span>: </span><span>"xl"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"baseline"</span><span>,
+</span></span><span><span>        "margin"</span><span>: </span><span>"md"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"icon"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>            "url"</span><span>: </span><span>"https://example.com/star.png"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"icon"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>            "url"</span><span>: </span><span>"https://example.com/star.png"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"icon"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>            "url"</span><span>: </span><span>"https://example.com/star.png"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"icon"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>            "url"</span><span>: </span><span>"https://example.com/star.png"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"icon"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>            "url"</span><span>: </span><span>"https://example.com/gray_star.png"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"4.0"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>            "color"</span><span>: </span><span>"#999999"</span><span>,
+</span></span><span><span>            "margin"</span><span>: </span><span>"md"</span><span>,
+</span></span><span><span>            "flex"</span><span>: </span><span>0
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "margin"</span><span>: </span><span>"lg"</span><span>,
+</span></span><span><span>        "spacing"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>            "layout"</span><span>: </span><span>"baseline"</span><span>,
+</span></span><span><span>            "spacing"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>            "contents"</span><span>: [
+</span></span><span><span>              {
+</span></span><span><span>                "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>                "text"</span><span>: </span><span>"Place"</span><span>,
+</span></span><span><span>                "color"</span><span>: </span><span>"#aaaaaa"</span><span>,
+</span></span><span><span>                "size"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>                "flex"</span><span>: </span><span>1
+</span></span><span><span>              },
+</span></span><span><span>              {
+</span></span><span><span>                "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>                "text"</span><span>: </span><span>"1-3 Kioicho, Chiyoda-ku, Tokyo"</span><span>,
+</span></span><span><span>                "wrap"</span><span>: </span><span>true</span><span>,
+</span></span><span><span>                "color"</span><span>: </span><span>"#666666"</span><span>,
+</span></span><span><span>                "size"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>                "flex"</span><span>: </span><span>5
+</span></span><span><span>              }
+</span></span><span><span>            ]
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>            "layout"</span><span>: </span><span>"baseline"</span><span>,
+</span></span><span><span>            "spacing"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>            "contents"</span><span>: [
+</span></span><span><span>              {
+</span></span><span><span>                "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>                "text"</span><span>: </span><span>"Time"</span><span>,
+</span></span><span><span>                "color"</span><span>: </span><span>"#aaaaaa"</span><span>,
+</span></span><span><span>                "size"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>                "flex"</span><span>: </span><span>1
+</span></span><span><span>              },
+</span></span><span><span>              {
+</span></span><span><span>                "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>                "text"</span><span>: </span><span>"10:00 - 23:00"</span><span>,
+</span></span><span><span>                "wrap"</span><span>: </span><span>true</span><span>,
+</span></span><span><span>                "color"</span><span>: </span><span>"#666666"</span><span>,
+</span></span><span><span>                "size"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>                "flex"</span><span>: </span><span>5
+</span></span><span><span>              }
+</span></span><span><span>            ]
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  },
+</span></span><span><span>  "footer"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "spacing"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"button"</span><span>,
+</span></span><span><span>        "style"</span><span>: </span><span>"link"</span><span>,
+</span></span><span><span>        "height"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>        "action"</span><span>: {
+</span></span><span><span>          "type"</span><span>: </span><span>"uri"</span><span>,
+</span></span><span><span>          "label"</span><span>: </span><span>"CALL"</span><span>,
+</span></span><span><span>          "uri"</span><span>: </span><span>"https://example.com"
+</span></span><span><span>        }
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"button"</span><span>,
+</span></span><span><span>        "style"</span><span>: </span><span>"link"</span><span>,
+</span></span><span><span>        "height"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>        "action"</span><span>: {
+</span></span><span><span>          "type"</span><span>: </span><span>"uri"</span><span>,
+</span></span><span><span>          "label"</span><span>: </span><span>"WEBSITE"</span><span>,
+</span></span><span><span>          "uri"</span><span>: </span><span>"https://example.com"
+</span></span><span><span>        }
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [],
+</span></span><span><span>        "margin"</span><span>: </span><span>"sm"
+</span></span><span><span>      }
+</span></span><span><span>    ],
+</span></span><span><span>    "flex"</span><span>: </span><span>0
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#how-to-play-video">
+    動画の再生方法
+   </a>
+  </h2>
+  <p>
+   Flex Messageで送信された動画は、
+   <a href="#chat-room">
+    トークルーム
+   </a>
+   上や
+   <a href="#video-player">
+    動画プレーヤー
+   </a>
+   上で再生できます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     動画が正しく再生できない
+    </span>
+   </div>
+   <div>
+    <p>
+     動画を含むメッセージの送信に成功したとしても、ユーザーの端末上で動画を正しく再生できない場合があります。詳しくは、FAQの「
+     <a href="/ja/faq/#why-cant-i-play-a-video-i-sent">
+      メッセージとして送信した動画が再生できないのはなぜですか？
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#chat-room">
+    トークルーム上での自動再生
+   </a>
+  </h3>
+  <p>
+   トークルーム上で動画が自動再生されるかどうかは、LINEの［
+   <strong>
+    設定
+   </strong>
+   ］ &gt; ［
+   <strong>
+    写真と動画
+   </strong>
+   ］ &gt; ［
+   <strong>
+    動画自動再生
+   </strong>
+   ］で確認できます。PC版LINE（macOS版とWindows版）では動画は自動再生されません。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      ［
+      <strong>
+       動画自動再生
+      </strong>
+      ］の設定
+     </th>
+     <th>
+      自動再生
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      ［
+      <strong>
+       モバイルデータ通信とWi-Fi
+      </strong>
+      ］
+     </td>
+     <td>
+      動画が自動再生される
+     </td>
+    </tr>
+    <tr>
+     <td>
+      ［
+      <strong>
+       Wi-Fiのみ
+      </strong>
+      ］
+     </td>
+     <td>
+      Wi-Fi接続時のみ動画が自動再生される
+     </td>
+    </tr>
+    <tr>
+     <td>
+      ［
+      <strong>
+       自動再生しない
+      </strong>
+      ］
+     </td>
+     <td>
+      動画が自動再生されない
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h4>
+   <div>
+   </div>
+   <a href="#chat-room-screen">
+    動画再生終了時の画面
+   </a>
+  </h4>
+  <p>
+   動画再生が終了すると、動画の上に最大2つのボタンが表示されます。1つ目のボタンは［
+   <strong>
+    再生
+   </strong>
+   ］で、タップすると、動画プレーヤーを開き、もう一度動画を再生します。詳しくは「
+   <a href="#video-player">
+    動画プレーヤー上での手動再生
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   2つ目のボタンは［
+   <strong>
+    詳細はこちら
+   </strong>
+   ］で、動画コンポーネントに指定したURIアクションのラベルです。任意のテキストに変更できます。動画コンポーネントにURIアクションを指定しない場合は、［
+   <strong>
+    再生
+   </strong>
+   ］だけが表示されます。詳しくは、「
+   <a href="#uri-action">
+    動画のURIアクション
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/create-flex-message-including-video/auto-play-finished-ja.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#video-player">
+    動画プレーヤー上での手動再生
+   </a>
+  </h3>
+  <p>
+   ユーザーがトークルーム上の動画をタップすると、動画プレーヤーが起動し、ビデオが再生されます。
+   <a href="#video-player-screen1">
+    再生時
+   </a>
+   と
+   <a href="#video-player-screen2">
+    再生終了時
+   </a>
+   では表示されるボタンが異なります。
+  </p>
+  <h4>
+   <div>
+   </div>
+   <a href="#video-player-screen1">
+    動画再生時の画面
+   </a>
+  </h4>
+  <p>
+   動画再生時には、動画の上に最大2つのボタンが表示されます。1つ目のボタンは［
+   <strong>
+    完了
+   </strong>
+   ］で、タップすると、動画プレーヤーを閉じ、トークルームに戻ります。このとき、動画の自動再生の条件を満たす場合は、トークルーム上で動画の続きが再生されます。詳しくは、「
+   <a href="#chat-room">
+    トークルーム上での自動再生
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   2つ目のボタンは［
+   <strong>
+    詳細はこちら
+   </strong>
+   ］で、動画コンポーネントに指定したURIアクションのラベルです。任意のテキストに変更できます。動画コンポーネントにURIアクションを指定しない場合は、［
+   <strong>
+    完了
+   </strong>
+   ］だけが表示されます。詳しくは、「
+   <a href="#uri-action">
+    動画のURIアクション
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/create-flex-message-including-video/video-player-ja.png"/>
+  </p>
+  <h4>
+   <div>
+   </div>
+   <a href="#video-player-screen2">
+    動画再生終了時の画面
+   </a>
+  </h4>
+  <p>
+   動画再生時には、動画の上に最大2つのボタンが表示されます。1つ目のボタンは［
+   <strong>
+    リプレイ
+   </strong>
+   ］で、タップすると、動画プレーヤー上で動画をもう一度再生します。
+  </p>
+  <p>
+   2つ目のボタンは［
+   <strong>
+    詳細はこちら
+   </strong>
+   ］で、動画コンポーネントに指定したURIアクションのラベルです。任意のテキストに変更できます。動画コンポーネントにURIアクションを指定しない場合は、［
+   <strong>
+    リプレイ
+   </strong>
+   ］だけが表示されます。詳しくは、「
+   <a href="#uri-action">
+    動画のURIアクション
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/create-flex-message-including-video/video-player-finished-ja.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#alt-content">
+    動画コンポーネントをサポートするバージョン未満のLINEでの表示
+   </a>
+  </h2>
+  <p>
+   LINEのバージョンが動画コンポーネントをサポートするバージョンに満たない場合、動画コンポーネントの
+   <code>
+    altContent
+   </code>
+   プロパティに指定したコンポーネントが代替コンテンツとして表示されます。
+   <code>
+    altContent
+   </code>
+   プロパティには
+   <a href="/ja/reference/messaging-api/#box">
+    ボックス
+   </a>
+   か
+   <a href="/ja/reference/messaging-api/#f-image">
+    画像
+   </a>
+   を指定します。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#flex-message-simulator">
+    Flex Message Simulatorでの表示
+   </a>
+  </h2>
+  <p>
+   <a href="/flex-simulator/">
+    Flex Message Simulator
+   </a>
+   では動画のプレビューはできません。Flex Message Simulatorのプレビューエリアでは、「
+   <a href="#alt-content">
+    動画コンポーネントをサポートするバージョン未満のLINEでの表示
+   </a>
+   」と同様に、代替コンテンツが表示されます。
+  </p>
+  <p>
+   Flex Message Simulatorで作成したメッセージに含まれる動画を確認するには、テストメッセージを送信し、LINE上で確認してください。テストメッセージは、Flex Message Simulatorの右上の［
+   <strong>
+    Send...
+   </strong>
+   ］から送信できます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/create-flex-message-including-video/send.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-pages">
+    関連ページ
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="./using-flex-messages/">
+     Flex Messageを送信する
+    </a>
+   </li>
+   <li>
+    <a href="./flex-message-elements/">
+     Flex Messageの要素
+    </a>
+   </li>
+   <li>
+    <a href="./flex-message-layout/">
+     Flex Messageのレイアウト
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#flex-message">
+     Flex Message
+    </a>
+    （Messaging APIリファレンス）
+   </li>
+   <li>
+    <a href="/flex-simulator/">
+     Flex Message Simulator
+    </a>
+   </li>
+  </ul>
+ </div>
+</main>

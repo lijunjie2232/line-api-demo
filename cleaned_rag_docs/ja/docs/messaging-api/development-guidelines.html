@@ -1,0 +1,567 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   Messaging API開発ガイドライン
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./development-guidelines/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/development-guidelines/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   ボット開発を始める前に、Messaging APIを使ったボット開発について、何が禁止され、何が推奨されているかを学びましょう。
+  </p>
+  <p>
+   <strong>
+    禁止事項
+   </strong>
+  </p>
+  <ul>
+   <li>
+    <a href="#prohibiting-mass-requests-to-line-platform">
+     LINEプラットフォームへの大量リクエストの禁止
+    </a>
+   </li>
+   <li>
+    <a href="#prohibiting-line-platform-load-tests">
+     LINEプラットフォームを経由した負荷テストの禁止
+    </a>
+   </li>
+   <li>
+    <a href="#prohibiting-mass-transmissions-to-same-user">
+     同一ユーザーへの大量送信の禁止
+    </a>
+   </li>
+   <li>
+    <a href="#prohibiting-requests-for-non-existent-user-ids">
+     存在しないユーザーIDへのリクエストの禁止
+    </a>
+   </li>
+   <li>
+    <a href="#prohibiting-identify-users-attribute">
+     ユーザーの属性を特定する行為の禁止
+    </a>
+   </li>
+   <li>
+    <a href="#prohibiting-ip-address-restrictions">
+     IPアドレスによるアクセス制限の禁止
+    </a>
+   </li>
+  </ul>
+  <p>
+   <strong>
+    推奨事項
+   </strong>
+  </p>
+  <ul>
+   <li>
+    <a href="#webhook-unsend-message">
+     送信取消イベント受信時に推奨する処理
+    </a>
+   </li>
+   <li>
+    <a href="#verify-webhook-signature">
+     Webhook受信時の署名検証の推奨
+    </a>
+   </li>
+   <li>
+    <a href="#assume-non-breaking-changes">
+     非破壊的な変更を想定した実装の推奨
+    </a>
+   </li>
+   <li>
+    <a href="#save-logs">
+     ログ保存の推奨
+    </a>
+   </li>
+  </ul>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     注意
+    </span>
+   </div>
+   <div>
+    <p>
+     ボット開発における基本ルールは
+     <a href="/ja/terms-and-policies/">
+      規約とポリシー
+     </a>
+     に基づきます。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#prohibited-matters">
+    禁止事項
+   </a>
+  </h2>
+  <h3>
+   <div>
+   </div>
+   <a href="#prohibiting-mass-requests-to-line-platform">
+    LINEプラットフォームへの大量リクエストの禁止
+   </a>
+  </h3>
+  <p>
+   負荷テストや動作テストを目的に、LINEプラットフォームへ、大量のリクエストを送信しないでください。いかなる場合でも、リクエスト数は指定された
+   <a href="/ja/reference/messaging-api/#rate-limits">
+    レート制限
+   </a>
+   以下に抑えてください。レート制限を超えて送信を行った場合、
+   <code>
+    429 Too Many Requests
+   </code>
+   エラーとなります。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     レート制限内の動作テスト
+    </span>
+   </div>
+   <div>
+    <p>
+     レート制限内であっても以下のようなリクエストを高頻度で行わないでください。
+    </p>
+    <ul>
+     <li>
+      実際にナローキャスト配信に利用しないにもかかわらず
+      <a href="./using-audience/#create-audience">
+       オーディエンスの作成
+      </a>
+      と削除を高頻度で繰り返し行う行為
+     </li>
+     <li>
+      Messaging APIの機能を利用しないリクエストを高頻度で繰り返し行う行為
+     </li>
+    </ul>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#prohibiting-line-platform-load-tests">
+    LINEプラットフォームを経由した負荷テストの禁止
+   </a>
+  </h3>
+  <p>
+   LINEプラットフォームから、ボットサーバーの負荷テストを行うサービスはありません。ボットサーバーの負荷テストを目的に、LINEプラットフォームを経由して大量のメッセージを送信しないでください。ボットサーバーの負荷テストを行うための環境は、別途用意してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#prohibiting-mass-transmissions-to-same-user">
+    同一ユーザーへの大量送信の禁止
+   </a>
+  </h3>
+  <p>
+   いかなる場合でも、同一ユーザーへメッセージを大量送信しないでください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#prohibiting-requests-for-non-existent-user-ids">
+    存在しないユーザーIDへのリクエストの禁止
+   </a>
+  </h3>
+  <p>
+   存在しない
+   <span>
+    <a href="/ja/glossary/#user-id">
+     ユーザーID
+    </a>
+    <span>
+    </span>
+   </span>
+   へのリクエストを送信しないでください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#prohibiting-identify-users-attribute">
+    ユーザーの属性を特定する行為の禁止
+   </a>
+  </h3>
+  <p>
+   特定のユーザーIDに対して、ユーザーの
+   <a href="/ja/reference/messaging-api/#narrowcast-demographic-filter">
+    属性
+   </a>
+   を特定する行為は行わないでください。また、ユーザーの属性を特定する目的で
+   <a href="/ja/reference/messaging-api/#manage-audience-group">
+    オーディエンス管理
+   </a>
+   のAPIを利用したり、
+   <a href="/ja/reference/messaging-api/#send-narrowcast-message">
+    ナローキャストメッセージ
+   </a>
+   を配信したりしないでください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#prohibiting-ip-address-restrictions">
+    IPアドレスによるアクセス制限の禁止
+   </a>
+  </h3>
+  <p>
+   Webhookを受信するボットサーバーにおいて、Webhookリクエスト送信元のLINEプラットフォームのIPアドレスでアクセス制限をしないでください。LINEプラットフォームのIPアドレスは開示していません。また、IPアドレスは予告なく変更される場合があります。不正なアクセス元からのリクエストを拒否したい場合は、IPアドレスによる制限ではなく、Webhookの
+   <a href="/ja/reference/messaging-api/#signature-validation">
+    署名の検証
+   </a>
+   を実施してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#recommended-matters">
+    推奨事項
+   </a>
+  </h2>
+  <h3>
+   <div>
+   </div>
+   <a href="#webhook-unsend-message">
+    送信取消イベント受信時に推奨する処理
+   </a>
+  </h3>
+  <p>
+   ユーザーがメッセージの送信を取り消すと、ボットサーバーに
+   <a href="/ja/reference/messaging-api/#unsend-event">
+    送信取消イベント
+   </a>
+   が届きます。
+  </p>
+  <p>
+   送信取消イベントを受け取った場合、サービス提供者はユーザーがメッセージの送信を取り消した意図を尊重し、以降は対象のメッセージを見たり利用したりできないよう、最大限の配慮を持って対象のメッセージを適切に扱うことを推奨します。
+  </p>
+  <p>
+   詳しくは、「
+   <a href="./receiving-messages/#webhook-unsend-message">
+    送信取消イベント受信時の処理
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#verify-webhook-signature">
+    Webhook受信時の署名検証の推奨
+   </a>
+  </h3>
+  <p>
+   ボットサーバーでWebhookを受信した際は、
+   <a href="/ja/reference/messaging-api/#webhook-event-objects">
+    Webhookイベントオブジェクト
+   </a>
+   を処理する前に、リクエストヘッダーに含まれる署名を検証することを推奨します。署名の検証は、開発者のボットサーバーに届いたリクエストが「LINEプラットフォームから送信されたWebhookか」および「通信経路で改ざんされていないか」などを確認するための重要な手順です。
+  </p>
+  <p>
+   詳しくは、「
+   <a href="./verify-webhook-signature/">
+    Webhookの署名を検証する
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#assume-non-breaking-changes">
+    非破壊的な変更を想定した実装の推奨
+   </a>
+  </h3>
+  <p>
+   Messaging APIでは、非破壊的な機能追加が行われることがあります。これらの変更は、既存の機能を壊すことなく、APIを拡張することを目的としています。このため以下のような変更は、事前の予告なく実施されることがあります。
+  </p>
+  <ul>
+   <li>
+    新しいエンドポイントの追加
+   </li>
+   <li>
+    APIリクエストにおける省略可能なパラメータやフィールド、ヘッダーの追加
+   </li>
+   <li>
+    APIレスポンスにおけるフィールドやヘッダーの追加
+   </li>
+   <li>
+    Webhookイベントオブジェクトへのプロパティの追加
+   </li>
+   <li>
+    APIレスポンスおよびWebhookイベントオブジェクトのプロパティの順序の変更
+   </li>
+   <li>
+    列挙型の値の追加（例：
+    <a href="/ja/reference/messaging-api/#common-properties">
+     Webhookイベントオブジェクト
+    </a>
+    の
+    <code>
+     type
+    </code>
+    プロパティの値の追加）
+   </li>
+   <li>
+    データの要素間の空白や改行の有無
+   </li>
+  </ul>
+  <p>
+   これらの非破壊的な機能追加に対しても不具合なく動作するよう、ボットサーバーを実装してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#save-logs">
+    ログ保存の推奨
+   </a>
+  </h3>
+  <p>
+   送信した
+   <a href="#messaging-api-logs">
+    Messaging APIに対するリクエスト
+   </a>
+   や受信した
+   <a href="#webhook-logs">
+    Webhook
+   </a>
+   のログを一定期間保存することを推奨します。これらのログは問題の原因を調査する際に役立ちます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     ログに保存しておくと有用な情報
+    </span>
+   </div>
+   <div>
+    <p>
+     このセクションで推奨している基本的なログ情報に加えて、以下の情報も役に立ちます。ボットの要件に応じて、以下の情報の保存を検討してください。
+    </p>
+    <ul>
+     <li>
+      呼び出したMessaging APIのリクエストボディ
+     </li>
+     <li>
+      APIリクエストに対してLINEプラットフォームから返却されたレスポンスボディ
+     </li>
+     <li>
+      LINEプラットフォームからWebhookが送信された際の
+      <a href="/ja/reference/messaging-api/#request-headers">
+       リクエストヘッダー
+      </a>
+      の署名（
+      <code>
+       x-line-signature
+      </code>
+      ）
+     </li>
+     <li>
+      LINEプラットフォームから送信された
+      <a href="/ja/reference/messaging-api/#webhook-event-objects">
+       Webhookイベントオブジェクト
+      </a>
+     </li>
+    </ul>
+   </div>
+  </div>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     ログの提供は行っておりません
+    </span>
+   </div>
+   <div>
+    <p>
+     Messaging APIに対するリクエストのログや、LINEプラットフォームからボットサーバーへのWebhook送信時のログ等は、お問い合わせいただいても提供は行っておりません。ログの保存は、開発者自身の責任で行ってください。
+    </p>
+   </div>
+  </div>
+  <h4>
+   <div>
+   </div>
+   <a href="#messaging-api-logs">
+    Messaging APIに対するリクエストのログ保存
+   </a>
+  </h4>
+  <p>
+   Messaging APIに対するリクエストを行った際は、以下の情報をログとして保存することを推奨します。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#response-headers">
+     レスポンスヘッダー
+    </a>
+    のリクエストID（
+    <code>
+     x-line-request-id
+    </code>
+    ）
+   </li>
+   <li>
+    APIリクエストを行った時間
+   </li>
+   <li>
+    リクエストのHTTPメソッド
+   </li>
+   <li>
+    呼ばれたAPIエンドポイント
+   </li>
+   <li>
+    LINEプラットフォームから返された
+    <a href="/ja/reference/messaging-api/#status-codes">
+     ステータスコード
+    </a>
+   </li>
+  </ul>
+  <p>
+   以下のような形式でログファイルに保存します。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      リクエストID（
+      <code>
+       x-line-request-id
+      </code>
+      ）
+     </th>
+     <th>
+      APIリクエストを行った時間
+     </th>
+     <th>
+      HTTPメソッド
+     </th>
+     <th>
+      APIエンドポイント
+     </th>
+     <th>
+      ステータスコード
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      8e36bade-c5d6-4d00-9e69-72244675a9a1
+     </td>
+     <td>
+      Mon, 05 Jul 2021 08:14:35 GMT
+     </td>
+     <td>
+      POST
+     </td>
+     <td>
+      <code>
+       https://api.line.me/v2/bot/message/push
+      </code>
+     </td>
+     <td>
+      200
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h4>
+   <div>
+   </div>
+   <a href="#webhook-logs">
+    受信したWebhookのログ保存
+   </a>
+  </h4>
+  <p>
+   ボットサーバーでLINEプラットフォームからの
+   <a href="/ja/reference/messaging-api/#webhooks">
+    Webhook
+   </a>
+   を受信した際は、以下の情報をログとして保存することを推奨します。
+  </p>
+  <ul>
+   <li>
+    Webhook送信元のIPアドレス
+   </li>
+   <li>
+    Webhookを受信した時間
+   </li>
+   <li>
+    リクエストのHTTPメソッド
+   </li>
+   <li>
+    リクエストのパス
+   </li>
+   <li>
+    受信したWebhookに対し、ボットサーバーが
+    <a href="/ja/reference/messaging-api/#response">
+     レスポンス
+    </a>
+    として返したステータスコード
+   </li>
+  </ul>
+  <p>
+   以下のような形式でログファイルに保存します。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      送信元IPアドレス
+     </th>
+     <th>
+      Webhookを受信した時間
+     </th>
+     <th>
+      HTTPメソッド
+     </th>
+     <th>
+      リクエストのパス
+     </th>
+     <th>
+      ステータスコード
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      203.0.113.1
+     </td>
+     <td>
+      Mon, 05 Jul 2021 08:10:00 GMT
+     </td>
+     <td>
+      POST
+     </td>
+     <td>
+      <code>
+       /linebot/webhook
+      </code>
+     </td>
+     <td>
+      200
+     </td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</main>

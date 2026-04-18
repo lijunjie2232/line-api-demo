@@ -1,0 +1,722 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   リッチメニューでタブ切り替えを行う
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./switch-rich-menus/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/switch-rich-menus/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   ユーザー単位のリッチメニューを活用して、タブ切り替えが可能なリッチメニューをユーザーに提供できます。
+   <span>
+    <a href="/ja/glossary/#rich-menu-alias">
+     リッチメニューエイリアス
+    </a>
+    <span>
+    </span>
+   </span>
+   と
+   <a href="/ja/reference/messaging-api/#richmenu-switch-action">
+    リッチメニュー切替アクション
+   </a>
+   を使うことで、タブ切り替えのように、複数のリッチメニューを簡単に切り替えられます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/rich-menu/switching-richmenu-ja.png"/>
+  </p>
+  <p>
+   たとえばリッチメニューAとリッチメニューBを切り替えたい場合、以下の手順に従って設定します。
+  </p>
+  <ol>
+   <li>
+    <a href="#richmenu-switch-01">
+     リッチメニューの画像を準備する
+    </a>
+   </li>
+   <li>
+    <a href="#richmenu-switch-02">
+     リッチメニューAを作成する
+    </a>
+   </li>
+   <li>
+    <a href="#richmenu-switch-03">
+     リッチメニューAに画像をアップロードする
+    </a>
+   </li>
+   <li>
+    <a href="#richmenu-switch-04">
+     リッチメニューBを作成する
+    </a>
+   </li>
+   <li>
+    <a href="#richmenu-switch-05">
+     リッチメニューBに画像をアップロードする
+    </a>
+   </li>
+   <li>
+    <a href="#richmenu-switch-06">
+     リッチメニューAをデフォルトにする
+    </a>
+   </li>
+   <li>
+    <a href="#richmenu-switch-07">
+     リッチメニューエイリアスAを作成する
+    </a>
+   </li>
+   <li>
+    <a href="#richmenu-switch-08">
+     リッチメニューエイリアスBを作成する
+    </a>
+   </li>
+   <li>
+    <a href="#richmenu-switch-09">
+     リッチメニューの表示を終了する
+    </a>
+   </li>
+  </ol>
+  <h2>
+   <div>
+   </div>
+   <a href="#richmenu-switch-01">
+    1. リッチメニューの画像を準備する
+   </a>
+  </h2>
+  <p>
+   事前にリッチメニューAの画像（
+   <code>
+    richmenu-a.png
+   </code>
+   ）と、リッチメニューBの画像（
+   <code>
+    richmenu-b.png
+   </code>
+   ）を準備しておきます。使用できる画像について詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#upload-rich-menu-image-requirements">
+    リッチメニューの画像の要件
+   </a>
+   」を参照してください。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      リッチメニューAの画像
+     </th>
+     <th>
+      リッチメニューBの画像
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <img src="/media/messaging-api/rich-menu/richmenu-a.png"/>
+     </td>
+     <td>
+      <img src="/media/messaging-api/rich-menu/richmenu-b.png"/>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h2>
+   <div>
+   </div>
+   <a href="#richmenu-switch-02">
+    2. リッチメニューAを作成する
+   </a>
+  </h2>
+  <p>
+   Messaging APIで
+   <a href="/ja/reference/messaging-api/#create-rich-menu">
+    リッチメニューを作成
+   </a>
+   します。この例では、タップ
+   <a href="/ja/reference/messaging-api/#area-object">
+    領域オブジェクト
+   </a>
+   のアクションに、以下を指定しています。
+  </p>
+  <ul>
+   <li>
+    <strong>
+     リッチメニューAの左側のタップ領域
+    </strong>
+    <ul>
+     <li>
+      アクション：
+      <a href="/ja/reference/messaging-api/#uri-action">
+       URIアクション
+      </a>
+     </li>
+     <li>
+      URI：
+      <a href="/ja/">
+       LINE Developersサイト
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <strong>
+     リッチメニューAの右側のタップ領域
+    </strong>
+    <ul>
+     <li>
+      アクション：
+      <a href="/ja/reference/messaging-api/#richmenu-switch-action">
+       リッチメニュー切替アクション
+      </a>
+      （type：
+      <code>
+       richmenuswitch
+      </code>
+      ）
+     </li>
+     <li>
+      切替先：リッチメニューB（richMenuAliasId：
+      <code>
+       richmenu-alias-b
+      </code>
+      ）
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/richmenu</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-d </span><span>\
+</span></span><span><span>'{
+</span></span><span><span>    "size": {
+</span></span><span><span>        "width": 2500,
+</span></span><span><span>        "height": 1686
+</span></span><span><span>    },
+</span></span><span><span>    "selected": false,
+</span></span><span><span>    "name": "richmenu-a",
+</span></span><span><span>    "chatBarText": "Tap to open",
+</span></span><span><span>    "areas": [
+</span></span><span><span>        {
+</span></span><span><span>            "bounds": {
+</span></span><span><span>                "x": 0,
+</span></span><span><span>                "y": 0,
+</span></span><span><span>                "width": 1250,
+</span></span><span><span>                "height": 1686
+</span></span><span><span>            },
+</span></span><span><span>            "action": {
+</span></span><span><span>                "type": "uri",
+</span></span><span><span>                "uri": "https://developers.line.biz/"
+</span></span><span><span>            }
+</span></span><span><span>        },
+</span></span><span><span>        {
+</span></span><span><span>            "bounds": {
+</span></span><span><span>                "x": 1251,
+</span></span><span><span>                "y": 0,
+</span></span><span><span>                "width": 1250,
+</span></span><span><span>                "height": 1686
+</span></span><span><span>            },
+</span></span><span><span>            "action": {
+</span></span><span><span>                "type": "richmenuswitch",
+</span></span><span><span>                "richMenuAliasId": "richmenu-alias-b",
+</span></span><span><span>                "data": "richmenu-changed-to-b"
+</span></span><span><span>            }
+</span></span><span><span>        }
+</span></span><span><span>    ]
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <p>
+   リッチメニューAが作成されると、レスポンスとしてリッチメニューのIDが返ります。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "richMenuId"</span><span>: </span><span>"richmenu-19682466851b21e2d7c0ed482ee0930f"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#richmenu-switch-03">
+    3. リッチメニューAに画像をアップロードする
+   </a>
+  </h2>
+  <p>
+   リッチメニューを作成したら、Messaging APIでリッチメニューA用の「
+   <a href="/ja/reference/messaging-api/#upload-rich-menu-image">
+    画像をアップロード
+   </a>
+   」します。
+   <a href="#richmenu-switch-02">
+    手順2
+   </a>
+   で取得したリッチメニューAのリッチメニューIDを、パスパラメータで指定します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api-data.line.me/v2/bot/richmenu/richmenu-19682466851b21e2d7c0ed482ee0930f/content</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-H </span><span>"Content-Type: image/png"</span><span> \
+</span></span><span><span>-T </span><span>richmenu-a.png
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#richmenu-switch-04">
+    4. リッチメニューBを作成する
+   </a>
+  </h2>
+  <p>
+   リッチメニューAと同様の手順で、リッチメニューB（
+   <code>
+    richmenu-b
+   </code>
+   ）を作成します。タップ
+   <a href="/ja/reference/messaging-api/#area-object">
+    領域オブジェクト
+   </a>
+   のアクションに、以下を指定します。
+  </p>
+  <ul>
+   <li>
+    <strong>
+     リッチメニューBの左側のタップ領域
+    </strong>
+    <ul>
+     <li>
+      アクション：
+      <a href="/ja/reference/messaging-api/#richmenu-switch-action">
+       リッチメニュー切替アクション
+      </a>
+      （type：
+      <code>
+       richmenuswitch
+      </code>
+      ）
+     </li>
+     <li>
+      切替先：リッチメニューA（richMenuAliasId：
+      <code>
+       richmenu-alias-a
+      </code>
+      ）
+     </li>
+    </ul>
+   </li>
+   <li>
+    <strong>
+     リッチメニューBの右側のタップ領域
+    </strong>
+    <ul>
+     <li>
+      アクション：
+      <a href="/ja/reference/messaging-api/#uri-action">
+       URIアクション
+      </a>
+     </li>
+     <li>
+      URI：
+      <a href="https://techblog.lycorp.co.jp/">
+       LINEヤフー Tech Blog
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/richmenu</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-d </span><span>\
+</span></span><span><span>'{
+</span></span><span><span>    "size": {
+</span></span><span><span>        "width": 2500,
+</span></span><span><span>        "height": 1686
+</span></span><span><span>    },
+</span></span><span><span>    "selected": false,
+</span></span><span><span>    "name": "richmenu-b",
+</span></span><span><span>    "chatBarText": "Tap to open",
+</span></span><span><span>    "areas": [
+</span></span><span><span>        {
+</span></span><span><span>            "bounds": {
+</span></span><span><span>                "x": 0,
+</span></span><span><span>                "y": 0,
+</span></span><span><span>                "width": 1250,
+</span></span><span><span>                "height": 1686
+</span></span><span><span>            },
+</span></span><span><span>            "action": {
+</span></span><span><span>                "type": "richmenuswitch",
+</span></span><span><span>                "richMenuAliasId": "richmenu-alias-a",
+</span></span><span><span>                "data": "richmenu-changed-to-a"
+</span></span><span><span>            }
+</span></span><span><span>        },
+</span></span><span><span>        {
+</span></span><span><span>            "bounds": {
+</span></span><span><span>                "x": 1251,
+</span></span><span><span>                "y": 0,
+</span></span><span><span>                "width": 1250,
+</span></span><span><span>                "height": 1686
+</span></span><span><span>            },
+</span></span><span><span>            "action": {
+</span></span><span><span>                "type": "uri",
+</span></span><span><span>                "uri": "https://techblog.lycorp.co.jp/"
+</span></span><span><span>            }
+</span></span><span><span>        }
+</span></span><span><span>    ]
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <p>
+   リッチメニューBが作成されると、レスポンスとしてリッチメニューのIDが返ります。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "richMenuId"</span><span>: </span><span>"richmenu-4ecc8d672d9da4ba375fb82fa938fe5e"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#richmenu-switch-05">
+    5. リッチメニューBに画像をアップロードする
+   </a>
+  </h2>
+  <p>
+   リッチメニューBを作成したら、Messaging APIでリッチメニューB用の「
+   <a href="/ja/reference/messaging-api/#upload-rich-menu-image">
+    画像をアップロード
+   </a>
+   」します。
+   <a href="#richmenu-switch-04">
+    手順4
+   </a>
+   で取得したリッチメニューIDを、パスパラメータで指定します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api-data.line.me/v2/bot/richmenu/richmenu-4ecc8d672d9da4ba375fb82fa938fe5e/content</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-H </span><span>"Content-Type: image/png"</span><span> \
+</span></span><span><span>-T </span><span>richmenu-b.png
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#richmenu-switch-06">
+    6. リッチメニューAをデフォルトにする
+   </a>
+  </h2>
+  <p>
+   「
+   <a href="/ja/reference/messaging-api/#set-default-rich-menu">
+    デフォルトのリッチメニューを設定する
+   </a>
+   」エンドポイントを使って、リッチメニューAをデフォルトのリッチメニューにします。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/user/all/richmenu/richmenu-19682466851b21e2d7c0ed482ee0930f</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'
+</span></span></code></pre>
+  </div>
+  <p>
+   これによりリッチメニューAが表示されるようになります。しかし、リッチメニューエイリアスBが未作成のため、右側をタップしてもまだリッチメニューBには切り替わりません。
+  </p>
+  <p>
+   <img src="/media/messaging-api/rich-menu/set-default-rich-menu.png"/>
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     リッチメニューAが表示されない場合
+    </span>
+   </div>
+   <div>
+    <p>
+     デフォルトのリッチメニューよりも表示優先順位の高い、ユーザー単位のリッチメニューが既に設定されていた場合、リッチメニューAは表示されません。その場合は、表示されている
+     <a href="/ja/reference/messaging-api/#delete-rich-menu">
+      リッチメニューを削除する
+     </a>
+     か、
+     <a href="/ja/reference/messaging-api/#unlink-rich-menu-from-user">
+      リッチメニューとユーザーのリンクを解除する
+     </a>
+     ことで、リッチメニューAが表示されるようになります。詳しくは、「
+     <a href="./rich-menus-overview/#rich-menu-display">
+      リッチメニューの表示優先度
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#richmenu-switch-07">
+    7. リッチメニューエイリアスAを作成する
+   </a>
+  </h2>
+  <p>
+   リッチメニューAの
+   <a href="/ja/reference/messaging-api/#create-rich-menu-alias">
+    リッチメニューエイリアスを作成
+   </a>
+   します。以下の例では、
+   <a href="#richmenu-switch-02">
+    手順2
+   </a>
+   で作成しておいたリッチメニューAに、リッチメニューエイリアス
+   <code>
+    richmenu-alias-a
+   </code>
+   を設定します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/richmenu/alias</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-d </span><span>\
+</span></span><span><span>'{
+</span></span><span><span>    "richMenuAliasId": "richmenu-alias-a",
+</span></span><span><span>    "richMenuId": "richmenu-19682466851b21e2d7c0ed482ee0930f"
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#richmenu-switch-08">
+    8. リッチメニューエイリアスBを作成する
+   </a>
+  </h2>
+  <p>
+   同様にリッチメニューBの
+   <a href="/ja/reference/messaging-api/#create-rich-menu-alias">
+    リッチメニューエイリアスを作成
+   </a>
+   します。以下の例では、
+   <a href="#richmenu-switch-04">
+    手順4
+   </a>
+   で作成しておいたリッチメニューBに、リッチメニューエイリアス
+   <code>
+    richmenu-alias-b
+   </code>
+   を設定します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/richmenu/alias</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-d </span><span>\
+</span></span><span><span>'{
+</span></span><span><span>    "richMenuAliasId": "richmenu-alias-b",
+</span></span><span><span>    "richMenuId": "richmenu-4ecc8d672d9da4ba375fb82fa938fe5e"
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <p>
+   これで、リッチメニューAで右側の領域をタップするとリッチメニューBに切り替わるようになりました。リッチメニューBで左側の領域をタップすると、リッチメニューAに戻ります。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      リッチメニューA
+     </th>
+     <th>
+      リッチメニューB
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <img src="/media/messaging-api/rich-menu/set-default-rich-menu.png"/>
+     </td>
+     <td>
+      <img src="/media/messaging-api/rich-menu/switch-rich-menu.png"/>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   リッチメニューエイリアスと紐づくリッチメニューは、「
+   <a href="/ja/reference/messaging-api/#update-rich-menu-alias">
+    リッチメニューエイリアスを更新する
+   </a>
+   」エンドポイントを使って、いつでも変更できます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#richmenu-switch-09">
+    9. リッチメニューの表示を終了する
+   </a>
+  </h2>
+  <p>
+   リッチメニューの表示を終了したい場合は、Messaging APIで以下の手順で実施します。
+  </p>
+  <ol>
+   <li>
+    <a href="/ja/reference/messaging-api/#clear-default-rich-menu">
+     デフォルトのリッチメニューを解除する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#delete-rich-menu-alias">
+     リッチメニューエイリアスを削除する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#delete-rich-menu">
+     リッチメニューを削除する
+    </a>
+   </li>
+  </ol>
+  <p>
+   なお、
+   <a href="/ja/reference/messaging-api/#unlink-rich-menu-from-user">
+    ユーザーとのリンクを解除
+   </a>
+   せずにリッチメニューを削除できます。しかしこの場合、リッチメニューは即時には削除されず、ユーザーがトーク画面に再入室したときに削除が反映されます。
+  </p>
+  <p>
+   LINE公式アカウントと友だちになっているユーザーの、ユーザーIDが分かっている場合は、リッチメニューを削除する代わりに、リッチメニューのリンクを解除できます。リッチメニューを保持した状態でリッチメニューとユーザーのリンクを解除するには、以下の手順に従って設定します。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#unlink-rich-menu-from-user">
+     リッチメニューとユーザーのリンクを解除する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#unlink-rich-menu-from-users">
+     複数のユーザーのリッチメニューのリンクを解除する
+    </a>
+   </li>
+  </ul>
+  <p>
+   リッチメニューとユーザーのリンクを解除した場合、リッチメニューは即時に表示されなくなります。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#when-the-intended-rich-menu-isnt-displayed">
+    意図したリッチメニューが表示されないときは
+   </a>
+  </h2>
+  <p>
+   意図したリッチメニューが表示されない場合は、以下の点を確認してください。
+  </p>
+  <ul>
+   <li>
+    <a href="#youll-still-see-the-rich-menu-after-you-clear-the-default">
+     デフォルトのリッチメニューを解除してもリッチメニューが表示され続けてしまう
+    </a>
+   </li>
+   <li>
+    <a href="#you-see-a-different-rich-menu">
+     新しいデフォルトのリッチメニューを設定したのに他のリッチメニューが表示されてしまう
+    </a>
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#youll-still-see-the-rich-menu-after-you-clear-the-default">
+    デフォルトのリッチメニューを解除してもリッチメニューが表示され続けてしまう
+   </a>
+  </h3>
+  <p>
+   リッチメニュー切替アクションでリッチメニューAからリッチメニューBに、またはリッチメニューBからリッチメニューAに切り替わった場合、表示されるリッチメニューは、表示優先順位が最も高いユーザー単位のリッチメニューです。そのため、
+   <a href="#richmenu-switch-06">
+    手順6
+   </a>
+   で設定したデフォルトのリッチメニューを解除しただけでは、リッチメニューAもしくはリッチメニューBは引き続き表示されたままとなります。
+  </p>
+  <p>
+   その場合は、
+   <a href="/ja/reference/messaging-api/#delete-rich-menu">
+    リッチメニューを削除する
+   </a>
+   か、
+   <a href="/ja/reference/messaging-api/#unlink-rich-menu-from-user">
+    リッチメニューとユーザーのリンクを解除する
+   </a>
+   ことで、リッチメニューの表示を終了できます。リッチメニューの表示優先順位について詳しくは、「
+   <a href="./rich-menus-overview/#rich-menu-display">
+    リッチメニューの表示優先度
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#you-see-a-different-rich-menu">
+    新しいデフォルトのリッチメニューを設定したのに他のリッチメニューが表示されてしまう
+   </a>
+  </h3>
+  <p>
+   新しいデフォルトのリッチメニューを設定したのに他のリッチメニューが表示されてしまう場合は、デフォルトのリッチメニューよりも表示優先順位の高い、ユーザー単位のリッチメニューが設定されている可能性があります。
+  </p>
+  <p>
+   その場合は、意図せず表示されている
+   <a href="/ja/reference/messaging-api/#delete-rich-menu">
+    リッチメニューを削除する
+   </a>
+   か、
+   <a href="/ja/reference/messaging-api/#unlink-rich-menu-from-user">
+    リッチメニューとユーザーのリンクを解除する
+   </a>
+   ことで、新しいリッチメニューが表示されるようになります。詳しくは、「
+   <a href="./rich-menus-overview/#rich-menu-display">
+    リッチメニューの表示優先度
+   </a>
+   」を参照してください。
+  </p>
+ </div>
+</main>

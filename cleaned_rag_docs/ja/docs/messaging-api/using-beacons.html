@@ -1,0 +1,255 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   LINEでビーコンを使う
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./using-beacons/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/using-beacons/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   LINE Beaconを使うと、ユーザーがビーコンの電波の受信圏に入ったときに
+   <a href="/ja/reference/messaging-api/#beacon-event">
+    Webhookビーコンイベント
+   </a>
+   を受け取ることができます。ビーコンを使用して、ビジネスニーズに合ったコンテキストでユーザーとやりとりするようにボットアプリをカスタマイズできます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     注意
+    </span>
+   </div>
+   <div>
+    <p>
+     LINE Beaconは、日本、台湾、およびタイで利用できます。
+    </p>
+   </div>
+  </div>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     LINEビーコンは最新バージョンのLINEで利用してください
+    </span>
+   </div>
+   <div>
+    <p>
+     LINE Beaconは、最新バージョンのLINEでの利用を推奨します。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#getting-beacon">
+    ビーコン端末を準備する
+   </a>
+  </h2>
+  <p>
+   LINE Beaconを使用するには、LINE公式アカウントとリンクするBluetooth® Low Energy対応ビーコンが必要です。以下のいずれかのタイプの端末を使用できます。
+  </p>
+  <ul>
+   <li>
+    <a href="./beacon-device-spec/">
+     LINE Beacon
+    </a>
+    に対応しているビーコン端末。これらのビーコン端末は、それぞれの国でのみサポートされます。
+    <ul>
+     <li>
+      日本で対応している端末については、
+      <a href="https://beacon.theshop.jp/items/6617930">
+       こちらのページ
+      </a>
+      を参照してください。
+     </li>
+     <li>
+      タイで対応している端末については、
+      <a href="https://linedevth.line.me/th/tech-partner?filterTech=Beacon">
+       こちらのページ
+      </a>
+      を参照してください。
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="https://github.com/line/line-simple-beacon">
+     LINE Simple Beacon
+    </a>
+    規格に準拠しているBluetooth® Low Energy端末。
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#linking-your-line-oa-with-beacon">
+    ビーコンとLINE公式アカウントをリンクする
+   </a>
+  </h2>
+  <p>
+   LINE公式アカウントをビーコンとリンクするには、
+   <a href="https://manager.line.biz/beacon/register">
+    LINE Official Account Manager
+   </a>
+   のビーコン登録ページを開きます。登録ページでは、LINE Beacon対応端末とLINE公式アカウントをリンクできます。また、
+   <strong>
+    LINE Simple BeaconハードウェアID
+   </strong>
+   を端末に発行できます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     注意
+    </span>
+   </div>
+   <div>
+    <p>
+     1つのLINE公式アカウントに複数のビーコンをリンクできます。しかし、1つのビーコンがリンクできるLINE公式アカウントは1つまでです。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#receiving-webhook-events">
+    Webhookイベントを受け取る
+   </a>
+  </h2>
+  <p>
+   以下の条件を満たしたユーザーがビーコンの受信圏に入ると、ボットサーバーが
+   <a href="/ja/reference/messaging-api/#beacon-event">
+    Webhookのビーコンイベント
+   </a>
+   を受け取れます。
+  </p>
+  <ul>
+   <li>
+    BluetoothとLINE Beaconの設定を有効にしている
+   </li>
+   <li>
+    ボットアプリが関連付けられているLINE公式アカウントを、事前に友だち追加している
+   </li>
+  </ul>
+  <p>
+   Webhookのビーコンイベントを発生させるには、以下の手順に従います。
+  </p>
+  <ol>
+   <li>
+    スマートフォンのBluetoothがオンになっていることを確認します。
+   </li>
+   <li>
+    LINEで［
+    <strong>
+     設定
+    </strong>
+    ］&gt;［
+    <strong>
+     プライバシー管理
+    </strong>
+    ］を開き、［
+    <strong>
+     LINE Beacon
+    </strong>
+    ］を有効にします。
+   </li>
+   <li>
+    ビーコンの電源が入っていることを確認し、スマートフォンをビーコンに近づけます。
+   </li>
+   <li>
+    ボットサーバーがビーコンイベントオブジェクトを受信することを確認します。
+   </li>
+  </ol>
+  <p>
+   以下は、
+   <a href="/ja/reference/messaging-api/#beacon-event">
+    ビーコンイベントオブジェクト
+   </a>
+   の例です。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "destination"</span><span>: </span><span>"xxxxxxxxxx"</span><span>,
+</span></span><span><span>  "events"</span><span>: [
+</span></span><span><span>    {
+</span></span><span><span>      "replyToken"</span><span>: </span><span>"nHuyWiB7yP5Zw52FIkcQobQuGDXCTA"</span><span>,
+</span></span><span><span>      "type"</span><span>: </span><span>"beacon"</span><span>,
+</span></span><span><span>      "mode"</span><span>: </span><span>"active"</span><span>,
+</span></span><span><span>      "timestamp"</span><span>: </span><span>1462629479859</span><span>,
+</span></span><span><span>      "source"</span><span>: {
+</span></span><span><span>        "type"</span><span>: </span><span>"user"</span><span>,
+</span></span><span><span>        "userId"</span><span>: </span><span>"U4af4980629..."
+</span></span><span><span>      },
+</span></span><span><span>      "webhookEventId"</span><span>: </span><span>"01FZ74A0TDDPYRVKNK77XKC3ZR"</span><span>,
+</span></span><span><span>      "deliveryContext"</span><span>: {
+</span></span><span><span>        "isRedelivery"</span><span>: </span><span>false
+</span></span><span><span>      },
+</span></span><span><span>      "beacon"</span><span>: {
+</span></span><span><span>        "hwid"</span><span>: </span><span>"d41d8cd98f"</span><span>,
+</span></span><span><span>        "type"</span><span>: </span><span>"enter"
+</span></span><span><span>      }
+</span></span><span><span>    }
+</span></span><span><span>  ]
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#beacon-banner">
+    ビーコンバナー
+   </a>
+  </h2>
+  <p>
+   ビーコンバナーとは、ビーコンでユーザーが検知されると、ユーザーのLINEのトーク画面上部に現れるバナーです。
+  </p>
+  <p>
+   ユーザーがビーコンにリンクされているLINE公式アカウントと友だちになっていない場合、バナーをタップするとLINE公式アカウントを友だち追加できます。
+  </p>
+  <p>
+   ユーザーがバナーをタップすると、LINE公式アカウントが指定したウェブページが開きます。LINE公式アカウントが友だち追加されている場合は、ユーザーがバナーをタップしたその場でLINE公式アカウントからのメッセージを受信させることができます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     注意
+    </span>
+   </div>
+   <div>
+    <p>
+     ビーコンバナーは法人ユーザー向けの機能です。詳しくは、担当営業までご連絡いただくか、
+     <a href="https://www.lycbiz.com/jp/">
+      LINEヤフー for Business
+     </a>
+     ウェブサイトからお問い合わせください。
+    </p>
+   </div>
+  </div>
+  <p>
+   <img src="/media/messaging-api/using-beacons/beacon-banner_ja.png"/>
+  </p>
+ </div>
+</main>

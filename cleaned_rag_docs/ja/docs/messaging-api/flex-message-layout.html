@@ -1,0 +1,3585 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   Flex Messageのレイアウト
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./flex-message-layout/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/flex-message-layout/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   Flex Messageでは、
+   <a href="https://www.w3.org/TR/css-flexbox-1/">
+    CSS Flexible Box（CSS Flexbox）
+   </a>
+   の仕様に基づき、複雑なレイアウトのメッセージを構築できます。CSS FlexboxのFlexコンテナがFlex Messageの
+   <a href="./flex-message-elements/#box">
+    ボックス
+   </a>
+   に相当し、CSS FlexboxのFlexアイテムがFlex Messageのコンポーネントに相当します。
+  </p>
+  <p>
+   ここでは、Flex Messageのレイアウトを作成する方法を学びます。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#flex-message">
+    Flex Message
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#box-component-orientation">
+    ボックスコンポーネントの向き
+   </a>
+  </h2>
+  <p>
+   <a href="./flex-message-elements/#box">
+    ボックスコンポーネント
+   </a>
+   には、横向きと縦向きの2種類があります。横向きのボックスは水平ボックス、縦向きのボックスは垂直ボックスと呼ばれます。向きによって、ボックスの主軸と交差軸が決まります。主軸は向きに平行で、水平ボックスの主軸は水平、垂直ボックスの主軸は垂直です。交差軸は主軸に対し垂直です。主軸によって、ボックスの子コンポーネントの配置が決まります。詳しくは、「
+   <a href="#justify-property">
+    余白を使った子コンポーネントの配置
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   ボックスコンポーネントの向きを指定するには、
+   <code>
+    layout
+   </code>
+   プロパティを指定します。水平ボックスと垂直ボックスに加え、ベースラインボックスも利用できます。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      ボックス
+     </th>
+     <th>
+      <code>
+       layout
+      </code>
+      プロパティ
+     </th>
+     <th>
+      主軸
+     </th>
+     <th>
+      交差軸
+     </th>
+     <th>
+      子要素の配置
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      水平ボックス
+     </td>
+     <td>
+      <code>
+       horizontal
+      </code>
+     </td>
+     <td>
+      水平
+     </td>
+     <td>
+      垂直
+     </td>
+     <td>
+      水平
+     </td>
+    </tr>
+    <tr>
+     <td>
+      垂直ボックス
+     </td>
+     <td>
+      <code>
+       vertical
+      </code>
+     </td>
+     <td>
+      垂直
+     </td>
+     <td>
+      水平
+     </td>
+     <td>
+      垂直
+     </td>
+    </tr>
+    <tr>
+     <td>
+      ベースラインボックス
+     </td>
+     <td>
+      <code>
+       baseline
+      </code>
+     </td>
+     <td>
+      水平
+     </td>
+     <td>
+      垂直
+     </td>
+     <td>
+      水平
+      <br/>
+      詳しくは、「
+      <a href="#baseline-box">
+       ベースラインボックスの子コンポーネント
+      </a>
+      」を参照してください。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#baseline-box">
+    ベースラインボックスの子コンポーネント
+   </a>
+  </h3>
+  <p>
+   ベースラインボックスは水平ボックスと同様に動作します。ただし、水平ボックスとは、以下の点で動作が異なります。
+  </p>
+  <h4>
+   <div>
+   </div>
+   <a href="#baseline-text">
+    垂直方向の揃え位置
+   </a>
+  </h4>
+  <p>
+   ベースラインボックス内のコンポーネントは、同じベースラインによって垂直方向に整列されます。つまり、フォントサイズに関係なく、すべての子コンポーネントのベースラインが同じになります。
+   <a href="./flex-message-elements/#icon">
+    アイコンコンポーネント
+   </a>
+   のベースラインはアイコン画像の底辺です。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/baseline.png"/>
+  </p>
+  <h4>
+   <div>
+   </div>
+   <a href="#baseline-property">
+    使用できないプロパティ
+   </a>
+  </h4>
+  <p>
+   ベースラインボックスの子コンポーネントでは、
+   <code>
+    gravity
+   </code>
+   プロパティと
+   <code>
+    offsetBottom
+   </code>
+   プロパティは利用できません。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#component">
+    使用できる子コンポーネント
+   </a>
+  </h2>
+  <p>
+   ボックスの
+   <code>
+    layout
+   </code>
+   プロパティによって、子コンポーネントとして使用できるコンポーネントが異なります。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+     </th>
+     <th>
+      ベースラインボックス
+     </th>
+     <th>
+      水平ボックス
+      <br/>
+      垂直ボックス
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <a href="/ja/reference/messaging-api/#box">
+       ボックス
+      </a>
+     </td>
+     <td>
+      ❌
+     </td>
+     <td>
+      ✅
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="/ja/reference/messaging-api/#button">
+       ボタン
+      </a>
+     </td>
+     <td>
+      ❌
+     </td>
+     <td>
+      ✅
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="/ja/reference/messaging-api/#f-image">
+       画像
+      </a>
+     </td>
+     <td>
+      ❌
+     </td>
+     <td>
+      ✅
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="/ja/reference/messaging-api/#icon">
+       アイコン
+      </a>
+     </td>
+     <td>
+      ✅
+     </td>
+     <td>
+      ❌
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="/ja/reference/messaging-api/#f-text">
+       テキスト
+      </a>
+     </td>
+     <td>
+      ✅
+     </td>
+     <td>
+      ✅
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="/ja/reference/messaging-api/#span">
+       スパン
+      </a>
+      <br/>
+      （テキストの子要素として使用できます）
+     </td>
+     <td>
+      ❌
+     </td>
+     <td>
+      ❌
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="/ja/reference/messaging-api/#separator">
+       セパレータ
+      </a>
+     </td>
+     <td>
+      ❌
+     </td>
+     <td>
+      ✅
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="/ja/reference/messaging-api/#filler">
+       フィラー
+      </a>
+      (deprecated)
+     </td>
+     <td>
+      ✅
+     </td>
+     <td>
+      ✅
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   ✅：ボックス内で使用できる ❌：ボックス内で使用できない
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#component-size">
+    コンポーネントのサイズ
+   </a>
+  </h2>
+  <p>
+   コンポーネントの
+   <code>
+    position
+   </code>
+   プロパティが
+   <code>
+    relative
+   </code>
+   に設定されている場合、コンポーネントの幅と高さはコンポーネントの
+   <code>
+    flex
+   </code>
+   プロパティで決まります。
+  </p>
+  <ul>
+   <li>
+    <a href="#horizontal-box">
+     水平ボックス内の幅の分配
+    </a>
+   </li>
+   <li>
+    <a href="#vertical-box">
+     垂直ボックス内の高さの分配
+    </a>
+   </li>
+   <li>
+    <a href="#box-width">
+     ボックスの幅
+    </a>
+   </li>
+   <li>
+    <a href="#box-max-width">
+     ボックスの最大幅
+    </a>
+   </li>
+   <li>
+    <a href="#box-height">
+     ボックスの高さ
+    </a>
+   </li>
+   <li>
+    <a href="#box-max-height">
+     ボックスの最大高
+    </a>
+   </li>
+   <li>
+    <a href="#image-size">
+     画像のサイズ
+    </a>
+   </li>
+   <li>
+    <a href="#other-component-size">
+     アイコン、テキスト、スパンのサイズ
+    </a>
+   </li>
+   <li>
+    <a href="#other-component">
+     その他のコンポーネントのサイズ
+    </a>
+   </li>
+   <li>
+    <a href="#adjusts-fontsize-to-fit">
+     フォントサイズの自動縮小
+    </a>
+   </li>
+   <li>
+    <a href="#size-scaling">
+     フォントサイズ設定に応じたサイズへの拡大縮小
+    </a>
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#horizontal-box">
+    水平ボックス内の幅の分配
+   </a>
+  </h3>
+  <p>
+   水平ボックスでは、子コンポーネントの
+   <code>
+    flex
+   </code>
+   プロパティが
+   <code>
+    1
+   </code>
+   以上に設定されている場合、親ボックスの幅を兄弟コンポーネントと共有します。
+   <code>
+    flex
+   </code>
+   プロパティのデフォルト値は
+   <code>
+    1
+   </code>
+   です。それぞれの子コンポーネントが取得する幅の割合は、
+   <code>
+    flex
+   </code>
+   プロパティの値の合計に対する、子コンポーネントの
+   <code>
+    flex
+   </code>
+   プロパティの値で決まります。
+  </p>
+  <p>
+   たとえば、水平ボックスに2つのコンポーネントがあり、1つは
+   <code>
+    flex
+   </code>
+   プロパティが
+   <code>
+    2
+   </code>
+   に設定され、もう1つは
+   <code>
+    3
+   </code>
+   に設定されているとします。すると、利用可能な幅（水平ボックスの幅）は2:3の比率で分割され、各コンポーネントに割り当てられます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/flexSample1.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</span><span>,
+</span></span><span><span>        "wrap"</span><span>: </span><span>true</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#ff0000"</span><span>,
+</span></span><span><span>        "flex"</span><span>: </span><span>2
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</span><span>,
+</span></span><span><span>        "wrap"</span><span>: </span><span>true</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#0000ff"</span><span>,
+</span></span><span><span>        "flex"</span><span>: </span><span>3
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   コンポーネントの
+   <code>
+    flex
+   </code>
+   プロパティが
+   <code>
+    0
+   </code>
+   の場合、コンポーネントはボックスの幅のうち、コンポーネントの内容をすべて表示するのに必要な幅を取ります。ただし、ボックスの幅からはみ出した部分は表示されません。
+  </p>
+  <p>
+   たとえば、水平ボックスに3つの子コンポーネントがあり、それぞれの
+   <code>
+    flex
+   </code>
+   プロパティが
+   <code>
+    0
+   </code>
+   、
+   <code>
+    2
+   </code>
+   、
+   <code>
+    3
+   </code>
+   に設定されているとします。最初のコンポーネントは
+   <code>
+    flex
+   </code>
+   プロパティが
+   <code>
+    0
+   </code>
+   に設定されているため、テキスト「Hello」に合わせて幅を取ります。そして、利用可能な残りの幅は、下図のように、2:3の割合で残りの2つのコンポーネントに割り当てられます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/flexSample2.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"Hello"</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#00ff00"</span><span>,
+</span></span><span><span>        "flex"</span><span>: </span><span>0
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</span><span>,
+</span></span><span><span>        "wrap"</span><span>: </span><span>true</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#ff0000"</span><span>,
+</span></span><span><span>        "flex"</span><span>: </span><span>2
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</span><span>,
+</span></span><span><span>        "wrap"</span><span>: </span><span>true</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#0000ff"</span><span>,
+</span></span><span><span>        "flex"</span><span>: </span><span>3
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     flexプロパティとCSS Flexbox
+    </span>
+   </div>
+   <div>
+    <p>
+     水平ボックス内の子コンポーネントの
+     <code>
+      flex
+     </code>
+     プロパティは、CSS Flexboxの
+     <code>
+      flex
+     </code>
+     プロパティと次のように対応しています。
+    </p>
+    <table>
+     <thead>
+      <tr>
+       <th>
+        Flex Messageの子コンポーネントの
+        <code>
+         flex
+        </code>
+        プロパティの値
+       </th>
+       <th>
+        対応するCSS Flexboxのスタイル
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <code>
+         0
+        </code>
+       </td>
+       <td>
+        <code>
+         flex: 0 0 auto;
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         0
+        </code>
+        以上
+       </td>
+       <td>
+        <code>
+         flex: X 0 0;
+        </code>
+        （Xは子コンポーネントの
+        <code>
+         flex
+        </code>
+        プロパティの値）
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#vertical-box">
+    垂直ボックス内の高さの分配
+   </a>
+  </h3>
+  <p>
+   垂直ボックスでは、子コンポーネントの
+   <code>
+    flex
+   </code>
+   プロパティが
+   <code>
+    1
+   </code>
+   以上に設定されている場合、親ボックスの高さを兄弟コンポーネントと共有します。
+   <code>
+    flex
+   </code>
+   プロパティのデフォルト値は
+   <code>
+    0
+   </code>
+   です。それぞれの子コンポーネントが取得する高さの割合は、
+   <code>
+    flex
+   </code>
+   プロパティの値の合計に対する、子コンポーネントの
+   <code>
+    flex
+   </code>
+   プロパティの値で決まります。
+  </p>
+  <p>
+   下の例では、水平ボックスに2つの垂直ボックスがあります。最初の垂直ボックスには5行を占めるテキストがあり、2番目の垂直ボックスには2つのテキストと3つのセパレータがあります。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/flexSample5.png"/>
+  </p>
+  <p>
+   このとき、各コンポーネントは次のルールで配置されています。
+  </p>
+  <ol>
+   <li>
+    左側の垂直ボックスが5行分の高さがあるため、右側の垂直ボックスも同じ高さになります。
+   </li>
+   <li>
+    右側の垂直ボックスの子コンポーネントは、高さ全体を占める必要がないため、余白ができます。
+   </li>
+   <li>
+    2つのテキストの
+    <code>
+     flex
+    </code>
+    プロパティの値（
+    <code>
+     2
+    </code>
+    と
+    <code>
+     3
+    </code>
+    ）をもとに、余白が2：3に分割され、各コンポーネントに割り当てられます。
+   </li>
+  </ol>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "wrap"</span><span>: </span><span>true</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"TEXT</span><span>\n</span><span>TEXT</span><span>\n</span><span>TEXT</span><span>\n</span><span>TEXT</span><span>\n</span><span>TEXT"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#c0c0c0"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"separator"</span><span>,
+</span></span><span><span>            "color"</span><span>: </span><span>"#ff0000"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"flex=2"</span><span>,
+</span></span><span><span>            "flex"</span><span>: </span><span>2
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"separator"</span><span>,
+</span></span><span><span>            "color"</span><span>: </span><span>"#ff0000"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"flex=3"</span><span>,
+</span></span><span><span>            "flex"</span><span>: </span><span>3
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"separator"</span><span>,
+</span></span><span><span>            "color"</span><span>: </span><span>"#ff0000"
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     CSS flexプロパティとCSS Flexbox
+    </span>
+   </div>
+   <div>
+    <p>
+     垂直ボックス内の子コンポーネントの
+     <code>
+      flex
+     </code>
+     プロパティは、CSS Flexboxの
+     <code>
+      flex
+     </code>
+     プロパティと次のように対応しています。
+    </p>
+    <table>
+     <thead>
+      <tr>
+       <th>
+        Flex Messageの子コンポーネントの
+        <code>
+         flex
+        </code>
+        プロパティの値
+       </th>
+       <th>
+        対応するCSS Flexboxのスタイル
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <code>
+         0
+        </code>
+       </td>
+       <td>
+        <code>
+         flex: 0 0 auto;
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         0
+        </code>
+        or greater
+       </td>
+       <td>
+        <code>
+         flex: X 0 auto;
+        </code>
+        （Xは子コンポーネントの
+        <code>
+         flex
+        </code>
+        プロパティの値）
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#box-width">
+    ボックスの幅
+   </a>
+  </h3>
+  <p>
+   ボックスの幅は、
+   <code>
+    width
+   </code>
+   プロパティを使って、ピクセル単位、または親コンポーネントの幅に対するパーセンテージで指定できます。水平ボックス内の子ボックスの幅を指定した場合、子ボックスの
+   <code>
+    flex
+   </code>
+   プロパティは
+   <code>
+    0
+   </code>
+   に設定されます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     widthプロパティをピクセルで指定する場合
+    </span>
+   </div>
+   <div>
+    <p>
+     バブルの幅は、デバイスの画面サイズに依存します。バブルの全体的なレイアウトを調整するために
+     <code>
+      width
+     </code>
+     プロパティをピクセルで指定すると、最終的に予期せぬレイアウトになることがあります。デバイスの画面サイズの影響を受けにくくするために、
+     <code>
+      flex
+     </code>
+     プロパティを使うことをお勧めします。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#box-max-width">
+    ボックスの最大幅
+   </a>
+  </h3>
+  <p>
+   ボックスの最大幅は、
+   <code>
+    maxWidth
+   </code>
+   プロパティを使って、ピクセル単位、または親コンポーネントの幅に対するパーセンテージで指定できます。
+   <code>
+    maxWidth
+   </code>
+   プロパティは
+   <code>
+    width
+   </code>
+   プロパティよりも優先されます。
+   <code>
+    width
+   </code>
+   プロパティから算出されるボックスの幅が、
+   <code>
+    maxWidth
+   </code>
+   プロパティから算出されるボックスの幅よりも大きい場合、ボックスの幅は
+   <code>
+    maxWidth
+   </code>
+   プロパティの値に設定されます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#box-height">
+    ボックスの高さ
+   </a>
+  </h3>
+  <p>
+   ボックスの高さは、
+   <code>
+    height
+   </code>
+   プロパティを使って、ピクセル単位、または親コンポーネントの高さに対するパーセンテージで指定できます。水平ボックスの子ボックスの高さを指定した場合、子ボックスの
+   <code>
+    flex
+   </code>
+   プロパティは
+   <code>
+    0
+   </code>
+   に設定されます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#box-max-height">
+    ボックスの最大高
+   </a>
+  </h3>
+  <p>
+   ボックスの最大高は、
+   <code>
+    maxHeight
+   </code>
+   プロパティを使って、ピクセル単位、または親コンポーネントの高さに対するパーセンテージで指定できます。
+   <code>
+    maxHeight
+   </code>
+   プロパティは
+   <code>
+    height
+   </code>
+   プロパティよりも優先されます。
+   <code>
+    height
+   </code>
+   プロパティから算出されるボックスの高さが、
+   <code>
+    maxHeight
+   </code>
+   プロパティから算出されるボックスの高さよりも大きい場合、ボックスの高さは
+   <code>
+    maxHeight
+   </code>
+   プロパティの値に設定されます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#image-size">
+    画像のサイズ
+   </a>
+  </h3>
+  <p>
+   <a href="/ja/reference/messaging-api/#f-image">
+    画像コンポーネント
+   </a>
+   の幅は、
+   <code>
+    size
+   </code>
+   プロパティを使って、ピクセル単位、パーセンテージ単位、またはキーワードで設定できます。高さはアスペクト比（
+   <code>
+    aspectRatio
+   </code>
+   プロパティで指定）を維持するように自動調整されます。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      単位
+     </th>
+     <th>
+      許容される値
+     </th>
+     <th>
+      例
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      パーセンテージ
+     </td>
+     <td>
+      元画像の幅に対する割合。正の整数または小数を
+      <code>
+       %
+      </code>
+      で指定します。
+     </td>
+     <td>
+      <code>
+       50%
+      </code>
+      <code>
+       23.5%
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      ピクセル
+     </td>
+     <td>
+      正の整数または小数を
+      <code>
+       px
+      </code>
+      で指定します。
+     </td>
+     <td>
+      <code>
+       50px
+      </code>
+      <code>
+       23.5px
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      キーワード
+     </td>
+     <td>
+      <code>
+       xxs
+      </code>
+      、
+      <code>
+       xs
+      </code>
+      、
+      <code>
+       sm
+      </code>
+      、
+      <code>
+       md
+      </code>
+      、
+      <code>
+       lg
+      </code>
+      、
+      <code>
+       xl
+      </code>
+      、
+      <code>
+       xxl
+      </code>
+      、
+      <code>
+       3xl
+      </code>
+      、
+      <code>
+       4xl
+      </code>
+      、
+      <code>
+       5xl
+      </code>
+      、
+      <code>
+       full
+      </code>
+      のいずれかの値を指定できます。列挙した順にサイズが大きくなります。
+     </td>
+     <td>
+      <code>
+       md
+      </code>
+      （デフォルト値）
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#other-component-size">
+    アイコン、テキスト、スパンのサイズ
+   </a>
+  </h3>
+  <p>
+   <a href="/ja/reference/messaging-api/#icon">
+    アイコン
+   </a>
+   、
+   <a href="/ja/reference/messaging-api/#f-text">
+    テキスト
+   </a>
+   、
+   <a href="/ja/reference/messaging-api/#span">
+    スパン
+   </a>
+   のコンポーネントのサイズは、
+   <code>
+    size
+   </code>
+   プロパティを使って、ピクセル単位、またはキーワードで指定できます。パーセンテージは指定できません。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      単位
+     </th>
+     <th>
+      許容される値
+     </th>
+     <th>
+      例
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      ピクセル
+     </td>
+     <td>
+      正の整数または小数を
+      <code>
+       px
+      </code>
+      で指定します。
+     </td>
+     <td>
+      <code>
+       50px
+      </code>
+      <code>
+       23.5px
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      キーワード
+     </td>
+     <td>
+      <code>
+       xxs
+      </code>
+      、
+      <code>
+       xs
+      </code>
+      、
+      <code>
+       sm
+      </code>
+      、
+      <code>
+       md
+      </code>
+      、
+      <code>
+       lg
+      </code>
+      、
+      <code>
+       xl
+      </code>
+      、
+      <code>
+       xxl
+      </code>
+      、
+      <code>
+       3xl
+      </code>
+      、
+      <code>
+       4xl
+      </code>
+      、
+      <code>
+       5xl
+      </code>
+      のいずれかの値を指定できます。列挙した順にサイズが大きくなります。
+     </td>
+     <td>
+      <code>
+       md
+      </code>
+      （デフォルト値）
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#other-component">
+    その他のコンポーネントのサイズ
+   </a>
+  </h3>
+  <p>
+   ボタンなどのコンポーネントでは、
+   <code>
+    flex
+   </code>
+   プロパティとは異なるプロパティでサイズを指定できます。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#flex-message">
+    Flex Message
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#adjusts-fontsize-to-fit">
+    フォントサイズの自動縮小
+   </a>
+  </h3>
+  <p>
+   <a href="/ja/reference/messaging-api/#button">
+    ボタン
+   </a>
+   、
+   <a href="/ja/reference/messaging-api/#f-text">
+    テキスト
+   </a>
+   のコンポーネントでは、
+   <code>
+    adjustMode
+   </code>
+   プロパティで
+   <code>
+    shrink-to-fit
+   </code>
+   を指定すると、テキストのフォントサイズが自動縮小されます。
+   <code>
+    adjustMode
+   </code>
+   プロパティはベストエフォートで機能するため、プラットフォームによって動作が異なる、あるいは動作しない場合があります。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/adjusts-fontsize-to-fit.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#size-scaling">
+    フォントサイズ設定に応じたサイズへの拡大縮小
+   </a>
+  </h3>
+  <p>
+   Flex Messageの
+   <a href="/ja/reference/messaging-api/#button">
+    ボタン
+   </a>
+   、
+   <a href="/ja/reference/messaging-api/#f-text">
+    テキスト
+   </a>
+   、および
+   <a href="/ja/reference/messaging-api/#icon">
+    アイコン
+   </a>
+   の
+   <code>
+    scaling
+   </code>
+   プロパティに
+   <code>
+    true
+   </code>
+   を指定すると、LINEアプリのフォントサイズ設定に応じて、フォントサイズやアイコンのサイズが自動的に拡大縮小されます。
+   <code>
+    scaling
+   </code>
+   プロパティを
+   <code>
+    true
+   </code>
+   にすることで、アクセシビリティに配慮したメッセージを送ることができます。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      フォントサイズが［
+      <strong>
+       小
+      </strong>
+      ］の場合
+     </th>
+     <th>
+      フォントサイズが［
+      <strong>
+       特大
+      </strong>
+      ］の場合
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <img src="/media/messaging-api/flex-message-layout/scaling-sample-small-ja.jpg"/>
+     </td>
+     <td>
+      <img src="/media/messaging-api/flex-message-layout/scaling-sample-extra-large-ja.jpg"/>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"hello, world"</span><span>,
+</span></span><span><span>        "size"</span><span>: </span><span>"30px"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"hello, world"</span><span>,
+</span></span><span><span>        "margin"</span><span>: </span><span>"10px"</span><span>,
+</span></span><span><span>        "size"</span><span>: </span><span>"30px"</span><span>,
+</span></span><span><span>        "scaling"</span><span>: </span><span>true
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     フォントサイズの自動縮小との併用
+    </span>
+   </div>
+   <div>
+    <p>
+     ボタンおよびテキストでは、
+     <code>
+      scaling
+     </code>
+     プロパティに
+     <code>
+      true
+     </code>
+     を指定し、かつ
+     <code>
+      adjustMode
+     </code>
+     プロパティに
+     <code>
+      shrink-to-fit
+     </code>
+     を指定することができます。その場合、フォントサイズが自動的に拡大縮小された結果、テキストの幅がコンポーネントの幅を超えたとき、フォントサイズはコンポーネントの幅に合わせて縮小されます。
+    </p>
+    <p>
+     以下は、LINEアプリのフォントサイズが［
+     <strong>
+      特大
+     </strong>
+     ］の場合の例です。
+    </p>
+    <table>
+     <thead>
+      <tr>
+       <th>
+        dummy
+       </th>
+       <th>
+        dummy
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <img src="/media/messaging-api/flex-message-layout/scaling-sample-small-tip.png"/>
+       </td>
+       <td>
+        <ol>
+         <li>
+          デフォルトの場合
+         </li>
+         <li>
+          <code>
+           scaling
+          </code>
+          プロパティに
+          <code>
+           true
+          </code>
+          を指定した場合
+         </li>
+         <li>
+          <code>
+           scaling
+          </code>
+          プロパティに
+          <code>
+           true
+          </code>
+          を指定し、
+          <code>
+           adjustMode
+          </code>
+          プロパティに
+          <code>
+           shrink-to-fit
+          </code>
+          を指定した場合
+         </li>
+        </ol>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#component-position">
+    コンポーネントの位置
+   </a>
+  </h2>
+  <p>
+   子コンポーネントがあるボックスに余白がある場合、各コンポーネントを
+   <a href="#align-property">
+    水平
+   </a>
+   または
+   <a href="#gravity-property">
+    垂直
+   </a>
+   に整列できます。
+  </p>
+  <p>
+   子コンポーネントを配置するには、親コンポーネントの
+   <a href="#padding-property">
+    パディング
+   </a>
+   または子コンポーネントの
+   <a href="#margin-property">
+    <code>
+     margin
+    </code>
+    プロパティ
+   </a>
+   を使用します。子コンポーネントを
+   <a href="#justify-content">
+    主軸
+   </a>
+   上に配置することも、
+   <a href="#align-items">
+    交差軸
+   </a>
+   上に配置することもできます。
+   <a href="#component-offset">
+    オフセット
+   </a>
+   は、子コンポーネントを配置するために使用できるもう1つの選択肢です。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#align-property">
+    テキストや画像を水平方向に整列させる
+   </a>
+  </h3>
+  <p>
+   <a href="/ja/reference/messaging-api/#f-text">
+    テキスト
+   </a>
+   や
+   <a href="/ja/reference/messaging-api/#f-image">
+    画像
+   </a>
+   のコンポーネントを水平方向に整列させるには、
+   <code>
+    align
+   </code>
+   プロパティを使用します。
+   <code>
+    align
+   </code>
+   プロパティは親コンポーネントの向きの影響を受けません。利用可能な整列オプションは以下のとおりです。
+  </p>
+  <ul>
+   <li>
+    左揃え：
+    <code>
+     start
+    </code>
+   </li>
+   <li>
+    右揃え：
+    <code>
+     end
+    </code>
+   </li>
+   <li>
+    中央揃え：
+    <code>
+     center
+    </code>
+    （デフォルト値）
+   </li>
+  </ul>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/alignSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"align=start"</span><span>,
+</span></span><span><span>        "align"</span><span>: </span><span>"start"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"separator"</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#ff0000"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"align=center"</span><span>,
+</span></span><span><span>        "align"</span><span>: </span><span>"center"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"separator"</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#ff0000"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"align=end"</span><span>,
+</span></span><span><span>        "align"</span><span>: </span><span>"end"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#gravity-property">
+    テキスト、画像、ボタンを垂直方向に整列させる
+   </a>
+  </h3>
+  <p>
+   <a href="/ja/reference/messaging-api/#f-text">
+    テキスト
+   </a>
+   、
+   <a href="/ja/reference/messaging-api/#f-image">
+    画像
+   </a>
+   、または
+   <a href="/ja/reference/messaging-api/#button">
+    ボタン
+   </a>
+   のコンポーネントを垂直方向に整列させるには、
+   <code>
+    gravity
+   </code>
+   プロパティを使用します。
+   <code>
+    gravity
+   </code>
+   プロパティは親コンポーネントの向きの影響を受けません。利用可能な整列オプションは以下のとおりです。
+  </p>
+  <ul>
+   <li>
+    上揃え：
+    <code>
+     top
+    </code>
+    （デフォルト値）
+   </li>
+   <li>
+    下揃え：
+    <code>
+     bottom
+    </code>
+   </li>
+   <li>
+    中央揃え：
+    <code>
+     center
+    </code>
+   </li>
+  </ul>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     注意
+    </span>
+   </div>
+   <div>
+    <p>
+     <a href="#baseline-box">
+      ベースラインボックス
+     </a>
+     の子要素ではこの設定は無視されます。
+    </p>
+   </div>
+  </div>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/gravitySample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "wrap"</span><span>: </span><span>true</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"TEXT</span><span>\n</span><span>TEXT</span><span>\n</span><span>TEXT</span><span>\n</span><span>TEXT</span><span>\n</span><span>TEXT"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#c0c0c0"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"top"</span><span>,
+</span></span><span><span>        "gravity"</span><span>: </span><span>"top"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"separator"</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#ff0000"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"center"</span><span>,
+</span></span><span><span>        "gravity"</span><span>: </span><span>"center"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"separator"</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#ff0000"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"bottom"</span><span>,
+</span></span><span><span>        "gravity"</span><span>: </span><span>"bottom"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"separator"</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#ff0000"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#padding-property">
+    ボックスのパディングで子コンポーネントを配置する
+   </a>
+  </h3>
+  <p>
+   子コンポーネントをボックスコンポーネントの中に配置するには、ボックスコンポーネントのパディングを使用します。パディングは、親コンポーネントのボーダーと子コンポーネントの間にスペースを割り当てます。利用可能なパディングのプロパティは
+   <code>
+    paddingAll
+   </code>
+   、
+   <code>
+    paddingTop
+   </code>
+   、
+   <code>
+    paddingStart
+   </code>
+   、
+   <code>
+    paddingEnd
+   </code>
+   です。パディングはピクセル単位、パーセンテージ単位（親ボックスの幅に対する）、またはキーワードで指定できます。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      単位
+     </th>
+     <th>
+      許容可能な値
+     </th>
+     <th>
+      例
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      パーセンテージ
+     </td>
+     <td>
+      親ボックスの幅に対する割合。正の整数または小数を
+      <code>
+       %
+      </code>
+      で指定します。
+     </td>
+     <td>
+      <code>
+       50%
+      </code>
+      <code>
+       23.5%
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      ピクセル
+     </td>
+     <td>
+      正の整数または小数を
+      <code>
+       px
+      </code>
+      で指定します。
+     </td>
+     <td>
+      <code>
+       50px
+      </code>
+      <code>
+       23.5px
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      キーワード
+     </td>
+     <td>
+      <code>
+       none
+      </code>
+      （パディングなし）,
+      <code>
+       xs
+      </code>
+      ,
+      <code>
+       sm
+      </code>
+      ,
+      <code>
+       md
+      </code>
+      ,
+      <code>
+       lg
+      </code>
+      ,
+      <code>
+       xl
+      </code>
+      ,
+      <code>
+       xxl
+      </code>
+      のいずれかの値を指定できます。列挙した順にサイズが大きくなります。
+     </td>
+     <td>
+      <code>
+       md
+      </code>
+      （デフォルト値）
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   <code>
+    paddingTop
+   </code>
+   、
+   <code>
+    paddingBottom
+   </code>
+   、
+   <code>
+    paddingStart
+   </code>
+   、
+   <code>
+    paddingEnd
+   </code>
+   の各プロパティは、
+   <code>
+    paddingAll
+   </code>
+   プロパティよりも優先されます。
+   <code>
+    paddingTop
+   </code>
+   、
+   <code>
+    paddingBottom
+   </code>
+   、
+   <code>
+    paddingStart
+   </code>
+   、
+   <code>
+    paddingEnd
+   </code>
+   が指定されている場合、
+   <code>
+    paddingAll
+   </code>
+   プロパティは無視されます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/paddingSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"hello, world"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#ffffff"
+</span></span><span><span>      }
+</span></span><span><span>    ],
+</span></span><span><span>    "backgroundColor"</span><span>: </span><span>"#ffd2d2"</span><span>,
+</span></span><span><span>    "paddingTop"</span><span>: </span><span>"20px"</span><span>,
+</span></span><span><span>    "paddingAll"</span><span>: </span><span>"80px"</span><span>,
+</span></span><span><span>    "paddingStart"</span><span>: </span><span>"40px"
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   なお、上のFlex Messageのテキストを長くすると、以下のようにレイアウトされます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/paddingSample2.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#justify-property">
+    余白を使った子コンポーネントの配置
+   </a>
+  </h3>
+  <p>
+   <a href="/ja/reference/messaging-api/#box">
+    ボックス
+   </a>
+   の余白を使って、子コンポーネントを軸に沿って配置できます。ここでは
+   <a href="#justify-content">
+    主軸
+   </a>
+   と
+   <a href="#align-items">
+    交差軸
+   </a>
+   に沿ってコンポーネントを配置する方法を学びます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     親ボックスコンポーネントによって主軸と交差軸が変わります
+    </span>
+   </div>
+   <div>
+    <p>
+     <code>
+      justifyContent
+     </code>
+     プロパティと
+     <code>
+      alignItems
+     </code>
+     プロパティは、それぞれ主軸と交差軸に沿った子コンポーネントの配置を設定します。親ボックスコンポーネントによって、主軸と交差軸の向きは変わります。
+    </p>
+    <p>
+     <img src="/media/messaging-api/flex-message-layout/horizontal_vertical_axis.png"/>
+    </p>
+    <p>
+     書字方向（
+     <code>
+      LTR
+     </code>
+     または
+     <code>
+      RTL
+     </code>
+     ）は、親ボックスコンポーネントの向きに関係なく、常に水平方向に適用されます。
+    </p>
+   </div>
+  </div>
+  <h4>
+   <div>
+   </div>
+   <a href="#justify-content">
+    主軸に沿って子コンポーネントを配置する
+   </a>
+  </h4>
+  <p>
+   ボックスの子コンポーネントを主軸に沿って配置するには、
+   <code>
+    justifyContent
+   </code>
+   プロパティを使用します。主軸の向きは水平ボックスでは水平、垂直ボックスでは垂直です。このプロパティを有効にするには、すべての子コンポーネントの
+   <code>
+    flex
+   </code>
+   プロパティが
+   <code>
+    0
+   </code>
+   である必要があります。なぜなら、子コンポーネントのうち、1つでも
+   <code>
+    flex
+   </code>
+   プロパティが
+   <code>
+    1
+   </code>
+   以上であれば、子コンポーネントは親ボックスいっぱいに広がり、子コンポーネントを配置するスペースがなくなるためです。デフォルトでは、水平ボックスの子コンポーネントは
+   <code>
+    flex
+   </code>
+   プロパティが
+   <code>
+    1
+   </code>
+   になるため注意してください。
+  </p>
+  <p>
+   <code>
+    justifyContent
+   </code>
+   プロパティの値によって、書字方向がLTRの水平ボックスの子コンポーネントがどのように配置されるか見てみましょう。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/justify-content-01.svg"/>
+   <img src="/media/messaging-api/flex-message-layout/justify-content-02.svg"/>
+   <img src="/media/messaging-api/flex-message-layout/justify-content-03.svg"/>
+   <img src="/media/messaging-api/flex-message-layout/justify-content-04.svg"/>
+   <img src="/media/messaging-api/flex-message-layout/justify-content-05.svg"/>
+   <img src="/media/messaging-api/flex-message-layout/justify-content-06.svg"/>
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      プロパティの値
+     </th>
+     <th>
+      子コンポーネントの配置
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <code>
+       flex-start
+      </code>
+     </td>
+     <td>
+      水平ボックス：親コンポーネントの書字方向の始まる側に寄せます。
+      <br/>
+      垂直ボックス：親コンポーネントの上側に寄せます。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       center
+      </code>
+     </td>
+     <td>
+      親コンポーネントの中心にまとめて配置します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       flex-end
+      </code>
+     </td>
+     <td>
+      水平ボックス：親コンポーネントの書字方向の終わり側に寄せます。
+      <br/>
+      垂直ボックス：親コンポーネントの下側に寄せます。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       space-between
+      </code>
+     </td>
+     <td>
+      親コンポーネントに均等に配置します。最初と最後の子コンポーネントは親コンポーネントの両端に配置します。子コンポーネント間の余白は均等です。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       space-around
+      </code>
+     </td>
+     <td>
+      親コンポーネントに均等に配置します。親コンポーネントの余白は2×子コンポーネントの数で分割されます。それぞれの子コンポーネントの左右に分割された余白が配置されます。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       space-evenly
+      </code>
+     </td>
+     <td>
+      親コンポーネントに均等に配置します。親コンポーネントの余白はそれぞれの子コンポーネントの左右に均等に配置されます。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   たとえば上記の
+   <code>
+    flex-start
+   </code>
+   のFlex Messageを表現するには、以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "direction"</span><span>: </span><span>"ltr"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [],
+</span></span><span><span>        "width"</span><span>: </span><span>"40px"</span><span>,
+</span></span><span><span>        "height"</span><span>: </span><span>"30px"</span><span>,
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#00aaff"</span><span>,
+</span></span><span><span>        "flex"</span><span>: </span><span>0
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [],
+</span></span><span><span>        "width"</span><span>: </span><span>"20px"</span><span>,
+</span></span><span><span>        "height"</span><span>: </span><span>"30px"</span><span>,
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#00aaff"</span><span>,
+</span></span><span><span>        "flex"</span><span>: </span><span>0
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [],
+</span></span><span><span>        "height"</span><span>: </span><span>"30px"</span><span>,
+</span></span><span><span>        "width"</span><span>: </span><span>"50px"</span><span>,
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#00aaff"</span><span>,
+</span></span><span><span>        "flex"</span><span>: </span><span>0
+</span></span><span><span>      }
+</span></span><span><span>    ],
+</span></span><span><span>    "justifyContent"</span><span>: </span><span>"flex-start"</span><span>,
+</span></span><span><span>    "spacing"</span><span>: </span><span>"5px"
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h4>
+   <div>
+   </div>
+   <a href="#align-items">
+    交差軸に沿って子コンポーネントを配置する
+   </a>
+  </h4>
+  <p>
+   ボックスの子コンポーネントを交差軸に沿って配置するには、
+   <code>
+    alignItems
+   </code>
+   プロパティを使用します。交差軸の向きは水平ボックスでは垂直、垂直ボックスでは水平です。
+  </p>
+  <p>
+   <code>
+    alignItems
+   </code>
+   プロパティの値によって、書字方向がLTRの水平ボックスの子コンポーネントがどのように配置されるか見てみましょう。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/alignItems-01.svg"/>
+   <img src="/media/messaging-api/flex-message-layout/alignItems-02.svg"/>
+   <img src="/media/messaging-api/flex-message-layout/alignItems-03.svg"/>
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      プロパティの値
+     </th>
+     <th>
+      子コンポーネントの配置
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <code>
+       flex-start
+      </code>
+     </td>
+     <td>
+      水平ボックス：親コンポーネントの上側に寄せます。
+      <br/>
+      垂直ボックス：親コンポーネントの書字方向の始まる側に寄せます。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       center
+      </code>
+     </td>
+     <td>
+      親コンポーネントの中心にまとめて配置します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       flex-end
+      </code>
+     </td>
+     <td>
+      水平ボックス：親コンポーネントの下側に寄せます。
+      <br/>
+      垂直ボックス：親コンポーネントの書字方向の終わり側に寄せます。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   たとえば上記の
+   <code>
+    flex-start
+   </code>
+   のFlex Messageを表現するには、以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "direction"</span><span>: </span><span>"ltr"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [],
+</span></span><span><span>        "height"</span><span>: </span><span>"100px"</span><span>,
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#00aaff"</span><span>,
+</span></span><span><span>        "flex"</span><span>: </span><span>0</span><span>,
+</span></span><span><span>        "width"</span><span>: </span><span>"85px"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [],
+</span></span><span><span>        "height"</span><span>: </span><span>"30px"</span><span>,
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#00aaff"</span><span>,
+</span></span><span><span>        "flex"</span><span>: </span><span>0</span><span>,
+</span></span><span><span>        "width"</span><span>: </span><span>"85px"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [],
+</span></span><span><span>        "height"</span><span>: </span><span>"60px"</span><span>,
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#00aaff"</span><span>,
+</span></span><span><span>        "flex"</span><span>: </span><span>0</span><span>,
+</span></span><span><span>        "width"</span><span>: </span><span>"85px"
+</span></span><span><span>      }
+</span></span><span><span>    ],
+</span></span><span><span>    "spacing"</span><span>: </span><span>"5px"</span><span>,
+</span></span><span><span>    "alignItems"</span><span>: </span><span>"flex-start"</span><span>,
+</span></span><span><span>    "height"</span><span>: </span><span>"200px"
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#spacing-property">
+    ボックスの
+    <code>
+     spacing
+    </code>
+    プロパティ
+   </a>
+  </h3>
+  <p>
+   コンポーネント間の最小スペースは、親ボックスコンポーネントの
+   <code>
+    spacing
+   </code>
+   プロパティを使って、ピクセル単位、またはキーワードで指定できます。パーセンテージは指定できません。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      単位
+     </th>
+     <th>
+      許容される値
+     </th>
+     <th>
+      例
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      ピクセル
+     </td>
+     <td>
+      正の整数または小数を
+      <code>
+       px
+      </code>
+      で指定します。
+     </td>
+     <td>
+      <code>
+       50px
+      </code>
+      <code>
+       23.5px
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      キーワード
+     </td>
+     <td>
+      <code>
+       none
+      </code>
+      （スペースなし）、
+      <code>
+       xs
+      </code>
+      、
+      <code>
+       sm
+      </code>
+      、
+      <code>
+       md
+      </code>
+      、
+      <code>
+       lg
+      </code>
+      、
+      <code>
+       xl
+      </code>
+      、
+      <code>
+       xxl
+      </code>
+      のいずれかの値を指定できます。列挙した順にサイズが大きくなります。
+     </td>
+     <td>
+      <code>
+       md
+      </code>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   以下のFlex Messageには、水平ボックスに3つの垂直ボックスが等間隔（
+   <code>
+    md
+   </code>
+   ）で配置されています。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/spacingSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "spacing"</span><span>: </span><span>"md"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"TEXT1"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#80ffff"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"TEXT2"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#80ffff"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"TEXT3"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#80ffff"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   特定のコンポーネントについてこの設定を上書きするには、そのコンポーネントで
+   <code>
+    margin
+   </code>
+   プロパティを設定します。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#margin-property">
+    コンポーネントの
+    <code>
+     margin
+    </code>
+    プロパティ
+   </a>
+  </h3>
+  <p>
+   ある子コンポーネントの前に挿入する最小スペースは、子コンポーネントの
+   <code>
+    margin
+   </code>
+   プロパティを使って、ピクセル単位、またはキーワードで指定できます。パーセンテージは指定できません。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      単位
+     </th>
+     <th>
+      許容される値
+     </th>
+     <th>
+      例
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      ピクセル
+     </td>
+     <td>
+      正の整数または小数を
+      <code>
+       px
+      </code>
+      で指定します。
+     </td>
+     <td>
+      <code>
+       50px
+      </code>
+      <code>
+       23.5px
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      キーワード
+     </td>
+     <td>
+      <code>
+       none
+      </code>
+      （スペースなし）、
+      <code>
+       xs
+      </code>
+      、
+      <code>
+       sm
+      </code>
+      、
+      <code>
+       md
+      </code>
+      、
+      <code>
+       lg
+      </code>
+      、
+      <code>
+       xl
+      </code>
+      、
+      <code>
+       xxl
+      </code>
+      のいずれかの値を指定できます。列挙した順にサイズが大きくなります。
+     </td>
+     <td>
+      <code>
+       md
+      </code>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   <code>
+    margin
+   </code>
+   プロパティは、親ボックスの
+   <a href="#spacing-property">
+    <code>
+     spacing
+    </code>
+    プロパティ
+   </a>
+   よりも優先されます。また、ボックスの最初の子コンポーネントに
+   <code>
+    margin
+   </code>
+   プロパティが指定されている場合、コンポーネントの前にスペースが入ります。
+  </p>
+  <p>
+   以下のFlex Messageの例では、子コンポーネントとして、3つの垂直ボックスが水平ボックスに配置されています。親である水平ボックスには
+   <code>
+    spacing
+   </code>
+   プロパティが
+   <code>
+    md
+   </code>
+   に設定され、3番目の垂直ボックスには
+   <code>
+    margin
+   </code>
+   プロパティが
+   <code>
+    xxl
+   </code>
+   に設定されています。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/marginSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "spacing"</span><span>: </span><span>"md"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"TEXT1"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#80ffff"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"TEXT2"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#80ffff"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"TEXT3"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#80ffff"</span><span>,
+</span></span><span><span>        "margin"</span><span>: </span><span>"xxl"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#component-offset">
+    オフセット
+   </a>
+  </h3>
+  <p>
+   コンポーネントを配置する別の選択肢として、オフセットを使用する方法があります。オフセットのプロパティは、親コンポーネントの
+   <code>
+    position
+   </code>
+   プロパティの値、
+   <code>
+    relative
+   </code>
+   と
+   <code>
+    absolute
+   </code>
+   によって動作が異なります。ただし、
+   <a href="./flex-message-elements/#block">
+    ブロック
+   </a>
+   の最初の子コンポーネントは
+   <code>
+    absolute
+   </code>
+   にすることはできません。
+  </p>
+  <p>
+   使用できるオフセットのプロパティは
+   <code>
+    offsetTop
+   </code>
+   、
+   <code>
+    offsetBottom
+   </code>
+   、
+   <code>
+    offsetStart
+   </code>
+   、
+   <code>
+    offsetEnd
+   </code>
+   です。プロパティの値はピクセル、またはキーワード（
+   <code>
+    one
+   </code>
+   、
+   <code>
+    xs
+   </code>
+   、
+   <code>
+    sm
+   </code>
+   、
+   <code>
+    md
+   </code>
+   、
+   <code>
+    lg
+   </code>
+   、
+   <code>
+    xl
+   </code>
+   、
+   <code>
+    xxl
+   </code>
+   ）で指定できます。また、
+   <code>
+    offsetStart
+   </code>
+   と
+   <code>
+    offsetEnd
+   </code>
+   にはボックスの幅に対するパーセンテージを、
+   <code>
+    offsetTop
+   </code>
+   と
+   <code>
+    offsetBottom
+   </code>
+   にはボックスの高さに対するパーセンテージを指定することもできます。
+  </p>
+  <p>
+   以下の「TARGET」と表示されているボックスの位置が、オフセットによってどのように変わるかを見ていきましょう。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/offsetSample1.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "direction"</span><span>: </span><span>"ltr"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"REFERENCE BOX</span><span>\n</span><span>1</span><span>\n</span><span>2</span><span>\n</span><span>3"</span><span>,
+</span></span><span><span>            "align"</span><span>: </span><span>"center"</span><span>,
+</span></span><span><span>            "wrap"</span><span>: </span><span>true
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#80ffff"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"TARGET"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#ff8080"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h4>
+   <div>
+   </div>
+   <a href="#offset-when-position-is-relative">
+    相対位置の場合のオフセット
+   </a>
+  </h4>
+  <p>
+   コンポーネントを通常の位置を基準に配置するには、
+   <code>
+    position
+   </code>
+   プロパティを
+   <code>
+    relative
+   </code>
+   に設定します。詳しくは、CSS Positioned Layout Module Level 3の「
+   <a href="https://www.w3.org/TR/css-position-3/#relpos-insets">
+    Relative positioning
+   </a>
+   」を参照してください。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      プロパティ
+     </th>
+     <th>
+      説明
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <code>
+       offsetTop
+      </code>
+     </td>
+     <td>
+      コンポーネントを通常の位置の上端から下に動かします。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetBottom
+      </code>
+     </td>
+     <td>
+      コンポーネントを通常の位置の下端から上に動かします。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetStart
+      </code>
+     </td>
+     <td>
+      コンポーネントをテキストの始まる側から動かします。
+      <a href="/ja/reference/messaging-api/#bubble">
+       バブル
+      </a>
+      の書字方向がLTRの場合、右に動かします。RTLの場合、左に動かします。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetEnd
+      </code>
+     </td>
+     <td>
+      コンポーネントをテキストの終わる側から動かします。
+      <a href="/ja/reference/messaging-api/#bubble">
+       バブル
+      </a>
+      の書字方向がLTRの場合、左に動かします。RTLの場合、右に動かします。
+     </td>
+    </tr>
+    <tr>
+     <td>
+     </td>
+     <td>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   「TARGET」と表示されているコンポーネントの通常の位置が1枚目の画像です。
+   <code>
+    position
+   </code>
+   プロパティとオフセットプロパティを使って位置を動かしたのが2枚目の画像です。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/offsetSample1.png"/>
+   <img src="/media/messaging-api/flex-message-layout/offsetSample2.png"/>
+  </p>
+  <p>
+   コンポーネントを例のように動かすには、プロパティを以下のように設定します。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      プロパティ
+     </th>
+     <th>
+      値
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <code>
+       position
+      </code>
+     </td>
+     <td>
+      <code>
+       relative
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetTop
+      </code>
+     </td>
+     <td>
+      <code>
+       10px
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetBottom
+      </code>
+     </td>
+     <td>
+      -
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetStart
+      </code>
+     </td>
+     <td>
+      <code>
+       40px
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetEnd
+      </code>
+     </td>
+     <td>
+      -
+     </td>
+    </tr>
+    <tr>
+     <td>
+     </td>
+     <td>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   例のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "direction"</span><span>: </span><span>"ltr"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"REFERENCE BOX</span><span>\n</span><span>1</span><span>\n</span><span>2</span><span>\n</span><span>3"</span><span>,
+</span></span><span><span>            "align"</span><span>: </span><span>"center"</span><span>,
+</span></span><span><span>            "wrap"</span><span>: </span><span>true
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#80ffff"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"TARGET"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#ff8080"</span><span>,
+</span></span><span><span>        "offsetTop"</span><span>: </span><span>"10px"</span><span>,
+</span></span><span><span>        "offsetStart"</span><span>: </span><span>"40px"</span><span>,
+</span></span><span><span>        "position"</span><span>: </span><span>"relative"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h4>
+   <div>
+   </div>
+   <a href="#offset-when-position-is-absolute">
+    絶対位置の場合のオフセット
+   </a>
+  </h4>
+  <p>
+   親コンポーネントの外枠を基準に配置するには、
+   <code>
+    position
+   </code>
+   プロパティを
+   <code>
+    absolute
+   </code>
+   に設定します。詳しくは、CSS Positioned Layout Module Level 3の「
+   <a href="https://www.w3.org/TR/css-position-3/#abs-pos">
+    Absolute positioning
+   </a>
+   」を参照してください。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      プロパティ
+     </th>
+     <th>
+      説明
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <code>
+       offsetTop
+      </code>
+     </td>
+     <td>
+      親要素の上端からコンポーネントの上端までの相対位置を指定します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetBottom
+      </code>
+     </td>
+     <td>
+      親要素の下端からコンポーネントの下端までの相対位置を指定します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetStart
+      </code>
+     </td>
+     <td>
+      <a href="https://developers.line.biz/ja/reference/messaging-api/#bubble">
+       バブル
+      </a>
+      の書字方向がLTRの場合
+     </td>
+     <td>
+      親要素の左端からコンポーネントの左端までの相対位置を指定します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="https://developers.line.biz/ja/reference/messaging-api/#bubble">
+       バブル
+      </a>
+      の書字方向がRTLの場合
+     </td>
+     <td>
+      親要素の右端からコンポーネントの右端までの相対位置を指定します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetEnd
+      </code>
+     </td>
+     <td>
+      <a href="https://developers.line.biz/ja/reference/messaging-api/#bubble">
+       バブル
+      </a>
+      の書字方向がLTRの場合
+     </td>
+     <td>
+      親要素の右端からコンポーネントの右端までの相対位置を指定します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="https://developers.line.biz/ja/reference/messaging-api/#bubble">
+       バブル
+      </a>
+      の書字方向がRTLの場合
+     </td>
+     <td>
+      親要素の左端からコンポーネントの左端までの相対位置を指定します。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     注意
+    </span>
+   </div>
+   <div>
+    <p>
+     オフセットプロパティを指定しない場合のコンポーネントの位置は、端末によって異なる可能性があります。そのため、縦方向（
+     <code>
+      offsetTop
+     </code>
+     または
+     <code>
+      offsetBottom
+     </code>
+     ）および横方向（
+     <code>
+      offsetStart
+     </code>
+     または
+     <code>
+      offsetEnd
+     </code>
+     ）のオフセットプロパティを明示的に指定することを推奨します。
+    </p>
+   </div>
+  </div>
+  <p>
+   「TARGET」と表示されているコンポーネントの通常の位置が1枚目の画像です。
+   <code>
+    position
+   </code>
+   プロパティとオフセットプロパティを使って位置を動かしたのが2枚目の画像です。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/offsetSample1.png"/>
+   <img src="/media/messaging-api/flex-message-layout/offsetSample3.png"/>
+  </p>
+  <p>
+   コンポーネントを例のように動かすには、プロパティを以下のように設定します。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      プロパティ
+     </th>
+     <th>
+      値
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <code>
+       position
+      </code>
+     </td>
+     <td>
+      <code>
+       absolute
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetTop
+      </code>
+     </td>
+     <td>
+      <code>
+       10px
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetBottom
+      </code>
+     </td>
+     <td>
+      <code>
+       20px
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetStart
+      </code>
+     </td>
+     <td>
+      <code>
+       40px
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       offsetEnd
+      </code>
+     </td>
+     <td>
+      <code>
+       80px
+      </code>
+     </td>
+    </tr>
+    <tr>
+     <td>
+     </td>
+     <td>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   例のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "direction"</span><span>: </span><span>"ltr"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"REFERENCE BOX</span><span>\n</span><span>1</span><span>\n</span><span>2</span><span>\n</span><span>3"</span><span>,
+</span></span><span><span>            "align"</span><span>: </span><span>"center"</span><span>,
+</span></span><span><span>            "wrap"</span><span>: </span><span>true
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#80ffff"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"TARGET"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "backgroundColor"</span><span>: </span><span>"#ff8080"</span><span>,
+</span></span><span><span>        "position"</span><span>: </span><span>"absolute"</span><span>,
+</span></span><span><span>        "offsetStart"</span><span>: </span><span>"40px"</span><span>,
+</span></span><span><span>        "offsetEnd"</span><span>: </span><span>"80px"</span><span>,
+</span></span><span><span>        "offsetTop"</span><span>: </span><span>"10px"</span><span>,
+</span></span><span><span>        "offsetBottom"</span><span>: </span><span>"20px"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h5>
+   <div>
+   </div>
+   絶対位置の子コンポーネントと親コンポーネントのサイズ
+  </h5>
+  <p>
+   <code>
+    position
+   </code>
+   プロパティが
+   <code>
+    absolute
+   </code>
+   に設定された子ボックスコンポーネントは、親コンポーネントの大きさに影響をを与えなくなり、さらに親コンポーネントの影響を受けなくなります。コンポーネントが親コンポーネントよりも大きい場合、親コンポーネントの外側にはみ出た部分は表示されません。
+  </p>
+  <p>
+   絶対位置と相対位置の効果を比べてみましょう。最初の画像にある水平ボックス「REFERENCE BOX」コンポーネントは、相対位置に設定されています。同じコンポーネントを絶対位置に設定したものが2番目の画像です。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/offsetSample1.png"/>
+   <img src="/media/messaging-api/flex-message-layout/offsetSample4.png"/>
+  </p>
+  <p>
+   2番目の画像の例でわかるように、「REFERENCE BOX」の大きさは、親コンポーネント（垂直ボックス）の大きさに影響を与えなくなり、さらに親コンポーネントの影響を受けなくなります。そのため、親コンポーネントよりも大きい部分（「2」と「3」の行）は表示されていません。また、親コンポーネント（余白）の影響で大きくなっていた左右の余白部分は、元の大きさ（テキスト「REFERENCE BOX」の幅）に戻ります。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#linear-gradient-bg">
+    線形グラデーション背景
+   </a>
+  </h2>
+  <p>
+   <a href="/ja/reference/messaging-api/#box">
+    ボックスコンポーネント
+   </a>
+   では、
+   <code>
+    background.type
+   </code>
+   プロパティに
+   <code>
+    linearGradient
+   </code>
+   を指定することで、背景に線形グラデーションを設定できます。ここでは、グラデーションの
+   <a href="#linear-gradient-bg-angle">
+    角度
+   </a>
+   と
+   <a href="#linear-gradient-bg-center-color">
+    中間色
+   </a>
+   の設定方法を学びます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     グラデーションの方向は親の書字方向に影響されません
+    </span>
+   </div>
+   <div>
+    <p>
+     グラデーションの方向は、親要素の書字方向（
+     <code>
+      LTR
+     </code>
+     または
+     <code>
+      RTL
+     </code>
+     ）の影響を受けません。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#linear-gradient-bg-angle">
+    線形グラデーションの角度
+   </a>
+  </h3>
+  <p>
+   線形グラデーションの角度は、0度から360度未満の整数または少数で指定できます。角度を90度にするには
+   <code>
+    90deg
+   </code>
+   、23.5度にするには
+   <code>
+    23.5deg
+   </code>
+   を指定します。角度によって、グラデーションの方向が変わります。
+  </p>
+  <ul>
+   <li>
+    0度：下から上
+   </li>
+   <li>
+    45度：左下から右上
+   </li>
+   <li>
+    90度：左から右
+   </li>
+   <li>
+    180度：上から下
+   </li>
+  </ul>
+  <p>
+   角度が大きくなるにつれて、方向は時計回りに回転します。
+  </p>
+  <p>
+   <strong>
+    0度の線形グラデーション（下から上）
+   </strong>
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/linear-gradient-bg-deg-0.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [],
+</span></span><span><span>    "background"</span><span>: {
+</span></span><span><span>      "type"</span><span>: </span><span>"linearGradient"</span><span>,
+</span></span><span><span>      "angle"</span><span>: </span><span>"0deg"</span><span>,
+</span></span><span><span>      "startColor"</span><span>: </span><span>"#ff0000"</span><span>,
+</span></span><span><span>      "endColor"</span><span>: </span><span>"#0000ff"
+</span></span><span><span>    },
+</span></span><span><span>    "height"</span><span>: </span><span>"200px"
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   <strong>
+    45度の線形グラデーション（左下から右上）
+   </strong>
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/linear-gradient-bg-deg-45.png"/>
+  </p>
+  <p>
+   <strong>
+    90度の線形グラデーション（左から右）
+   </strong>
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/linear-gradient-bg-deg-90.png"/>
+  </p>
+  <p>
+   <strong>
+    180度の線形グラデーション（上から下）
+   </strong>
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/linear-gradient-bg-deg-180.png"/>
+  </p>
+  <p>
+   詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#box">
+    ボックス
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#linear-gradient-bg-center-color">
+    グラデーションの中間色
+   </a>
+  </h3>
+  <p>
+   グラデーションに中間色を追加する、つまり、グラデーションを3色にするには、
+   <code>
+    centerColor
+   </code>
+   プロパティを指定します。
+   <code>
+    centerPosition
+   </code>
+   プロパティで中間色の位置を指定できます。
+  </p>
+  <p>
+   <strong>
+    開始点から10%の位置に中間色を置いた場合
+   </strong>
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/linear-gradient-bg-percent-10.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [],
+</span></span><span><span>    "background"</span><span>: {
+</span></span><span><span>      "type"</span><span>: </span><span>"linearGradient"</span><span>,
+</span></span><span><span>      "angle"</span><span>: </span><span>"0deg"</span><span>,
+</span></span><span><span>      "startColor"</span><span>: </span><span>"#ff0000"</span><span>,
+</span></span><span><span>      "centerColor"</span><span>: </span><span>"#0000ff"</span><span>,
+</span></span><span><span>      "endColor"</span><span>: </span><span>"#00ff00"</span><span>,
+</span></span><span><span>      "centerPosition"</span><span>: </span><span>"10%"
+</span></span><span><span>    },
+</span></span><span><span>    "height"</span><span>: </span><span>"200px"
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   <strong>
+    開始点から50%の位置に中間色を置いた場合
+   </strong>
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/linear-gradient-bg-percent-50.png"/>
+  </p>
+  <p>
+   <strong>
+    開始点から90%の位置に中間色を置いた場合
+   </strong>
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-layout/linear-gradient-bg-percent-90.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#rendering-order">
+    描画順序
+   </a>
+  </h2>
+  <p>
+   コンポーネントは、JSONで指定された順序で描画されます。JSON定義の最初のコンポーネントが最初に描画されます。そして、次のコンポーネントが最初のコンポーネントの上に描画されます。つまり、最後のコンポーネントはバブルの最前面に描画されます。
+  </p>
+  <p>
+   描画順序を変更するには、JSON定義のコンポーネントの順序を変更してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-flex-message-layout-pages">
+    関連ページ
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="./using-flex-messages/">
+     Flex Messageを送信する
+    </a>
+   </li>
+   <li>
+    <a href="./flex-message-elements/">
+     Flex Messageの要素
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#flex-message">
+     Flex Message
+    </a>
+    （Messaging APIリファレンス）
+   </li>
+  </ul>
+ </div>
+</main>

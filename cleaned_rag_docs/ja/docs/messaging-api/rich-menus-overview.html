@@ -1,0 +1,449 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   リッチメニューの概要
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./rich-menus-overview/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/rich-menus-overview/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   このページでは、LINE公式アカウントのトーク画面で表示される、リッチメニューについて説明します。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#using-rich-menus-introduction">
+    リッチメニューとは
+   </a>
+  </h2>
+  <p>
+   リッチメニューはLINE公式アカウントのトーク画面下部に表示されるメニュー機能です。リッチメニューに、LINE公式アカウントの各機能や、外部サイトや予約ページなどへのリンクを設定することで、よりリッチなユーザー体験を提供できます。
+   <a href="#rich-menu-structure">
+    リッチメニューの構造
+   </a>
+   に基づいて、
+   <a href="#choosing-tool-for-creating-rich-menus">
+    リッチメニューを作成するツール
+   </a>
+   を使ってみましょう。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     リッチメニューはデスクトップ版では表示されません
+    </span>
+   </div>
+   <div>
+    <p>
+     リッチメニューは、デスクトップ版（macOS、Windows）のLINEでは表示されません。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#rich-menu-structure">
+    リッチメニューの構造
+   </a>
+  </h2>
+  <p>
+   リッチメニューは、リッチメニュー画像、タップ領域、およびトークルームメニューで構成されます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/rich-menu/bot-demo-rich-menu-image.png"/>
+  </p>
+  <ol>
+   <li>
+    リッチメニュー画像：メニューの項目を含む1枚の画像（JPEGまたはPNG）ファイルです。画像の要件について詳しくは、『Messaging APIリファレンス』の「
+    <a href="/ja/reference/messaging-api/#upload-rich-menu-image-requirements">
+     リッチメニューの画像の要件
+    </a>
+    」を参照してください。
+   </li>
+   <li>
+    タップ領域：メニューの項目として分割した領域。ポストバックイベントを返したり、URLを開いたりするさまざまなアクションを各項目に設定します。
+   </li>
+   <li>
+    トークルームメニュー：リッチメニューの開閉に使うメニューです。トークルームメニューのテキストは、カスタマイズできます。
+   </li>
+  </ol>
+  <h2>
+   <div>
+   </div>
+   <a href="#choosing-tool-for-creating-rich-menus">
+    リッチメニューを設定するツール
+   </a>
+  </h2>
+  <p>
+   リッチメニューの設定には、
+   <a href="#creating-a-rich-menu-with-the-line-manager">
+    LINE Official Account Manager
+   </a>
+   、または
+   <a href="#creating-a-rich-menu-using-the-messaging-api">
+    Messaging API
+   </a>
+   を使用します。ニーズに合わせてツールを選びましょう。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     1つのリッチメニューに使用できるのは1つのツールのみ
+    </span>
+   </div>
+   <div>
+    <p>
+     1つのリッチメニューの取得や編集に、2つのツールを使うことはできません。LINE Official Account Managerで作成したリッチメニューは、LINE Official Account Managerでのみ取得と編集ができます。また、Messaging APIで作成したリッチメニューについては、LINE Official Account Managerは使用できません。
+    </p>
+   </div>
+  </div>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      ツール
+     </th>
+     <th>
+      利点
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <a href="https://manager.line.biz/">
+       LINE Official Account Manager
+      </a>
+     </td>
+     <td>
+      <ul>
+       <li>
+        開発期間が短く済みます
+       </li>
+       <li>
+        操作が簡単なGUIで開発できます
+       </li>
+       <li>
+        表示期間を設定できます
+       </li>
+       <li>
+        表示された回数やクリック率などの統計情報が確認できます
+       </li>
+      </ul>
+      <p>
+       詳しくは、『LINEヤフー for Business』の「
+       <a href="https://www.lycbiz.com/jp/column/line-official-account/technique/20180731-01/">
+        リッチメニューの活用方法
+       </a>
+       」および「
+       <a href="https://www.lycbiz.com/jp/manual/OfficialAccountManager/insight_rich-menus/">
+        分析 - リッチメニュー
+       </a>
+       」を参照してください。
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Messaging API
+     </td>
+     <td>
+      <ul>
+       <li>
+        高度なカスタマイズが可能です
+       </li>
+       <li>
+        <a href="/ja/reference/messaging-api/#postback-action">
+         ポストバックアクション
+        </a>
+        や
+        <a href="/ja/reference/messaging-api/#datetime-picker-action">
+         日時選択アクション
+        </a>
+        などの
+        <a href="/ja/reference/messaging-api/#action-objects">
+         アクションオブジェクト
+        </a>
+        を利用できます
+       </li>
+       <li>
+        <a href="./switch-rich-menus/">
+         リッチメニューでタブ切り替えを行う
+        </a>
+        ことができます
+       </li>
+      </ul>
+      <p>
+       リッチメニューの機能を実際に使って試したい場合は、「
+       <a href="./try-rich-menu/">
+        リッチメニューを試す
+       </a>
+       」を参照してください。
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   なおMessaging APIで設定したリッチメニューについては、表示された回数やクリック率などの統計情報は取得できません。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#creating-a-rich-menu-with-the-line-manager">
+    LINE Official Account Managerでリッチメニューを設定する
+   </a>
+  </h3>
+  <p>
+   LINE Official Account Managerではデフォルトのリッチメニューを設定できます。より
+   <a href="#rich-menu-display">
+    優先順位
+   </a>
+   の高いリッチメニューが既に設定されていなければ、ユーザーにはデフォルトのリッチメニューが表示されます。
+  </p>
+  <p>
+   LINE Official Account Managerを使うと、あらかじめタップ領域が定義されたテンプレートをもとに、GUIを使ってタップ領域を設定できます。詳しくは、
+   <a href="https://www.lycbiz.com/jp/manual/OfficialAccountManager/rich-menus/">
+    LINE Official Account Managerのマニュアル
+   </a>
+   を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#creating-a-rich-menu-using-the-messaging-api">
+    Messaging APIでリッチメニューを設定する
+   </a>
+  </h3>
+  <p>
+   Messaging APIでリッチメニューを設定する場合は、必要となるエンドポイントを順番に呼び出す必要があります。基本的には以下の手順で行います。
+  </p>
+  <ol>
+   <li>
+    リッチメニューの画像を準備する。
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#create-rich-menu">
+     リッチメニューを作成する
+    </a>
+    エンドポイントを使用する。
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#upload-rich-menu-image">
+     リッチメニューの画像をアップロードする
+    </a>
+    エンドポイントを使用する。
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#set-default-rich-menu">
+     デフォルトのリッチメニューを設定する
+    </a>
+    エンドポイントを使用する。
+   </li>
+  </ol>
+  <p>
+   Messaging APIでリッチメニューを設定する方法について詳しくは、「
+   <a href="./using-rich-menus/">
+    リッチメニューを使う
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#rich-menu-scope">
+    リッチメニューの適用範囲
+   </a>
+  </h2>
+  <p>
+   リッチメニューには、2つの適用範囲があり、それぞれで設定できるツールが異なります。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      適用範囲
+     </th>
+     <th>
+      設定できるツール
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      LINE公式アカウントとのトーク画面を開いたすべてのユーザー（デフォルトのリッチメニュー）
+     </td>
+     <td>
+      <ul>
+       <li>
+        LINE Official Account Manager
+       </li>
+       <li>
+        Messaging API
+       </li>
+      </ul>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      ユーザー単位（ユーザー単位のリッチメニュー）
+     </td>
+     <td>
+      Messaging API
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   適用範囲と設定したツールによって、リッチメニューの表示優先度や、ユーザーのトーク画面に反映されるタイミングが異なります。
+  </p>
+  <ul>
+   <li>
+    <a href="#rich-menu-display">
+     リッチメニューの表示優先度
+    </a>
+   </li>
+   <li>
+    <a href="#when-setting-change-takes-effect">
+     リッチメニューの設定変更が反映されるタイミング
+    </a>
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#rich-menu-display">
+    リッチメニューの表示優先度
+   </a>
+  </h3>
+  <p>
+   リッチメニューは、設定したツールと適用範囲によって表示優先度が異なります。リッチメニューの表示優先順位（1が最優先で表示）は以下のとおりです。
+  </p>
+  <ol>
+   <li>
+    Messaging APIで設定するユーザー単位のリッチメニュー
+   </li>
+   <li>
+    Messaging APIで設定するデフォルトのリッチメニュー
+   </li>
+   <li>
+    <a href="https://manager.line.biz">
+     LINE Official Account Manager
+    </a>
+    で設定するデフォルトのリッチメニュー
+   </li>
+  </ol>
+  <h3>
+   <div>
+   </div>
+   <a href="#when-setting-change-takes-effect">
+    リッチメニューの設定変更が反映されるタイミング
+   </a>
+  </h3>
+  <p>
+   リッチメニューの設定を変更したとき、リッチメニューの適用範囲と設定したツールによって、ユーザーのトーク画面に反映されるタイミングが異なります。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      適用範囲と設定したツール
+     </th>
+     <th>
+      反映されるタイミング
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      Messaging APIで設定するユーザー単位のリッチメニュー
+     </td>
+     <td>
+      即時。ただし、
+      <a href="/ja/reference/messaging-api/#unlink-rich-menu-from-user">
+       ユーザーとのリンクを解除
+      </a>
+      せずにリッチメニューを削除した場合は、トーク画面に再入室したときに削除が反映されます。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Messaging APIで設定するデフォルトのリッチメニュー
+     </td>
+     <td>
+      トーク画面に再入室したとき。変更が反映されるまで、1分程度掛かる場合があります。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      LINE Official Account Managerで設定するデフォルトのリッチメニュー
+     </td>
+     <td>
+      トーク画面に再入室したとき。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#when-users-who-are-not-friends-open-the-chat-screen">
+    LINE公式アカウントと友だちではないユーザーがトーク画面を開いた場合
+   </a>
+  </h3>
+  <p>
+   LINE公式アカウントと友だちではないユーザーがトーク画面を開いた場合、LINE Official Account Managerもしくは、Messaging APIで設定したデフォルトのリッチメニューが表示されます。
+  </p>
+  <p>
+   なお、LINE公式アカウントと友だちではないユーザーに対して、ユーザー単位のリッチメニューはリンクできません。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#link-rich-menu-to-user-conditions">
+    リッチメニューをリンクできる条件
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-references">
+    リッチメニューのAPIリファレンス
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#rich-menu">
+     リッチメニュー
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#per-user-rich-menu">
+     ユーザー単位のリッチメニュー
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#rich-menu-alias">
+     リッチメニューエイリアス
+    </a>
+   </li>
+  </ul>
+ </div>
+</main>

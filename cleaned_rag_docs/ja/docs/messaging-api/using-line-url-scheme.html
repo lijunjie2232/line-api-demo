@@ -1,0 +1,1670 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   LINE URLスキームでLINEの機能を使う
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./using-line-url-scheme/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/using-line-url-scheme/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <div>
+   <p>
+    LINE URLスキームを使うと、スタンプショップやLIFFアプリを開いたり、カメラを起動したりできます。LINE URLスキームは、LINE公式アカウントでも利用できます。たとえば、
+    <a href="./using-rich-menus/">
+     リッチメニュー
+    </a>
+    にLINE URLスキームを開く
+    <a href="/ja/reference/messaging-api/#uri-action">
+     アクション
+    </a>
+    を設定しておくことで、メニューをタップしたユーザーに対してLINE内のコンテンツを表示できます。
+   </p>
+   <h2>
+    <div>
+    </div>
+    <a href="#supported-line-url-schemes">
+     サポートされているLINE URLスキーム
+    </a>
+   </h2>
+   <p>
+    サポートされているLINE URLスキームは、以下のとおりです。
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/
+       </code>
+       で始まるURLスキーム
+      </td>
+      <td>
+       LINEアプリの機能を使うためのURLスキーム
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://liff.line.me/
+       </code>
+       で始まるURLスキーム
+      </td>
+      <td>
+       <a href="/ja/docs/liff/overview/">
+        LIFFアプリ
+       </a>
+       を開くためのURLスキーム
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://miniapp.line.me/
+       </code>
+       で始まるURLスキーム
+      </td>
+      <td>
+       <a href="/ja/docs/line-mini-app/discover/introduction/">
+        LINEミニアプリ
+       </a>
+       を開くためのURLスキーム
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      「line://」は非推奨です
+     </span>
+    </div>
+    <div>
+     <p>
+      ユーザーが
+      <code>
+       line://
+      </code>
+      で始まるURLにアクセスした際に、ユーザーおよびLINEヤフー株式会社の意図に反して、LINE以外のアプリを起動させる「乗っ取り攻撃」を防ぐため、
+      <code>
+       line://
+      </code>
+      は非推奨です。「乗っ取り攻撃」は、特定の条件を満たした場合にのみ成立します。
+     </p>
+     <p>
+      なお、
+      <code>
+       line://
+      </code>
+      を廃止する時期は未定です。
+     </p>
+    </div>
+   </div>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      LINE以外のネイティブアプリを起動するURLスキームはLINEヤフー株式会社では提供していません
+     </span>
+    </div>
+    <div>
+     <p>
+      LINE以外のネイティブアプリを起動するURLスキームは、LINEヤフー株式会社では提供していません。ただし他社が提供するネイティブアプリにおいて、そのアプリを起動するURLスキームが用意されている場合は、そのURLスキームをLINEの
+      <a href="./using-rich-menus/">
+       リッチメニュー
+      </a>
+      や
+      <a href="./using-flex-messages/">
+       Flex Message
+      </a>
+      などのURIアクションで利用することはできます。
+     </p>
+    </div>
+   </div>
+   <h2>
+    <div>
+    </div>
+    <a href="#what-happens-when-line-url-is-clicked">
+     LINE URLスキームをクリックしたときの動作
+    </a>
+   </h2>
+   <p>
+    ユーザーがLINE URLスキームを使ったURLにアクセスすると、LINEが自動的に起動してURLで指定されたコンテンツが表示されます。ユーザーがLINEをインストールしていない場合の動作は、LINE URLスキームごとに異なります。
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       LINEをインストールしていない場合の動作
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/
+       </code>
+      </td>
+      <td>
+       ウェブブラウザが開き、LINEのダウンロードを求めるページが開く。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        line://
+       </code>
+       （非推奨）
+      </td>
+      <td>
+       何も起きないか、エラーページが開く。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <h2>
+    <div>
+    </div>
+    <a href="#supported-platforms">
+     動作環境
+    </a>
+   </h2>
+   <p>
+    LINE URLスキームは、iOS版LINEまたはAndroid版LINEをインストールしたスマートフォンで利用できます。
+   </p>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      注意
+     </span>
+    </div>
+    <div>
+     <p>
+      LINE URLスキームは、デスクトップ版（macOS、Windows）のLINEではサポートされません。
+     </p>
+    </div>
+   </div>
+   <h2>
+    <div>
+    </div>
+    <a href="#available-line-url-schemes">
+     LINEで利用できるURLスキーム
+    </a>
+   </h2>
+   <p>
+    LINEで利用できるURLスキームは以下のとおりです。なお、指定の動作環境でのみサポートされているLINE URLスキームについては、それぞれの項目内に記載しています。
+   </p>
+   <ul>
+    <li>
+     <a href="#opening-the-camera-and-camera-roll">
+      カメラとカメラロールを開く
+     </a>
+    </li>
+    <li>
+     <a href="#sending-the-location-screen">
+      位置情報を送る
+     </a>
+    </li>
+    <li>
+     <a href="#sharing-line-official-account">
+      LINE公式アカウントをシェアする
+     </a>
+    </li>
+    <li>
+     <a href="#opening-line-voom-and-profile">
+      LINE公式アカウントのLINE VOOMやビジネスプロフィールを開く
+     </a>
+    </li>
+    <li>
+     <a href="#opening-chat-screen">
+      LINE公式アカウントとのトーク画面を開く
+     </a>
+    </li>
+    <li>
+     <a href="#sending-text-messages">
+      テキストメッセージを送る
+     </a>
+    </li>
+    <li>
+     <a href="#opening-profile-information">
+      プロフィール情報を開く
+     </a>
+    </li>
+    <li>
+     <a href="#opening-common-line-app-screens">
+      その他の画面を開く
+     </a>
+    </li>
+    <li>
+     <a href="#opening-line-app-settings-screens">
+      設定画面を開く
+     </a>
+    </li>
+    <li>
+     <a href="#opening-the-sticker-shop">
+      スタンプショップを開く
+     </a>
+    </li>
+    <li>
+     <a href="#opening-the-theme-shop">
+      着せかえショップを開く
+     </a>
+    </li>
+    <li>
+     <a href="#opening-a-liff-app">
+      LIFFアプリを開く
+     </a>
+    </li>
+    <li>
+     <a href="#opening-url-in-external-browser">
+      URLを外部ブラウザで開く
+     </a>
+    </li>
+   </ul>
+   <h3>
+    <div>
+    </div>
+    <a href="#opening-the-camera-and-camera-roll">
+     カメラとカメラロールを開く
+    </a>
+   </h3>
+   <p>
+    このLINE URLスキームを使うと、カメラまたはカメラロールを開くことができます。カメラロールは、ユーザーがトークに送信する画像を選択する画面です。
+   </p>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      カメラまたはカメラロールを開く際の制限事項
+     </span>
+    </div>
+    <div>
+     <p>
+      このURLスキームは、LINEのトーク（オープンチャットを含む）でのみサポートされます。トーク以外の機能や、LINE以外のアプリ、LIFFアプリではサポートされません。
+     </p>
+    </div>
+   </div>
+   <p>
+    <img src="/media/messaging-api/using-line-url-scheme/camera-screen.png"/>
+   </p>
+   <p>
+    <img src="/media/messaging-api/using-line-url-scheme/camera-roll.png"/>
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/camera/
+       </code>
+      </td>
+      <td>
+       カメラを開きます。前面カメラ（インカメラ）と背面カメラ（アウトカメラ）など複数のカメラが搭載されているスマートフォンの場合、使用するカメラを指定することはできません。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/cameraRoll/single
+       </code>
+      </td>
+      <td>
+       カメラロールを開きます。トーク内で共有する画像を1つ選択できます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/cameraRoll/multi
+       </code>
+      </td>
+      <td>
+       カメラロールを開きます。トーク内で共有する画像を複数選択できます。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <h3>
+    <div>
+    </div>
+    <a href="#sending-the-location-screen">
+     位置情報を送る
+    </a>
+   </h3>
+   <p>
+    このLINE URLスキームを使うと、「位置情報」画面を開き、位置情報をLINE公式アカウントに送信できます。
+   </p>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      「位置情報」画面を開く際の制限事項
+     </span>
+    </div>
+    <div>
+     <p>
+      このURLスキームはLINE公式アカウントとの1対1のトークでのみサポートされます。他の種類のトークや、LINE以外のアプリ、LIFFアプリではサポートされません。
+     </p>
+    </div>
+   </div>
+   <p>
+    <img src="/media/messaging-api/using-line-url-scheme/location.png"/>
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/location/
+       </code>
+      </td>
+      <td>
+       「位置情報」画面を開きます。ユーザーは、地図にピンを刺してシェアする位置情報を選択できます。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <h3>
+    <div>
+    </div>
+    <a href="#sharing-line-official-account">
+     LINE公式アカウントをシェアする
+    </a>
+   </h3>
+   <p>
+    このLINE URLスキームを使うと、指定したLINE公式アカウントをユーザーやユーザーの友だちにおすすめして、LINE公式アカウントを友だち追加するように促すことができます。
+   </p>
+   <p>
+    <img src="/media/messaging-api/using-line-url-scheme/bot-add-friend-ja.png"/>
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       https://
+       <span>
+        line.me/R/ti/p/
+        <code>
+         {Percent-encoded LINE ID}
+        </code>
+       </span>
+      </td>
+      <td>
+       指定したLINE公式アカウントのビジネスプロフィールを開きます。LINE公式アカウントとすでに友だちだった場合は、1対1のトーク画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       https://
+       <span>
+        line.me/R/nv/recommendOA/
+        <code>
+         {Percent-encoded LINE ID}
+        </code>
+       </span>
+      </td>
+      <td>
+       「送信先を選択」画面を開きます。友だち、グループトーク、または複数人トークを選択してLINE公式アカウントのリンクをシェアできます。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      「Percent-encoded LINE ID」はパーセントエンコードしてください
+     </span>
+    </div>
+    <div>
+     <p>
+      <code>
+       {Percent-encoded LINE ID}
+      </code>
+      はUTF-8を用いて
+      <a href="https://developer.mozilla.org/ja/docs/Glossary/Percent-encoding">
+       パーセントエンコード
+      </a>
+      してください。たとえば、LINE IDが
+      <code>
+       @linedevelopers
+      </code>
+      の場合は、
+      <code>
+       https://line.me/R/ti/p/%40linedevelopers
+      </code>
+      や
+      <code>
+       https://line.me/R/nv/recommendOA/%40linedevelopers
+      </code>
+      のようにします。LINE IDをパーセントエンコードせずにそのまま置き換えた場合も動作しますが、非推奨です。
+     </p>
+     <p>
+      ただし「送信先を選択」画面を開くURLスキーム（
+      <code>
+       https://line.me/R/nv/recommendOA/%40linedevelopers
+      </code>
+      ）でLINE IDをパーセントエンコードした場合、Android版のLINEバージョン13.8.0未満では動作しません。
+     </p>
+     <p>
+      LINE公式アカウントのLINE IDは、
+      <a href="https://help.linebiz.com/lineadshelp/s/article/L000001191?language=ja">
+       ベーシックIDとプレミアムID
+      </a>
+      のどちらも利用できます。
+     </p>
+    </div>
+   </div>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      LINE公式アカウントのLINE IDを確認するには？
+     </span>
+    </div>
+    <div>
+     <p>
+      LINE公式アカウントのLINE IDは
+      <a href="https://manager.line.biz/">
+       LINE Official Account Manager
+      </a>
+      で確認できます。詳しくは、「
+      <a href="./sharing-bot/#share-the-line-id-of-your-line-official-account">
+       LINE公式アカウントのLINE IDをシェアする
+      </a>
+      」を参照してください。
+     </p>
+    </div>
+   </div>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      パソコンのブラウザで開いた場合
+     </span>
+    </div>
+    <div>
+     <p>
+      ユーザーが
+      <code>
+       https://line.me/R/ti/p/{Percent-encoded LINE ID}
+      </code>
+      をパソコンで開いた場合、LINE公式アカウントのWeb版プロフィール（例：
+      <a href="https://line.me/R/ti/p/%40linecharacter">
+       LINE FRIENDSのプロフィール
+      </a>
+      ）や、QRコードが表示されます。どちらが表示されるかは、以下の条件を満たしているかどうかで異なります。
+     </p>
+     <ul>
+      <li>
+       LINE公式アカウントが認証済アカウントである
+      </li>
+      <li>
+       Web版プロフィールを「利用する」設定にしている
+      </li>
+     </ul>
+     <p>
+      どちらの条件も満たしている場合、LINE公式アカウントのWeb版プロフィールがQRコード付きで表示されます。条件を満たしていない場合は、LINE公式アカウントのQRコードのみが表示されます。利用中の未認証アカウントを認証済アカウントに変更したり、Web版プロフィールを利用したりするための設定は、
+      <a href="https://manager.line.biz/">
+       LINE Official Account Manager
+      </a>
+      から行うことができます。
+     </p>
+    </div>
+   </div>
+   <h3>
+    <div>
+    </div>
+    <a href="#opening-line-voom-and-profile">
+     LINE公式アカウントのLINE VOOMやビジネスプロフィールを開く
+    </a>
+   </h3>
+   <p>
+    このLINE URLスキームを使うと、LINE公式アカウントのLINE VOOMやビジネスプロフィールを開くことができます。
+   </p>
+   <p>
+    <img src="/media/messaging-api/using-line-url-scheme/bot-line-voom.png"/>
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       https://
+       <span>
+        line.me/R/home/public/main?id=
+        <code>
+         {LINE ID without @}
+        </code>
+       </span>
+      </td>
+      <td>
+       指定したLINE公式アカウントのLINE VOOMを開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       https://
+       <span>
+        line.me/R/home/public/profile?id=
+        <code>
+         {LINE ID without @}
+        </code>
+       </span>
+      </td>
+      <td>
+       指定したLINE公式アカウントのビジネスプロフィールを開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       https://
+       <span>
+        line.me/R/home/public/post?id=
+        <code>
+         {LINE ID without @}
+        </code>
+        &amp;postId=
+        <code>
+         {postId}
+        </code>
+       </span>
+      </td>
+      <td>
+       指定したLINE公式アカウントの特定のLINE VOOMの投稿を開きます。各投稿のIDは、
+       <a href="https://voom-studio.line.biz/">
+        LINE VOOM Studio
+       </a>
+       で確認できます。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      このURLスキームではLINE IDの先頭の@を含めないでください
+     </span>
+    </div>
+    <div>
+     <p>
+      <code>
+       {LINE ID without @}
+      </code>
+      は、LINE公式アカウントのLINE IDに置き換えてください。ベーシックIDと
+      <span>
+       <a href="/ja/glossary/#premium-id">
+        プレミアムID
+       </a>
+       <span>
+       </span>
+      </span>
+      のどちらも指定できます。なお、LINE IDの先頭の
+      <code>
+       @
+      </code>
+      を含めないでください。たとえば、LINE IDが
+      <code>
+       @linedevelopers
+      </code>
+      の場合は、
+      <code>
+       https://line.me/R/home/public/main?id=linedevelopers
+      </code>
+      のようにします。
+     </p>
+    </div>
+   </div>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      LINE公式アカウントのLINE IDを確認するには？
+     </span>
+    </div>
+    <div>
+     <p>
+      LINE公式アカウントのLINE IDは
+      <a href="https://manager.line.biz/">
+       LINE Official Account Manager
+      </a>
+      で確認できます。詳しくは、「
+      <a href="./sharing-bot/#share-the-line-id-of-your-line-official-account">
+       LINE公式アカウントのLINE IDをシェアする
+      </a>
+      」を参照してください。
+     </p>
+    </div>
+   </div>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      LINE VOOMへの投稿とビジネスプロフィールのカスタマイズ
+     </span>
+    </div>
+    <div>
+     <p>
+      あなたが管理しているLINE公式アカウントのLINE VOOMに投稿したり、ビジネスプロフィールをカスタマイズしたりするには、
+      <a href="https://voom-studio.line.biz/">
+       LINE VOOM Studio
+      </a>
+      や
+      <a href="https://manager.line.biz/">
+       LINE Official Account Manager
+      </a>
+      を使います。
+     </p>
+    </div>
+   </div>
+   <h3>
+    <div>
+    </div>
+    <a href="#opening-chat-screen">
+     LINE公式アカウントとのトーク画面を開く
+    </a>
+   </h3>
+   <p>
+    このLINE URLスキームを使うと、LINE公式アカウントとのトーク画面を開くことができます。
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       https://
+       <span>
+        line.me/R/oaMessage/
+        <code>
+         {Percent-encoded LINE ID}
+        </code>
+       </span>
+      </td>
+      <td>
+       LINE公式アカウントとのトーク画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       https://
+       <span>
+        line.me/R/oaMessage/
+        <code>
+         {Percent-encoded LINE ID}
+        </code>
+        /?
+        <code>
+         {text_message}
+        </code>
+       </span>
+      </td>
+      <td>
+       <code>
+        {text_message}
+       </code>
+       に設定したテキストメッセージがメッセージ入力欄に入力された状態で、LINE公式アカウントとのトーク画面を開きます。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      「Percent-encoded LINE ID」と「text_message」はパーセントエンコードしてください
+     </span>
+    </div>
+    <div>
+     <p>
+      <code>
+       {Percent-encoded LINE ID}
+      </code>
+      と
+      <code>
+       {text_message}
+      </code>
+      はUTF-8を用いて
+      <a href="https://developer.mozilla.org/ja/docs/Glossary/Percent-encoding">
+       パーセントエンコード
+      </a>
+      してください。たとえば、LINE IDが
+      <code>
+       @linedevelopers
+      </code>
+      のLINE公式アカウントに対して、
+      <code>
+       こんにちは
+      </code>
+      というテキストメッセージを送信する場合は、
+      <code>
+       https://line.me/R/oaMessage/%40linedevelopers/?%E3%81%93%E3%82%93%E3%81%AB%E3%81%A1%E3%81%AF
+      </code>
+      のようにします。LINE IDをパーセントエンコードせずにそのまま置き換えた場合も動作しますが、非推奨です。
+     </p>
+     <p>
+      LINE公式アカウントのLINE IDは、
+      <a href="https://help.linebiz.com/lineadshelp/s/article/L000001191?language=ja">
+       ベーシックIDとプレミアムID
+      </a>
+      のどちらも利用できます。
+     </p>
+    </div>
+   </div>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      LINE公式アカウントのLINE IDを確認するには？
+     </span>
+    </div>
+    <div>
+     <p>
+      LINE公式アカウントのLINE IDは
+      <a href="https://manager.line.biz/">
+       LINE Official Account Manager
+      </a>
+      で確認できます。詳しくは、「
+      <a href="./sharing-bot/#share-the-line-id-of-your-line-official-account">
+       LINE公式アカウントのLINE IDをシェアする
+      </a>
+      」を参照してください。
+     </p>
+    </div>
+   </div>
+   <h3>
+    <div>
+    </div>
+    <a href="#sending-text-messages">
+     テキストメッセージを送る
+    </a>
+   </h3>
+   <p>
+    このLINE URLスキームを使うと、ユーザーの友だちまたはLINE公式アカウントに送信するテキストメッセージを設定できます。
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       https://
+       <span>
+        line.me/R/share?text=
+        <code>
+         {text_message}
+        </code>
+       </span>
+      </td>
+      <td>
+       「送信先を選択」画面を開きます。ユーザーは、友だち、グループトーク、または複数人トークを選択して、
+       <code>
+        {text_message}
+       </code>
+       に設定されたテキストメッセージを送信できます。テキストはKeepメモやLINE VOOM、他のアプリにも送信できます。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      「text_message」はパーセントエンコードしてください
+     </span>
+    </div>
+    <div>
+     <p>
+      <code>
+       {text_message}
+      </code>
+      はUTF-8を用いて
+      <a href="https://developer.mozilla.org/ja/docs/Glossary/Percent-encoding">
+       パーセントエンコード
+      </a>
+      してください。たとえば、
+      <code>
+       こんにちは
+      </code>
+      というテキストメッセージを指定する場合は、
+      <code>
+       https://line.me/R/share?text=%E3%81%93%E3%82%93%E3%81%AB%E3%81%A1%E3%81%AF
+      </code>
+      のようにします。
+     </p>
+    </div>
+   </div>
+   <h3>
+    <div>
+    </div>
+    <a href="#opening-profile-information">
+     プロフィール情報を開く
+    </a>
+   </h3>
+   <p>
+    このLINE URLスキームを使うと、ユーザーの「プロフィール」画面を開きます。この画面では、表示名、ステータスメッセージ、およびLINE IDを設定できます。また、さまざまなLINEプロフィール情報を確認できます。
+   </p>
+   <p>
+    <img src="/media/messaging-api/using-line-url-scheme/my-profile.png"/>
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/profile
+       </code>
+      </td>
+      <td>
+       ユーザーの「プロフィール」画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/profileSetId
+       </code>
+      </td>
+      <td>
+       ユーザーの「ID」画面を開きます。LINE IDが未設定の場合は、LINE IDを設定できます。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <h3>
+    <div>
+    </div>
+    <a href="#opening-common-line-app-screens">
+     その他の画面を開く
+    </a>
+   </h3>
+   <p>
+    このLINE URLスキームを使うと、トークタブを含むLINEのさまざまな画面を開きます。
+   </p>
+   <p>
+    <img src="/media/messaging-api/using-line-url-scheme/shopping-tab-ja.png"/>
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/chat
+       </code>
+      </td>
+      <td>
+       トークタブを開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/commerce
+       </code>
+      </td>
+      <td>
+       ショッピングタブを開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/wallet
+       </code>
+      </td>
+      <td>
+       ウォレットタブを開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/addFriends
+       </code>
+      </td>
+      <td>
+       「友だち追加」画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/officialAccounts
+       </code>
+      </td>
+      <td>
+       「LINE公式アカウント」画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/timeline
+       </code>
+      </td>
+      <td>
+       LINE VOOMの「フォロー中」画面を開きます。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <h3>
+    <div>
+    </div>
+    <a href="#opening-line-app-settings-screens">
+     「設定」画面を開く
+    </a>
+   </h3>
+   <p>
+    このLINE URLスキームを使うと、LINEのさまざまな設定画面を開きます。
+   </p>
+   <p>
+    <img src="/media/messaging-api/using-line-url-scheme/settings.png"/>
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/settings
+       </code>
+      </td>
+      <td>
+       「設定」画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/settings/account
+       </code>
+      </td>
+      <td>
+       「アカウント」設定画面を開きます。ユーザーのLINEアカウント情報が表示されます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/connectedApps
+       </code>
+      </td>
+      <td>
+       「アカウント」 &gt; 「連動アプリ」設定画面を開きます。この画面では、認証済みアプリに付与されている権限を確認したり、アプリの連動を解除したりできます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/connectedDevices
+       </code>
+      </td>
+      <td>
+       「アカウント」 &gt;「ログイン中の端末」設定画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/settings/privacy
+       </code>
+      </td>
+      <td>
+       「プライバシー管理」の設定画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/settings/sticker
+       </code>
+      </td>
+      <td>
+       「スタンプ」設定画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/stickerShop/mySticker
+       </code>
+      </td>
+      <td>
+       「スタンプ」 &gt; 「マイスタンプ」設定画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/settings/themeSettingsMenu
+       </code>
+       （iOS）、
+       <code>
+        https://line.me/R/nv/settings/theme
+       </code>
+       （Android）
+      </td>
+      <td>
+       「着せかえ」設定画面を開きます。
+       <br/>
+       iOSとAndroidでスキームが異なります。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/themeSettings
+       </code>
+      </td>
+      <td>
+       「着せかえ」 &gt; 「マイ着せかえ」設定画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/notificationServiceDetail
+       </code>
+      </td>
+      <td>
+       「通知」 &gt; 「連動アプリ」設定画面を開きます。この画面では、連動アプリの通知設定を設定できます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/settings/chatSettings
+       </code>
+      </td>
+      <td>
+       「トーク」設定画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/suggestSettings
+       </code>
+      </td>
+      <td>
+       「トーク」 &gt; 「サジェスト表示」設定画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/settings/callSettings
+       </code>
+      </td>
+      <td>
+       「通話」設定画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/settings/addressBookSync
+       </code>
+      </td>
+      <td>
+       「友だち」設定画面を開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/settings/timelineSettings
+       </code>
+      </td>
+      <td>
+       「LINE VOOM」設定画面を開きます。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <h3>
+    <div>
+    </div>
+    <a href="#opening-the-sticker-shop">
+     スタンプショップを開く
+    </a>
+   </h3>
+   <p>
+    このLINE URLスキームを使うと、公式スタンプやクリエイターズスタンプの購入を促すために、LINE内でスタンプショップを開くことができます。
+   </p>
+   <p>
+    <img src="/media/messaging-api/using-line-url-scheme/sticker-shop-categories.png"/>
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       https://
+       <span>
+        line.me/R/shop/sticker/detail/
+        <code>
+         {package_id}
+        </code>
+       </span>
+      </td>
+      <td>
+       指定されたスタンプの「スタンプ情報」画面を開きます。
+       <code>
+        {package_id}
+       </code>
+       には、
+       <a href="https://store.line.me/">
+        LINE STORE
+       </a>
+       のスタンプページのURLに含まれる数字を指定します。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       https://
+       <span>
+        line.me/R/shop/category/
+        <code>
+         {category_id}
+        </code>
+       </span>
+      </td>
+      <td>
+       「公式スタンプ」セクション内の指定されたカテゴリの人気ランキングが表示されます。
+       <code>
+        {category_id}
+       </code>
+       には、
+       <a href="https://store.line.me/">
+        LINE STORE
+       </a>
+       の「公式スタンプ」セクション内のカテゴリページのURLに含まれる数字を指定します。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       https://
+       <span>
+        line.me/R/shop/sticker/author/
+        <code>
+         {author_id}
+        </code>
+       </span>
+      </td>
+      <td>
+       指定された作成者のスタンプリストを開きます。
+       <code>
+        {author_id}
+       </code>
+       には、
+       <a href="https://store.line.me/">
+        LINE STORE
+       </a>
+       のスタンプの作成者ページのURLに含まれる数字を指定します。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/nv/stickerShop
+       </code>
+      </td>
+      <td>
+       スタンプショップのホームタブを開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/shop/sticker/hot
+       </code>
+      </td>
+      <td>
+       スタンプショップの人気タブを開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/shop/sticker/new
+       </code>
+      </td>
+      <td>
+       スタンプショップの新着タブを開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/shop/sticker/event
+       </code>
+      </td>
+      <td>
+       スタンプショップの無料タブを開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <code>
+        https://line.me/R/shop/sticker/category
+       </code>
+      </td>
+      <td>
+       スタンプショップのカテゴリータブを開きます。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      独自のスタンプセットを作成するには？
+     </span>
+    </div>
+    <div>
+     <p>
+      ユーザー向けに独自のスタンプセットを作成するには、
+      <a href="https://creator.line.me/ja/">
+       LINE Creators Market
+      </a>
+      サイトで
+      <a href="https://creator.line.me/ja/stickermaker/">
+       LINEスタンプメーカー
+      </a>
+      アプリを使用してください。
+     </p>
+    </div>
+   </div>
+   <h3>
+    <div>
+    </div>
+    <a href="#opening-the-theme-shop">
+     着せかえショップを開く
+    </a>
+   </h3>
+   <p>
+    このLINE URLスキームを使うと、公式着せかえやクリエイターズ着せかえの購入を促すために、LINE内で着せかえショップを開くことができます。
+   </p>
+   <p>
+    <img src="/media/messaging-api/using-line-url-scheme/theme-shop.png"/>
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       https://
+       <span>
+        line.me/R/shop/theme/detail?id=
+        <code>
+         {product_id}
+        </code>
+       </span>
+      </td>
+      <td>
+       指定された公式着せかえ、またはクリエイターズ着せかえの「着せかえ情報」画面を開きます。
+       <code>
+        {product_id}
+       </code>
+       には、
+       <a href="https://store.line.me/">
+        LINE STORE
+       </a>
+       の、着せかえページのURLに含まれるIDを指定します。たとえば、「
+       <a href="https://store.line.me/themeshop/product/0bac8fed-4c75-40c5-9982-e9ecc3b9d191/ja">
+        マットホワイト
+       </a>
+       <code>
+        https://store.line.me/themeshop/product/0bac8fed-4c75-40c5-9982-e9ecc3b9d191/ja
+       </code>
+       」を開く場合、
+       <code>
+        0bac8fed-4c75-40c5-9982-e9ecc3b9d191
+       </code>
+       を指定します。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <h3>
+    <div>
+    </div>
+    <a href="#opening-a-liff-app">
+     LIFFアプリを開く
+    </a>
+   </h3>
+   <p>
+    このLINE URLスキームを使うと、指定したLIFFアプリを開くことができます。LIFFアプリは、
+    <a href="/ja/docs/liff/overview/">
+     LINE Front-end Framework（LIFF）
+    </a>
+    を利用して動作するウェブアプリです。
+   </p>
+   <p>
+    <img src="/media/messaging-api/using-line-url-scheme/liff-app.png"/>
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       LINE URLスキーム
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       https://
+       <span>
+        liff.line.me/
+        <code>
+         {liffId}
+        </code>
+       </span>
+      </td>
+      <td>
+       指定したLIFF IDのLIFFアプリを開きます。このURLスキームを、LIFF URLと呼びます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       https://
+       <span>
+        liff.line.me/
+        <code>
+         {liffId}
+        </code>
+        /path_A/path_B/?key1=value1&amp;key2=value2
+       </span>
+      </td>
+      <td>
+       指定したLIFF IDでLIFFアプリを開きます。
+       <code>
+        /path_A/path_B/?key1=value1&amp;key2=value2
+       </code>
+       を追加情報として渡します。
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <p>
+    LIFFアプリが開くまでの処理について詳しくは、『LIFFドキュメント』の「
+    <a href="/ja/docs/liff/opening-liff-app/">
+     LIFFアプリを開く
+    </a>
+    」を参照してください。
+   </p>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      「https://line.me/R/app/{liffId}」および「line://app/{liffId}」は非推奨です
+     </span>
+    </div>
+    <div>
+     <p>
+      <a href="/ja/docs/liff/versioning-policy/#life-cycle-schedule">
+       LIFF v1
+      </a>
+      向けに提供されていた以下の形式のLIFF URLは、
+      <span>
+       <a href="/ja/glossary/#deprecated">
+        非推奨
+       </a>
+       <span>
+       </span>
+      </span>
+      です。
+     </p>
+     <ul>
+      <li>
+       <code>
+        https://line.me/R/app/{liffId}
+       </code>
+      </li>
+      <li>
+       <code>
+        line://app/{liffId}
+       </code>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <h3>
+    <div>
+    </div>
+    <a href="#opening-url-in-external-browser">
+     URLを外部ブラウザで開く
+    </a>
+   </h3>
+   <p>
+    クエリパラメータを使うと、
+    <span>
+     <a href="/ja/glossary/#line-iab">
+      LINE内ブラウザ
+     </a>
+     <span>
+     </span>
+    </span>
+    の代わりに
+    <span>
+     <a href="/ja/glossary/#external-browser">
+      外部ブラウザ
+     </a>
+     <span>
+     </span>
+    </span>
+    でURLを開くことができます。
+   </p>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      これらのクエリパラメータはLIFFアプリではサポートされません
+     </span>
+    </div>
+    <div>
+     <p>
+      これらのクエリパラメータは、LINEアプリからアクセスするすべてのURLで機能します。ただし、LIFFアプリのみ例外的にサポートされないため、LIFF URLにクエリパラメータを付与しても機能しません。
+     </p>
+    </div>
+   </div>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       クエリパラメータ付きのURL
+      </th>
+      <th>
+       説明
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       https://
+       <span>
+        example.com/?
+        <code>
+         openExternalBrowser=1
+        </code>
+       </span>
+      </td>
+      <td>
+       対象のURLを外部ブラウザで開きます。
+      </td>
+     </tr>
+     <tr>
+      <td>
+       https://
+       <span>
+        example.com/?
+        <code>
+         openInAppBrowser=0
+        </code>
+       </span>
+      </td>
+      <td>
+       対象のURLをChromeカスタムタブで開きます。（Android版LINEのみ対応）
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</main>

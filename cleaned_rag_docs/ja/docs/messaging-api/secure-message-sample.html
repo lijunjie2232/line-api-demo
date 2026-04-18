@@ -1,0 +1,687 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   Secure message生成のサンプルデータとコード
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./secure-message-sample/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/secure-message-sample/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   このトピックでは、ビーコン端末に組み込むSecure message生成機能の開発中に利用できる、サンプルのデータとコードについて説明します。Secure message生成のアルゴリズムについては、「
+   <a href="./beacon-device-spec/#generating-secure-message">
+    Secure messageを生成する
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#sample-data">
+    サンプルデータ
+   </a>
+  </h2>
+  <p>
+   一連の表は、Secure messageの生成に必要なデータのサンプルと、そのデータを正しく計算した結果の値を示しています。ここで提供されているデータと比較して、Secure message生成機能が正しく動作しているかどうかを確認してください。
+  </p>
+  <p>
+   以下は、Secure messageの計算に使用するパラメータです。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      フィールド
+     </th>
+     <th>
+      値
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      HWID
+     </td>
+     <td>
+      01deadbeef
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Vendor key
+     </td>
+     <td>
+      5cf2a423
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Lot key
+     </td>
+     <td>
+      8c194fe41d7fe34f
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Battery level
+     </td>
+     <td>
+      0x01
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   HWID、Vendor key、およびLot keyは、バイト配列に変換してから計算します。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#timestamp-is-zero">
+    Timestampが0の場合
+   </a>
+  </h3>
+  <p>
+   Timestampの値が
+   <code>
+    0
+   </code>
+   とは、端末に初めて電源が入ったことを意味します。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      dummy
+     </th>
+     <th>
+      dummy
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      入力値
+     </td>
+     <td>
+      000000000000000001deadbeef5cf2a4238c194fe41d7fe34f01
+     </td>
+    </tr>
+    <tr>
+     <td>
+      SHA-256ハッシュ値
+     </td>
+     <td>
+      72de7eafe33a44f0094283e03c28ff8bf85230825616fa49b73edaa6be88a0a8
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Message authentication code
+     </td>
+     <td>
+      037cf6f1
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Secure message
+     </td>
+     <td>
+      037cf6f1000001
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#timestamp-is-one">
+    Timestampが1の場合
+   </a>
+  </h3>
+  <p>
+   Timestampの値が
+   <code>
+    1
+   </code>
+   とは、最初に電源を入れてから15秒経過したことを意味します。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      dummy
+     </th>
+     <th>
+      dummy
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      入力値
+     </td>
+     <td>
+      000000000000000101deadbeef5cf2a4238c194fe41d7fe34f01
+     </td>
+    </tr>
+    <tr>
+     <td>
+      SHA-256ハッシュ値
+     </td>
+     <td>
+      eba4633c394cf7d913a863f25e930e7b8d9227bd109c2019d9dfbb411366cc4f
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Message authentication code
+     </td>
+     <td>
+      c86489c6
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Secure message
+     </td>
+     <td>
+      c86489c6000101
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#timestamp-is-65535">
+    Timestampが65535の場合
+   </a>
+  </h3>
+  <p>
+   Timestampの値が
+   <code>
+    65535
+   </code>
+   から
+   <code>
+    65536
+   </code>
+   にインクリメントされると、Secure messageのMasked timestampは
+   <code>
+    0000
+   </code>
+   にリセットされます。「
+   <a href="#timestamp-is-65536">
+    Timestampが65536の場合
+   </a>
+   」セクションも合わせて参照し、Masked timestampが
+   <code>
+    ffff
+   </code>
+   から
+   <code>
+    0000
+   </code>
+   になることを確認してください。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      dummy
+     </th>
+     <th>
+      dummy
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      入力値
+     </td>
+     <td>
+      000000000000ffff01deadbeef5cf2a4238c194fe41d7fe34f01
+     </td>
+    </tr>
+    <tr>
+     <td>
+      SHA-256ハッシュ値
+     </td>
+     <td>
+      f435f408d2978130607a8af69da2e6f65b66c260796f03ce2a7daf9b468ae0b5
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Message authentication code
+     </td>
+     <td>
+      958497b8
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Secure message
+     </td>
+     <td>
+      958497b8ffff01
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#timestamp-is-65536">
+    Timestampが65536の場合
+   </a>
+  </h3>
+  <p>
+   Timestampの値が
+   <code>
+    65536
+   </code>
+   にインクリメントされると、Secure messageのMasked timestampは
+   <code>
+    0000
+   </code>
+   にリセットされます。「
+   <a href="#timestamp-is-65535">
+    Timestampが65535の場合
+   </a>
+   」セクションも合わせて参照し、Masked timestampが
+   <code>
+    ffff
+   </code>
+   から
+   <code>
+    0000
+   </code>
+   になることを確認してください。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      dummy
+     </th>
+     <th>
+      dummy
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      入力値
+     </td>
+     <td>
+      000000000001000001deadbeef5cf2a4238c194fe41d7fe34f01
+     </td>
+    </tr>
+    <tr>
+     <td>
+      SHA-256ハッシュ値
+     </td>
+     <td>
+      70b58ab690b63d519caf37359ce3d910e8e1d79a90f095462ee2d56ae0f035e4
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Message authentication code
+     </td>
+     <td>
+      564cfb90
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Secure message
+     </td>
+     <td>
+      564cfb90000001
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#timestamp-is-9223372036854775807">
+    Timestampが9223372036854775807の場合
+   </a>
+  </h3>
+  <p>
+   <code>
+    9223372036854775807
+   </code>
+   は、符号付き64ビット整数型で格納できる最大値です。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      dummy
+     </th>
+     <th>
+      dummy
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      入力値
+     </td>
+     <td>
+      7fffffffffffffff01deadbeef5cf2a4238c194fe41d7fe34f01
+     </td>
+    </tr>
+    <tr>
+     <td>
+      SHA-256ハッシュ値
+     </td>
+     <td>
+      c626232a199b163c53ba70f4d493c8b34891532d9e8fbf2b788e7e1cf3d13dec
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Message authentication code
+     </td>
+     <td>
+      05d522a7
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Secure message
+     </td>
+     <td>
+      05d522a7ffff01
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#timestamp-is-18446744073709551615">
+    Timestampが18446744073709551615の場合
+   </a>
+  </h3>
+  <p>
+   <code>
+    18446744073709551615
+   </code>
+   は、符号なし64ビット整数型で格納できる最大値です。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      dummy
+     </th>
+     <th>
+      dummy
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      入力値
+     </td>
+     <td>
+      ffffffffffffffff01deadbeef5cf2a4238c194fe41d7fe34f01
+     </td>
+    </tr>
+    <tr>
+     <td>
+      SHA-256ハッシュ値
+     </td>
+     <td>
+      53ab6c6874fc333398ae2186eb45ce5d5a77d10cd2d3fe3d933a12b33cb13090
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Message authentication code
+     </td>
+     <td>
+      7393bd92
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Secure message
+     </td>
+     <td>
+      7393bd92ffff01
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h2>
+   <div>
+   </div>
+   <a href="#sample-code">
+    サンプルコード
+   </a>
+  </h2>
+  <p>
+   以下は、Secure messageを生成するJavaのサンプルコードです。
+  </p>
+  <div>
+   <span>
+    java
+   </span>
+   <pre><code><span><span>import</span><span> java.nio.ByteBuffer;
+</span></span><span><span>import</span><span> java.nio.ByteOrder;
+</span></span><span><span>import</span><span> java.security.MessageDigest;
+</span></span><span><span>import</span><span> java.security.NoSuchAlgorithmException;
+</span></span><span><span>import</span><span> java.util.Arrays;
+</span></span><span><span>
+</span></span><span><span>import</span><span> javax.xml.bind.DatatypeConverter;
+</span></span><span><span>
+</span></span><span><span>public</span><span> class</span><span> LineBeacon</span><span> {
+</span></span><span><span>
+</span></span><span><span>    private</span><span> static</span><span> byte</span><span>[] </span><span>sha256</span><span>(</span><span>byte</span><span>[] </span><span>input</span><span>) {
+</span></span><span><span>        try</span><span> {
+</span></span><span><span>            return</span><span> MessageDigest.</span><span>getInstance</span><span>(</span><span>"SHA-256"</span><span>).</span><span>digest</span><span>(input);
+</span></span><span><span>        } </span><span>catch</span><span> (NoSuchAlgorithmException </span><span>e</span><span>) {
+</span></span><span><span>            throw</span><span> new</span><span> IllegalStateException</span><span>(</span><span>"SHA-256 is always supported in Java7+"</span><span>, e);
+</span></span><span><span>        }
+</span></span><span><span>    }
+</span></span><span><span>
+</span></span><span><span>    private</span><span> static</span><span> byte</span><span>[] </span><span>xor</span><span>(</span><span>byte</span><span>[] </span><span>input</span><span>, </span><span>int</span><span> xorCount</span><span>) {
+</span></span><span><span>        if</span><span> (xorCount </span><span>==</span><span> 0</span><span>) {
+</span></span><span><span>            return</span><span> input;
+</span></span><span><span>        }
+</span></span><span><span>
+</span></span><span><span>        byte</span><span>[] </span><span>latterHalf</span><span> =</span><span> Arrays.</span><span>copyOfRange</span><span>(input, input.length </span><span>/</span><span> 2</span><span>, input.length);
+</span></span><span><span>        for</span><span> (</span><span>int</span><span> i</span><span> =</span><span> 0</span><span>; i </span><span>&lt;</span><span> latterHalf.length; i</span><span>++</span><span>) {
+</span></span><span><span>            latterHalf[i] </span><span>^=</span><span> input[i];
+</span></span><span><span>        }
+</span></span><span><span>        return</span><span> xor</span><span>(latterHalf, xorCount </span><span>-</span><span> 1</span><span>);
+</span></span><span><span>    }
+</span></span><span><span>
+</span></span><span><span>    private</span><span> static</span><span> byte</span><span>[] </span><span>concat</span><span>(</span><span>byte</span><span>[]...</span><span>inputs</span><span>) {
+</span></span><span><span>        int</span><span> size</span><span> =</span><span> 0</span><span>;
+</span></span><span><span>        for</span><span> (</span><span>byte</span><span>[] </span><span>in</span><span>:</span><span> inputs) {
+</span></span><span><span>            size </span><span>+=</span><span> in .length;
+</span></span><span><span>        }
+</span></span><span><span>        ByteBuffer</span><span> bb</span><span> =</span><span> ByteBuffer.</span><span>allocate</span><span>(size);
+</span></span><span><span>        for</span><span> (</span><span>byte</span><span>[] </span><span>in</span><span>:</span><span> inputs) {
+</span></span><span><span>            bb.</span><span>put</span><span>( in );
+</span></span><span><span>        }
+</span></span><span><span>        return</span><span> bb.</span><span>array</span><span>();
+</span></span><span><span>    }
+</span></span><span><span>
+</span></span><span><span>    public</span><span> static</span><span> byte</span><span>[] </span><span>createSecureMessage</span><span>(</span><span>long</span><span> timestamp</span><span>, </span><span>byte</span><span>[] </span><span>hwid</span><span>, </span><span>byte</span><span>[] </span><span>vendorKey</span><span>, </span><span>byte</span><span>[] </span><span>lotKey</span><span>, </span><span>byte</span><span> batteryLevel</span><span>) {
+</span></span><span><span>        if</span><span> (hwid.length </span><span>!=</span><span> 5</span><span>) {
+</span></span><span><span>            throw</span><span> new</span><span> IllegalArgumentException</span><span>(</span><span>"HWID must be 5 bytes long. "</span><span> +</span><span> hwid.length);
+</span></span><span><span>        }
+</span></span><span><span>        if</span><span> (vendorKey.length </span><span>!=</span><span> 4</span><span>) {
+</span></span><span><span>            throw</span><span> new</span><span> IllegalArgumentException</span><span>(</span><span>"Vendor key must be 4 bytes long. "</span><span> +</span><span> vendorKey.length);
+</span></span><span><span>        }
+</span></span><span><span>        if</span><span> (lotKey.length </span><span>!=</span><span> 8</span><span>) {
+</span></span><span><span>            throw</span><span> new</span><span> IllegalArgumentException</span><span>(</span><span>"Lot key must be 8 bytes long. "</span><span> +</span><span> lotKey.length);
+</span></span><span><span>        }
+</span></span><span><span>        if</span><span> (batteryLevel </span><span>&lt;</span><span> 0x00</span><span> ||</span><span> 0x0b</span><span> &lt;</span><span> batteryLevel) {
+</span></span><span><span>            throw</span><span> new</span><span> IllegalArgumentException</span><span>(</span><span>"Battery Level must be between 0x00 and 0x0b: "</span><span> +</span><span> batteryLevel);
+</span></span><span><span>        }
+</span></span><span><span>
+</span></span><span><span>        byte</span><span>[] </span><span>rawTimestamp</span><span> =</span><span> ByteBuffer
+</span></span><span><span>            .</span><span>allocate</span><span>(</span><span>8</span><span>) </span><span>// Timestamp of LINE Beacon is always 8 bytes long.
+</span></span><span><span>            .</span><span>order</span><span>(ByteOrder.BIG_ENDIAN) </span><span>// LINE Beacon always uses big-endian.
+</span></span><span><span>            .</span><span>putLong</span><span>(timestamp)
+</span></span><span><span>            .</span><span>array</span><span>();
+</span></span><span><span>        byte</span><span>[] </span><span>input</span><span> =</span><span> concat</span><span>(rawTimestamp, hwid, vendorKey, lotKey, </span><span>new</span><span> byte</span><span>[] {
+</span></span><span><span>            batteryLevel
+</span></span><span><span>        });
+</span></span><span><span>        byte</span><span>[] </span><span>digest</span><span> =</span><span> sha256</span><span>(input);
+</span></span><span><span>        byte</span><span>[] </span><span>messageAuthenticationCode</span><span> =</span><span> xor</span><span>(digest, </span><span>3</span><span>);
+</span></span><span><span>        byte</span><span>[] </span><span>secureMessage</span><span> =</span><span> ByteBuffer
+</span></span><span><span>            .</span><span>allocate</span><span>(</span><span>7</span><span>) </span><span>// Current secureMessage is always 7 bytes long.
+</span></span><span><span>            .</span><span>put</span><span>(messageAuthenticationCode)
+</span></span><span><span>            .</span><span>put</span><span>(rawTimestamp, </span><span>6</span><span>, </span><span>2</span><span>) </span><span>// Mask the upper 6 bytes of the timestamp.
+</span></span><span><span>            .</span><span>put</span><span>(batteryLevel)
+</span></span><span><span>            .</span><span>array</span><span>();
+</span></span><span><span>
+</span></span><span><span>        System.out.</span><span>printf</span><span>(</span><span>"%20s</span><span>\t</span><span>%s</span><span>\t</span><span>%s</span><span>\t</span><span>%s</span><span>\t</span><span>%s</span><span>\n</span><span>"</span><span>,
+</span></span><span><span>            Long.</span><span>toUnsignedString</span><span>(timestamp),
+</span></span><span><span>            DatatypeConverter.</span><span>printHexBinary</span><span>(secureMessage),
+</span></span><span><span>            DatatypeConverter.</span><span>printHexBinary</span><span>(input),
+</span></span><span><span>            DatatypeConverter.</span><span>printHexBinary</span><span>(digest),
+</span></span><span><span>            DatatypeConverter.</span><span>printHexBinary</span><span>(messageAuthenticationCode)
+</span></span><span><span>        );
+</span></span><span><span>        return</span><span> secureMessage;
+</span></span><span><span>    }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   以下は、「
+   <a href="#sample-data">
+    サンプルデータ
+   </a>
+   」セクションのデータを使って、上記のSecure message生成コードをテストするサンプルコードです。
+  </p>
+  <div>
+   <span>
+    java
+   </span>
+   <pre><code><span><span>import</span><span> org.junit.Test;
+</span></span><span><span>
+</span></span><span><span>import</span><span> static</span><span> org.junit.Assert.</span><span>*</span><span>;
+</span></span><span><span>
+</span></span><span><span>import</span><span> javax.xml.bind.DatatypeConverter;
+</span></span><span><span>
+</span></span><span><span>public</span><span> class</span><span> LineBeaconTest</span><span> {
+</span></span><span><span>    @</span><span>Test
+</span></span><span><span>    public</span><span> void</span><span> testSecureMessage</span><span>() {
+</span></span><span><span>        byte</span><span>[] </span><span>HWID_01deadbeef</span><span> =</span><span> DatatypeConverter.</span><span>parseHexBinary</span><span>(</span><span>"01deadbeef"</span><span>);
+</span></span><span><span>        byte</span><span>[] </span><span>VENDOR_KEY_5cf2a423</span><span> =</span><span> DatatypeConverter.</span><span>parseHexBinary</span><span>(</span><span>"5cf2a423"</span><span>);
+</span></span><span><span>        byte</span><span>[] </span><span>LOTKEY_8c194fe41d7fe34f</span><span> =</span><span> DatatypeConverter.</span><span>parseHexBinary</span><span>(</span><span>"8c194fe41d7fe34f"</span><span>);
+</span></span><span><span>        byte</span><span> BATTEY_LEVEL_0x01</span><span> =</span><span> 0x01</span><span>;
+</span></span><span><span>
+</span></span><span><span>        assertArrayEquals</span><span>(
+</span></span><span><span>            "initial timestamp"</span><span>,
+</span></span><span><span>            DatatypeConverter.</span><span>parseHexBinary</span><span>(</span><span>"037cf6f1000001"</span><span>),
+</span></span><span><span>            LineBeacon.</span><span>createSecureMessage</span><span>(
+</span></span><span><span>                0</span><span>,
+</span></span><span><span>                HWID_01deadbeef,
+</span></span><span><span>                VENDOR_KEY_5cf2a423,
+</span></span><span><span>                LOTKEY_8c194fe41d7fe34f,
+</span></span><span><span>                BATTEY_LEVEL_0x01
+</span></span><span><span>
+</span></span><span><span>            )
+</span></span><span><span>        );
+</span></span><span><span>        assertArrayEquals</span><span>(
+</span></span><span><span>            "timestamp after 15 sec"</span><span>,
+</span></span><span><span>            DatatypeConverter.</span><span>parseHexBinary</span><span>(</span><span>"c86489c6000101"</span><span>),
+</span></span><span><span>            LineBeacon.</span><span>createSecureMessage</span><span>(
+</span></span><span><span>                1</span><span>,
+</span></span><span><span>                HWID_01deadbeef,
+</span></span><span><span>                VENDOR_KEY_5cf2a423,
+</span></span><span><span>                LOTKEY_8c194fe41d7fe34f,
+</span></span><span><span>                BATTEY_LEVEL_0x01
+</span></span><span><span>
+</span></span><span><span>            )
+</span></span><span><span>        );
+</span></span><span><span>        assertArrayEquals</span><span>(
+</span></span><span><span>            "timestamp as UNSIGNED_SHORT_MAX_VALUE"</span><span>,
+</span></span><span><span>            DatatypeConverter.</span><span>parseHexBinary</span><span>(</span><span>"958497b8ffff01"</span><span>),
+</span></span><span><span>            LineBeacon.</span><span>createSecureMessage</span><span>(
+</span></span><span><span>                0xffff</span><span>,
+</span></span><span><span>                HWID_01deadbeef,
+</span></span><span><span>                VENDOR_KEY_5cf2a423,
+</span></span><span><span>                LOTKEY_8c194fe41d7fe34f,
+</span></span><span><span>                BATTEY_LEVEL_0x01
+</span></span><span><span>
+</span></span><span><span>            )
+</span></span><span><span>        );
+</span></span><span><span>        assertArrayEquals</span><span>(
+</span></span><span><span>            "carry-over test"</span><span>,
+</span></span><span><span>            DatatypeConverter.</span><span>parseHexBinary</span><span>(</span><span>"564cfb90000001"</span><span>),
+</span></span><span><span>            LineBeacon.</span><span>createSecureMessage</span><span>(
+</span></span><span><span>                0x0001</span><span> _0000,
+</span></span><span><span>                HWID_01deadbeef,
+</span></span><span><span>                VENDOR_KEY_5cf2a423,
+</span></span><span><span>                LOTKEY_8c194fe41d7fe34f,
+</span></span><span><span>                BATTEY_LEVEL_0x01
+</span></span><span><span>
+</span></span><span><span>            )
+</span></span><span><span>        );
+</span></span><span><span>        assertArrayEquals</span><span>(
+</span></span><span><span>            "timestamp as SIGNED_LONG_MAX_VALUE"</span><span>,
+</span></span><span><span>            DatatypeConverter.</span><span>parseHexBinary</span><span>(</span><span>"05d522a7ffff01"</span><span>),
+</span></span><span><span>            LineBeacon.</span><span>createSecureMessage</span><span>(
+</span></span><span><span>                9223372036854775807</span><span> L,
+</span></span><span><span>                HWID_01deadbeef,
+</span></span><span><span>                VENDOR_KEY_5cf2a423,
+</span></span><span><span>                LOTKEY_8c194fe41d7fe34f,
+</span></span><span><span>                BATTEY_LEVEL_0x01
+</span></span><span><span>
+</span></span><span><span>            )
+</span></span><span><span>        );
+</span></span><span><span>        assertArrayEquals</span><span>(
+</span></span><span><span>            "timestamp as UNSIGNED_LONG_MAX_VALUE"</span><span>,
+</span></span><span><span>            DatatypeConverter.</span><span>parseHexBinary</span><span>(</span><span>"7393bd92ffff01"</span><span>),
+</span></span><span><span>            LineBeacon.</span><span>createSecureMessage</span><span>(
+</span></span><span><span>                Long.</span><span>parseUnsignedLong</span><span>(</span><span>"ffffffffffffffff"</span><span>, </span><span>16</span><span>),
+</span></span><span><span>                HWID_01deadbeef,
+</span></span><span><span>                VENDOR_KEY_5cf2a423,
+</span></span><span><span>                LOTKEY_8c194fe41d7fe34f,
+</span></span><span><span>                BATTEY_LEVEL_0x01
+</span></span><span><span>
+</span></span><span><span>            )
+</span></span><span><span>        );
+</span></span><span><span>    }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+ </div>
+</main>

@@ -1,0 +1,590 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   インプレッションを計測する
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./measure-impressions/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/measure-impressions/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   Messaging APIの統計情報には、ユーザーのさまざまな操作についての情報が含まれます。このページではその中からインプレッションについて解説します。
+  </p>
+  <ul>
+   <li>
+    <a href="#environment-for-aggregation">
+     集計の対象となる環境
+    </a>
+   </li>
+   <li>
+    <a href="#endpoints-for-statistics">
+     統計情報を取得するエンドポイント
+    </a>
+   </li>
+   <li>
+    <a href="#what-is-impression">
+     インプレッションとは
+    </a>
+   </li>
+   <li>
+    <a href="#impression-logic">
+     インプレッションの計測ロジック
+    </a>
+   </li>
+   <li>
+    <a href="#precautions">
+     利用上の注意点
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#environment-for-aggregation">
+    集計の対象となる環境
+   </a>
+  </h2>
+  <p>
+   インプレッションを含む統計情報は、iOS版およびAndroid版のLINEアプリを対象に集計されます。
+  </p>
+  <p>
+   PC版LINEやChrome版LINEでメッセージを確認しても、統計情報に集計されません。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#endpoints-for-statistics">
+    統計情報を取得するエンドポイント
+   </a>
+  </h2>
+  <p>
+   送信したメッセージに対してユーザーがどのように操作したかについて、以下のエンドポイントで統計情報を取得できます。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-message-event">
+     ユーザーの操作に基づく統計情報を取得する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-statistics-per-unit">
+     ユニットごとの統計情報を取得する
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#what-is-impression">
+    インプレッションとは
+   </a>
+  </h2>
+  <p>
+   Messaging APIにおけるインプレッションとは、LINE公式アカウントから送信されたメッセージを、ユーザーがトークルームに入室して確認したことを指します。インプレッションは、メッセージの開封と表現される場合もあります。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#impression-types">
+    インプレッションの種類
+   </a>
+  </h3>
+  <p>
+   インプレッションには、ユニークインプレッションとインプレッションの2種類があります。本ドキュメントで説明する
+   <a href="#impression-logic">
+    インプレッションの計測ロジック
+   </a>
+   は、どちらにも共通して適用されます。ただし、計測される回数には違いがあるので、注意が必要です。
+  </p>
+  <p>
+   <a href="#endpoints-for-statistics">
+    統計情報を取得するエンドポイント
+   </a>
+   で取得できるインプレッションは以下のとおりです。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      プロパティ
+     </th>
+     <th>
+      インプレッションの種類
+     </th>
+     <th>
+      説明
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <code>
+       overview.uniqueImpression
+      </code>
+      ※1
+     </td>
+     <td>
+      ユニークインプレッション
+     </td>
+     <td>
+      メッセージを開封した人数。少なくとも1つの吹き出しを表示した人数です。
+      <br/>
+      1つのメッセージにつき、1ユーザーあたり1回のみ計測されます。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       messages[].uniqueImpression
+      </code>
+      ※2
+     </td>
+     <td>
+      ユニークインプレッション
+     </td>
+     <td>
+      吹き出しを表示した人数。
+      <br/>
+      1つの吹き出しにつき、1ユーザーあたり1回のみ計測されます。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <code>
+       messages[].impression
+      </code>
+      ※1
+     </td>
+     <td>
+      インプレッション
+     </td>
+     <td>
+      吹き出しが表示された回数。
+      <br/>
+      条件を満たしていれば、1つの吹き出しにつき、1ユーザーあたり複数回計測されることがあります。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   ※1
+   <a href="/ja/reference/messaging-api/#get-message-event">
+    ユーザーの操作に基づく統計情報を取得する
+   </a>
+   および
+   <a href="/ja/reference/messaging-api/#get-statistics-per-unit">
+    ユニットごとの統計情報を取得する
+   </a>
+   エンドポイントのレスポンスにおいて、インプレッションの値が含まれるプロパティ
+  </p>
+  <p>
+   ※2
+   <a href="/ja/reference/messaging-api/#get-statistics-per-unit">
+    ユニットごとの統計情報を取得する
+   </a>
+   エンドポイントのレスポンスにおいて、インプレッションの値が含まれるプロパティ
+  </p>
+  <h4>
+   <div>
+   </div>
+   <a href="#concept-of-message-and-bubbles">
+    メッセージと吹き出しの概念
+   </a>
+  </h4>
+  <p>
+   <a href="./sending-messages/">
+    メッセージ
+   </a>
+   は、1つまたは複数の
+   <a href="/ja/reference/messaging-api/#message-objects">
+    メッセージオブジェクト
+   </a>
+   で構成されます。メッセージオブジェクトは、1回のリクエストで最大5つまで送信できます。
+  </p>
+  <p>
+   Messaging APIにおける吹き出しとは、1つのメッセージオブジェクトを指します。メッセージオブジェクトにはスタンプメッセージオブジェクトや画像メッセージオブジェクトなども含まれ、見た目が吹き出しの形状をしているかどうかは関係ありません。
+  </p>
+  <p>
+   下の図は3つの吹き出しで構成されるメッセージの例です。吹き出し2と3は、吹き出し1のテキストメッセージオブジェクトのような吹き出しの形状をしていませんが、それぞれ吹き出しとしてインプレッションの計測に利用されます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/measure-impressions/message-and-bubbles-ja.png"/>
+  </p>
+  <p>
+   このメッセージを送信した場合、ユーザーがトークルームに入室してメッセージを確認すると、1つの吹き出しが表示された段階で
+   <code>
+    overview.uniqueImpression
+   </code>
+   が計測されます。
+   <code>
+    messages[].uniqueImpression
+   </code>
+   と
+   <code>
+    messages[].impression
+   </code>
+   は、吹き出しごとに個別で計測されます。
+  </p>
+  <p>
+   詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#get-message-event">
+    ユーザーの操作に基づく統計情報を取得する
+   </a>
+   」および「
+   <a href="/ja/reference/messaging-api/#get-statistics-per-unit">
+    ユニットごとの統計情報を取得する
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#actions-not-counted-as-impressions">
+    インプレッションとして計測されない操作
+   </a>
+  </h3>
+  <p>
+   インプレッションとして計測されるのは、LINE公式アカウントから送信されたメッセージを、ユーザーがトークルームに入室して確認した場合のみです。
+  </p>
+  <p>
+   一方で、以下のような操作を行い、トークルームに入室せずにメッセージを既読にした場合は、インプレッションには計測されません。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      OS
+     </th>
+     <th>
+      操作
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      Android
+     </td>
+     <td>
+      <ul>
+       <li>
+        トークリストで既読にしたいトークルームを長押しし、表示されるメニューから［
+        <b>
+         既読にする
+        </b>
+        ］を選択して一括で既読にする。
+       </li>
+       <li>
+        トークリスト上部のオプションメニューから［
+        <b>
+         すべて既読にする
+        </b>
+        ］を選択して一括で既読にする。
+       </li>
+      </ul>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      iOS
+     </td>
+     <td>
+      <ul>
+       <li>
+        トークリストで既読にしたいトークルームを左スワイプし、表示されるメニューから［
+        <b>
+         既読
+        </b>
+        ］を選択して一括で既読にする。
+       </li>
+       <li>
+        トークリスト上部のハンバーガーメニューからトークリスト編集画面を開き、トークルームを選択して［
+        <b>
+         既読
+        </b>
+        ］を押し、一括で既読にする。
+       </li>
+      </ul>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h2>
+   <div>
+   </div>
+   <a href="#impression-logic">
+    インプレッションの計測ロジック
+   </a>
+  </h2>
+  <p>
+   このセクションでは、インプレッションの具体的な計測ロジックについて説明します。
+  </p>
+  <ul>
+   <li>
+    <a href="#must-show-all-messages">
+     メッセージの吹き出しを100％表示する
+    </a>
+   </li>
+   <li>
+    <a href="#no-duplicate-by-scrolling">
+     スクロールによる重複計測は行われない
+    </a>
+   </li>
+   <li>
+    <a href="#carousel-message">
+     カルーセルを使用したメッセージについて
+    </a>
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#must-show-all-messages">
+    メッセージの吹き出しを100％表示する
+   </a>
+  </h3>
+  <p>
+   インプレッションは、LINE公式アカウントから送信されたメッセージを、ユーザーがトークルームに入室して確認した場合に計測されます。その際、メッセージの吹き出しが100％表示される必要があります。
+  </p>
+  <p>
+   以下に、吹き出しが100％表示されている例と、そうでない例を示します。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      説明
+     </th>
+     <th>
+      画像
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      このエリアの吹き出しは、100％表示されていることを示します。
+     </td>
+     <td>
+      <img src="/media/messaging-api/measure-impressions/100per-area.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      このエリアの吹き出しは、100％は表示されていないことを示します。
+     </td>
+     <td>
+      <img src="/media/messaging-api/measure-impressions/not-100per-area.png"/>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      表示
+     </th>
+     <th>
+      説明
+     </th>
+     <th>
+      画像
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      ✅️ 100％表示されている
+     </td>
+     <td>
+      緑色の部分に表示されている吹き出しは、100％表示されているため、インプレッションとして計測されます。
+     </td>
+     <td>
+      <img src="/media/messaging-api/measure-impressions/impression-100per.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      ❌️ 100％表示されていない
+     </td>
+     <td>
+      赤色の部分に表示されている吹き出しは、リッチメニューと重なり、100％表示されていないため、インプレッションとして計測されません。
+     </td>
+     <td>
+      <img src="/media/messaging-api/measure-impressions/impression-not-100per-richmenu.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      ❌️ 100％表示されていない
+     </td>
+     <td>
+      赤色の部分に表示されている吹き出しは、
+      <a href="https://www.lycbiz.com/jp/manual/OfficialAccountManager/servicemenubar/">
+       サービスメニューバー
+      </a>
+      と重なり、100％表示されていないため、インプレッションとして計測されません。
+     </td>
+     <td>
+      <img src="/media/messaging-api/measure-impressions/impression-not-100per-service-menu-ber.png"/>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      ❌️ 100％表示されていない
+     </td>
+     <td>
+      赤色の部分に表示されている吹き出しは、縦長であるためトーク画面に収まらず、100％表示されていないため、インプレッションとして計測されません。
+     </td>
+     <td>
+      <img src="/media/messaging-api/measure-impressions/impression-not-100per-too-long.png"/>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     吹き出し全体を一度に表示できない場合のインプレッション計測
+    </span>
+   </div>
+   <div>
+    <p>
+     「100％表示される」とは、トークルームから退出するまでの間に、計測対象となる吹き出しの上端と下端の両方が、ユーザーのトークルーム内で表示されることを指します。
+    </p>
+    <p>
+     上記の例のように全体を一度に表示できない場合でも、ユーザーがスクロールしたり、リッチメニューを閉じたりなどして、隠れている吹き出しの上端と下端を表示すると100％表示されたとみなされ、インプレッションとして計測されます。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#no-duplicate-by-scrolling">
+    スクロールによる重複計測は行われない
+   </a>
+  </h3>
+  <p>
+   一度インプレッションが計測されると、ユーザーがトークルームから退出するまでは、同じメッセージを再度スクロールして表示しても、複数回計測されることはありません。
+  </p>
+  <p>
+   ただし、ユーザーがいったんトークリストに戻り、再度トークルームに入室してメッセージを100％表示した場合は、新たにインプレッションとして計測されます。
+  </p>
+  <p>
+   なお、ユニークインプレッションは1ユーザーあたり1回のみ計測されるため、ユーザーがトークルームに再入室しても増加しません。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#carousel-message">
+    カルーセルを使用したメッセージについて
+   </a>
+  </h3>
+  <p>
+   Flex Messageなどを利用し、
+   <a href="./flex-message-elements/#carousel">
+    カルーセル
+   </a>
+   を使用したメッセージを送信した場合、カルーセル部分を横にスクロールして表示しても、インプレッションが複数回計測されることはありません。
+  </p>
+  <p>
+   カルーセルを使用したメッセージでは、吹き出しの上端、下端、左端、右端のすべてが表示されると100％表示されたとみなされ、1回のインプレッションとして計測されます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/measure-impressions/carousel-100per-scroll.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#precautions">
+    利用上の注意点
+   </a>
+  </h2>
+  <p>
+   インプレッションの計測を行う際には、以下の点に注意してください。
+  </p>
+  <ul>
+   <li>
+    <a href="#ensure-measurement-period">
+     計測期間内であることを確認する
+    </a>
+   </li>
+   <li>
+    <a href="#avoid-too-tall-messages">
+     メッセージが縦長になりすぎないようにする
+    </a>
+   </li>
+   <li>
+    <a href="#avoid-interference">
+     リッチメニューやサービスメニューバーに干渉しないようにする
+    </a>
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#ensure-measurement-period">
+    計測期間内であることを確認する
+   </a>
+  </h3>
+  <p>
+   インプレッションを含め、統計情報は、メッセージの送信時刻から14日間（1,209,600秒間）のみ集計されます。それ以降は更新されません。
+   <a href="/ja/reference/messaging-api/#get-statistics-per-unit">
+    ユニットごとの統計情報を取得する
+   </a>
+   エンドポイントを利用する場合は、集計対象期間を指定できるため、指定した日付が集計期間内であることを確認してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#avoid-too-tall-messages">
+    メッセージが縦長になりすぎないようにする
+   </a>
+  </h3>
+  <p>
+   極端に縦長のメッセージを送信すると、トークルーム内でメッセージ全体が表示されず、期待どおりにインプレッションが計測されないことがあります。メッセージは適切な長さに調整してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#avoid-interference">
+    リッチメニューやサービスメニューバーに干渉しないようにする
+   </a>
+  </h3>
+  <p>
+   LINE公式アカウントに
+   <a href="./rich-menus-overview/">
+    リッチメニュー
+   </a>
+   を設定していると、トークルーム内で吹き出しと重なって表示される場合があり、吹き出し全体が表示できなくなることがあります。その結果、期待どおりにインプレッションが計測されないことがあります。
+  </p>
+  <p>
+   また、トークルーム上部に表示される
+   <a href="https://www.lycbiz.com/jp/manual/OfficialAccountManager/servicemenubar/">
+    サービスメニューバー
+   </a>
+   を使用している場合も、同様の干渉が発生する場合があります。
+  </p>
+  <p>
+   メッセージの長さやリッチメニューのサイズを調整し、干渉が起きないようにしてください。
+  </p>
+ </div>
+</main>

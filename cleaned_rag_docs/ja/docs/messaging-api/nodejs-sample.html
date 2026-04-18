@@ -1,0 +1,1042 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   チュートリアル - 応答ボットを作る
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./nodejs-sample/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/nodejs-sample/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   このチュートリアルでは、Node.jsとMessaging APIを使って、応答ボットでメッセージを送信する方法を学びます。
+  </p>
+  <p>
+   Messaging APIは、サービスとLINEユーザーとの間で双方向のコミュニケーションを可能にする機能です。Messaging APIの機能を利用して、ユーザーとの交流を深めることができます。様々な種類のメッセージの送信、ユーザープロフィールの取得、ユーザーが送信したコンテンツの取得など、
+   <a href="./overview/#what-you-can-do">
+    その機能は多岐にわたります
+   </a>
+   。
+  </p>
+  <p>
+   このチュートリアルを最後まで進めると、ユーザーが送信したメッセージに自動的に応答するアプリが作成できます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/node-js-sample/sample-bot-test.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#before-starting">
+    始める前に
+   </a>
+  </h2>
+  <p>
+   このチュートリアルは、JavaScriptとNode.jsの基本的な知識を必要とします。また、チュートリアルをスムーズに進めるために、「
+   <a href="./overview/">
+    Messaging APIの概要
+   </a>
+   」を読んでおくことをお勧めします。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     このチュートリアルではSDKを使用しません
+    </span>
+   </div>
+   <div>
+    <p>
+     このチュートリアルでは、Messaging APIの仕様を理解するために、LINEプラットフォームのSDKを使わずにNode.jsでMessaging APIを使用する方法を説明します。Node.jsを使ったプロジェクトで、Messaging APIをより少ないコード行数で素早く利用したい場合は、
+     <a href="https://line.github.io/line-bot-sdk-nodejs/">
+      LINE Messaging API SDK for nodejs
+     </a>
+     を利用してください。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#what-you-will-need">
+    準備
+   </a>
+  </h3>
+  <p>
+   チュートリアルで応答ボットを作成するために、まずは必要なシステムへの登録と、ツールをインストールします。
+  </p>
+  <p>
+   アカウントを登録するもの：
+  </p>
+  <ul>
+   <li>
+    <a href="/console/">
+     LINE Developersコンソール
+    </a>
+    のアカウント：LINE DevelopersコンソールにLINEアカウントまたはビジネスアカウントでログインし、まだお持ちでなければ
+    <a href="/ja/docs/line-developers-console/login-account/#register-as-developer">
+     開発者アカウントを作成
+    </a>
+    してください。
+   </li>
+   <li>
+    <a href="https://www.heroku.com/">
+     Heroku
+    </a>
+    アカウント
+    <div>
+     <div>
+      <i>
+      </i>
+      <span>
+       Herokuの無料プランは廃止されました
+      </span>
+     </div>
+     <div>
+      <p>
+       Herokuの無料プランは、2022年11月27日をもって廃止されました。このチュートリアルを無料で試したい場合は、他のプラットフォームを利用してください。詳しくは、「
+       <a href="https://www.heroku.com/blog/next-chapter/">
+        Heroku’s Next Chapter
+       </a>
+       」を参照してください。
+      </p>
+     </div>
+    </div>
+   </li>
+  </ul>
+  <p>
+   インストールするもの：
+  </p>
+  <ul>
+   <li>
+    <a href="https://nodejs.org/en">
+     Node.js
+    </a>
+   </li>
+   <li>
+    <a href="https://devcenter.heroku.com/articles/heroku-cli">
+     Heroku CLI
+    </a>
+   </li>
+   <li>
+    <a href="https://git-scm.com/downloads">
+     Git
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#set-up-heroku">
+    1. Herokuの設定
+   </a>
+  </h2>
+  <p>
+   ターミナルまたはコマンドラインツールで、以下のコマンドを実行し、Heroku CLIにログインします。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>heroku</span><span> login
+</span></span></code></pre>
+  </div>
+  <p>
+   次に、チュートリアル用のディレクトリを作成し、そのディレクトリに移動します。そして、Gitを初期化してHerokuを使ったアプリを作成します。
+   <code>
+    {Name of your app}
+   </code>
+   は、
+   <code>
+    msg-api-tutorial-{YYYYMMDD}
+   </code>
+   などの一意の名前に置き換えてください。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>mkdir</span><span> sample-app
+</span></span><span><span>cd</span><span> sample-app
+</span></span><span><span>git</span><span> init
+</span></span><span><span>heroku</span><span> create</span><span> {Name</span><span> of</span><span> your</span><span> app}
+</span></span></code></pre>
+  </div>
+  <p>
+   アプリが問題なく作成されると、HerokuのURLが
+   <code>
+    https://{Name of your app}.herokuapp.com/
+   </code>
+   のような形式で生成されます。このURLはチュートリアルの中で必要になります。生成されたHerokuのURLを、ブラウザで開いてください。ウェルカムページが表示されます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/node-js-sample/welcome-page.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#create-package-json">
+    2. プロジェクトの設定
+   </a>
+  </h2>
+  <p>
+   npmがプロジェクトを識別できるように、
+   <code>
+    package.json
+   </code>
+   ファイルを作成する必要があります。このファイルには、プロジェクトのメタデータと依存関係を定義する必要があります。
+   <code>
+    package.json
+   </code>
+   は、npmパッケージを初期化するためのコマンド
+   <code>
+    npm init
+   </code>
+   で作成します。このチュートリアルでは特別な設定は必要ないので、
+   <code>
+    -y
+   </code>
+   コマンドを使用して、パッケージをセットアップするための質問をすべてスキップします。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>npm</span><span> init</span><span> -y
+</span></span></code></pre>
+  </div>
+  <p>
+   以下のような
+   <code>
+    package.json
+   </code>
+   が作成されます。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "name"</span><span>: </span><span>"sample-app"</span><span>,
+</span></span><span><span>  "version"</span><span>: </span><span>"1.0.0"</span><span>,
+</span></span><span><span>  "description"</span><span>: </span><span>""</span><span>,
+</span></span><span><span>  "main"</span><span>: </span><span>"index.js"</span><span>,
+</span></span><span><span>  "scripts"</span><span>: {
+</span></span><span><span>    "test"</span><span>: </span><span>"echo </span><span>\"</span><span>Error: no test specified</span><span>\"</span><span> &amp;&amp; exit 1"
+</span></span><span><span>  },
+</span></span><span><span>  "keywords"</span><span>: [],
+</span></span><span><span>  "author"</span><span>: </span><span>""</span><span>,
+</span></span><span><span>  "license"</span><span>: </span><span>"ISC"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   次に、スタートスクリプトを定義します。スタートスクリプトは、Herokuのようなサーバープラットフォームに、サーバーの起動時にどのファイルを使用するかを知らせるためのものです。このチュートリアルでは、サーバーの設定ファイルとして
+   <code>
+    index.js
+   </code>
+   を設定します。テキストエディタで
+   <code>
+    package.json
+   </code>
+   を開き、
+   <code>
+    "start"
+   </code>
+   プロパティに
+   <code>
+    "node index.js"
+   </code>
+   を指定してください。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "name"</span><span>: </span><span>"sample-app"</span><span>,
+</span></span><span><span>  "version"</span><span>: </span><span>"1.0.0"</span><span>,
+</span></span><span><span>  "description"</span><span>: </span><span>""</span><span>,
+</span></span><span><span>  "main"</span><span>: </span><span>"index.js"</span><span>,
+</span></span><span><span>  "scripts"</span><span>: {
+</span></span><span><span>    "start"</span><span>: </span><span>"node index.js"</span><span>,
+</span></span><span><span>    "test"</span><span>: </span><span>"echo </span><span>\"</span><span>Error: no test specified</span><span>\"</span><span> &amp;&amp; exit 1"
+</span></span><span><span>  },
+</span></span><span><span>  "keywords"</span><span>: [],
+</span></span><span><span>  "author"</span><span>: </span><span>""</span><span>,
+</span></span><span><span>  "license"</span><span>: </span><span>"ISC"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   以下のコマンドを実行して、
+   <a href="https://expressjs.com/">
+    Express.js
+   </a>
+   のパッケージをインストールします。Express.jsは軽量なNode.jsのウェブサーバーフレームワークです。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>npm</span><span> install</span><span> express
+</span></span></code></pre>
+  </div>
+  <p>
+   Express.jsをインストールすると、
+   <code>
+    package.json
+   </code>
+   にパッケージの依存関係が追加されます。また、同時に
+   <code>
+    node_modules
+   </code>
+   というディレクトリが作成されます。このディレクトリには、ローカルでインストールしたパッケージが保存されますが、Herokuにはプッシュされないようにします。このディレクトリを除外するために、
+   <code>
+    .gitignore
+   </code>
+   ファイルを作成します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>touch</span><span> .gitignore
+</span></span></code></pre>
+  </div>
+  <p>
+   作成した
+   <code>
+    .gitignore
+   </code>
+   ファイルをテキストエディタで開き、以下のように除外したいディレクトリ名をファイルに追加します。
+  </p>
+  <div>
+   <span>
+    text
+   </span>
+   <pre><code>node_modules/
+</code></pre>
+  </div>
+  <p>
+   これにより、指定したディレクトリがプッシュされることはありません。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#start-developing">
+    3. ボットの実装
+   </a>
+  </h2>
+  <p>
+   準備が完了しました。応答ボットを実装しましょう。
+  </p>
+  <ol>
+   <li>
+    <a href="#global-config">
+     グローバル設定
+    </a>
+   </li>
+   <li>
+    <a href="#middleware-config">
+     ミドルウェアの設定
+    </a>
+   </li>
+   <li>
+    <a href="#routing-config">
+     ルーティングの設定
+    </a>
+   </li>
+   <li>
+    <a href="#send-reply">
+     応答メッセージを送る
+    </a>
+   </li>
+  </ol>
+  <h3>
+   <div>
+   </div>
+   <a href="#global-config">
+    3-1. グローバル設定
+   </a>
+  </h3>
+  <p>
+   サーバー設定のためのJavaScriptファイル
+   <code>
+    index.js
+   </code>
+   を作りましょう。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>touch</span><span> index.js
+</span></span></code></pre>
+  </div>
+  <p>
+   作成した
+   <code>
+    index.js
+   </code>
+   ファイルには、先ほどインストールした
+   <code>
+    express
+   </code>
+   パッケージをインポートするコードと、インスタンス化するコードを追加します。また、ボットがHTTPリクエストを処理できるように
+   <code>
+    https
+   </code>
+   パッケージもインポートします。このパッケージは、Node.jsにデフォルトで付属しているので、インストールする必要はありません。
+  </p>
+  <p>
+   <code>
+    index.js
+   </code>
+   をテキストエディタで開き、以下のコードを追加しましょう。
+  </p>
+  <div>
+   <span>
+    javascript
+   </span>
+   <pre><code><span><span>const</span><span> https</span><span> =</span><span> require</span><span>(</span><span>"https"</span><span>);
+</span></span><span><span>const</span><span> express</span><span> =</span><span> require</span><span>(</span><span>"express"</span><span>);
+</span></span><span><span>const</span><span> app</span><span> =</span><span> express</span><span>();
+</span></span></code></pre>
+  </div>
+  <p>
+   続いて、設定プロセスを簡素化する目的と、認証情報を保護する目的で環境変数を追加します。
+   <code>
+    process.env.PORT
+   </code>
+   は、サーバーがどのポートでListenするかを指定します。
+   <code>
+    process.env.LINE_ACCESS_TOKEN
+   </code>
+   は、Messaging APIを呼び出すために必要な
+   <span>
+    <a href="/ja/glossary/#channel-access-token">
+     チャネルアクセストークン
+    </a>
+    <span>
+    </span>
+   </span>
+   を指定します。
+   <code>
+    index.js
+   </code>
+   で、インポートしたパッケージの下に、以下を追加します。
+  </p>
+  <div>
+   <span>
+    javascript
+   </span>
+   <pre><code><span><span>const</span><span> PORT</span><span> =</span><span> process.env.</span><span>PORT</span><span> ||</span><span> 3000</span><span>;
+</span></span><span><span>const</span><span> TOKEN</span><span> =</span><span> process.env.</span><span>LINE_ACCESS_TOKEN</span><span>;
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#middleware-config">
+    3-2. ミドルウェアの設定
+   </a>
+  </h3>
+  <p>
+   Express.jsは、ミドルウェアのウェブフレームワークです。ミドルウェア関数を使って、リクエストとレスポンスのサイクルを決めることができます。
+  </p>
+  <p>
+   このチュートリアルでは、Express.jsに付属する関数
+   <code>
+    express.json()
+   </code>
+   と
+   <code>
+    express.urlencoded()
+   </code>
+   を使用します。これらの関数は、それぞれリクエストオブジェクトをJSON、文字列、配列として扱うためにあらかじめ用意されているミドルウェア関数です。ミドルウェアの機能を使用するために、
+   <code>
+    app.use()
+   </code>
+   を呼び出します。
+   <code>
+    index.js
+   </code>
+   ファイルに以下のコードを追加します。
+  </p>
+  <div>
+   <span>
+    javascript
+   </span>
+   <pre><code><span><span>app.</span><span>use</span><span>(express.</span><span>json</span><span>());
+</span></span><span><span>app.</span><span>use</span><span>(
+</span></span><span><span>  express.</span><span>urlencoded</span><span>({
+</span></span><span><span>    extended: </span><span>true</span><span>,
+</span></span><span><span>  })
+</span></span><span><span>);
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#routing-config">
+    3-3. ルーティングの設定
+   </a>
+  </h3>
+  <p>
+   ボットサーバーに基本的なルーティングロジックを追加しましょう。ヘルスチェック等の失敗を防ぐために、ドメインのルート（
+   <code>
+    /
+   </code>
+   ）へのHTTP GETリクエストに対して、ステータス
+   <code>
+    200
+   </code>
+   を返すようにします。
+   <code>
+    index.js
+   </code>
+   ファイルに以下のコードを追加します。
+  </p>
+  <div>
+   <span>
+    javascript
+   </span>
+   <pre><code><span><span>app.</span><span>get</span><span>(</span><span>"/"</span><span>, (</span><span>req</span><span>, </span><span>res</span><span>) </span><span>=&gt;</span><span> {
+</span></span><span><span>  res.</span><span>sendStatus</span><span>(</span><span>200</span><span>);
+</span></span><span><span>});
+</span></span></code></pre>
+  </div>
+  <p>
+   次に、
+   <code>
+    app.listen()
+   </code>
+   関数を使って、サーバーにリスナーを設定します。リスナーのポートには、先ほど設定した環境変数
+   <code>
+    PORT
+   </code>
+   を指定します。そのため、特に異なる指定がされていない限り、
+   <code>
+    3000
+   </code>
+   をListenします。
+   <code>
+    index.js
+   </code>
+   に、以下のコードを追加します。
+  </p>
+  <div>
+   <span>
+    javascript
+   </span>
+   <pre><code><span><span>app.</span><span>listen</span><span>(</span><span>PORT</span><span>, () </span><span>=&gt;</span><span> {
+</span></span><span><span>  console.</span><span>log</span><span>(</span><span>`Example app listening at http://localhost:${</span><span>PORT</span><span>}`</span><span>);
+</span></span><span><span>});
+</span></span></code></pre>
+  </div>
+  <p>
+   Listenする準備ができたので、LINEプラットフォームからWebhook URLに送られてくるリクエストを処理するコードを追加しましょう。ユーザーがボットにメッセージを送信すると、LINEプラットフォームは、ボットサーバーがホストするWebhook URLにHTTP POSTリクエスト（Webhookイベント）を送信します。LINEプラットフォームからのリクエストに応答するために、
+   <code>
+    app.post()
+   </code>
+   関数を使って、リクエストをルーティングします。
+   <code>
+    index.js
+   </code>
+   の、
+   <code>
+    app.get()
+   </code>
+   と
+   <code>
+    app.listen()
+   </code>
+   関数の間に、以下のコードを追加します。
+  </p>
+  <div>
+   <span>
+    javascript
+   </span>
+   <pre><code><span><span>app.</span><span>post</span><span>(</span><span>"/webhook"</span><span>, </span><span>function</span><span> (</span><span>req</span><span>, </span><span>res</span><span>) {
+</span></span><span><span>  res.</span><span>send</span><span>(</span><span>"HTTP POST request sent to the webhook URL!"</span><span>);
+</span></span><span><span>});
+</span></span></code></pre>
+  </div>
+  <p>
+   このコードは、
+   <code>
+    /webhook
+   </code>
+   エンドポイントにHTTP POSTリクエストが送られてきたときに、
+   <code>
+    HTTP POST request sent to the webhook URL!
+   </code>
+   というHTTPレスポンスを返すようにボットサーバーに指示するものです。
+  </p>
+  <p>
+   ここまでで、
+   <code>
+    index.js
+   </code>
+   は以下のようになっているはずです。
+  </p>
+  <div>
+   <span>
+    javascript
+   </span>
+   <pre><code><span><span>const</span><span> https</span><span> =</span><span> require</span><span>(</span><span>"https"</span><span>);
+</span></span><span><span>const</span><span> express</span><span> =</span><span> require</span><span>(</span><span>"express"</span><span>);
+</span></span><span><span>const</span><span> app</span><span> =</span><span> express</span><span>();
+</span></span><span><span>const</span><span> PORT</span><span> =</span><span> process.env.</span><span>PORT</span><span> ||</span><span> 3000</span><span>;
+</span></span><span><span>const</span><span> TOKEN</span><span> =</span><span> process.env.</span><span>LINE_ACCESS_TOKEN</span><span>;
+</span></span><span><span>
+</span></span><span><span>app.</span><span>use</span><span>(express.</span><span>json</span><span>());
+</span></span><span><span>app.</span><span>use</span><span>(
+</span></span><span><span>  express.</span><span>urlencoded</span><span>({
+</span></span><span><span>    extended: </span><span>true</span><span>,
+</span></span><span><span>  })
+</span></span><span><span>);
+</span></span><span><span>
+</span></span><span><span>app.</span><span>get</span><span>(</span><span>"/"</span><span>, (</span><span>req</span><span>, </span><span>res</span><span>) </span><span>=&gt;</span><span> {
+</span></span><span><span>  res.</span><span>sendStatus</span><span>(</span><span>200</span><span>);
+</span></span><span><span>});
+</span></span><span><span>
+</span></span><span><span>app.</span><span>post</span><span>(</span><span>"/webhook"</span><span>, </span><span>function</span><span> (</span><span>req</span><span>, </span><span>res</span><span>) {
+</span></span><span><span>  res.</span><span>send</span><span>(</span><span>"HTTP POST request sent to the webhook URL!"</span><span>);
+</span></span><span><span>});
+</span></span><span><span>
+</span></span><span><span>app.</span><span>listen</span><span>(</span><span>PORT</span><span>, () </span><span>=&gt;</span><span> {
+</span></span><span><span>  console.</span><span>log</span><span>(</span><span>`Example app listening at http://localhost:${</span><span>PORT</span><span>}`</span><span>);
+</span></span><span><span>});
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#send-reply">
+    3-4. 応答メッセージを送る
+   </a>
+  </h3>
+  <p>
+   応答ボットのコア機能である、ユーザーのメッセージに応答する機能を実装します。まず、ユーザーからメッセージを受信したことを識別する必要があります。Webhook URLで、
+   <code>
+    type
+   </code>
+   プロパティの値が
+   <code>
+    message
+   </code>
+   になっている
+   <a href="/ja/reference/messaging-api/#message-event">
+    メッセージイベント
+   </a>
+   オブジェクトを受信したら、ユーザーからメッセージが送信されたと識別します。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     ボットを本番用として公開する場合は署名を検証してください
+    </span>
+   </div>
+   <div>
+    <p>
+     本番用として、不特定多数のユーザー向けにボットを公開する場合には署名の検証が必要です。HTTPリクエストがLINEプラットフォームから送られたことを確認するために、リクエストヘッダーの
+     <code>
+      x-line-signature
+     </code>
+     に含まれる署名を検証してください。
+    </p>
+    <p>
+     署名の検証方法について詳しくは、「
+     <a href="./receiving-messages/#verify-signature">
+      署名を検証する
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <p>
+   ユーザーに応答するには、
+   <a href="/ja/reference/messaging-api/#send-reply-message">
+    応答メッセージを送る
+   </a>
+   エンドポイント（
+   <code>
+    https://api.line.me/v2/bot/message/reply
+   </code>
+   ）を使います。
+   <code>
+    index.js
+   </code>
+   の
+   <code>
+    app.post
+   </code>
+   から、応答メッセージを送るエンドポイント（
+   <code>
+    https://api.line.me/v2/bot/message/reply
+   </code>
+   ）を呼び出します。以下のコードで
+   <code>
+    app.post
+   </code>
+   を置き換えてください。それぞれの処理の詳しい説明は、コードコメントで確認してください。
+  </p>
+  <div>
+   <span>
+    javascript
+   </span>
+   <pre><code><span><span>app.</span><span>post</span><span>(</span><span>"/webhook"</span><span>, </span><span>function</span><span> (</span><span>req</span><span>, </span><span>res</span><span>) {
+</span></span><span><span>  res.</span><span>send</span><span>(</span><span>"HTTP POST request sent to the webhook URL!"</span><span>);
+</span></span><span><span>  // ユーザーがボットにメッセージを送った場合、応答メッセージを送る
+</span></span><span><span>  if</span><span> (req.body.events[</span><span>0</span><span>].type </span><span>===</span><span> "message"</span><span>) {
+</span></span><span><span>    // APIサーバーに送信する応答トークンとメッセージデータを文字列化する
+</span></span><span><span>    const</span><span> dataString</span><span> =</span><span> JSON</span><span>.</span><span>stringify</span><span>({
+</span></span><span><span>      // 応答トークンを定義
+</span></span><span><span>      replyToken: req.body.events[</span><span>0</span><span>].replyToken,
+</span></span><span><span>      // 返信するメッセージを定義
+</span></span><span><span>      messages: [
+</span></span><span><span>        {
+</span></span><span><span>          type: </span><span>"text"</span><span>,
+</span></span><span><span>          text: </span><span>"Hello, user"</span><span>,
+</span></span><span><span>        },
+</span></span><span><span>        {
+</span></span><span><span>          type: </span><span>"text"</span><span>,
+</span></span><span><span>          text: </span><span>"May I help you?"</span><span>,
+</span></span><span><span>        },
+</span></span><span><span>      ],
+</span></span><span><span>    });
+</span></span><span><span>
+</span></span><span><span>    // リクエストヘッダー。仕様についてはMessaging APIリファレンスを参照してください。
+</span></span><span><span>    const</span><span> headers</span><span> =</span><span> {
+</span></span><span><span>      "Content-Type"</span><span>: </span><span>"application/json"</span><span>,
+</span></span><span><span>      Authorization: </span><span>"Bearer "</span><span> +</span><span> TOKEN</span><span>,
+</span></span><span><span>    };
+</span></span><span><span>
+</span></span><span><span>    // Node.jsドキュメントのhttps.requestメソッドで定義されている仕様に従ったオプションを指定します。
+</span></span><span><span>    const</span><span> webhookOptions</span><span> =</span><span> {
+</span></span><span><span>      hostname: </span><span>"api.line.me"</span><span>,
+</span></span><span><span>      path: </span><span>"/v2/bot/message/reply"</span><span>,
+</span></span><span><span>      method: </span><span>"POST"</span><span>,
+</span></span><span><span>      headers: headers,
+</span></span><span><span>      body: dataString,
+</span></span><span><span>    };
+</span></span><span><span>
+</span></span><span><span>    // messageタイプのHTTP POSTリクエストが/webhookエンドポイントに送信された場合、
+</span></span><span><span>    // 変数webhookOptionsで定義したhttps://api.line.me/v2/bot/message/replyに対して
+</span></span><span><span>    // HTTP POSTリクエストを送信します。
+</span></span><span><span>
+</span></span><span><span>    // リクエストの定義
+</span></span><span><span>    const</span><span> request</span><span> =</span><span> https.</span><span>request</span><span>(webhookOptions, (</span><span>res</span><span>) </span><span>=&gt;</span><span> {
+</span></span><span><span>      res.</span><span>on</span><span>(</span><span>"data"</span><span>, (</span><span>d</span><span>) </span><span>=&gt;</span><span> {
+</span></span><span><span>        process.stdout.</span><span>write</span><span>(d);
+</span></span><span><span>      });
+</span></span><span><span>    });
+</span></span><span><span>
+</span></span><span><span>    // エラーをハンドリング
+</span></span><span><span>    // request.onは、APIサーバーへのリクエスト送信時に
+</span></span><span><span>    // エラーが発生した場合にコールバックされる関数です。
+</span></span><span><span>    request.</span><span>on</span><span>(</span><span>"error"</span><span>, (</span><span>err</span><span>) </span><span>=&gt;</span><span> {
+</span></span><span><span>      console.</span><span>error</span><span>(err);
+</span></span><span><span>    });
+</span></span><span><span>
+</span></span><span><span>    // 最後に、定義したリクエストを送信
+</span></span><span><span>    request.</span><span>write</span><span>(dataString);
+</span></span><span><span>    request.</span><span>end</span><span>();
+</span></span><span><span>  }
+</span></span><span><span>});
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#prepare-channel">
+    4. Messaging APIチャネルを準備する
+   </a>
+  </h2>
+  <p>
+   Messaging APIの機能を利用するには、Messaging APIチャネルを作成し、Webhook URLを登録する必要があります。作成していない場合は、
+   <a href="./getting-started/">
+    チャネルを作成
+   </a>
+   してください。
+  </p>
+  <p>
+   LINE DevelopersコンソールのMessaging APIチャネルの［
+   <strong>
+    Messaging API設定
+   </strong>
+   ］タブで、
+   <a href="/ja/docs/basics/channel-access-token/">
+    チャネルアクセストークン
+   </a>
+   を発行します。このトークンは、「
+   <a href="#deploy-on-heroku">
+    Herokuでアプリをデプロイする
+   </a>
+   」で使用します。
+  </p>
+  <p>
+   <img src="/media/messaging-api/node-js-sample/channel-access-token-ja.png"/>
+  </p>
+  <p>
+   次にWebhook URLを登録します。［
+   <strong>
+    Messaging API設定
+   </strong>
+   ］タブで、［
+   <strong>
+    Webhook URL
+   </strong>
+   ］に、「
+   <a href="#set-up-heroku">
+    Herokuの設定
+   </a>
+   」で取得したHerokuのURLを元に、サーバーがWebhookをListenするURLを入力します。URLは
+   <code>
+    https://{Name of your app}.herokuapp.com/webhook
+   </code>
+   という形式になっています。［
+   <strong>
+    Webhook URL
+   </strong>
+   ］は
+   <code>
+    https://{Name of your app}.herokuapp.com/
+   </code>
+   ではないので注意してください。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     HerokuのURLを忘れてしまったら
+    </span>
+   </div>
+   <div>
+    <p>
+     HerokuのURLを忘れてしまった場合は、
+     <a href="https://dashboard.heroku.com/">
+      Heroku Dashboard
+     </a>
+     で確認できます。
+    </p>
+   </div>
+  </div>
+  <p>
+   ［
+   <strong>
+    Webhookの利用
+   </strong>
+   ］を有効にします。
+  </p>
+  <p>
+   <img src="/media/messaging-api/node-js-sample/enable-webhook-ja.png"/>
+  </p>
+  <p>
+   ボットをテストするために、［
+   <strong>
+    Messaging API設定
+   </strong>
+   ］タブのQRコードを読み取って、ボットに紐づけられたLINE公式アカウントを友だちとして追加します。テストのために、［
+   <strong>
+    応答メッセージ
+   </strong>
+   ］と［
+   <strong>
+    あいさつメッセージ
+   </strong>
+   ］は無効にしてください。
+  </p>
+  <p>
+   これで、Messaging APIチャネルの準備が整いました。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#deploy-on-heroku">
+    5. Herokuでアプリをデプロイする
+   </a>
+  </h2>
+  <p>
+   先ほど「
+   <a href="#global-config">
+    グローバル設定
+   </a>
+   」で、環境変数
+   <code>
+    LINE_ACCESS_TOKEN
+   </code>
+   の値をチャネルアクセストークンとして使うように設定しました。Herokuにデプロイしたアプリを正常に動作させるために、環境変数
+   <code>
+    LINE_ACCESS_TOKEN
+   </code>
+   を登録する必要があります。
+  </p>
+  <p>
+   環境変数にチャネルアクセストークンを登録するために、ターミナルまたはコマンドラインツールで、以下のコマンドを実行してください。
+   <code>
+    LINE_ACCESS_TOKEN
+   </code>
+   には、「
+   <a href="#prepare-channel">
+    Messaging APIチャネルを準備する
+   </a>
+   」で取得したチャネルアクセストークンを設定します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>heroku</span><span> config:set</span><span> LINE_ACCESS_TOKEN={チャネルアクセストークンをここに入力してください}
+</span></span></code></pre>
+  </div>
+  <p>
+   これで、アプリをHerokuにデプロイする準備が整いました。作成したコードをHerokuにプッシュしましょう。ターミナルまたはコマンドラインツールで、以下のコマンドを実行してください。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>git</span><span> add</span><span> .
+</span></span><span><span>git</span><span> commit</span><span> -m</span><span> "First commit"
+</span></span><span><span>git</span><span> push</span><span> heroku</span><span> main
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#verify-webhook-url">
+    Webhook URLを検証する
+   </a>
+  </h3>
+  <p>
+   ボットをテストする前に、Webhookが正常に動作しているか確認しましょう。「
+   <a href="#prepare-channel">
+    Messaging APIチャネルを準備する
+   </a>
+   」で作成したチャネルの［
+   <strong>
+    Messaging API設定
+   </strong>
+   ］タブに移動します。［
+   <strong>
+    Webhook URL
+   </strong>
+   ］の［
+   <strong>
+    検証
+   </strong>
+   ］をクリックし、Webhookが動作するかを確認します。Webhook URLに問題がない場合、「成功」のメッセージが表示されます。これでサンプルボットが完成しました。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#try-bot">
+    ボットを試す
+   </a>
+  </h3>
+  <p>
+   LINEでボットにメッセージを送ってみてください。このようなメッセージが届くはずです。
+  </p>
+  <p>
+   <img src="/media/messaging-api/node-js-sample/sample-bot-test.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#troubleshoot-bot">
+    トラブルシューティング
+   </a>
+  </h3>
+  <p>
+   ボットが正常に動作していない場合は、以下のコマンドを実行することでHerokuのログを確認できます。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>heroku</span><span> logs</span><span> --tail
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#further-development">
+    次のステップ
+   </a>
+  </h2>
+  <p>
+   このボットには、さまざまな機能を追加できます。その例をいくつかご紹介します。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#rich-menu">
+     リッチメニュー
+    </a>
+    を使って、ユーザーがタップ可能なオプションを追加する。
+   </li>
+   <li>
+    ユーザーが特定のアクションを実行したときに送信される
+    <a href="/ja/reference/messaging-api/#action-objects">
+     アクションオブジェクト
+    </a>
+    を使って、レスポンスを送信する。
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-profile">
+     ユーザープロフィールを取得
+    </a>
+    して、カスタマイズしたメッセージを送信する。
+   </li>
+  </ul>
+  <p>
+   前述の通り、
+   <a href="https://line.github.io/line-bot-sdk-nodejs/">
+    LINE Messaging API SDK for nodejs
+   </a>
+   を使えば、より素早くボットを開発できます。こちらもぜひご検討ください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#references">
+    関連ドキュメント
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/">
+     Messaging APIリファレンス
+    </a>
+   </li>
+   <li>
+    <a href="./overview/">
+     Messaging APIの概要
+    </a>
+   </li>
+   <li>
+    <a href="https://nodejs.org/api/https.html#https_https_request_options_callback">
+     https.requestの仕様（Node.js）
+    </a>
+   </li>
+  </ul>
+ </div>
+</main>

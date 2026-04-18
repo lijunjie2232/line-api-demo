@@ -1,0 +1,317 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   クイックリプライを使う
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./using-quick-reply/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/using-quick-reply/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   クイックリプライは、ユーザーが返信するためのボタンを、メッセージと一緒に表示するための機能です。ユーザーは、トーク画面の下部に表示される返信ボタンをタップするだけで、LINE公式アカウントに返信できます。クイックリプライ機能は、LINE公式アカウントがメンバーになっている1対1のトーク、グループトーク、複数人トークで利用できます。また、どのメッセージタイプでも、1つのメッセージにクイックリプライボタンを13個まで設定できます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     注意
+    </span>
+   </div>
+   <div>
+    <p>
+     クイックリプライ機能は、Android版とiOS版のLINEでサポートされます。
+    </p>
+   </div>
+  </div>
+  <p>
+   <img src="/media/messaging-api/using-quick-reply/quickReplySample.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#elements">
+    クイックリプライの構成要素
+   </a>
+  </h2>
+  <p>
+   クイックリプライボタンは、
+   <a href="#action">
+    アクション
+   </a>
+   、
+   <a href="#icon">
+    アイコン
+   </a>
+   、
+   <a href="#label">
+    ラベル
+   </a>
+   の要素から構成されます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#quick-reply">
+    クイックリプライ
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#action">
+    アクション
+   </a>
+  </h3>
+  <p>
+   クイックリプライボタンをタップすると実行されるアクションです。詳しくは、「
+   <a href="./actions/">
+    アクション
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   クイックリプライ機能専用のアクションとして、以下のアクションが用意されています。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#camera-action">
+     カメラアクション
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#camera-roll-action">
+     カメラロールアクション
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#location-action">
+     位置情報アクション
+    </a>
+   </li>
+  </ul>
+  <p>
+   他のメッセージタイプと共通の以下のアクションも、クイックリプライボタンに利用できます。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#postback-action">
+     ポストバックアクション
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#message-action">
+     メッセージアクション
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#uri-action">
+     URIアクション
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#datetime-picker-action">
+     日時選択アクション
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#clipboard-action">
+     クリップボードアクション
+    </a>
+   </li>
+  </ul>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     リッチメニュー切替アクションは利用できません
+    </span>
+   </div>
+   <div>
+    <p>
+     クイックリプライでは、
+     <a href="/ja/reference/messaging-api/#richmenu-switch-action">
+      リッチメニュー切替アクション
+     </a>
+     は利用できません。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#icon">
+    アイコン
+   </a>
+  </h3>
+  <p>
+   クイックリプライボタンにはアイコンを表示できます。
+  </p>
+  <p>
+   任意のアイコン画像を設定しない場合は、以下のように表示されます。
+  </p>
+  <ul>
+   <li>
+    カメラアクション、カメラロールアクション、位置情報アクション：デフォルトのアイコンが表示されます。
+   </li>
+   <li>
+    上記以外のアクション：アイコン表示が省略されます。
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#label">
+    ラベル
+   </a>
+  </h3>
+  <p>
+   クイックリプライボタンに表示される文字列です。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#set-quick-reply-buttons">
+    クイックリプライボタンを設定する
+   </a>
+  </h2>
+  <p>
+   レストラン検索ボットを開発しているとします。このボットは、ユーザーが希望する料理の種類またはユーザーの現在地からお勧めのレストランを検索します。それではユーザーが返信するためのメッセージを作成してみましょう。
+  </p>
+  <ol>
+   <li>
+    ユーザーに要望を確認するテキストメッセージを作成します。
+   </li>
+   <li>
+    <code>
+     quickReply
+    </code>
+    プロパティに
+    <code>
+     items
+    </code>
+    オブジェクトを指定します。
+    <code>
+     items
+    </code>
+    オブジェクトに3つのクイックリプライボタンの配列を含めます。
+   </li>
+   <li>
+    第1と第2のクイックリプライボタンには、料理の種類を表すアイコンとラベル、およびメッセージアクションを設定します。ユーザーがどちらかのボタンをタップすると、料理の種類がユーザーのメッセージとして返信されます。
+   </li>
+   <li>
+    第3のクイックリプライボタンには、位置情報の送信を促すラベルと位置情報アクションを設定します。デフォルトのアイコンを使用するため、
+    <code>
+     imageUrl
+    </code>
+    プロパティは指定しません。
+   </li>
+  </ol>
+  <p>
+   以下はクイックリプライボタンが設定されたメッセージの例です。番号がついている行は、上記リストの手順の番号を示しています。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>:</span><span> "text",</span><span> //</span><span> 1
+</span></span><span><span>  "text"</span><span>:</span><span> "Select your favorite food category or send me your location!",
+</span></span><span><span>  "quickReply"</span><span>:</span><span> {</span><span> //</span><span> 2
+</span></span><span><span>    "items"</span><span>:</span><span> [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>:</span><span> "action",</span><span> //</span><span> 3
+</span></span><span><span>        "imageUrl"</span><span>:</span><span> "https://example.com/sushi.png",
+</span></span><span><span>        "action"</span><span>:</span><span> {
+</span></span><span><span>          "type"</span><span>:</span><span> "message",
+</span></span><span><span>          "label"</span><span>:</span><span> "Sushi",
+</span></span><span><span>          "text"</span><span>:</span><span> "Sushi"
+</span></span><span><span>        }
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>:</span><span> "action",
+</span></span><span><span>        "imageUrl"</span><span>:</span><span> "https://example.com/tempura.png",
+</span></span><span><span>        "action"</span><span>:</span><span> {
+</span></span><span><span>          "type"</span><span>:</span><span> "message",
+</span></span><span><span>          "label"</span><span>:</span><span> "Tempura",
+</span></span><span><span>          "text"</span><span>:</span><span> "Tempura"
+</span></span><span><span>        }
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>:</span><span> "action",</span><span> //</span><span> 4
+</span></span><span><span>        "action"</span><span>:</span><span> {
+</span></span><span><span>          "type"</span><span>:</span><span> "location",
+</span></span><span><span>          "label"</span><span>:</span><span> "Send location"
+</span></span><span><span>        }
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   上記で指定したメッセージは、トーク上で次のようなクイックリプライボタンとして表示されます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-quick-reply/quickReplySample2.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#when-quick-reply-buttons-disappear">
+    クイックリプライボタンが非表示になるタイミング
+   </a>
+  </h2>
+  <p>
+   クイックリプライボタンは、次の場合に非表示になります。
+  </p>
+  <ul>
+   <li>
+    ユーザーがいずれかのクイックリプライボタンをタップした場合。（ただし、カメラアクション、カメラロールアクション、日時選択アクション、位置情報アクションを除く。これらのアクションが設定されているボタンの場合は、期待される情報をユーザーが送信するまで、ボタンは表示されたままになります。）
+   </li>
+   <li>
+    トークルーム内で、LINE公式アカウント、ユーザー、または他のユーザーが新しいメッセージを送信した場合。（新しいメッセージを削除すると、クイックリプライボタンは再表示されます。）
+   </li>
+  </ul>
+  <p>
+   なお、クイックリプライボタンをタップした後に、選択した結果がトークに自動的に投稿されないタイプのアクションがあります。ユーザーが選択した内容を後から確認できるように、できるだけトークルームにメッセージとして残るように実装してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-using-quick-reply-pages">
+    関連ページ
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="./message-types/">
+     メッセージタイプ
+    </a>
+   </li>
+   <li>
+    <a href="./actions/">
+     アクション
+    </a>
+   </li>
+   <li>
+    『Messaging APIリファレンス』の「
+    <a href="/ja/reference/messaging-api/#message-objects">
+     メッセージオブジェクト
+    </a>
+    」セクション
+   </li>
+  </ul>
+ </div>
+</main>

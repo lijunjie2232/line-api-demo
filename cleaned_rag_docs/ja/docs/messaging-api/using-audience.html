@@ -1,0 +1,440 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   オーディエンスを使う
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./using-audience/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/using-audience/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   オーディエンス機能を使うと、高度なターゲティングができます。たとえば、メッセージを開封したユーザーや、メッセージのURLをクリックしたユーザーのグループをターゲットにできます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     注意
+    </span>
+   </div>
+   <div>
+    <p>
+     日本、タイ、台湾のユーザーが作成したLINE公式アカウントの場合のみ、オーディエンスを作成できます。
+    </p>
+   </div>
+  </div>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     Identifier for Advertisers（IFA）を使用するには
+    </span>
+   </div>
+   <div>
+    <p>
+     送信対象アカウントをIFAで指定することもできますが、この機能は、所定の申請等を行った法人ユーザーのみがご利用いただけます。自社のLINE公式アカウントでご利用になりたいお客様は、担当営業までご連絡いただくか、
+     <a href="https://www.lycbiz.com/jp/partner/sales/">
+      弊社パートナー
+     </a>
+     にお問い合わせください。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#create-audience">
+    オーディエンスを作成する
+   </a>
+  </h2>
+  <p>
+   オーディエンスはMessaging APIで作成できます。作成できるオーディエンスは次のとおりです。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      オーディエンス
+     </th>
+     <th>
+      説明
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <a href="/ja/reference/messaging-api/#create-upload-audience-group">
+       ユーザーIDアップロード用のオーディエンス
+      </a>
+     </td>
+     <td>
+      <span>
+       <a href="/ja/glossary/#user-id">
+        ユーザーID
+       </a>
+       <span>
+       </span>
+      </span>
+      やIFA（Identifier For Advertisers）で特定できるユーザーの集合
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="/ja/reference/messaging-api/#create-click-audience-group">
+       メッセージクリックオーディエンス
+      </a>
+     </td>
+     <td>
+      過去に配信したメッセージのURLをクリックしたユーザーの集合
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="/ja/reference/messaging-api/#create-imp-audience-group">
+       メッセージインプレッションオーディエンス
+      </a>
+     </td>
+     <td>
+      過去に配信したメッセージを開封したユーザーの集合
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   なお、Messaging APIでは、次のタイプのオーディエンスは作成できません。
+  </p>
+  <ul>
+   <li>
+    チャットタグオーディエンス
+   </li>
+   <li>
+    追加経路オーディエンス
+   </li>
+   <li>
+    予約オーディエンス
+   </li>
+   <li>
+    リッチメニューインプレッションオーディエンス
+   </li>
+   <li>
+    リッチメニュークリックオーディエンス
+   </li>
+   <li>
+    ウェブトラフィックオーディエンス（LINE Tag）
+   </li>
+   <li>
+    ウェブトラフィックオーディエンス（計測タグ）
+   </li>
+   <li>
+    アプリイベントオーディエンス
+   </li>
+   <li>
+    動画視聴オーディエンス
+   </li>
+   <li>
+    画像クリックオーディエンス
+   </li>
+   <li>
+    LINE Beacon Networkインプレッションオーディエンス
+   </li>
+  </ul>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     同時処理数の制限があります
+    </span>
+   </div>
+   <div>
+    <p>
+     ユーザーIDアップロード用のオーディエンス作成およびオーディエンスへのユーザーID追加のエンドポイントでは、オーディエンスID（
+     <code>
+      audienceGroupId
+     </code>
+     ）単位での同時処理数の制限があります。詳しくは、「
+     <a href="/ja/reference/messaging-api/#limit-on-the-number-of-concurrent-operations">
+      同時処理数の制限
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#use-audience">
+    オーディエンスを使う
+   </a>
+  </h2>
+  <p>
+   オーディエンスは、ナローキャストメッセージの送信で使用できます。詳しくは、「
+   <a href="./sending-messages/#send-narrowcast-message">
+    ナローキャストメッセージを送信する
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#audience-sharing">
+    オーディエンスを共有する
+   </a>
+  </h2>
+  <p>
+   Messaging APIと
+   <a href="https://manager.line.biz/">
+    LINE Official Account Manager
+   </a>
+   では、同じLINE公式アカウントにおいて作成したオーディエンスを相互に利用できます。オーディエンスの相互利用に際して、必要な初期設定はありません。
+  </p>
+  <p>
+   Messaging APIとLINE Official Account Manager以外のツール（
+   <a href="https://admanager.line.biz/">
+    LINE広告マネージャ
+   </a>
+   など）でオーディエンスを相互に利用したい場合は、オーディエンスを共有する設定が必要です。オーディエンスを共有する方法について詳しくは、「
+   <a href="#audience-sharing-business-manager">
+    ビジネスマネージャーでオーディエンスを共有する
+   </a>
+   」を参照してください。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      オーディエンスを作成するツール
+     </th>
+     <th>
+      オーディエンスを利用するツール
+     </th>
+     <th>
+      オーディエンスの利用可否
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      Messaging API
+     </td>
+     <td>
+      LINE Official Account Manager
+     </td>
+     <td>
+      ✅
+     </td>
+    </tr>
+    <tr>
+     <td>
+      LINE Official Account Manager
+     </td>
+     <td>
+      Messaging API
+     </td>
+     <td>
+      ✅
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Messaging API
+     </td>
+     <td>
+      LINE Official Account Manager以外のツール
+     </td>
+     <td>
+      ✅ *1
+     </td>
+    </tr>
+    <tr>
+     <td>
+      LINE Official Account Manager以外のツール
+     </td>
+     <td>
+      Messaging API
+     </td>
+     <td>
+      ✅ *1
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   *1 ビジネスマネージャでオーディエンスを共有すれば利用可能
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#audience-sharing-business-manager">
+    ビジネスマネージャーでオーディエンスを共有する
+   </a>
+  </h3>
+  <p>
+   <a href="https://data.linebiz.com/solutions/business-manager">
+    ビジネスマネージャー
+   </a>
+   を使うことで、特定のオーディエンスを複数のサービス（LINE広告マネージャなど）で共有して、相互に利用できるようになります。
+  </p>
+  <p>
+   またビジネスマネージャーのオーディエンス共有機能を使うことで、同一プロバイダー配下のMessaging APIチャネル間でもオーディエンスを共有できます。ただしビジネスマネージャーでオーディエンスの共有を設定できるLINE公式アカウントは、認証済アカウントと
+   <span>
+    <a href="/ja/glossary/#premium-account">
+     プレミアムアカウント
+    </a>
+    <span>
+    </span>
+   </span>
+   のみです。
+  </p>
+  <p>
+   ビジネスマネージャーで共有されたオーディエンスの情報は、以下のエンドポイントで取得できます。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-shared-audience-list">
+     ビジネスマネージャーで共有されたオーディエンスのリストを取得する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-shared-audience">
+     ビジネスマネージャーで共有されたオーディエンスの情報を取得する
+    </a>
+   </li>
+  </ul>
+  <p>
+   オーディエンスの共有方法について詳しくは、『ビジネスマネージャーマニュアル』の「
+   <a href="https://data.linebiz.com/business-manager/manual/bmmaniyuarushare003">
+    リソースの共有
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#about-audience-specs">
+    オーディエンスの仕様について
+   </a>
+  </h2>
+  <p>
+   オーディエンスの仕様は以下のとおりです。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      項目
+     </th>
+     <th>
+      仕様
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      チャネルあたりのオーディエンス数
+     </td>
+     <td>
+      最大1,000件
+     </td>
+    </tr>
+    <tr>
+     <td>
+      オーディエンスの保存期間
+     </td>
+     <td>
+      最大180日間（15,552,000秒間）
+     </td>
+    </tr>
+    <tr>
+     <td>
+      ユーザーIDアップロード用のオーディエンスに1リクエストでアップロードできるユーザーIDまたはIFAの数
+     </td>
+     <td>
+      <ul>
+       <li>
+        JSONを使用する場合：最大10,000件
+       </li>
+       <li>
+        ファイルを使用する場合：最大1,500,000件
+       </li>
+      </ul>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      オーディエンスあたりのユーザー数
+     </td>
+     <td>
+      <ul>
+       <li>
+        ユーザーIDアップロード用のオーディエンス：制限なし
+       </li>
+       <li>
+        メッセージクリックオーディエンス：最小50件
+       </li>
+       <li>
+        メッセージインプレッションオーディエンス：最小50件
+       </li>
+      </ul>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      メッセージを配信してからリターゲティング用オーディエンス
+      <sup>
+       <a href="#user-content-fn-retargeting-audiences">
+        1
+       </a>
+      </sup>
+      を作成できる期間
+     </td>
+     <td>
+      最大60日間（5,184,000秒間）
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   ナローキャストメッセージの使用制限について詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#send-narrowcast-message-restrictions">
+    属性情報やオーディエンスを利用したメッセージ送信の制限事項
+   </a>
+   」を参照してください。
+  </p>
+  <section>
+   <h2>
+    <div>
+    </div>
+    <a href="#footnote-label">
+     Footnotes
+    </a>
+   </h2>
+   <ol>
+    <li>
+     メッセージクリックオーディエンスおよびメッセージインプレッションオーディエンスを指します。
+     <a href="#user-content-fnref-retargeting-audiences">
+      ↩
+     </a>
+    </li>
+   </ol>
+  </section>
+ </div>
+</main>

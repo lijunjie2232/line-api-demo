@@ -1,0 +1,356 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   LINE公式アカウントの友だちを増やす
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./sharing-bot/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/sharing-bot/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   LINE公式アカウントを作成したら、次はLINE公式アカウントを宣伝して友だちを増やしましょう。LINE公式アカウントをユーザーに露出する方法を紹介します。
+  </p>
+  <ul>
+   <li>
+    <a href="#use-qr-code">
+     QRコードを使う
+    </a>
+   </li>
+   <li>
+    <a href="#share-the-line-id-of-your-line-official-account">
+     LINE公式アカウントのLINE IDをシェアする
+    </a>
+   </li>
+   <li>
+    <a href="#use-the-add-friend-button-or-link">
+     ［友だち追加］ボタンまたはリンクを使う
+    </a>
+   </li>
+   <li>
+    <a href="#encourage-users-to-recommend-your-bot-to-friends-on-line">
+     ユーザーからLINE上の友だちにLINE公式アカウントをおすすめしてもらう
+    </a>
+   </li>
+   <li>
+    <a href="#prompt-users-to-add-your-line-official-account-at-line-login">
+     LINEログイン時にLINE公式アカウントの友だち追加を促す
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#use-qr-code">
+    QRコードを使う
+   </a>
+  </h2>
+  <p>
+   LINE公式アカウントのQRコードをウェブサイトや印刷物でシェアしましょう。ユーザーはQRコードを読み取るだけで、LINE公式アカウントを友だち追加できます。QRコードは、
+   <a href="/console/">
+    LINE Developersコンソール
+   </a>
+   や
+   <a href="https://manager.line.biz/">
+    LINE Official Account Manager
+   </a>
+   から取得できます。
+  </p>
+  <p>
+   LINE Developersコンソールでは、チャネル設定の［
+   <strong>
+    Messaging API設定
+   </strong>
+   ］タブをクリックします。
+  </p>
+  <p>
+   <img src="/media/messaging-api/sharing-bot/qr-code-console-ja.png"/>
+  </p>
+  <p>
+   LINE Official Account Managerでは、［
+   <strong>
+    ホーム
+   </strong>
+   ］&gt;［
+   <strong>
+    友だちを増やす
+   </strong>
+   ］&gt;［
+   <strong>
+    友だち追加ガイド
+   </strong>
+   ］&gt;［
+   <strong>
+    友だち追加QRコードを作成
+   </strong>
+   ］をクリックします。HTMLスニペットをコピーして、ご自身のサイトに貼り付けるとQRコードが表示されます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/sharing-bot/qr-code-oa-manager-ja.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#share-the-line-id-of-your-line-official-account">
+    LINE公式アカウントのLINE IDをシェアする
+   </a>
+  </h2>
+  <p>
+   LINE公式アカウントのLINE IDをシェアすると、ユーザーはLINE上でLINE公式アカウントを検索して友だち追加できます。LINE公式アカウントのLINE IDは、
+   <a href="https://manager.line.biz/">
+    LINE Official Account Manager
+   </a>
+   のヘッダーで確認できます。アットマーク（@）で始まる文字列がLINE公式アカウントのLINE IDです。
+  </p>
+  <p>
+   また、プレミアムIDを購入することで、ユーザーが覚えやすいカスタマイズされたLINE IDを作成することができます。プレミアムIDについて詳しくは、『LINEヤフー for Business』の「
+   <a href="https://www.lycbiz.com/jp/service/line-official-account/plan/">
+    料金プラン
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/sharing-bot/oa-manager-line-id.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#use-the-add-friend-button-or-link">
+    ［友だち追加］ボタンまたはリンクを使う
+   </a>
+  </h2>
+  <p>
+   アプリまたはウェブサイトにボタンまたはリンクを追加すると、ユーザーはデバイスからワンタップでLINE公式アカウントを友だち追加できます。以下のボタンまたはリンクを追加できます。
+  </p>
+  <ul>
+   <li>
+    <a href="#add-friend-button-by-line-social-plugins">
+     LINE Social Pluginsの［友だち追加］ボタン
+    </a>
+   </li>
+   <li>
+    <a href="#add-friend-button-by-the-line-manager">
+     LINE Official Account Managerの［友だち追加］ボタン
+    </a>
+   </li>
+   <li>
+    <a href="#line-url-scheme-for-profile-page">
+     プロフィールページを開くLINE URLスキーム
+    </a>
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#add-friend-button-by-line-social-plugins">
+    LINE Social Pluginsの［友だち追加］ボタン
+   </a>
+  </h3>
+  <p>
+   LINE Social Pluginsで、
+   <a href="/ja/docs/line-social-plugins/install-guide/using-add-friend-buttons/">
+    ［友だち追加］ボタン
+   </a>
+   用のコードを生成します。コードをアプリやウェブサイトにコピー＆ペーストするだけで［
+   <strong>
+    友だち追加
+   </strong>
+   ］ボタンを追加できます。このボタンは複数の言語で利用できます。また、LINE公式アカウントの友だち数を表示するようにボタンを設定したり、LINE公式アカウントのホームへのリンクを追加したりできます。LINE公式アカウントを友だち追加すると、ボタンテキストが「友だち追加」から「友だち済み」に変化します。
+  </p>
+  <p>
+   LINE Social Pluginsが生成する［
+   <strong>
+    友だち追加
+   </strong>
+   ］ボタンを利用するには、「
+   <a href="/ja/docs/line-social-plugins/install-guide/using-add-friend-buttons/#create-button">
+    ボタンを作成
+   </a>
+   」の手順を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/sharing-bot/add-friend-button-types.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#add-friend-button-by-the-line-manager">
+    LINE Official Account Managerの［友だち追加］ボタン
+   </a>
+  </h3>
+  <p>
+   <a href="https://manager.line.biz/">
+    LINE Official Account Manager
+   </a>
+   で［
+   <strong>
+    友だち追加
+   </strong>
+   ］用のコードを生成します。［
+   <strong>
+    ホーム
+   </strong>
+   ］ &gt; ［
+   <strong>
+    友だちを増やす
+   </strong>
+   ］ &gt; ［
+   <strong>
+    友だち追加ガイド
+   </strong>
+   ］&gt;［
+   <strong>
+    ボタンを作成
+   </strong>
+   ］をクリックします。HTMLコードをウェブサイトにコピー＆ペーストすると、ボタンが表示されます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/sharing-bot/add-friend-button-oa-manager-ja.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#line-url-scheme-for-profile-page">
+    プロフィールページを開くLINE URLスキーム
+   </a>
+  </h3>
+  <p>
+   ウェブアプリやネイティブアプリで以下のLINE URLスキームを使って、LINE公式アカウントの友だち追加を促します。iOS版LINEやAndroid版LINEでタップすると、LINE公式アカウントのビジネスプロフィールが表示されます。
+  </p>
+  <ul>
+   <li>
+    https://
+    <span>
+     line.me/R/ti/p/
+     <code>
+      {Percent-encoded LINE ID}
+     </code>
+    </span>
+   </li>
+  </ul>
+  <p>
+   たとえば、
+   <a href="https://line.me/R/ti/p/%40linedevelopers">
+    <code>
+     https://line.me/R/ti/p/%40linedevelopers
+    </code>
+   </a>
+   を開くと、LINE DevelopersのLINE公式アカウントのビジネスプロフィールページが表示されます。このLINE URLスキームについて詳しくは、「
+   <a href="./using-line-url-scheme/#sharing-line-official-account">
+    LINE公式アカウントをシェアする
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/sharing-bot/add-line-developers-oa-ja.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#encourage-users-to-recommend-your-bot-to-friends-on-line">
+    ユーザーからLINE上の友だちにLINE公式アカウントをおすすめしてもらう
+   </a>
+  </h2>
+  <p>
+   ユーザーがLINE公式アカウントを友だち追加済みである場合は、以下のLINE URLスキームを使ってユーザーからLINE上の友だちにLINE公式アカウントをおすすめしてもらうことができます。
+  </p>
+  <ul>
+   <li>
+    https://
+    <span>
+     line.me/R/nv/recommendOA/
+     <code>
+      {LINE ID with @}
+     </code>
+    </span>
+   </li>
+  </ul>
+  <p>
+   たとえば、
+   <a href="./using-rich-menus/">
+    リッチメニュー
+   </a>
+   または
+   <a href="./message-types/#template-messages">
+    テンプレートメッセージ
+   </a>
+   の
+   <a href="/ja/reference/messaging-api/#uri-action">
+    URIアクションオブジェクト
+   </a>
+   にこのURLスキームを指定します。このLINE URLスキームついて詳しくは、「
+   <a href="./using-line-url-scheme/#sharing-line-official-account">
+    LINE公式アカウントをシェアする
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/sharing-bot/recommend-line-developers-rich-menu.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#prompt-users-to-add-your-line-official-account-at-line-login">
+    LINEログイン時にLINE公式アカウントの友だち追加を促す
+   </a>
+  </h2>
+  <p>
+   ウェブアプリやネイティブアプリで
+   <a href="/ja/docs/line-login/overview/">
+    LINEログイン
+   </a>
+   を利用している場合は、LINE公式アカウントをLINEログインのチャネルにリンクすることによって、ユーザーがログインするときにLINE公式アカウントを友だち追加するオプションを表示できます。権限の付与に同意する画面にオプションを追加するか、ユーザーが同意した後で、LINE公式アカウントの追加画面を別途開くかを選択できます。
+  </p>
+  <p>
+   LINE公式アカウントをLINEログインチャネルにリンクする方法について詳しくは、『LINEログインドキュメント』の「
+   <a href="/ja/docs/line-login/link-a-bot/">
+    LINEログインしたときにLINE公式アカウントを友だち追加する（友だち追加オプション）
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/line-login/link-a-bot/bot-prompt-ja.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-sharing-bot-pages">
+    関連ページ
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="./using-line-url-scheme/">
+     LINE URLスキームでLINEの機能を使う
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/">
+     Messaging APIリファレンス
+    </a>
+   </li>
+   <li>
+    <a href="/ja/docs/line-social-plugins/">
+     LINE Social Plugins
+    </a>
+   </li>
+   <li>
+    <a href="https://manager.line.biz/">
+     LINE Official Account Manager
+    </a>
+   </li>
+  </ul>
+ </div>
+</main>

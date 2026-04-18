@@ -1,0 +1,150 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   Messaging APIの利用を停止する
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./stop-using-messaging-api/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/stop-using-messaging-api/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     LINE公式アカウントの利用を停止する
+    </span>
+   </div>
+   <div>
+    <p>
+     Messaging APIチャネルと紐づいているLINE公式アカウントの利用を停止したい場合は、「
+     <a href="./stop-using-line-official-account/">
+      LINE公式アカウントの利用を停止する
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <p>
+   Messaging APIチャネルに紐づいているLINE公式アカウントの利用は継続したいが、Messaging APIの利用は停止したい場合は、以下の作業を行うことを推奨します。なお、Messaging APIチャネルに紐づいているLINE公式アカウントを残し、Messaging APIチャネルのみを削除することはできません。
+  </p>
+  <ul>
+   <li>
+    <a href="#disable-use-webhook">
+     Webhookの利用を停止する
+    </a>
+   </li>
+   <li>
+    <a href="#revoke-channel-access-token">
+     チャネルアクセストークンを取り消す
+    </a>
+   </li>
+   <li>
+    <a href="#display-after-stopping-use-of-the-messaging-api">
+     Messaging APIの利用停止後の表示
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#disable-use-webhook">
+    Webhookの利用を停止する
+   </a>
+  </h2>
+  <ol>
+   <li>
+    <a href="/console/">
+     LINE Developersコンソール
+    </a>
+    で、利用を停止するMessaging APIチャネルを選択します。
+   </li>
+   <li>
+    ［
+    <strong>
+     Messaging API設定
+    </strong>
+    ］タブをクリックします。
+   </li>
+   <li>
+    ［
+    <strong>
+     Webhook設定
+    </strong>
+    ］セクションの［
+    <strong>
+     Webhookの利用
+    </strong>
+    ］を無効にします。
+   </li>
+  </ol>
+  <p>
+   <img src="/media/messaging-api/stop-using-messaging-api/disable-use-webhook-ja.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#revoke-channel-access-token">
+    チャネルアクセストークンを取り消す
+   </a>
+  </h2>
+  <p>
+   チャネルアクセストークンの種類によって、取り消すためのエンドポイントが異なります。利用しているチャネルアクセストークンに対応するエンドポイントを使用し、チャネルアクセストークンを取り消してください。なお、
+   <a href="/ja/docs/basics/channel-access-token/#stateless-channel-access-token">
+    ステートレスチャネルアクセストークン
+   </a>
+   は取り消せません。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#revoke-channel-access-token-v2-1">
+     チャネルアクセストークンv2.1を取り消す
+    </a>
+    エンドポイント
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#revoke-longlived-or-shortlived-channel-access-token">
+     短期または長期のチャネルアクセストークンを取り消す
+    </a>
+    エンドポイント
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#display-after-stopping-use-of-the-messaging-api">
+    Messaging APIの利用停止後の表示
+   </a>
+  </h2>
+  <p>
+   上記の手順でWebhookを無効にし、チャネルアクセストークンを取り消すことで、Messaging APIの利用を停止できます。
+  </p>
+  <p>
+   ただし、この手順でMessaging APIの利用を停止しても、Messaging APIチャネルそのものは引き続き存在します。そのため、利用停止したチャネルをLINE Developersコンソールのチャネル一覧で確認した場合、他の利用中のMessaging APIチャネルとの見た目の違いはありません。
+  </p>
+  <p>
+   また、LINE Official Account Managerの設定画面で［
+   <strong>
+    Messaging API
+   </strong>
+   ］を選択した際も、ステータスは「
+   <strong>
+    利用中
+   </strong>
+   」のままとなります。
+  </p>
+ </div>
+</main>

@@ -1,0 +1,268 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   引用トークンを取得する
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./get-quote-tokens/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/get-quote-tokens/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   Messaging APIで、過去のメッセージを引用したメッセージを送りたいときは、引用トークンを使用します。このページでは、引用トークンの取得方法について解説します。
+  </p>
+  <ul>
+   <li>
+    <a href="#what-is-quote-token">
+     引用トークンとは
+    </a>
+   </li>
+   <li>
+    <a href="#getting-quite-tokens">
+     引用トークンを取得する
+    </a>
+    <ul>
+     <li>
+      <a href="#get-quote-tokens-via-webhook">
+       引用トークンをWebhookで取得する
+      </a>
+     </li>
+     <li>
+      <a href="#get-quote-tokens-in-the-response">
+       引用トークンをメッセージ送信時のレスポンスで取得する
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#what-is-quote-token">
+    引用トークンとは
+   </a>
+  </h2>
+  <p>
+   引用トークンとは、
+   <code>
+    IStG5h1Tz7bsH6xinEQtKQ9IdtcN5wLE15-LwtIDCEYAqDkV741O-XkOhZo1GYxw2UCURKnpHujpZuZaBaeQZVOVpKiaEeAz1Ye3-3ZYbPQVjuXZ4x8ZpISG7WhJDCE8o-hhHh8uMBRyp3b0L_Cxlg
+   </code>
+   のような文字列です。引用トークンは、
+   <a href="./sending-messages/#send-quote-messages">
+    引用メッセージを送信する
+   </a>
+   際に必要となります。
+  </p>
+  <p>
+   引用トークンは、引用対象となるメッセージが送られた1対1のトーク、グループトーク、複数人トークにおいてのみ使用できます。引用トークンには有効期限はなく、同じ引用トークンを複数回使用できます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#getting-quite-tokens">
+    引用トークンを取得する
+   </a>
+  </h2>
+  <p>
+   引用トークンを取得する方法は2つあります。
+  </p>
+  <ol>
+   <li>
+    <a href="#get-quote-tokens-via-webhook">
+     引用トークンをWebhookで取得する
+    </a>
+   </li>
+   <li>
+    <a href="#get-quote-tokens-in-the-response">
+     引用トークンをメッセージ送信時のレスポンスで取得する
+    </a>
+   </li>
+  </ol>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-quote-tokens-via-webhook">
+    引用トークンをWebhookで取得する
+   </a>
+  </h3>
+  <p>
+   1対1のトークや、LINE公式アカウントが追加されているグループトークや複数人トークでユーザーがメッセージを送ると、Webhookの
+   <a href="/ja/reference/messaging-api/#message-event">
+    メッセージイベント
+   </a>
+   がボットサーバーに送られます。このメッセージイベントの中で、以下のメッセージオブジェクトに引用トークン（
+   <code>
+    quoteToken
+   </code>
+   ）が含まれています。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#wh-text">
+     テキスト
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#wh-sticker">
+     スタンプ
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#wh-image">
+     画像
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#wh-video">
+     動画
+    </a>
+   </li>
+  </ul>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>"message"</span><span>: {
+</span></span><span><span>  "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>  "id"</span><span>: </span><span>"468789577898262530"</span><span>,
+</span></span><span><span>  "quoteToken"</span><span>: </span><span>"q3Plxr4AgKd..."</span><span>, </span><span>// 引用トークン
+</span></span><span><span>  "text"</span><span>: </span><span>"Can I reserve a table for dinner tonight?"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   Webhookについて詳しくは、「
+   <a href="./receiving-messages/">
+    メッセージ（Webhook）を受信する
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-quote-tokens-in-the-response">
+    引用トークンをメッセージ送信時のレスポンスで取得する
+   </a>
+  </h3>
+  <p>
+   Messaging APIで、
+   <a href="/ja/reference/messaging-api/#send-reply-message">
+    応答メッセージ
+   </a>
+   または
+   <a href="/ja/reference/messaging-api/#send-push-message">
+    プッシュメッセージ
+   </a>
+   を送ると、レスポンスとして
+   <code>
+    sentMessages
+   </code>
+   プロパティを含むJSONオブジェクトが返ってきます。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "sentMessages"</span><span>: [
+</span></span><span><span>    {
+</span></span><span><span>      "id"</span><span>: </span><span>"461230966842064897"</span><span>,
+</span></span><span><span>      "quoteToken"</span><span>: </span><span>"IStG5h1Tz7b..."
+</span></span><span><span>    }
+</span></span><span><span>  ]
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   ただし、レスポンスに引用トークン（
+   <code>
+    sentMessages[].quoteToken
+   </code>
+   ）が含まれるのは、引用対象として指定可能な以下のメッセージオブジェクトを送信したときのみです。
+  </p>
+  <ul>
+   <li>
+    <a href="./message-types/#text-messages">
+     テキストメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#text-messages-v2">
+     テキストメッセージ（v2）
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#sticker-messages">
+     スタンプメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#image-messages">
+     画像メッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#video-messages">
+     動画メッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#template-messages">
+     テンプレートメッセージ
+    </a>
+    （引用時に表示されるのは
+    <code>
+     altText
+    </code>
+    です）
+   </li>
+   <li>
+    <a href="./message-types/#flex-messages">
+     Flex Message
+    </a>
+    （引用時に表示されるのは
+    <code>
+     altText
+    </code>
+    です）
+   </li>
+  </ul>
+  <p>
+   上記のメッセージオブジェクトを複数指定してメッセージを送った場合、同じ個数の引用トークンが返ってきます。このとき、
+   <code>
+    sentMessages
+   </code>
+   配列内の要素の順番は、送信時のメッセージオブジェクトと同じ順番であることが保証されます。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "sentMessages"</span><span>: [
+</span></span><span><span>    {
+</span></span><span><span>      "id"</span><span>: </span><span>"471875397094211585"</span><span>,
+</span></span><span><span>      "quoteToken"</span><span>: </span><span>"YKPDqjc2jmW..."
+</span></span><span><span>    },
+</span></span><span><span>    {
+</span></span><span><span>      "id"</span><span>: </span><span>"471875397127766017"</span><span>,
+</span></span><span><span>      "quoteToken"</span><span>: </span><span>"eG5SfLhgiFX..."
+</span></span><span><span>    }
+</span></span><span><span>  ]
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+ </div>
+</main>

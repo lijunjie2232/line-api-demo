@@ -1,0 +1,336 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   ユーザーアカウントの連携
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./linking-accounts/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/linking-accounts/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   サービス提供者は、ユーザーのLINEアカウントと自社サービスのアカウントを
+   <strong>
+    セキュアに
+   </strong>
+   連携させることができます。アカウントを連携するには、ユーザーがLINE公式アカウントを友だち追加している必要があります。LINEアカウントと自社サービスのアカウントを連携させることで、自社サービスのユーザー情報をLINE上で活用できます。これにより、LINE公式アカウントでのユーザー体験を向上させることができます。
+  </p>
+  <p>
+   自社サービスのアカウントとLINEアカウントを連携させることで、ユーザーの利便性を高めることができます。たとえば、ショッピングサイトであれば、以下のようなことが可能です。
+  </p>
+  <ul>
+   <li>
+    ユーザーがショッピングサイトで商品を購入したときに、LINE公式アカウントからメッセージを送る。
+   </li>
+   <li>
+    ユーザーがLINE公式アカウントとのトーク画面から注文する。
+   </li>
+  </ul>
+  <p>
+   LINEログインを使ってもアカウントを連携できますが、その場合はLINEログインのチャネルが必要です。Messaging APIを使うと、LINEログインチャネルがなくてもアカウントを連携できます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#account-link-sequence">
+    アカウント連携のシーケンス
+   </a>
+  </h2>
+  <p>
+   ユーザーのLINEアカウントと自社サービスのアカウントを連携するシーケンスは以下のとおりです。
+  </p>
+  <p>
+   <img src="/media/messaging-api/linking-accounts/sequence.png"/>
+  </p>
+  <ol>
+   <li>
+    ボットサーバーが、LINEのユーザーIDから連携トークンを発行するAPIを呼び出す。
+   </li>
+   <li>
+    LINEプラットフォームが連携トークンを発行し、ボットサーバーに返す。
+   </li>
+   <li>
+    ボットサーバーがユーザーに連携URLを送信するために、Messaging APIを呼び出す。
+   </li>
+   <li>
+    LINEプラットフォームが、ユーザーに連携URLを送信する。
+   </li>
+   <li>
+    ユーザーが連携URLにアクセスする。
+   </li>
+   <li>
+    ウェブサーバーがログイン画面を表示する。
+   </li>
+   <li>
+    ユーザーが、自社サービスの認証情報を入力する。
+   </li>
+   <li>
+    ウェブサーバーが自社サービスのユーザーIDを取得し、それを使ってnonce（number used once）を生成する。
+   </li>
+   <li>
+    ウェブサーバーが、ユーザーをアカウント連携するエンドポイントにリダイレクトする。
+   </li>
+   <li>
+    ユーザーが、アカウントを連携するエンドポイントにアクセスする。
+   </li>
+   <li>
+    LINEプラットフォームがボットサーバーに、LINEのユーザーIDとnonceを含むイベントをWebhookで送信する。
+   </li>
+   <li>
+    ボットサーバーが、nonceを使って自社サービスのユーザーIDを取得する。
+   </li>
+  </ol>
+  <p>
+   Messaging APIを使わなくても、独自に実装してアカウントを連携させることもできます。ただし、アカウント連携では、ユーザーがセキュリティ上の問題にさらされる可能性があるため、独自で実装する場合には、より注意が必要です。たとえば、攻撃者がユーザーにURLを送り、攻撃者のLINEアカウントとユーザーの自社サービスのアカウントを連携させることが考えられます。Messaging APIを使うと、このような攻撃からユーザーを守ることができます。Messaging APIでは、連携URLを発行したユーザーが、連携しようとしているLINEアカウントの正当な所有者であるかどうかを検証します。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#linking-accounts">
+    アカウントを連携する
+   </a>
+  </h2>
+  <p>
+   自社サービスのユーザーアカウントとLINEのユーザーアカウントを連携するには、以下の手順に従います。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#step-one-issue-link-token">
+    1. 連携トークンを発行する
+   </a>
+  </h3>
+  <p>
+   ユーザーのLINEアカウントと自社サービスのアカウントを連携するには、連携トークンが必要です。
+   <a href="/ja/reference/messaging-api/#issue-link-token">
+    連携トークンを発行
+   </a>
+   するには、
+   <code>
+    /bot/user/{userId}/linkToken
+   </code>
+   エンドポイントにHTTP POSTリクエストを送信します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/user/{userId}/linkToken</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'
+</span></span></code></pre>
+  </div>
+  <p>
+   リクエストが成功すると、ステータスコード
+   <code>
+    200
+   </code>
+   と連携トークンが返されます。連携トークンは10分間有効で、1回のみ使用できます。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "linkToken"</span><span>:</span><span> "NMZTNuVrPTqlr2IF8Bnymkb7rXfYv5EY"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#step-two-redirect-users-to-linking-url">
+    2. ユーザーに連携URLを送信する
+   </a>
+  </h3>
+  <p>
+   ボットサーバーからユーザーに、連携URLを開くメッセージを送信します。たとえば、
+   <a href="./actions/#uri-action">
+    URIアクション
+   </a>
+   を設定した
+   <a href="./message-types/#template-messages">
+    テンプレートメッセージ
+   </a>
+   に連携URLを指定します。このとき、連携URLにはステップ1の連携トークンをクエリパラメータとして追加します。
+  </p>
+  <p>
+   以下は、連携URLを指定したメッセージをユーザーに送信するリクエストの例です。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/message/push</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-d </span><span>'{
+</span></span><span><span>    "to": "{user id}",
+</span></span><span><span>    "messages": [{
+</span></span><span><span>        "type": "template",
+</span></span><span><span>        "altText": "Account Link",
+</span></span><span><span>        "template": {
+</span></span><span><span>            "type": "buttons",
+</span></span><span><span>            "text": "Account Link",
+</span></span><span><span>            "actions": [{
+</span></span><span><span>                "type": "uri",
+</span></span><span><span>                "label": "Account Link",
+</span></span><span><span>                "uri": "http://example.com/link?linkToken=xxx"
+</span></span><span><span>            }]
+</span></span><span><span>        }
+</span></span><span><span>    }]
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#step-three-acquire-user-id-for-your-service">
+    3. 自社サービスのユーザーIDを取得する
+   </a>
+  </h3>
+  <p>
+   ユーザーが連携URLにアクセスしたら、自社サービスへのログイン画面を表示します。ユーザーがサービスにログインすると、自社サービスのユーザーIDを取得できます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#step-four-verifying-user-id">
+    4. nonceを生成してユーザーをLINEプラットフォームにリダイレクトする
+   </a>
+  </h3>
+  <p>
+   ステップ3で取得したユーザーIDからnonce（number used once）を生成します。nonceの要件は以下のとおりです。
+  </p>
+  <ul>
+   <li>
+    予測が難しく一度しか使用できない文字列であること。セキュリティ上問題があるため、自社サービスのユーザーIDなどの予測可能な値は使わないでください。
+   </li>
+   <li>
+    長さは10文字以上255文字以下であること。
+   </li>
+  </ul>
+  <p>
+   nonceとしてランダムな値を生成する際の推奨事項は以下のとおりです。
+  </p>
+  <ul>
+   <li>
+    セキュアなランダム生成関数を使う。
+   </li>
+   <li>
+    少なくとも128ビット（16バイト）以上にする。
+   </li>
+   <li>
+    Base64エンコードする。
+   </li>
+  </ul>
+  <p>
+   nonceを生成したら、そのnonceとサービスのユーザーIDを紐づけて保存します。次に、ユーザーを以下のエンドポイントにリダイレクトします。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>https://access.line.me/dialog/bot/accountLink?linkToken</span><span>={link</span><span> token}</span><span>&amp;nonce</span><span>=</span><span>{</span><span>nonce}
+</span></span></code></pre>
+  </div>
+  <p>
+   ユーザーがこのエンドポイントにアクセスすると、LINEプラットフォームにより、ユーザーが連携トークンを発行したユーザーかどうかを確認します。その確認結果に応じて、LINEプラットフォームは以下のような処理を行います。
+  </p>
+  <ul>
+   <li>
+    ユーザーの確認ができた場合：LINEプラットフォームからボットサーバーに
+    <code>
+     result
+    </code>
+    プロパティの値が
+    <code>
+     ok
+    </code>
+    の
+    <a href="/ja/reference/messaging-api/#account-link-event">
+     アカウント連携イベント
+    </a>
+    が送信されます。
+   </li>
+   <li>
+    ユーザーの確認ができなかった場合：LINEプラットフォームからボットサーバーに
+    <code>
+     result
+    </code>
+    プロパティの値が
+    <code>
+     failed
+    </code>
+    の
+    <a href="/ja/reference/messaging-api/#account-link-event">
+     アカウント連携イベント
+    </a>
+    が送信されます。
+   </li>
+   <li>
+    連携トークンが無効の場合：連携トークンが有効期限切れや、使用済みの場合、LINEプラットフォームはWebhookイベントを送信せず、ユーザーにエラーを表示します。
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#step-five-linking-accounts">
+    5. アカウントを連携する
+   </a>
+  </h3>
+  <p>
+   ステップ4で、連携トークンを発行したユーザーであることが確認できた場合、ユーザーのアカウントを連携します。アカウント連携イベントには、LINEのユーザーIDとnonceが含まれています。このnonceを使って、nonceと紐づけて保存しておいた自社サービスのユーザーIDを取得します。LINEのユーザーIDと自社サービスのユーザーIDを連携すれば、アカウントの連携が完了します。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#unlinking">
+    アカウントの連携を解除する
+   </a>
+  </h2>
+  <p>
+   ユーザーがLINEアカウントと自社サービスのアカウントを連携している場合、連携を解除できるようにする必要があります。
+  </p>
+  <ul>
+   <li>
+    ユーザーがいつでもアカウントの連携を解除できるようにしておくこと。
+   </li>
+   <li>
+    ユーザーがアカウントを連携するときに、連携を解除できることを通知すること。
+   </li>
+  </ul>
+  <p>
+   たとえば、Messaging APIを使えば、ユーザーごとに
+   <a href="./rich-menus-overview/">
+    リッチメニュー
+   </a>
+   をカスタマイズできます。アカウントを連携していないユーザーにはアカウントを連携するメニューを表示したり、アカウントを連携済みのユーザーには連携を解除するメニューを表示したりできます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-linking-accounts-pages">
+    関連ページ
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/">
+     Messaging APIリファレンス
+    </a>
+   </li>
+  </ul>
+ </div>
+</main>

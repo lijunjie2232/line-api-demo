@@ -1,0 +1,468 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   ボットを作成する
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./building-bot/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/building-bot/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   このガイドでは、Messaging APIを使ってLINEボットを作成する方法を説明します。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#before-you-begin">
+    始める前に
+   </a>
+  </h2>
+  <p>
+   ボットの設定と作成を始める前に、以下を用意していることを確認します。
+  </p>
+  <ul>
+   <li>
+    ボット用の
+    <a href="./getting-started/">
+     Messaging APIチャネル
+    </a>
+   </li>
+   <li>
+    ボットをホストするサーバー
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#set-up-bot-on-line-developers-console">
+    LINE Developersコンソールでの設定
+   </a>
+  </h2>
+  <p>
+   <a href="#issue-a-channel-access-token">
+    チャネルアクセストークン
+   </a>
+   を発行し、
+   <a href="#setting-webhook-url">
+    Webhook URL
+   </a>
+   を設定します。チャネルアクセストークンは、ボットがMessaging APIを呼び出すために必要です。Webhook URLは、LINEプラットフォームからのWebhookペイロードをボットが受信するために必要です。設定が完了したら、
+   <a href="#add-your-line-official-account-as-friend">
+    LINE公式アカウントを友だち追加し
+   </a>
+   、
+   <a href="#confirm-webhook-behavior">
+    動作を確認
+   </a>
+   します。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#issue-a-channel-access-token">
+    チャネルアクセストークンを準備する
+   </a>
+  </h3>
+  <p>
+   チャネルアクセストークンをまだ持っていない場合は、発行してください。チャネルアクセストークンは、Messaging APIで使用するアクセストークンです。以下のいずれかのトークンを発行できます。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/docs/basics/channel-access-token/#user-specified-expiration">
+     任意の有効期間を指定できるチャネルアクセストークン（チャネルアクセストークンv2.1）
+    </a>
+    （推奨）
+   </li>
+   <li>
+    <a href="/ja/docs/basics/channel-access-token/#stateless-channel-access-token">
+     ステートレスチャネルアクセストークン
+    </a>
+   </li>
+   <li>
+    <a href="/ja/docs/basics/channel-access-token/#short-lived-channel-access-token">
+     短期のチャネルアクセストークン
+    </a>
+   </li>
+   <li>
+    <a href="/ja/docs/basics/channel-access-token/#long-lived-channel-access-token">
+     長期のチャネルアクセストークン
+    </a>
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#setting-webhook-url">
+    Webhook URLを設定する
+   </a>
+  </h3>
+  <p>
+   Webhook URLはボットサーバーのエンドポイントで、Webhookペイロードの送信先です。なお、Webhook URLに設定できるボットサーバーのエンドポイントは1つだけです。
+  </p>
+  <p>
+   Webhook URLは、以下の手順で設定してください。
+  </p>
+  <ol>
+   <li>
+    <a href="/console/">
+     LINE Developersコンソール
+    </a>
+    にログインし、Messaging APIのチャネルがあるプロバイダーをクリックします。
+   </li>
+   <li>
+    Messaging APIのチャネルをクリックします。
+   </li>
+   <li>
+    ［
+    <strong>
+     Messaging API設定
+    </strong>
+    ］タブをクリックします。
+   </li>
+   <li>
+    ［
+    <strong>
+     Webhook URL
+    </strong>
+    ］の［
+    <strong>
+     編集
+    </strong>
+    ］をクリックし、Webhook URL（LINEプラットフォームからボットにイベントを送信する際の送信先URL）を入力して、［
+    <strong>
+     更新
+    </strong>
+    ］をクリックします。
+    <br/>
+    Webhook URLにはHTTPSを使用し、一般的なブラウザ等で広く信頼されている認証局で発行されたSSL/TLS証明書を設定する必要があります。また、自己署名証明書は利用できない点に注意してください。SSL/TLSの設定で問題が発生した場合は、SSL/TLS証明書チェーンが完全で、中間証明書がサーバーに正しくインストールされていることを確かめてください。
+   </li>
+   <li>
+    ［
+    <strong>
+     検証
+    </strong>
+    ］をクリックします。設定したWebhook URLでWebhookイベントを受け取ると、「
+    <strong>
+     成功
+    </strong>
+    」と表示されます。
+   </li>
+   <li>
+    ［
+    <strong>
+     Webhookの利用
+    </strong>
+    ］を有効にします。
+   </li>
+  </ol>
+  <p>
+   <img src="/media/messaging-api/build-bot/webhook-url-example-com.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#add-your-line-official-account-as-friend">
+    LINE公式アカウントを友だち追加する
+   </a>
+  </h3>
+  <p>
+   Messaging APIチャネルに紐づいたLINE公式アカウントをLINEアカウントに友だち追加しておくと、後で検証できます。
+   <a href="/console/">
+    LINE Developersコンソール
+   </a>
+   の［
+   <strong>
+    Messaging API設定
+   </strong>
+   ］タブにあるQRコードを読み込むと、簡単に追加できます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#configure-security-settings">
+    長期のチャネルアクセストークン利用時にAPIの呼び出し元を制限する（任意）
+   </a>
+  </h3>
+  <p>
+   長期のチャネルアクセストークンを利用する場合、LINEプラットフォームのAPIを呼び出すことができるサーバーを、IPアドレスで制限できます。
+  </p>
+  <p>
+   IPアドレスを登録するには、
+   <a href="/console/">
+    LINE Developersコンソール
+   </a>
+   のチャネル設定の［
+   <strong>
+    セキュリティ設定
+   </strong>
+   ］タブを開きます。IPアドレスは、1つずつ個別に登録するか、CIDR（Classless Inter-Domain Routing）記法を使用して、ネットワークアドレスで登録もできます。
+  </p>
+  <p>
+   なおMessaging APIで使用するチャネルアクセストークンは、
+   <a href="/ja/docs/basics/channel-access-token/#user-specified-expiration">
+    任意の有効期間を指定できるチャネルアクセストークン（チャネルアクセストークンv2.1）
+   </a>
+   を推奨しています。
+  </p>
+  <p>
+   <img src="/media/messaging-api/build-bot/security-settings-input-ja.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#confirm-webhook-behavior">
+    Webhookの動作を確認する
+   </a>
+  </h2>
+  <p>
+   ユーザーがLINE公式アカウントを友だち追加したり、LINE公式アカウントにメッセージを送ったりすると、LINEプラットフォームからボットサーバーにHTTP POSTリクエストが送信されます。リクエスト先は、
+   <a href="/console/">
+    LINE Developersコンソール
+   </a>
+   の［
+   <strong>
+    Messaging API設定
+   </strong>
+   ］タブで登録した［
+   <strong>
+    Webhook URL
+   </strong>
+   ］です。リクエストにはWebhookイベントオブジェクトが含まれ、ヘッダーには署名が含まれます。
+  </p>
+  <p>
+   ここでは、サーバーが
+   <a href="#receive-webhook-events">
+    Webhookイベントを受信
+   </a>
+   できるかを確認する方法について説明します。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#receive-webhook-events">
+    Webhookイベントを受信する
+   </a>
+  </h3>
+  <p>
+   ボットサーバーがWebhookイベントを受信しているかを確認するには、まず、
+   <a href="#set-up-bot-on-line-developers-console">
+    先の手順
+   </a>
+   で追加したLINE公式アカウントをブロックします。そして、ボットサーバーがLINEプラットフォームから
+   <a href="/ja/reference/messaging-api/#unfollow-event">
+    フォロー解除イベント
+   </a>
+   を受信したことをサーバーのログで確認します。以下はログの例です。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>2017-07-21T09:18:46.755256+00:00</span><span> app[web.1]:</span><span> 2017-07-21</span><span> 09:18:46.737</span><span>  INFO</span><span> 4</span><span> ---</span><span> [io-13386-exec-2] c.e.bot.spring.KitchenSinkController     </span><span>:</span><span> unfollowed this bot: UnfollowEvent(source</span><span>=</span><span>UserSource</span><span>(userId</span><span>=</span><span>Uxxxxxxxxxx...</span><span>)</span><span>,</span><span> timestamp</span><span>=</span><span>2017-07-21T09:18:46.031Z</span><span>)
+</span></span></code></pre>
+  </div>
+  <p>
+   同様のログが表示された場合、ボットサーバーはLINEプラットフォームからWebhookイベントを受信しています。ログを確認した後、LINE公式アカウントのブロックを解除してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#line-manager-settings">
+    LINE Official Account Managerでの設定
+   </a>
+  </h2>
+  <p>
+   <a href="https://manager.line.biz/">
+    LINE Official Account Manager
+   </a>
+   は、LINE公式アカウントを管理するためのツールです。Messaging APIが提供する機能を利用できるほか、
+   <a href="#customize-profile">
+    ビジネスプロフィールをカスタマイズ
+   </a>
+   してユーザー体験を向上させたり、LINE VOOMの投稿を作成したりなど、さまざまな機能を利用できます。
+  </p>
+  <p>
+   LINE公式アカウントのすべての機能については、『
+   <a href="https://www.lycbiz.com/jp/">
+    LINEヤフー for Business
+   </a>
+   』を参照してください。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     あいさつメッセージと応答メッセージ
+    </span>
+   </div>
+   <div>
+    <p>
+     チャネルの［
+     <strong>
+      Messaging API設定
+     </strong>
+     ］タブで［
+     <strong>
+      あいさつメッセージ
+     </strong>
+     ］や［
+     <strong>
+      応答メッセージ
+     </strong>
+     ］の設定が［
+     <strong>
+      有効
+     </strong>
+     ］になっていると、ユーザーがLINE公式アカウントを友だち追加したときや、メッセージを送ってきたときに、LINE公式アカウントが自動で応答します。この［
+     <strong>
+      あいさつメッセージ
+     </strong>
+     ］と［
+     <strong>
+      応答メッセージ
+     </strong>
+     ］は、チャネルを作成したときにデフォルトの設定が［
+     <strong>
+      有効
+     </strong>
+     ］になっています。
+    </p>
+    <p>
+     応答の処理はMessaging APIで行うのであいさつメッセージや応答メッセージを自動で送りたくないという場合は、
+     <a href="https://manager.line.biz/">
+      LINE Official Account Manager
+     </a>
+     で、［
+     <strong>
+      あいさつメッセージ
+     </strong>
+     ］や［
+     <strong>
+      応答メッセージ
+     </strong>
+     ］の設定を［
+     <strong>
+      オフ
+     </strong>
+     ］にしてください。
+    </p>
+    <p>
+     友だち追加されたときの応答はあいさつメッセージに任せて、それ以外の応答をMessaging APIで行う、というように併用することも可能です。しかし、ユーザーに送られたメッセージがあいさつメッセージや応答メッセージによる応答なのか、それともMessaging APIを使ったボットによる応答なのか、開発者自身が混乱してしまうことがあります。Messaging APIを使って初めてLINEボットを作成するときは、［
+     <strong>
+      あいさつメッセージ
+     </strong>
+     ］や［
+     <strong>
+      応答メッセージ
+     </strong>
+     ］の設定を［
+     <strong>
+      オフ
+     </strong>
+     ］にしておくことをお勧めします。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#customize-profile">
+    ビジネスプロフィールをカスタマイズする
+   </a>
+  </h3>
+  <p>
+   ビジネスプロフィールには、LINE公式アカウントの基本情報を設定します。プロフィール画像、背景画像、ボタン、パーツをカスタマイズできます。プロフィールの設定は、LINE Official Account Managerから行います。
+  </p>
+  <p>
+   プロフィールのカスタマイズについて詳しくは、『LINEヤフー for Business』の「
+   <a href="https://www.lycbiz.com/jp/manual/OfficialAccountManager/profile/">
+    プロフィール
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#set-greeting-message">
+    あいさつメッセージを設定する（任意）
+   </a>
+  </h3>
+  <p>
+   ユーザーがLINE公式アカウントを初めて友だち追加した際に、あいさつメッセージを送信できます。あいさつメッセージを設定するには、
+   <a href="/console/">
+    LINE Developersコンソール
+   </a>
+   のチャネル設定の［
+   <strong>
+    Messaging API設定
+   </strong>
+   ］タブに表示されている［
+   <strong>
+    あいさつメッセージ
+   </strong>
+   ］の［
+   <strong>
+    編集
+   </strong>
+   ］をクリックし、LINE Official Account Managerを開きます。LINE Official Account Manager上で、あいさつメッセージを設定します。別の方法として、Webhook
+   <a href="/ja/reference/messaging-api/#follow-event">
+    フォローイベント
+   </a>
+   を受け取ってからユーザーへプログラム的に応答することもできます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#set-auto-reply-messages">
+    応答メッセージを設定する（任意）
+   </a>
+  </h3>
+  <p>
+   ユーザーがLINE公式アカウントにメッセージを送信した際に、応答メッセージを送信できます。応答メッセージを設定するには、
+   <a href="/console/">
+    LINE Developersコンソール
+   </a>
+   のチャネル設定の［
+   <strong>
+    Messaging API設定
+   </strong>
+   ］タブに表示されている［
+   <strong>
+    応答メッセージ
+   </strong>
+   ］の［
+   <strong>
+    編集
+   </strong>
+   ］をクリックし、LINE Official Account Managerを開きます。LINE Official Account Manager上で、応答メッセージを設定します。ただし、Messaging APIを使用すれば、Webhookイベントの内容に合わせた応答を返すようにボットをプログラムできるため、より多くの処理を実行できます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#next-steps-after-building-bot">
+    次のステップ
+   </a>
+  </h2>
+  <p>
+   ボットを設定すると、LINE公式アカウントがユーザーからのメッセージを受信したり、ユーザーにメッセージを送信したりできます。また、リッチメニューやクイックリプライを利用することで、パーソナライズされた体験を提供できます。Messaging APIで利用できる機能について詳しくは、『
+   <a href="./">
+    Messaging APIドキュメント
+   </a>
+   』の各ページを参照してください。
+  </p>
+ </div>
+</main>

@@ -1,0 +1,537 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   メッセージタイプ
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./message-types/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/message-types/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   Messaging APIを使うことで、ボットから以下のようなメッセージを送信できます。メッセージをインタラクティブにするには、ユーザーがトリガーするアクションを指定します。各メッセージタイプの仕様については、『Messaging APIリファレンス』の
+   <a href="/ja/reference/messaging-api/#message-objects">
+    メッセージオブジェクト
+   </a>
+   を参照してください。
+  </p>
+  <ul>
+   <li>
+    <a href="#text-messages">
+     テキストメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="#text-messages-v2">
+     テキストメッセージ（v2）
+    </a>
+   </li>
+   <li>
+    <a href="#sticker-messages">
+     スタンプメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="#image-messages">
+     画像メッセージ
+    </a>
+   </li>
+   <li>
+    <a href="#video-messages">
+     動画メッセージ
+    </a>
+   </li>
+   <li>
+    <a href="#audio-messages">
+     音声メッセージ
+    </a>
+   </li>
+   <li>
+    <a href="#location-messages">
+     位置情報メッセージ
+    </a>
+   </li>
+   <li>
+    <a href="#coupon-messages">
+     クーポンメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="#imagemap-messages">
+     イメージマップメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="#template-messages">
+     テンプレートメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="#flex-messages">
+     Flex Message
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#text-messages">
+    テキストメッセージ
+   </a>
+  </h2>
+  <p>
+   テキストメッセージには、テキストや絵文字を含めることができます。テキストメッセージを送信するには、Messaging APIで送信する
+   <a href="/ja/reference/messaging-api/#message-objects">
+    メッセージオブジェクト
+   </a>
+   にテキストを追加します。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#text-message">
+    テキストメッセージ
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/text.png"/>
+  </p>
+  <p>
+   テキストメッセージではLINE絵文字とUnicode絵文字を使うことができます。送信できるLINE絵文字について詳しくは、「
+   <a href="./emoji-list/">
+    LINE絵文字
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/emoji.png"/>
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     テキストの装飾とサイズの変更
+    </span>
+   </div>
+   <div>
+    <p>
+     テキストの装飾やサイズの変更には、
+     <a href="/ja/reference/messaging-api/#flex-message">
+      Flex Message
+     </a>
+     を使用してください。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#text-messages-v2">
+    テキストメッセージ（v2）
+   </a>
+  </h2>
+  <p>
+   テキストメッセージ（v2）を使うと、ユーザーにテキストを送信できます。
+   <a href="#text-messages">
+    テキストメッセージ
+   </a>
+   と異なり、
+   <code>
+    {
+   </code>
+   と
+   <code>
+    }
+   </code>
+   で囲まれた文字列をメンションや絵文字に置き換えることができます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#text-message-v2">
+    テキストメッセージ（v2）
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/text-v2.png"/>
+  </p>
+  <p>
+   以前より提供しているテキストメッセージについては、今後も引き続き使用できます。ただし、今後は新しい機能をテキストメッセージ（v2）にのみ追加する可能性があります。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#sticker-messages">
+    スタンプメッセージ
+   </a>
+  </h2>
+  <p>
+   スタンプを利用することで、ボットをより魅力的で楽しいものにできます。Messaging APIでスタンプを送信するには、
+   <a href="/ja/reference/messaging-api/#message-objects">
+    メッセージオブジェクト
+   </a>
+   にスタンプのパッケージIDとスタンプIDを指定します。送信できるスタンプについては、「
+   <a href="./sticker-list/">
+    スタンプ
+   </a>
+   」を参照してください。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#sticker-message">
+    スタンプメッセージ
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/sticker.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#image-messages">
+    画像メッセージ
+   </a>
+  </h2>
+  <p>
+   画像メッセージは、1つの画像ファイルをユーザーに送信します。画像を送信する際は、
+   <a href="/ja/reference/messaging-api/#message-objects">
+    メッセージオブジェクト
+   </a>
+   に2つのURLを指定します。1つはオリジナルの画像用、もう1つはプレビュー用です。プレビュー用の画像はトーク画面に表示される画像で、オリジナルの画像よりも小さい画像を指定します。
+  </p>
+  <p>
+   ユーザーがプレビュー用の画像をタップすると、以下のようにオリジナルの画像が表示されます。URLのプロトコルがHTTPS（TLS 1.2以降）であることを確認してください。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#image-message">
+    画像メッセージ
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/image.png"/>
+   <img src="/media/messaging-api/messages/image-full.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#video-messages">
+    動画メッセージ
+   </a>
+  </h2>
+  <p>
+   動画メッセージは、1つの動画ファイルをユーザーに送信します。動画メッセージを送信する際は、
+   <a href="/ja/reference/messaging-api/#message-objects">
+    メッセージオブジェクト
+   </a>
+   に動画のURLとプレビュー用の画像のURLを指定します。
+  </p>
+  <p>
+   ユーザーがプレビュー用の画像をタップすると、LINEが動画を再生します。URLのプロトコルがHTTPS（TLS 1.2以降）であることを確認してください。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#video-message">
+    動画メッセージ
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/video.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#audio-messages">
+    音声メッセージ
+   </a>
+  </h2>
+  <p>
+   音声メッセージは、1つの音声ファイルをユーザーに送信します。音声ファイルを送信するには、
+   <a href="/ja/reference/messaging-api/#message-objects">
+    メッセージオブジェクト
+   </a>
+   にファイルのURLと音声ファイルの長さを指定してください。
+  </p>
+  <p>
+   URLのプロトコルがHTTPS（TLS 1.2以降）であることを確認してください。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#audio-message">
+    音声メッセージ
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/audio.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#location-messages">
+    位置情報メッセージ
+   </a>
+  </h2>
+  <p>
+   位置情報メッセージは、ユーザーに位置情報を送信するメッセージです。
+   <a href="/ja/reference/messaging-api/#message-objects">
+    メッセージオブジェクト
+   </a>
+   にタイトルと住所、緯度と経度の座標を指定します。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#location-message">
+    位置情報メッセージ
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/location-ja.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#coupon-messages">
+    クーポンメッセージ
+   </a>
+  </h2>
+  <p>
+   クーポンメッセージは、クーポンIDを指定してユーザーにクーポンを送信するメッセージです。
+  </p>
+  <p>
+   <img src="/media/messaging-api/coupon/several-coupons.jpg"/>
+  </p>
+  <p>
+   詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#coupon-message">
+    クーポンメッセージ
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#imagemap-messages">
+    イメージマップメッセージ
+   </a>
+  </h2>
+  <p>
+   イメージマップメッセージは、複数のタップ可能な領域を設定した画像を送信するメッセージです。タップ可能な領域を設定して、ウェブページを開いたり、ユーザーに代わってメッセージを送信したりできます。また、画像の上で動画を再生し、再生が終わるとリンクテキストを表示するように設定することもできます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#imagemap-message">
+    イメージマップメッセージ
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/imagemap.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#template-messages">
+    テンプレートメッセージ
+   </a>
+  </h2>
+  <p>
+   テンプレートメッセージにはあらかじめ定義されたレイアウトがあり、ユーザーによりよい体験を提供できます。
+   <a href="./actions/">
+    アクション
+   </a>
+   を使って、ユーザーとボットのインタラクションを実現できます。ユーザーがアクションを起こすのに必要なのはタップだけであり、メッセージを入力するよりも簡単に行うことができます。
+  </p>
+  <p>
+   利用可能なテンプレートは以下のとおりです。
+  </p>
+  <ul>
+   <li>
+    <a href="#buttons-template">
+     ボタン
+    </a>
+   </li>
+   <li>
+    <a href="#confirm-template">
+     確認
+    </a>
+   </li>
+   <li>
+    <a href="#carousel-template">
+     カルーセル
+    </a>
+   </li>
+   <li>
+    <a href="#image-carousel-template">
+     画像カルーセル
+    </a>
+   </li>
+  </ul>
+  <p>
+   テンプレートメッセージについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#template-messages">
+    テンプレートメッセージ
+   </a>
+   」を参照してください。また、より柔軟なレイアウトでメッセージを送りたい場合は、
+   <a href="#flex-messages">
+    Flex Message
+   </a>
+   を使用してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#buttons-template">
+    ボタンテンプレート
+   </a>
+  </h3>
+  <p>
+   ボタンテンプレートには、画像やタイトル、テキスト、
+   <a href="./actions/">
+    アクション
+   </a>
+   ボタンが含まれます。ボタンに加えて、画像、タイトル、テキストにもアクションを設定できます。アクションを設定した領域をユーザーがタップすると、アクションがトリガーされます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#buttons">
+    ボタンテンプレート
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/buttons.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#confirm-template">
+    確認テンプレート
+   </a>
+  </h3>
+  <p>
+   確認テンプレートには、テキストと2つのボタンが含まれています。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#confirm">
+    確認テンプレート
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/confirm.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#carousel-template">
+    カルーセルテンプレート
+   </a>
+  </h3>
+  <p>
+   カルーセルテンプレートは、ユーザーがスクロールできる複数のカラムを含んでいます。ボタンに加えて、各カラムオブジェクトに
+   <a href="./actions/">
+    アクション
+   </a>
+   を設定できます。
+  </p>
+  <p>
+   アクションは、ユーザーがカラムオブジェクトの画像やタイトル、テキストエリアのどこかをタップしたときにトリガーされます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#carousel">
+    カルーセルテンプレート
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/carousel.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#image-carousel-template">
+    画像カルーセルテンプレート
+   </a>
+  </h3>
+  <p>
+   画像カルーセルテンプレートは、ユーザーがスクロールできる複数の画像を含んでいます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#image-carousel">
+    画像カルーセルテンプレート
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/messages/image-carousel.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#flex-messages">
+    Flex Message
+   </a>
+  </h2>
+  <p>
+   Flex Messageはレイアウトをカスタマイズできるメッセージです。
+   <a href="https://www.w3.org/TR/css-flexbox-1/">
+    CSS Flexible Box（CSS Flexbox）
+   </a>
+   の仕様の範囲内でレイアウトをカスタマイズできます。詳しくは、「
+   <a href="./using-flex-messages/">
+    Flex Messageを送信する
+   </a>
+   」と『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#flex-message">
+    Flex Message
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-messages/bubbleSamples-Update1.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#common-features">
+    メッセージタイプ共通機能
+   </a>
+  </h2>
+  <p>
+   以下の機能は、すべてのメッセージタイプに適用できます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#quick-reply">
+    クイックリプライ
+   </a>
+  </h3>
+  <p>
+   クイックリプライボタンはすべてのメッセージタイプで利用可能で、チャットの下部に表示されます。ユーザーは、ボタンのいずれかをタップすると、ボットに返信できます。詳しくは、「
+   <a href="./using-quick-reply/">
+    クイックリプライを使う
+   </a>
+   」と『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#quick-reply">
+    クイックリプライ
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-quick-reply/quickReplySample.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-message-types-pages">
+    関連ページ
+   </a>
+  </h2>
+  <p>
+   Messaging APIについての詳細は、以下を参照してください。
+  </p>
+  <ul>
+   <li>
+    <a href="./sending-messages/">
+     メッセージを送信する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#message-objects">
+     メッセージオブジェクト
+    </a>
+   </li>
+   <li>
+    <a href="./actions/">
+     アクション
+    </a>
+   </li>
+  </ul>
+ </div>
+</main>

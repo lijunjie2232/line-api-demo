@@ -1,0 +1,1305 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   チュートリアル - Flex Message Simulatorでデジタル名刺を作成する
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./using-flex-message-simulator/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/using-flex-message-simulator/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   Flex Messageは、
+   <a href="https://www.w3.org/TR/css-flexbox-1/">
+    CSS Flexible box (CSS Flexbox)
+   </a>
+   を基盤に自由にカスタマイズできるメッセージです。必要に応じて、メッセージのサイズを調整したり、特定の場所にテキスト、画像、アイコンを割り当てたり、インタラクティブなボタンを追加したりできます。
+  </p>
+  <p>
+   このチュートリアルでは、
+   <a href="/flex-simulator/">
+    Flex Message Simulator
+   </a>
+   を使ったデジタル名刺の作り方を紹介します。Flex Message Simulatorはコードを記述せずにFlex Messageのブレインストーミング、設計、プロトタイプ作成ができるツールです。Flex Messageを初めて使う場合は、まず「
+   <a href="./using-flex-messages/">
+    Flex Messageを送信する
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#goal">
+    目標
+   </a>
+  </h2>
+  <p>
+   このチュートリアルを最後まで進めると、次の画像のようなデジタル名刺が完成します。また、この
+   <a href="/media/code-samples/flex-message-simulator-example-ja.json">
+    ダウンロードリンク
+   </a>
+   から、JSONで定義された結果を取得できます。しかし、このチュートリアルを通してFlex Message Simulatorに慣れることをお勧めします。このツールは、Flex Messageのさまざまなユースケースに対処するのにとても便利だからです。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/ja-final-output.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#before-starting">
+    はじめる前に
+   </a>
+  </h2>
+  <p>
+   チュートリアルをスムーズに進めるために、「
+   <a href="./overview/">
+    Messaging APIの概要
+   </a>
+   」および「
+   <a href="./using-flex-messages/">
+    Flex Messageを送信する
+   </a>
+   」を読んでおくことをお勧めします。また、初めてFlex Message Simulatorを使う場合は、このセクションから読み進めてFlex Message Simulatorについて学んでいきましょう。もし、すでにFlex Message Simulatorに慣れているなら、
+   <a href="#select-flex-message">
+    チュートリアル本編
+   </a>
+   から始めてください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#what-is-simulator">
+    Flex Message Simulatorについて知ろう
+   </a>
+  </h3>
+  <p>
+   Flex Message Simulatorは、Flex Messageを作成し、プレビューできるツールです。開発環境を用意したりコードを書いたりすることなく、Flex Messageを作成し、Flex Messageを送信してプレビューできます。
+  </p>
+  <p>
+   まず、
+   <a href="/flex-simulator/">
+    Flex Message Simulator
+   </a>
+   を開いてください。
+   <a href="/console/">
+    LINE Developersコンソール
+   </a>
+   にログインしていない場合は、ログインを求められます。LINE Developersコンソールの開発者アカウントを持っている場合、ログインしてください。アカウントを持っていない場合、［
+   <strong>
+    アカウントを作成
+   </strong>
+   ］をクリックし、手順に従ってアカウントを作成してください。
+  </p>
+  <p>
+   Flex Message Simulatorの画面は3つの部分で構成されています。
+  </p>
+  <ul>
+   <li>
+    <strong>
+     プレビューエリア
+    </strong>
+    ：ツリービューエリアとプロパティエリアで入力したデータを元にしたFlex Messageが表示される部分。
+   </li>
+   <li>
+    <strong>
+     ツリービューエリア
+    </strong>
+    ：Flex Messageのデータ構造を編集したり表示したりする部分。
+   </li>
+   <li>
+    <strong>
+     プロパティエリア
+    </strong>
+    ：ツリービューエリアで選択した項目のプロパティを設定する部分。この領域で入力したデータを基に、Flex Message SimulatorはFlex Messageを生成します。
+   </li>
+  </ul>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/ja-areas.png"/>
+  </p>
+  <p>
+   ツリービューエリアの項目の上にマウスを置くと、該当する部分がプレビューエリアでハイライトされます。この動作は次の動画で確認できます。
+  </p>
+  <video>
+   <source src="https://vos.line-scdn.net/line-developers/docs/media/video/flex-message-simulator.mp4"/>
+   お使いのブラウザはビデオタグに対応していません。
+  </video>
+  <h4>
+   <div>
+   </div>
+   <a href="#predefined-layouts">
+    定義済みのFlex Messageレイアウトを使用できます
+   </a>
+  </h4>
+  <p>
+   Flex Message Simulatorでは、定義済みのFlex Messageレイアウトが提供されています。
+  </p>
+  <p>
+   定義済みのレイアウトを使用するには、ページの右上にある［
+   <strong>
+    Showcase
+   </strong>
+   ］をクリックします。使いたいレイアウトをクリックし、画面右下の［
+   <strong>
+    作成
+   </strong>
+   ］をクリックします。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     レイアウトについて
+    </span>
+   </div>
+   <div>
+    <p>
+     このチュートリアルでは、定義済みのレイアウトを使用せずに、Flex Messageを最初から作成します。
+    </p>
+   </div>
+  </div>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/showcase.png"/>
+  </p>
+  <h4>
+   <div>
+   </div>
+   <a href="#copy-json">
+    作成したFlex MessageのJSONをコピーできます
+   </a>
+  </h4>
+  <p>
+   生成されたJSONデータをコピーするには、ページの右上にある［
+   <strong>
+    &lt;/&gt;View as JSON
+   </strong>
+   ］をクリックし、［
+   <strong>
+    コピー
+   </strong>
+   ］をクリックします。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/view-as-json.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#preview-json">
+    チュートリアルをショートカットする
+   </a>
+  </h2>
+  <p>
+   手順を読まずに飛ばして結果だけを見たい場合は、Flex MessageオブジェクトのJSONデータを
+   <a href="/media/code-samples/flex-message-simulator-example-ja.json">
+    ダウンロード
+   </a>
+   できます。Flex Message Simulatorでは、次の手順で結果をプレビューできます。
+  </p>
+  <ol>
+   <li>
+    ［
+    <strong>
+     &lt;/&gt;View as JSON
+    </strong>
+    ］をクリックします。JSONデータのモーダルが表示されます。
+   </li>
+   <li>
+    モーダル内のコードを削除します。
+   </li>
+   <li>
+    ダウンロードしたJSONファイルの中身をコピーし、モーダルにペーストします。
+   </li>
+   <li>
+    ［
+    <strong>
+     適用
+    </strong>
+    ］をクリックして変更を保存します。ペーストしたFlex Messageがプレビューエリアに表示されます。
+   </li>
+  </ol>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/ja-confirm-example-code-output.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#select-flex-message">
+    1. コンテナタイプを選ぶ
+   </a>
+  </h2>
+  <p>
+   それでは、Flex Message Simulatorを学ぶために、デジタル名刺の作成を始めましょう。名刺を作るのに必要なのはバブル1つだけですから、Flex Messageコンテナのタイプは
+   <a href="./flex-message-elements/#bubble">
+    バブル
+   </a>
+   になります。
+  </p>
+  <p>
+   バブルタイプのFlex Messageコンテナを作成するには、右上の［
+   <strong>
+    New
+   </strong>
+   ］をクリックし、ドロップダウンメニューから［
+   <strong>
+    bubble
+   </strong>
+   ］を選択します。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/select-bubble-type.png"/>
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     ヒント
+    </span>
+   </div>
+   <div>
+    <p>
+     ドロップダウンメニューから［
+     <strong>
+      bubble
+     </strong>
+     ］を選択すると、プレビューエリアの下に「OK」メッセージがポップアップ表示されます。これは、編集内容がプレビューエリアに正常に反映されたことを意味します。
+    </p>
+    <p>
+     <img src="/media/messaging-api/using-flex-message-simulator/type.png"/>
+    </p>
+   </div>
+  </div>
+  <p>
+   コンテナのタイプの詳細については、「
+   <a href="./flex-message-elements/#container">
+    コンテナ
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#add-header">
+    2. ヘッダーを追加する
+   </a>
+  </h2>
+  <p>
+   作成したコンテナに、会社名を表示するヘッダーを追加しましょう。ヘッダーは「
+   <a href="./flex-message-elements/#block">
+    ブロック
+   </a>
+   」のタイプの一つで、ほかにヒーロー、ボディおよびフッターがあります。ヘッダーは主にメッセージの件名やコンテンツの見出しの表示に使用されます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/elements.png"/>
+  </p>
+  <ol>
+   <li>
+    ヘッダーを追加するために、ツリービューエリアで［
+    <strong>
+     header
+    </strong>
+    ］を選択します。上部の［
+    <strong>
+     +
+    </strong>
+    ］をクリックし、［
+    <strong>
+     box
+    </strong>
+    ］を選択します。
+   </li>
+   <li>
+    ヘッダーの背景色を設定します。プロパティエリアの［
+    <strong>
+     backgroundColor
+    </strong>
+    ］フィールドに、16進数カラーコードの背景色（このチュートリアルでは
+    <code>
+     #00B900
+    </code>
+    ）を入力し、Enterキーを押します。これで、ヘッダーがボディブロックと視覚的に区別できるようになりました。
+    <div>
+     <div>
+      <i>
+      </i>
+      <span>
+       入力内容を反映するにはEnterキーを押します
+      </span>
+     </div>
+     <div>
+      <p>
+       プロパティエリアで項目を編集または選択し、キーボードのEnterキーを押すと、プレビューエリアに反映されます。これ以降の説明では、Enterキーの操作は省略します。
+      </p>
+     </div>
+    </div>
+    <br/>
+    <img src="/media/messaging-api/using-flex-message-simulator/set-header-color.png"/>
+   </li>
+   <li>
+    ヘッダーにテキストを追加します。
+    <ol>
+     <li>
+      ツリービューで、［
+      <strong>
+       header
+      </strong>
+      ］の下の［
+      <strong>
+       box
+       <span>
+        vertical
+       </span>
+      </strong>
+      ］をクリックします。
+      <div>
+       <div>
+        <i>
+        </i>
+        <span>
+         ヒント
+        </span>
+       </div>
+       <div>
+        <p>
+         Vertical box（垂直ボックス）は、Flex Messageのレイアウト方式の一つです。子要素を配置する向きを決定します。詳しくは、
+         <a href="./flex-message-layout/#box-component-orientation">
+          ボックスコンポーネントの向き
+         </a>
+         を参照してください。
+        </p>
+       </div>
+      </div>
+     </li>
+     <li>
+      ツリービューの［
+      <strong>
+       +
+      </strong>
+      ］をクリックし、ドロップダウンメニューから［
+      <strong>
+       text
+      </strong>
+      ］を選択します。［
+      <strong>
+       text
+      </strong>
+      ］が［
+      <strong>
+       box
+       <span>
+        vertical
+       </span>
+      </strong>
+      ］の下に作成されます。
+     </li>
+     <li>
+      ツリービューで、作成したtext要素をクリックします。
+     </li>
+     <li>
+      プロパティエリアの［
+      <strong>
+       text
+      </strong>
+      ］フィールドで、値を「hello, world」から「Flex Message Corp」に書き換えます。
+     </li>
+    </ol>
+   </li>
+  </ol>
+  <p>
+   背景色を変更したのでヘッダーが目立つようになりましたが、テキストが少し読みづらくなりました。それでは、テキストの色とフォントの太さを変更して見やすくしましょう。ツリービューエリアで［
+   <strong>
+    text
+   </strong>
+   ］をクリックし、プロパティエリアの［
+   <strong>
+    color
+   </strong>
+   ］フィールドを
+   <code>
+    #FFFFFF
+   </code>
+   に、［
+   <strong>
+    weight
+   </strong>
+   ］フィールドの値を
+   <code>
+    bold
+   </code>
+   に設定します。
+  </p>
+  <p>
+   これで、次のような表示になったか確認しましょう。テキストがはっきり見える、目立つヘッダーになりました。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/add-header-final.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#add-image">
+    3. 画像を追加する
+   </a>
+  </h2>
+  <p>
+   デジタル名刺の見栄えをよくする方法の一つに、画像の追加があります。Flex Message Simulatorを使うと、画像の追加やスタイル設定が簡単にできます。画像を追加するには、主に画像コンテンツの表示に使用する
+   <a href="./flex-message-elements/#block">
+    ヒーローブロック
+   </a>
+   を使います。
+  </p>
+  <ol>
+   <li>
+    ツリービューエリアの［
+    <strong>
+     hero
+    </strong>
+    ］をクリックします。
+   </li>
+   <li>
+    左上の［
+    <strong>
+     +
+    </strong>
+    ］をクリックし、ドロップダウンメニューから［
+    <strong>
+     image
+    </strong>
+    ］を選択します。デフォルト画像がプレビューエリアに表示されます。
+   </li>
+   <li>
+    画像を変更するために、ツリービューエリアで［
+    <strong>
+     image
+    </strong>
+    ］をクリックします。プロパティエリアの［
+    <strong>
+     url
+    </strong>
+    ］フィールドに、名刺のポートレート画像のURLを入力します。このチュートリアルでは、
+    <a href="/media/messaging-api/using-flex-message-simulator/mary.png">
+     こちら
+    </a>
+    の画像を使用します。
+    <div>
+     <div>
+      <i>
+      </i>
+      <span>
+       画像に関する要件
+      </span>
+     </div>
+     <div>
+      <p>
+       Flex Message Simulatorに画像ファイルはアップロードできません。すでにウェブ上にアップロードされている画像のURLを指定してください。画像とそのURLは、以下の条件を満たす必要があります。
+      </p>
+      <ul>
+       <li>
+        プロトコル：HTTPS（TLS 1.2以降）
+       </li>
+       <li>
+        画像フォーマット：JPEGまたはPNG
+       </li>
+       <li>
+        最大画像サイズ：1024 x 1024ピクセル
+       </li>
+       <li>
+        最大ファイルサイズ：10MB
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div>
+     <div>
+      <i>
+      </i>
+      <span>
+       推奨ファイルサイズ
+      </span>
+     </div>
+     <div>
+      <p>
+       表示の遅延を防ぐために、個々の画像ファイルサイズを1MB以下にすることを推奨しています。
+      </p>
+     </div>
+    </div>
+   </li>
+  </ol>
+  <p>
+   画像はうまく反映されましたが、背景と比較すると少し小さいようです。サイズを調整しましょう。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/add-image.png"/>
+  </p>
+  <p>
+   画像サイズを変更するには、ツリービューで［
+   <strong>
+    image
+   </strong>
+   ］をクリックし、［
+   <strong>
+    size
+   </strong>
+   ］プロパティで画像の幅を指定します。このチュートリアルではフィールドの右隣のボタンをクリックして、ドロップダウンメニューから
+   <code>
+    xl
+   </code>
+   を選択します。あるいは、値を入力してピクセルまたは
+   <code>
+    %
+   </code>
+   で指定することも可能です。詳しくは、Messaging API リファレンスの『
+   <a href="/ja/reference/messaging-api/#f-image">
+    画像
+   </a>
+   』の「size」欄を参照してください。
+  </p>
+  <p>
+   これで名刺の画像が大きくなりました。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/add-image-final.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#add-name">
+    4. 名前を追加する
+   </a>
+  </h2>
+  <p>
+   名刺に名前は必須です。名前などの重要な情報は、目立ちやすいスタイルで提示するのが効果的です。画像の下に名前を入れる手順は次のとおりです。
+  </p>
+  <ol>
+   <li>
+    ツリービューエリアで、［
+    <strong>
+     body
+    </strong>
+    ］の下の［
+    <strong>
+     box
+     <span>
+      vertical
+     </span>
+    </strong>
+    ］をクリックします。
+   </li>
+   <li>
+    ［
+    <strong>
+     +
+    </strong>
+    ］をクリックし、ドロップダウンメニューから［
+    <strong>
+     text
+    </strong>
+    ］を選択します。テキストの要素がボックスの下に作成されます。
+   </li>
+   <li>
+    ツリービューエリアで、［
+    <strong>
+     text
+    </strong>
+    ］をクリックします。
+   </li>
+   <li>
+    プロパティエリアで、［
+    <strong>
+     text
+    </strong>
+    ］フィールドのテキストの内容を「hello, world」から名前に変更します。
+   </li>
+  </ol>
+  <p>
+   <a href="#add-header">
+    ヘッダーテキスト
+   </a>
+   と同じように、名前にもスタイルを追加しましょう。フォントサイズを大きくして太字にし、テキストを中央揃えにします。
+  </p>
+  <ul>
+   <li>
+    <strong>
+     サイズ
+    </strong>
+    ：［
+    <strong>
+     size
+    </strong>
+    ］フィールドで
+    <code>
+     xl
+    </code>
+    を選択（デフォルトのサイズは
+    <code>
+     md
+    </code>
+    です）
+   </li>
+   <li>
+    <strong>
+     太字
+    </strong>
+    ：［
+    <strong>
+     weight
+    </strong>
+    ］フィールドで
+    <code>
+     bold
+    </code>
+    を選択
+   </li>
+   <li>
+    <strong>
+     中央揃え
+    </strong>
+    ：［
+    <strong>
+     align
+    </strong>
+    ］フィールドで
+    <code>
+     center
+    </code>
+    を選択
+   </li>
+  </ul>
+  <p>
+   次のように、名刺に名前が入りました。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/ja-add-name-final.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#add-title">
+    5. 役職を追加する
+   </a>
+  </h2>
+  <p>
+   名刺に記載される内容で名前と同じくらい重要な情報は、役職です。名前の下に役職を追加しましょう。
+  </p>
+  <ol>
+   <li>
+    ツリービューエリアで、［
+    <strong>
+     body
+    </strong>
+    ］の下にある1つ目の［
+    <strong>
+     box
+     <span>
+      vertical
+     </span>
+    </strong>
+    ］をクリックします。
+   </li>
+   <li>
+    ［
+    <strong>
+     +
+    </strong>
+    ］をクリックし、ドロップダウンメニューから［
+    <strong>
+     text
+    </strong>
+    ］を選択します。これで新しいテキスト欄ができました。
+   </li>
+   <li>
+    ツリービューエリアで、作成した［
+    <strong>
+     text
+    </strong>
+    ］要素をクリックします。
+   </li>
+   <li>
+    プロパティエリアに、textフィールドが表示されます。テキストの内容を「hello, world」から役職に変更します。
+   </li>
+  </ol>
+  <p>
+   先ほど名前を中央揃えにしたので、役職も同様に中央揃えにしましょう。プロパティエリアで、［
+   <strong>
+    align
+   </strong>
+   ］フィールドを
+   <code>
+    center
+   </code>
+   に設定します。
+  </p>
+  <p>
+   これで、名刺に役職が追加されました。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/ja-add-job-title-final.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#add-separator">
+    6. セパレータを追加する
+   </a>
+  </h2>
+  <p>
+   この後、名刺をインタラクティブにするためのボタンを追加する予定です。その前に、
+   <a href="/ja/reference/messaging-api/#separator">
+    セパレータ
+   </a>
+   を追加して、情報セクションとインタラクティブセクションを視覚的に分離しましょう。
+  </p>
+  <ol>
+   <li>
+    ツリービューエリアで、［
+    <strong>
+     body
+    </strong>
+    ］の下にある1つ目の［
+    <strong>
+     box
+     <span>
+      vertical
+     </span>
+    </strong>
+    ］をクリックします。
+   </li>
+   <li>
+    ［
+    <strong>
+     +
+    </strong>
+    ］をクリックし、ドロップダウンメニューから［
+    <strong>
+     separator
+    </strong>
+    ］を選択します。役職のすぐ下にセパレータが追加されます。
+   </li>
+  </ol>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/ja-add-separator.png"/>
+  </p>
+  <p>
+   セパレータとその上の役職の間隔が狭く見えます。セパレータにマージンを設定して、両者の間に空間を作りましょう。マージンついて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#separator">
+    セパレータ
+   </a>
+   」を参照してください。
+  </p>
+  <ol>
+   <li>
+    ツリービューエリアで、［
+    <strong>
+     separator
+    </strong>
+    ］をクリックします。
+   </li>
+   <li>
+    プロパティエリアで、［
+    <strong>
+     margin
+    </strong>
+    ］フィールドを
+    <code>
+     md
+    </code>
+    に設定します。
+   </li>
+  </ol>
+  <p>
+   これで、余裕を持ったセパレータが追加されました。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/ja-add-separator-final.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#add-button">
+    7. ボタンを追加する
+   </a>
+  </h2>
+  <p>
+   手順6で述べたように、名刺をインタラクティブにするために、ボタンを追加しましょう。セパレータの下に2つのボタンを追加したいと思います。まず、ボタンをグループ化するためのコンポーネントが必要です。
+  </p>
+  <ol>
+   <li>
+    ［
+    <strong>
+     body
+    </strong>
+    ］の下の最初の［
+    <strong>
+     box
+     <span>
+      vertical
+     </span>
+    </strong>
+    ］をクリックします。
+   </li>
+   <li>
+    ［
+    <strong>
+     +
+    </strong>
+    ］をクリックし、ドロップダウンメニューから［
+    <strong>
+     box
+    </strong>
+    ］を選択します。これにより、ボタンを追加できる新しい垂直ボックスが作成できました。
+   </li>
+  </ol>
+  <p>
+   それでは、押すとアクションが実行されるボタンを作っていきます。ボタンに使用できるアクションのタイプは、
+   <a href="/ja/reference/messaging-api/#uri-action">
+    URIアクション
+   </a>
+   や
+   <a href="/ja/reference/messaging-api/#postback-action">
+    ポストバックアクション
+   </a>
+   などです。このチュートリアルでは次の2つのボタンを追加します。
+  </p>
+  <ol>
+   <li>
+    <a href="#add-action-1">
+     会社のウェブサイトに移動する
+    </a>
+   </li>
+   <li>
+    <a href="#add-action-2">
+     LINE Front-end Framework（LIFF）で作成された登録フォームを開く
+    </a>
+   </li>
+  </ol>
+  <h3>
+   <div>
+   </div>
+   <a href="#add-action-1">
+    7-1. 会社のウェブサイトに移動する
+   </a>
+  </h3>
+  <p>
+   次の手順で、会社のウェブサイトに移動するようにボタンを設定します。
+  </p>
+  <ol>
+   <li>
+    ツリービューエリアで、先ほど作成したボタンを追加するための［
+    <strong>
+     box
+     <span>
+      vertical
+     </span>
+    </strong>
+    ］をクリックします。
+   </li>
+   <li>
+    ［
+    <strong>
+     +
+    </strong>
+    ］をクリックし、ドロップダウンメニューから［
+    <strong>
+     button
+    </strong>
+    ］を選択します。
+   </li>
+   <li>
+    ［
+    <strong>
+     button
+     <span>
+      action
+     </span>
+    </strong>
+    ］をクリックします。
+   </li>
+   <li>
+    プロパティエリアを一番下までスクロールすると［
+    <strong>
+     Action
+    </strong>
+    ］セクションがあります。［
+    <strong>
+     type
+    </strong>
+    ］プロパティのデフォルトは
+    <code>
+     uri
+    </code>
+    です。今回設定するのはウェブサイトのURLなので、値はこのままにしておきます。
+   </li>
+   <li>
+    同じ［
+    <strong>
+     Action
+    </strong>
+    ］セクションで、［
+    <strong>
+     label
+    </strong>
+    ］プロパティに「Flex Message Corp 公式サイト」と入力します。これがボタンのラベルになります。
+   </li>
+   <li>
+    ウェブサイトを開くために、［
+    <strong>
+     uri
+    </strong>
+    ］プロパティにウェブサイトのURIを入力します。
+   </li>
+  </ol>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     uriフィールドのドメイン名、パス、クエリパラメータ、フラグメントはパーセントエンコードしてください
+    </span>
+   </div>
+   <div>
+    <p>
+     ［
+     <strong>
+      uri
+     </strong>
+     ］フィールドのドメイン名、パス、クエリパラメータ、フラグメントはUTF-8を用いて
+     <a href="https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%BC%E3%82%BB%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0">
+      パーセントエンコード
+     </a>
+     してください。たとえば、以下の構成要素を持つURIを指定する場合は、
+     <code>
+      https://example.com/path?q=%E3%81%8A%E3%81%AF%E3%82%88%E3%81%86#%E3%81%93%E3%82%93%E3%81%AB%E3%81%A1%E3%81%AF
+     </code>
+     とします。
+    </p>
+    <table>
+     <thead>
+      <tr>
+       <th>
+        スキーム
+       </th>
+       <th>
+        ドメイン名
+       </th>
+       <th>
+        パス
+       </th>
+       <th>
+        クエリパラメータ
+       </th>
+       <th>
+        フラグメント
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        https
+       </td>
+       <td>
+        example.com
+       </td>
+       <td>
+        /path
+       </td>
+       <td>
+        q=おはよう
+       </td>
+       <td>
+        こんにちは
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <p>
+   これで、タップすると会社のウェブサイトに移動するボタンが名刺に追加されました。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/ja-add-uri-button.png"/>
+  </p>
+  <p>
+   ヘッダーテキストや名前、役職で実施したように、ボタンにもスタイルを追加しましょう。ボタンに色を追加することで、タップ可能な領域がわかりやすくなります。次の3種類の定義済みのボタンスタイルから選んで色をつけることができます。
+  </p>
+  <ul>
+   <li>
+    <strong>
+     primary
+    </strong>
+    ：濃色のボタン向けのスタイル
+   </li>
+   <li>
+    <strong>
+     secondary
+    </strong>
+    ：淡色のボタン向けのスタイル
+   </li>
+   <li>
+    <strong>
+     link
+    </strong>
+    ：HTMLのテキストリンクのスタイル
+   </li>
+  </ul>
+  <p>
+   このチュートリアルのように、コンポーネント内で複数のボタンを縦に重ねて配置する場合、
+   <code>
+    link
+   </code>
+   スタイルの使用を推奨します。背景に色を付ける代わりに、linkスタイルを適用しましょう。
+  </p>
+  <ol>
+   <li>
+    ツリービューエリアで、［
+    <strong>
+     button
+    </strong>
+    ］をクリックします。
+   </li>
+   <li>
+    プロパティーエリアで、［
+    <strong>
+     style
+    </strong>
+    ］プロパティを
+    <code>
+     link
+    </code>
+    に設定します。
+   </li>
+  </ol>
+  <p>
+   ボタンが次のように表示されます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/ja-change-button-color.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#add-action-2">
+    7-2. LINE Front-end Framework（LIFF）で作成された登録フォームを開く
+   </a>
+  </h3>
+  <p>
+   それでは、残りのボタンを追加していきましょう。2つ目のボタンには、ビジネスの登録フォームに
+   <a href="/ja/docs/liff/overview/">
+    LINE Front-end Framework（LIFF）
+   </a>
+   URLを追加します。LIFFで登録フォームを作成すると、そのフォームで取得した情報を元に、後でユーザーに新しいメッセージを送信できます。LIFFについて詳しくは、「
+   <a href="/ja/docs/liff/developing-liff-apps/">
+    LIFFアプリを開発する
+   </a>
+   」および「
+   <a href="/ja/docs/liff/trying-liff-app/">
+    LIFFスターターアプリを試してみる
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   次の手順で2つ目のボタンを追加します。
+  </p>
+  <ol>
+   <li>
+    ツリービューエリアで、1つ目のボタンを作成した［
+    <strong>
+     box
+     <span>
+      vertical
+     </span>
+    </strong>
+    ］をクリックします。
+   </li>
+   <li>
+    ［
+    <strong>
+     +
+    </strong>
+    ］をクリックし、ドロップダウンメニューから［
+    <strong>
+     button
+    </strong>
+    ］を選択します。これでボタンが作成されます。
+   </li>
+   <li>
+    プロパティエリアで以下を設定します。
+    <ul>
+     <li>
+      <strong>
+       style
+      </strong>
+      プロパティを
+      <code>
+       link
+      </code>
+      に設定
+     </li>
+     <li>
+      <strong>
+       label
+      </strong>
+      プロパティを「利用者登録する」に変更
+     </li>
+     <li>
+      <strong>
+       type
+      </strong>
+      プロパティを
+      <code>
+       uri
+      </code>
+      のままにする
+     </li>
+     <li>
+      <strong>
+       uri
+      </strong>
+      プロパティにLIFFアプリのURLを入力
+     </li>
+    </ul>
+   </li>
+  </ol>
+  <p>
+   これで、LIFFアプリを設定した2つ目のボタンができました。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/ja-add-liff-button.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#add-action-3">
+    7-3. ボタンの配置を調整する
+   </a>
+  </h3>
+  <p>
+   2つのボタンは、距離が近過ぎます。見た目はそうでもないのですが、ボタンのスタイルを
+   <code>
+    primary
+   </code>
+   や
+   <code>
+    secondary
+   </code>
+   に変更すると、よく分かります。間に余裕を持たせてボタンを配置する場合は、親要素であるボックスコンポーネントに
+   <a href="./flex-message-layout/#margin-property">
+    マージン
+   </a>
+   または
+   <a href="./flex-message-layout/#padding-property">
+    パディング
+   </a>
+   が使えます。このチュートリアルではパディングを追加します。
+  </p>
+  <ol>
+   <li>
+    ツリービューで、作成した2つのボタンが含まれる［
+    <strong>
+     box
+     <span>
+      vertical
+     </span>
+    </strong>
+    ］を選択します。
+   </li>
+   <li>
+    プロパティエリアで、［
+    <strong>
+     Padding
+    </strong>
+    ］の中の［
+    <strong>
+     paddingTop
+    </strong>
+    ］を
+    <code>
+     10px
+    </code>
+    に設定します。
+   </li>
+  </ol>
+  <p>
+   これでボタンの間のスペースが広がりました。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-message-simulator/ja-style-buttons.png"/>
+  </p>
+  <p>
+   以上で、デジタル名刺を作成するチュートリアルは完了です！
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#next-step">
+    次のステップ
+   </a>
+  </h2>
+  <p>
+   Flex Messageを構築したら、「
+   <a href="#copy-json">
+    作成したFlex MessageのJSONをコピーできます
+   </a>
+   」の説明に従って、構築したFlex MessageのJSONデータをエクスポートできます。このJSONデータを利用することで、Messaging APIでFlex Messageをメッセージとして送信できます。詳しくは、「
+   <a href="./using-flex-messages/#sending-messages-with-the-messaging-api">
+    Messaging APIで送信する
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#conclusion">
+    最後に
+   </a>
+  </h2>
+  <p>
+   Flex Message Simulatorは、コードを記述せずに、Flex Messageのブレインストーミング、設計、プロトタイプ作成ができるツールです。このチュートリアルで示したように、Flex Messageの使用例は無限にあります。Flex Message Simulatorを使うと、技術的な障壁をなくして、気軽にアイディアを具体化したり、プロトタイプをテストしたりしてFlex Messageを素早く作れます。ぜひみなさん独自のFlex Messageを作ってみてください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-pages">
+    関連ページ
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="./using-flex-messages/">
+     Flex Messageを送信する
+    </a>
+   </li>
+   <li>
+    <a href="./flex-message-elements/">
+     Flex Messageの要素
+    </a>
+   </li>
+   <li>
+    <a href="./flex-message-layout/">
+     Flex Messageのレイアウト
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#flex-message">
+     Flex Message
+    </a>
+    （Messaging APIリファレンス）
+   </li>
+  </ul>
+ </div>
+</main>

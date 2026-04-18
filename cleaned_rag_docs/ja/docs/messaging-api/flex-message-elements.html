@@ -1,0 +1,1224 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   Flex Messageの要素
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./flex-message-elements/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/flex-message-elements/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   Flex Messageは、3層の階層構造で構成されています。最上位層の
+   <a href="#container">
+    コンテナ
+   </a>
+   、そして
+   <a href="#block">
+    ブロック（ヘッダー、ヒーロー、ボディ、フッター）
+   </a>
+   、
+   <a href="#component">
+    コンポーネント
+   </a>
+   の順で続きます。ここでは、Flex Messageを構成する要素について例を挙げて説明します。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-messages/overviewSample.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#container">
+    コンテナ
+   </a>
+  </h2>
+  <p>
+   コンテナは、Flex Messageの最上位の構造です。以下のタイプのコンテナを利用できます。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      タイプ
+     </th>
+     <th>
+      説明
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <a href="#bubble">
+       バブル
+      </a>
+     </td>
+     <td>
+      単体のメッセージバブルを表示するコンテナ
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="#carousel">
+       カルーセル
+      </a>
+     </td>
+     <td>
+      複数のメッセージバブルを横に並べて表示するコンテナ
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#bubble">
+    バブル
+   </a>
+  </h3>
+  <p>
+   バブルは、1つのメッセージバブルを構成するコンテナです。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#bubble">
+    バブル
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/bubbleSample.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#carousel">
+    カルーセル
+   </a>
+  </h3>
+  <p>
+   カルーセルは、1つ以上のバブルを要素に持つコンテナです。カルーセル内のバブルは、横にスクロールして閲覧できます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/carouselSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#f-carousel">
+    カルーセル
+   </a>
+   」を参照してください。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"carousel"</span><span>,
+</span></span><span><span>  "contents"</span><span>: [
+</span></span><span><span>    {
+</span></span><span><span>      "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>      "body"</span><span>: {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</span><span>,
+</span></span><span><span>            "wrap"</span><span>: </span><span>true
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      },
+</span></span><span><span>      "footer"</span><span>: {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"button"</span><span>,
+</span></span><span><span>            "style"</span><span>: </span><span>"primary"</span><span>,
+</span></span><span><span>            "action"</span><span>: {
+</span></span><span><span>              "type"</span><span>: </span><span>"uri"</span><span>,
+</span></span><span><span>              "label"</span><span>: </span><span>"Go"</span><span>,
+</span></span><span><span>              "uri"</span><span>: </span><span>"https://example.com"
+</span></span><span><span>            }
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      }
+</span></span><span><span>    },
+</span></span><span><span>    {
+</span></span><span><span>      "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>      "body"</span><span>: {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"Hello, World!"</span><span>,
+</span></span><span><span>            "wrap"</span><span>: </span><span>true
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      },
+</span></span><span><span>      "footer"</span><span>: {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"button"</span><span>,
+</span></span><span><span>            "style"</span><span>: </span><span>"primary"</span><span>,
+</span></span><span><span>            "action"</span><span>: {
+</span></span><span><span>              "type"</span><span>: </span><span>"uri"</span><span>,
+</span></span><span><span>              "label"</span><span>: </span><span>"Go"</span><span>,
+</span></span><span><span>              "uri"</span><span>: </span><span>"https://example.com"
+</span></span><span><span>            }
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      }
+</span></span><span><span>    }
+</span></span><span><span>  ]
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#block">
+    ブロック
+   </a>
+  </h2>
+  <p>
+   ブロックは、バブルを構成する構造です。以下のタイプのブロックを利用できます。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      タイプ
+     </th>
+     <th>
+      説明
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      ヘッダー
+     </td>
+     <td>
+      メッセージの件名や見出しを表示するブロック
+     </td>
+    </tr>
+    <tr>
+     <td>
+      ヒーロー
+     </td>
+     <td>
+      画像などの主要なコンテンツを表示するブロック
+     </td>
+    </tr>
+    <tr>
+     <td>
+      ボディ
+     </td>
+     <td>
+      主要なメッセージコンテンツを表示するブロック
+     </td>
+    </tr>
+    <tr>
+     <td>
+      フッター
+     </td>
+     <td>
+      ボタンや補足情報を表示するブロック
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   ヘッダー、ヒーロー、ボディ、フッターは、この順番でバブルの上から表示されます。1つのバブルに対して、すべてのブロックを使用する必要はありません。どのブロックもバブル内で1つだけ指定できます。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#bubble">
+    バブル
+   </a>
+   」の
+   <code>
+    header
+   </code>
+   プロパティ、
+   <code>
+    hero
+   </code>
+   プロパティ、
+   <code>
+    body
+   </code>
+   プロパティ、
+   <code>
+    footer
+   </code>
+   プロパティを参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/blockStylesSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "styles"</span><span>: {
+</span></span><span><span>    "header"</span><span>: {
+</span></span><span><span>      "backgroundColor"</span><span>: </span><span>"#ffaaaa"
+</span></span><span><span>    },
+</span></span><span><span>    "body"</span><span>: {
+</span></span><span><span>      "backgroundColor"</span><span>: </span><span>"#aaffaa"
+</span></span><span><span>    },
+</span></span><span><span>    "footer"</span><span>: {
+</span></span><span><span>      "backgroundColor"</span><span>: </span><span>"#aaaaff"
+</span></span><span><span>    }
+</span></span><span><span>  },
+</span></span><span><span>  "header"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"header"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  },
+</span></span><span><span>  "hero"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"image"</span><span>,
+</span></span><span><span>    "url"</span><span>: </span><span>"https://example.com/flex/images/image.jpg"</span><span>,
+</span></span><span><span>    "size"</span><span>: </span><span>"full"</span><span>,
+</span></span><span><span>    "aspectRatio"</span><span>: </span><span>"2:1"
+</span></span><span><span>  },
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"body"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  },
+</span></span><span><span>  "footer"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"footer"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#component">
+    コンポーネント
+   </a>
+  </h2>
+  <p>
+   コンポーネントは、
+   <a href="#block">
+    ブロック
+   </a>
+   を構成する要素です。以下のコンポーネントを利用できます。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      コンポーネント
+     </th>
+     <th>
+      説明
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <a href="#box">
+       ボックス
+      </a>
+     </td>
+     <td>
+      水平または垂直のレイアウト方向を定義し、他のコンポーネントを含むことができるコンポーネント
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="#button">
+       ボタン
+      </a>
+     </td>
+     <td>
+      ボタンを描画するコンポーネント。ユーザーがタップすると、指定したアクションが実行されます。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="#image">
+       画像
+      </a>
+     </td>
+     <td>
+      画像を描画するコンポーネント
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="#video">
+       動画
+      </a>
+     </td>
+     <td>
+      動画を描画するコンポーネント
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="#icon">
+       アイコン
+      </a>
+     </td>
+     <td>
+      アイコンを描画するコンポーネント
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="#text">
+       テキスト
+      </a>
+     </td>
+     <td>
+      文字列を描画するコンポーネント。色、サイズ、および太さを指定できます。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="#span">
+       スパン
+      </a>
+     </td>
+     <td>
+      スタイルが異なる複数の文字列を描画するコンポーネント。色、サイズ、太さ、および装飾を指定できます。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="#separator">
+       セパレータ
+      </a>
+     </td>
+     <td>
+      分割線を描画するコンポーネント
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a href="#filler">
+       フィラー
+      </a>
+      （非推奨）
+     </td>
+     <td>
+      スペースを作るためのコンポーネント
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#box">
+    ボックス
+   </a>
+  </h3>
+  <p>
+   ボックスは、水平または垂直にコンポーネントをレイアウトするためのコンポーネントです。ボックスを含む、他のコンポーネントを含めることができます。レイアウトについて詳しくは、「
+   <a href="./flex-message-layout/">
+    Flex Messageのレイアウト
+   </a>
+   」を参照してください。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#box">
+    ボックス
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#button">
+    ボタン
+   </a>
+  </h3>
+  <p>
+   ボタンを描画するコンポーネントです。ユーザーが、ボタンをタップしたときに実行される、
+   <a href="./actions/">
+    アクション
+   </a>
+   を指定できます。以下のように、ボタンには3つのスタイルがあり、それぞれでボタンの色を変更できます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/buttonSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#button">
+    ボタン
+   </a>
+   」を参照してください。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "spacing"</span><span>: </span><span>"md"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"button"</span><span>,
+</span></span><span><span>        "style"</span><span>: </span><span>"primary"</span><span>,
+</span></span><span><span>        "action"</span><span>: {
+</span></span><span><span>          "type"</span><span>: </span><span>"uri"</span><span>,
+</span></span><span><span>          "label"</span><span>: </span><span>"Primary style button"</span><span>,
+</span></span><span><span>          "uri"</span><span>: </span><span>"https://example.com"
+</span></span><span><span>        }
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"button"</span><span>,
+</span></span><span><span>        "style"</span><span>: </span><span>"secondary"</span><span>,
+</span></span><span><span>        "action"</span><span>: {
+</span></span><span><span>          "type"</span><span>: </span><span>"uri"</span><span>,
+</span></span><span><span>          "label"</span><span>: </span><span>"Secondary style button"</span><span>,
+</span></span><span><span>          "uri"</span><span>: </span><span>"https://example.com"
+</span></span><span><span>        }
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"button"</span><span>,
+</span></span><span><span>        "style"</span><span>: </span><span>"link"</span><span>,
+</span></span><span><span>        "action"</span><span>: {
+</span></span><span><span>          "type"</span><span>: </span><span>"uri"</span><span>,
+</span></span><span><span>          "label"</span><span>: </span><span>"Link style button"</span><span>,
+</span></span><span><span>          "uri"</span><span>: </span><span>"https://example.com"
+</span></span><span><span>        }
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#image">
+    画像
+   </a>
+  </h3>
+  <p>
+   画像を描画するコンポーネントです。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/imageSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#f-image">
+    画像
+   </a>
+   」を参照してください。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"image"</span><span>,
+</span></span><span><span>        "url"</span><span>: </span><span>"https://example.com/flex/images/image.jpg"</span><span>,
+</span></span><span><span>        "size"</span><span>: </span><span>"md"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#video">
+    動画
+   </a>
+  </h3>
+  <p>
+   動画を描画するコンポーネントです。動画の使い方について詳しくは、「
+   <a href="./create-flex-message-including-video/">
+    動画を含むFlex Messageを作成する
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/video-sample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#f-video">
+    動画
+   </a>
+   」を参照してください。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "size"</span><span>: </span><span>"mega"</span><span>,
+</span></span><span><span>  "hero"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"video"</span><span>,
+</span></span><span><span>    "url"</span><span>: </span><span>"https://example.com/video.mp4"</span><span>,
+</span></span><span><span>    "previewUrl"</span><span>: </span><span>"https://example.com/video_preview.jpg"</span><span>,
+</span></span><span><span>    "altContent"</span><span>: {
+</span></span><span><span>      "type"</span><span>: </span><span>"image"</span><span>,
+</span></span><span><span>      "size"</span><span>: </span><span>"full"</span><span>,
+</span></span><span><span>      "aspectRatio"</span><span>: </span><span>"20:13"</span><span>,
+</span></span><span><span>      "aspectMode"</span><span>: </span><span>"cover"</span><span>,
+</span></span><span><span>      "url"</span><span>: </span><span>"https://example.com/image.jpg"
+</span></span><span><span>    },
+</span></span><span><span>    "aspectRatio"</span><span>: </span><span>"20:13"
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#icon">
+    アイコン
+   </a>
+  </h3>
+  <p>
+   隣接するテキストを装飾するために、アイコンを描画するコンポーネントです。このコンポーネントは、
+   <a href="./flex-message-layout/#baseline-box">
+    ベースラインボックス
+   </a>
+   内でのみ使用できます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/iconSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#icon">
+    アイコン
+   </a>
+   」を参照してください。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"baseline"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"icon"</span><span>,
+</span></span><span><span>            "url"</span><span>: </span><span>"https://example.com/flex/images/icon.png"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"md"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"The quick brown fox jumps over the lazy dog"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"md"
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"baseline"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"icon"</span><span>,
+</span></span><span><span>            "url"</span><span>: </span><span>"https://example.com/flex/images/icon.png"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"lg"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"The quick brown fox jumps over the lazy dog"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"lg"
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"baseline"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"icon"</span><span>,
+</span></span><span><span>            "url"</span><span>: </span><span>"https://example.com/flex/images/icon.png"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"xl"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"The quick brown fox jumps over the lazy dog"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"xl"
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"baseline"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"icon"</span><span>,
+</span></span><span><span>            "url"</span><span>: </span><span>"https://example.com/flex/images/icon.png"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"xxl"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"The quick brown fox jumps over the lazy dog"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"xxl"
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"baseline"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"icon"</span><span>,
+</span></span><span><span>            "url"</span><span>: </span><span>"https://example.com/flex/images/icon.png"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"3xl"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"The quick brown fox jumps over the lazy dog"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"3xl"
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#text">
+    テキスト
+   </a>
+  </h3>
+  <p>
+   文字列を描画するコンポーネントです。色、サイズ、および太さを指定できます。長いテキストを
+   <a href="#text-wrap">
+    折り返し
+   </a>
+   たり、折り返したテキストの行間を調整したりできます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/textSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#f-text">
+    テキスト
+   </a>
+   」を参照してください。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"Closing the distance"</span><span>,
+</span></span><span><span>        "size"</span><span>: </span><span>"md"</span><span>,
+</span></span><span><span>        "align"</span><span>: </span><span>"center"</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#ff0000"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"Closing the distance"</span><span>,
+</span></span><span><span>        "size"</span><span>: </span><span>"lg"</span><span>,
+</span></span><span><span>        "align"</span><span>: </span><span>"center"</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#00ff00"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"Closing the distance"</span><span>,
+</span></span><span><span>        "size"</span><span>: </span><span>"xl"</span><span>,
+</span></span><span><span>        "align"</span><span>: </span><span>"center"</span><span>,
+</span></span><span><span>        "weight"</span><span>: </span><span>"bold"</span><span>,
+</span></span><span><span>        "color"</span><span>: </span><span>"#0000ff"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h4>
+   <div>
+   </div>
+   <a href="#text-wrap">
+    テキストを折り返す
+   </a>
+  </h4>
+  <p>
+   デフォルトでは、テキストの幅を超える部分は省略記号に置き換えられます。以下は、長いテキストが省略される場合の例です。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/nowrapSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   テキストを折り返して表示することで、テキストの省略を避けることができます。テキストを折り返して表示するには、
+   <code>
+    wrap
+   </code>
+   プロパティに
+   <code>
+    true
+   </code>
+   を指定します。また、改行文字（
+   <code>
+    \n
+   </code>
+   ）を使って改行できます。以下は、テキストの折り返しと改行を使用したFlex Messageの例です。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/wrap-sample.png"/>
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     注意
+    </span>
+   </div>
+   <div>
+    <p>
+     テキストの最後に改行文字（
+     <code>
+      \n
+     </code>
+     ）を入力した場合の描画結果は、環境によって異なる可能性があります。
+    </p>
+   </div>
+  </div>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+   <code>
+    wrap
+   </code>
+   プロパティに
+   <code>
+    true
+   </code>
+   を設定しています。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</span><span>\n</span><span> tempor incididunt ut labore et dolore magna aliqua."</span><span>,
+</span></span><span><span>        "wrap"</span><span>: </span><span>true
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h5>
+   <div>
+   </div>
+   テキスト内の行間を広げる
+  </h5>
+  <p>
+   折り返したテキストの行間は、
+   <code>
+    lineSpacing
+   </code>
+   プロパティで指定できます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     行間を指定できる範囲
+    </span>
+   </div>
+   <div>
+    <p>
+     <code>
+      lineSpacing
+     </code>
+     プロパティは、テキスト内の行間にのみ適用されます。そのため、開始行の上部と最終行の下部には適用されません。
+    </p>
+   </div>
+  </div>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/line-spacing-sample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+   <code>
+    lineSpacing
+   </code>
+   プロパティに
+   <code>
+    20px
+   </code>
+   を設定しています。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</span><span>\n</span><span> tempor incididunt ut labore et dolore magna aliqua."</span><span>,
+</span></span><span><span>        "wrap"</span><span>: </span><span>true</span><span>,
+</span></span><span><span>        "lineSpacing"</span><span>: </span><span>"20px"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#span">
+    スパン
+   </a>
+  </h3>
+  <p>
+   スタイルが異なる複数の文字列を描画するコンポーネントです。色、サイズ、太さ、および装飾を指定できます。スパンは、
+   <a href="#text">
+    テキスト
+   </a>
+   の
+   <code>
+    contents
+   </code>
+   プロパティに設定します。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/spanSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#span">
+    スパン
+   </a>
+   」を参照してください。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "text"</span><span>: </span><span>"hello, world"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"span"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"Hello, world!"</span><span>,
+</span></span><span><span>            "decoration"</span><span>: </span><span>"line-through"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"span"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"</span><span>\n</span><span>Closing"</span><span>,
+</span></span><span><span>            "color"</span><span>: </span><span>"#ff0000"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"sm"</span><span>,
+</span></span><span><span>            "weight"</span><span>: </span><span>"bold"</span><span>,
+</span></span><span><span>            "decoration"</span><span>: </span><span>"none"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"span"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>" "
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"span"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"the"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"lg"</span><span>,
+</span></span><span><span>            "color"</span><span>: </span><span>"#00ff00"</span><span>,
+</span></span><span><span>            "decoration"</span><span>: </span><span>"underline"</span><span>,
+</span></span><span><span>            "weight"</span><span>: </span><span>"bold"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"span"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>" "
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"span"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"distance"</span><span>,
+</span></span><span><span>            "color"</span><span>: </span><span>"#0000ff"</span><span>,
+</span></span><span><span>            "weight"</span><span>: </span><span>"bold"</span><span>,
+</span></span><span><span>            "size"</span><span>: </span><span>"xxl"
+</span></span><span><span>          }
+</span></span><span><span>        ],
+</span></span><span><span>        "wrap"</span><span>: </span><span>true</span><span>,
+</span></span><span><span>        "align"</span><span>: </span><span>"center"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#separator">
+    セパレータ
+   </a>
+  </h3>
+  <p>
+   <a href="#box">
+    ボックス
+   </a>
+   内に分割線を描画するコンポーネントです。水平ボックスに含めた場合は垂直線、垂直ボックスに含めた場合は水平線が描画されます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/separatorSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#separator">
+    セパレータ
+   </a>
+   」を参照してください。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"vertical"</span><span>,
+</span></span><span><span>    "spacing"</span><span>: </span><span>"md"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "spacing"</span><span>: </span><span>"md"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"orange"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"separator"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"apple"
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"separator"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>        "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>        "spacing"</span><span>: </span><span>"md"</span><span>,
+</span></span><span><span>        "contents"</span><span>: [
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"grape"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"separator"
+</span></span><span><span>          },
+</span></span><span><span>          {
+</span></span><span><span>            "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>            "text"</span><span>: </span><span>"lemon"
+</span></span><span><span>          }
+</span></span><span><span>        ]
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#filler">
+    フィラー
+   </a>
+  </h3>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     フィラーは非推奨のコンポーネントです
+    </span>
+   </div>
+   <div>
+    <p>
+     スペースを作るには、フィラーの代わりに各コンポーネントのプロパティを使用してください。詳しくは、「
+     <a href="./flex-message-layout/#component-position">
+      コンポーネントの位置
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <p>
+   スペースを作るためのコンポーネントです。ボックス内のコンポーネントの間、前、または後にスペースを入れることができます。以下の例では、画像の間にフィラーを挿入しています。
+  </p>
+  <p>
+   <img src="/media/messaging-api/flex-message-elements/fillerSample.png"/>
+  </p>
+  <p>
+   上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#filler">
+    フィラー
+   </a>
+   」を参照してください。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>,
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>,
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>,
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"image"</span><span>,
+</span></span><span><span>        "url"</span><span>: </span><span>"https://example.com/flex/images/image.jpg"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"filler"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"image"</span><span>,
+</span></span><span><span>        "url"</span><span>: </span><span>"https://example.com/flex/images/image.jpg"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-flex-message-elements-pages">
+    関連ページ
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="./using-flex-messages/">
+     Flex Messageを送信する
+    </a>
+   </li>
+   <li>
+    <a href="./flex-message-layout/">
+     Flex Messageのレイアウト
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#flex-message">
+     Flex Message
+    </a>
+    （Messaging APIリファレンス）
+   </li>
+  </ul>
+ </div>
+</main>

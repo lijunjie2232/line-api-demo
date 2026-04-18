@@ -1,0 +1,523 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   クーポンを作成してユーザーに送る
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./send-coupons-to-users/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/send-coupons-to-users/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   Messaging APIでクーポンを作成して、LINE公式アカウントからユーザーにメッセージとして送信できます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/coupon/several-coupons.jpg"/>
+  </p>
+  <ul>
+   <li>
+    <a href="#send-coupons-using-messaging-api">
+     Messaging APIでクーポンを送る手順
+    </a>
+   </li>
+   <li>
+    <a href="#create-coupon">
+     クーポンを作成する
+    </a>
+    <ul>
+     <li>
+      <a href="#edit-coupon">
+       作成したクーポンは修正できません
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#send-coupon">
+     クーポンを送信する
+    </a>
+   </li>
+   <li>
+    <a href="#discontinue-coupon">
+     クーポンを終了する
+    </a>
+   </li>
+   <li>
+    <a href="#check-coupon-list">
+     作成済みのクーポン一覧を確認する
+    </a>
+   </li>
+   <li>
+    <a href="#get-coupon-details">
+     クーポンの詳細を確認する
+    </a>
+   </li>
+   <li>
+    <a href="#check-coupon-usage">
+     送信したクーポンの表示回数や使用回数を確認する
+    </a>
+   </li>
+   <li>
+    <a href="#coupon-image-size">
+     クーポンの画像が表示されるサイズ
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#send-coupons-using-messaging-api">
+    Messaging APIでクーポンを送る手順
+   </a>
+  </h2>
+  <p>
+   Messaging APIでは、次の2つの手順でユーザーにクーポンが送れます。
+  </p>
+  <ol>
+   <li>
+    <a href="#create-coupon">
+     クーポンを作成する
+    </a>
+   </li>
+   <li>
+    <a href="#send-coupon">
+     クーポンを送信する
+    </a>
+   </li>
+  </ol>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     クーポンはLINE Official Account Managerでも送信できます
+    </span>
+   </div>
+   <div>
+    <p>
+     クーポンはMessaging APIの他に、
+     <a href="https://manager.line.biz/">
+      LINE Official Account Manager
+     </a>
+     でも作成して送信できます。詳しくは、『LINEヤフー for Business』の「
+     <a href="https://www.lycbiz.com/jp/manual/OfficialAccountManager/coupons-create/">
+      クーポン
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#create-coupon">
+    クーポンを作成する
+   </a>
+  </h2>
+  <p>
+   まずは「
+   <a href="/ja/reference/messaging-api/#create-coupon">
+    クーポンを作成する
+   </a>
+   」エンドポイントでクーポンを作成します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/coupon</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-d </span><span>\
+</span></span><span><span>'
+</span></span><span><span>{
+</span></span><span><span>  "title": "友だち限定クーポン",
+</span></span><span><span>  "description": "- クーポンを使用するには、この画面をスタッフに提示してください。\n- 使用済みのクーポンはご利用になれません。また、お客さまの操作で誤って「使用済み」にしてしまった場合も利用できなくなります。\n- 本クーポンは有効期間に関わらず、予告なく変更されたり、終了したりする場合があります。",
+</span></span><span><span>  "reward": {
+</span></span><span><span>    "type": "discount",
+</span></span><span><span>    "priceInfo": {
+</span></span><span><span>      "type": "fixed",
+</span></span><span><span>      "fixedAmount": 100
+</span></span><span><span>    }
+</span></span><span><span>  },
+</span></span><span><span>  "acquisitionCondition": {
+</span></span><span><span>    "type": "normal"
+</span></span><span><span>  },
+</span></span><span><span>  "startTimestamp": 0,
+</span></span><span><span>  "endTimestamp": 1924959599,
+</span></span><span><span>  "imageUrl": "https://developers.line.biz/media/messaging-api/coupon/sample-coupon-image-100-yen-off.jpg",
+</span></span><span><span>  "timezone": "ASIA_TOKYO",
+</span></span><span><span>  "visibility": "UNLISTED",
+</span></span><span><span>  "maxUseCountPerTicket": 1
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <p>
+   クーポンを作成すると、レスポンスでクーポンIDが返されます。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "couponId"</span><span>: </span><span>"01JYNW8JMQVFBNWF1APF8Z3FS7"
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   クーポンを作成する際は、リクエストボディの
+   <code>
+    acquisitionCondition.type
+   </code>
+   を
+   <code>
+    lottery
+   </code>
+   にして「抽選形式で当選したユーザーのみ獲得できる」という獲得条件を設けたり、
+   <a href="/ja/reference/messaging-api/#create-coupon-reward-object">
+    リワードオブジェクト
+   </a>
+   （
+   <code>
+    reward
+   </code>
+   ）で「50%割引」や「100円キャッシュバック」といった特典を細かく設定したりできます。
+  </p>
+  <p>
+   詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#create-coupon">
+    クーポンを作成する
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   クーポンを作成したら、続いて
+   <a href="#send-coupon">
+    クーポンを送信する
+   </a>
+   手順に進みます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#edit-coupon">
+    作成したクーポンは修正できません
+   </a>
+  </h3>
+  <p>
+   作成したクーポンは、後から内容を修正できません。クーポンの内容を変更したい場合は、
+   <a href="#discontinue-coupon">
+    クーポンを終了
+   </a>
+   させて、新たに作成しなおしてください。
+  </p>
+  <p>
+   なお、LINE Official Account Managerを使ってクーポンを作成する場合は、「下書き」の状態で保存できますが、Messaging APIでクーポンを作成するときは「下書き」状態にはできません。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#send-coupon">
+    クーポンを送信する
+   </a>
+  </h2>
+  <p>
+   クーポンを作成してクーポンIDを取得したら、そのクーポンIDを
+   <a href="./message-types/#coupon-messages">
+    クーポンメッセージ
+   </a>
+   で指定して送信します。クーポンIDが分からなくなってしまった場合は、
+   <a href="#check-coupon-list">
+    クーポンの一覧を取得
+   </a>
+   して確認できます。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/message/broadcast</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-d </span><span>'
+</span></span><span><span>{
+</span></span><span><span>  "messages": [
+</span></span><span><span>    {
+</span></span><span><span>      "type": "coupon",
+</span></span><span><span>      "couponId": "01JYNW8JMQVFBNWF1APF8Z3FS7"
+</span></span><span><span>    }
+</span></span><span><span>  ]
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <p>
+   クーポンメッセージは、以下のすべてのメッセージとして送信できます。また、Messaging APIで作成したクーポンをLINE Official Account Managerでメッセージとして送信することもできます。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#send-push-message">
+     プッシュメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#send-multicast-message">
+     マルチキャストメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#send-broadcast-message">
+     ブロードキャストメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#send-narrowcast-message">
+     ナローキャストメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#send-reply-message">
+     応答メッセージ
+    </a>
+   </li>
+  </ul>
+  <p>
+   ユーザーは届いたクーポンを開いて獲得することで、有効期間内にクーポンを使用できます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/coupon/coupon-message-ja.jpg"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#discontinue-coupon">
+    クーポンを終了する
+   </a>
+  </h2>
+  <p>
+   クーポンは、作成時に指定した有効期間を過ぎると自動的に終了しますが、有効期間中に「
+   <a href="/ja/reference/messaging-api/#discontinue-coupon">
+    クーポンを終了する
+   </a>
+   」エンドポイントを用いて手動で終了させることもできます。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> PUT</span><span> https://api.line.me/v2/bot/coupon/01JYNW8JMQVFBNWF1APF8Z3FS7/close</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'
+</span></span></code></pre>
+  </div>
+  <p>
+   クーポンを終了させると、すでにクーポンをメッセージとして受信していたユーザーがクーポンを獲得できなくなると共に、そのクーポンを獲得済みのユーザーも利用できなくなります。
+  </p>
+  <p>
+   終了したクーポンを再び有効にすることはできません。
+  </p>
+  <p>
+   詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#discontinue-coupon">
+    クーポンを終了する
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#check-coupon-list">
+    作成済みのクーポン一覧を確認する
+   </a>
+  </h2>
+  <p>
+   作成したクーポンのクーポンIDとクーポン名は、「
+   <a href="/ja/reference/messaging-api/#get-coupons-list">
+    クーポンの一覧を取得する
+   </a>
+   」エンドポイントで確認できます。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> GET</span><span> https://api.line.me/v2/bot/coupon</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'
+</span></span></code></pre>
+  </div>
+  <p>
+   このクーポンの一覧には、Messaging APIで作成したクーポンだけでなく、
+   <a href="https://manager.line.biz/">
+    LINE Official Account Manager
+   </a>
+   で作成したクーポンも含まれており、同じ一覧がLINE Official Account Managerでも確認できます。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "items"</span><span>: [
+</span></span><span><span>    {
+</span></span><span><span>      "couponId"</span><span>: </span><span>"01JZMWQ9HMDW9ENJP4C167CXP8"</span><span>,
+</span></span><span><span>      "title"</span><span>: </span><span>"年末年始クーポン"
+</span></span><span><span>    },
+</span></span><span><span>    {
+</span></span><span><span>      "couponId"</span><span>: </span><span>"01JZA9NPPFDJ3RFG8NA9DJ0NQT"</span><span>,
+</span></span><span><span>      "title"</span><span>: </span><span>"友だち限定クーポン"
+</span></span><span><span>    }
+</span></span><span><span>  ]
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   クエリパラメータの
+   <code>
+    status
+   </code>
+   を用いて、有効なクーポンのみ、あるいは終了したクーポンのみを取得することもできます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#get-coupons-list">
+    クーポンの一覧を取得する
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#get-coupon-details">
+    クーポンの詳細を確認する
+   </a>
+  </h2>
+  <p>
+   「
+   <a href="/ja/reference/messaging-api/#get-coupon">
+    クーポンの詳細を取得する
+   </a>
+   」エンドポイントを使うと、クーポンIDを指定して特定のクーポンの詳細を確認できます。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> GET</span><span> https://api.line.me/v2/bot/coupon/01JYNW8JMQVFBNWF1APF8Z3FS7</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'
+</span></span></code></pre>
+  </div>
+  <p>
+   Messaging APIで作成したクーポンだけでなく、LINE Official Account Managerで作成したクーポンの詳細も取得できます。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "couponId"</span><span>: </span><span>"01K0B456W5Y6SBD3YH74YM6QE6"</span><span>,
+</span></span><span><span>  "title"</span><span>: </span><span>"友だち限定クーポン"</span><span>,
+</span></span><span><span>  "description"</span><span>: </span><span>"- クーポンを使用するには、この画面をスタッフに提示してください。</span><span>\n</span><span>- 使用済みのクーポンはご利用になれません。また、お客さまの操作で誤って「使用済み」にしてしまった場合も利用できなくなります。</span><span>\n</span><span>- 本クーポンは有効期間に関わらず、予告なく変更されたり、終了したりする場合があります。"</span><span>,
+</span></span><span><span>  "acquisitionCondition"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"lottery"</span><span>,
+</span></span><span><span>    "lotteryProbability"</span><span>: </span><span>50</span><span>,
+</span></span><span><span>    "maxAcquireCount"</span><span>: </span><span>-1
+</span></span><span><span>  },
+</span></span><span><span>  "startTimestamp"</span><span>: </span><span>1752678000</span><span>,
+</span></span><span><span>  "endTimestamp"</span><span>: </span><span>1924959540</span><span>,
+</span></span><span><span>  "timezone"</span><span>: </span><span>"ASIA_TOKYO"</span><span>,
+</span></span><span><span>  "couponCode"</span><span>: </span><span>"COUPONCODE123456"</span><span>,
+</span></span><span><span>  "maxUseCountPerTicket"</span><span>: </span><span>1</span><span>,
+</span></span><span><span>  "maxTicketPerUser"</span><span>: </span><span>1</span><span>,
+</span></span><span><span>  "visibility"</span><span>: </span><span>"UNLISTED"</span><span>,
+</span></span><span><span>  "reward"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"discount"</span><span>,
+</span></span><span><span>    "priceInfo"</span><span>: {
+</span></span><span><span>      "type"</span><span>: </span><span>"fixed"</span><span>,
+</span></span><span><span>      "fixedAmount"</span><span>: </span><span>100</span><span>,
+</span></span><span><span>      "currency"</span><span>: </span><span>"JPY"
+</span></span><span><span>    }
+</span></span><span><span>  },
+</span></span><span><span>  "imageUrl"</span><span>: </span><span>"https://oa-coupon.line-scdn-dev.net/0h9gbUqRVkZkhfLHhXMLYZHwdyaCosWGBAPFR7cD5tZidsTnofYDVfezt-ZAR3YER9OzRfK35XZwR6TH5uYDF2TnJ-cBNyfURpPRl2RSFSXQc0TiJhYCFiXiZ8XXk0"</span><span>,
+</span></span><span><span>  "usageCondition"</span><span>: </span><span>"1,000円以上のお支払いで利用可能"</span><span>,
+</span></span><span><span>  "status"</span><span>: </span><span>"RUNNING"</span><span>,
+</span></span><span><span>  "createdTimestamp"</span><span>: </span><span>1752720120
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#get-coupon">
+    クーポンの詳細を取得する
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#check-coupon-usage">
+    送信したクーポンの表示回数や使用回数を確認する
+   </a>
+  </h2>
+  <p>
+   メッセージとして送信したクーポンが表示された回数や、使用された回数などは
+   <a href="https://manager.line.biz/">
+    LINE Official Account Manager
+   </a>
+   で確認できます。詳しくは、『LINEヤフー for Business』の「
+   <a href="https://www.lycbiz.com/jp/manual/OfficialAccountManager/insight_coupon/">
+    分析 - クーポン
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#coupon-image-size">
+    クーポンの画像が表示されるサイズ
+   </a>
+  </h2>
+  <p>
+   クーポンの画像は、クーポンの作成時に
+   <code>
+    imageUrl
+   </code>
+   で画像のURLを指定することで表示できます。正方形の画像を指定した場合、トーク画面ではアスペクト比が1.51:1（幅：高さ）になるため、画像の上下が一部切れた状態で表示されます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/coupon/how-images-look.jpg"/>
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     クーポンの画像はどうやって作ればいい？
+    </span>
+   </div>
+   <div>
+    <p>
+     クーポンの画像は『LINEヤフーマーケティングキャンパス』の「
+     <a href="https://lymcampus.jp/line-official-account/courses/template/lessons/6-1-1">
+      無料でもらえるテンプレート画像まとめ
+     </a>
+     」や、
+     <a href="https://creativelab.line.biz/">
+      LINE Creative Lab
+     </a>
+     のテンプレートを利用することもできます。
+    </p>
+    <p>
+     <img src="/media/messaging-api/coupon/sample-coupon-image-100-yen-off.jpg"/>
+    </p>
+   </div>
+  </div>
+ </div>
+</main>

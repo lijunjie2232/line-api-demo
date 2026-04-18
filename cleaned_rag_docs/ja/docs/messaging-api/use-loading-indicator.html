@@ -1,0 +1,85 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   ローディングのアニメーションを表示する
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./use-loading-indicator/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/use-loading-indicator/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   LINE公式アカウントがユーザーからのメッセージを受信したあと、メッセージの準備や予約の処理などで返答に少し時間がかかることがあります。そのような場合に、ユーザーにそのまま待機しておいて欲しいことをローディングのアニメーションで視覚的に伝えることができます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/loading-indicator/loading-indicator.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#display-a-loading-animation">
+    ローディングのアニメーションを表示する
+   </a>
+  </h2>
+  <p>
+   <a href="/ja/reference/messaging-api/#display-a-loading-indicator">
+    ローディングのアニメーションを表示する
+   </a>
+   エンドポイントを使用すると、トークの画面にローディングのアニメーションを表示できます。アニメーションは指定した秒数（5秒〜60秒）が経過するか、表示中にLINE公式アカウントからメッセージが届くと自動的に消えます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/loading-indicator/loading-animation.gif"/>
+  </p>
+  <p>
+   表示先としてユーザーIDを指定することで、ユーザーとLINE公式アカウントの1対1のトークにアニメーションを表示できます。グループトークまたは複数人トークは指定できません。
+  </p>
+  <p>
+   ローディングのアニメーションは、ユーザーが対象のLINE公式アカウントとのトーク画面を表示しているときのみ表示されます。ユーザーがトーク画面を表示していないときに、ローディングのアニメーションを表示するリクエストを行っても、通知は行われません。また、その後にユーザーがトーク画面を開いてもアニメーションは表示されません。
+  </p>
+  <p>
+   ローディングのアニメーションが表示されている間に再び表示のリクエストを行うと、アニメーションはそのまま表示され続け、表示が消えるまでの時間は2回目のリクエストで指定した秒数に上書きされます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#example-request">
+    リクエストの例
+   </a>
+  </h3>
+  <p>
+   以下は、ローディングのアニメーションを5秒間表示するリクエストの例です。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/chat/loading/start</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-d </span><span>'{
+</span></span><span><span>    "chatId": "U4af4980629...",
+</span></span><span><span>    "loadingSeconds": 5
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <p>
+   詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#display-a-loading-indicator">
+    ローディングのアニメーションを表示する
+   </a>
+   」を参照してください。
+  </p>
+ </div>
+</main>

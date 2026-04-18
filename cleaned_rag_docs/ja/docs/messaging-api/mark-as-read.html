@@ -1,0 +1,174 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   メッセージに既読をつける
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./mark-as-read/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/mark-as-read/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   LINEのトークにおいて、ユーザーが送ったメッセージを相手が閲覧した場合、メッセージに既読がつきます。LINE公式アカウントでチャット機能を利用する場合、ユーザーからのメッセージには自動で既読がつきませんが、Messaging APIを利用することで、チャット機能を利用しつつ任意のメッセージに既読をつけることができます。
+  </p>
+  <p>
+   このページでは、ユーザーから送られたメッセージにMessaging APIを通して既読をつける方法について説明します。
+  </p>
+  <ul>
+   <li>
+    <a href="#conditions">
+     Messaging APIでメッセージに既読をつけるための条件
+    </a>
+   </li>
+   <li>
+    <a href="#how-to-mark-messages-as-read">
+     Messaging APIでメッセージに既読をつける方法
+    </a>
+    <ul>
+     <li>
+      <a href="#get-token">
+       1. メッセージの既読トークンを取得する
+      </a>
+     </li>
+     <li>
+      <a href="#use-endpoint">
+       2. 「メッセージに既読をつける」エンドポイントを使用する
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#conditions">
+    Messaging APIでメッセージに既読をつけるための条件
+   </a>
+  </h2>
+  <p>
+   <a href="https://manager.line.biz/">
+    LINE Official Account Manager
+   </a>
+   の［
+   <strong>
+    応答設定
+   </strong>
+   ］において、［
+   <strong>
+    チャット
+   </strong>
+   ］がオフになっている場合、ユーザーから送られたメッセージには自動で既読がつきます。Messaging APIを通して既読をつけたい場合は、［
+   <strong>
+    チャット
+   </strong>
+   ］がオンである必要があります。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#how-to-mark-messages-as-read">
+    Messaging APIでメッセージに既読をつける方法
+   </a>
+  </h2>
+  <p>
+   ユーザーから送られたメッセージに既読をつけるには、以下の手順に従ってください。
+  </p>
+  <ol>
+   <li>
+    <a href="#get-token">
+     メッセージの既読トークンを取得する
+    </a>
+   </li>
+   <li>
+    <a href="#use-endpoint">
+     「メッセージに既読をつける」エンドポイントを使用する
+    </a>
+   </li>
+  </ol>
+  <p>
+   それぞれの手順について説明します。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-token">
+    1. メッセージの既読トークンを取得する
+   </a>
+  </h3>
+  <p>
+   ユーザーがLINE公式アカウントに対してメッセージを送ると、LINEプラットフォームからボットサーバーに対してWebhookの
+   <a href="/ja/reference/messaging-api/#message-event">
+    メッセージイベント
+   </a>
+   が送信されます。このイベントオブジェクトに、メッセージに既読をつけるための
+   <code>
+    markAsReadToken
+   </code>
+   プロパティ（既読トークン）が含まれています。
+  </p>
+  <p>
+   Webhookのメッセージイベントオブジェクトの例を以下に示します。なお、既読トークンに有効期限はありません。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "destination"</span><span>: </span><span>"xxxxxxxxxx"</span><span>,
+</span></span><span><span>  "events"</span><span>: [
+</span></span><span><span>    {
+</span></span><span><span>      "type"</span><span>: </span><span>"message"</span><span>,
+</span></span><span><span>      "webhookEventId"</span><span>: </span><span>"01FZ74A0TDDPYRVKNK77XKC3ZR"</span><span>,
+</span></span><span><span>      "message"</span><span>: {
+</span></span><span><span>        "id"</span><span>: </span><span>"444573844083572737"</span><span>,
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>,
+</span></span><span><span>        "quoteToken"</span><span>: </span><span>"q3Plxr4AgKd..."</span><span>,
+</span></span><span><span>        "markAsReadToken"</span><span>: </span><span>"30yhdy232..."</span><span>, </span><span>// 既読トークン
+</span></span><span><span>        "text"</span><span>: </span><span>"Hello, world!"
+</span></span><span><span>      },
+</span></span><span><span>      // 省略
+</span></span><span><span>    }
+</span></span><span><span>  ]
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#use-endpoint">
+    2. 「メッセージに既読をつける」エンドポイントを使用する
+   </a>
+  </h3>
+  <p>
+   メッセージに既読をつけるには、手順1で取得した既読トークンを用いて、「
+   <a href="/ja/reference/messaging-api/#mark-as-read">
+    メッセージに既読をつける
+   </a>
+   」エンドポイントを使用します。以下のようなリクエストを実行することで、指定したメッセージと、それ以前に送られたすべてのメッセージに既読をつけることができます。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/chat/markAsRead</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-d </span><span>'{
+</span></span><span><span>  "markAsReadToken": "{mark as read token}"
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+ </div>
+</main>

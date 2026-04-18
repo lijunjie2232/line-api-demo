@@ -1,0 +1,296 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   LINEを活用したサービス開発に Infrastructure as “Low” Code を導入！ CNAPによる開発効率化事例
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./technicalcase/softbank/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/technicalcase/softbank/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <div>
+   <div>
+    <div>
+     <i>
+     </i>
+     <span>
+      このページについて
+     </span>
+    </div>
+    <div>
+     <p>
+      このページは、LINE API Use Caseサイト（2026年3月31日に閉鎖）に掲載していた記事を、LINE Developersサイトへ移管したものです。LINEプラットフォームを導入した企業の事例を紹介しています。なお、記事の内容は掲載時点のものです。
+     </p>
+    </div>
+   </div>
+  </div>
+  <p>
+   <img src="/media/messaging-api/technicalcase/softbank/ja/softbank-logo.webp"/>
+  </p>
+  <p>
+   <strong>
+    ソフトバンク株式会社
+   </strong>
+  </p>
+  <p>
+   ソフトバンク株式会社は、通信事業をはじめ、クラウド・セキュリティ・AI・ロボティクスなど幅広い事業を展開しています。情報革命で人々の幸せに貢献し、「世界に最も必要とされる会社」になることを目指しており、これまで築き上げた事業基盤と、デジタルテクノロジーの力で、誰もが便利で、快適・安全に過ごせる理想の社会を実現していきます。
+  </p>
+  <hr/>
+  <ul>
+   <li>
+    <a href="#service-provider">
+     アプリの開発期間を短縮するCNAPとは？
+    </a>
+    <ul>
+     <li>
+      <a href="#service-image">
+       スクリーンショット
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#integration-with-line">
+     LINEとの連携
+    </a>
+    <ul>
+     <li>
+      <a href="#cnap-poc">
+       CNAP PoC事例：Messaging APIを活用したお問い合わせ管理システムの開発
+      </a>
+     </li>
+     <li>
+      <a href="#release-impact">
+       CNAPのリリース後、御社にとってどのような効果があったか？
+      </a>
+     </li>
+     <li>
+      <a href="#data-privacy">
+       LINEのMessaging APIを活用したシステムデータの利活用と個人情報保護の取り組み
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#system-overview">
+     システムの解説
+    </a>
+    <ul>
+     <li>
+      <a href="#cnap-azure-deploy">
+       CNAPによるAzure環境へのデプロイ自動化
+      </a>
+     </li>
+     <li>
+      <a href="#aks-opt">
+       Azure Kubernetes Serviceを利用したパフォーマンスおよびコストの最適化
+      </a>
+     </li>
+     <li>
+      <a href="#cnap-architecture">
+       AKSをはじめとするCNAPの構成要素
+      </a>
+     </li>
+     <li>
+      <a href="#future-goals">
+       今後どうしていきたいか？
+      </a>
+     </li>
+     <li>
+      <a href="#message-to-service-developers">
+       これからサービスを開発される方に一言
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#related-links">
+     ユーザー導入事例関連リンク
+    </a>
+   </li>
+  </ul>
+  <hr/>
+  <h2>
+   <div>
+   </div>
+   <a href="#service-provider">
+    アプリの開発期間を短縮するCNAPとは？
+   </a>
+  </h2>
+  <p>
+   従来のアプリケーション開発においては、次のような課題がありました。
+  </p>
+  <ul>
+   <li>
+    開発とインフラ運用部門が分かれており、リリースの度に変更作業の依頼が必要で、リリースに時間を要する
+   </li>
+   <li>
+    開発・実行環境、設計、ポリシーなどが統一されておらず、ガバナンスが確保されていない
+   </li>
+   <li>
+    作業が人依存で標準化されておらず、作業ミスのリスクがある
+   </li>
+  </ul>
+  <p>
+   これらの課題は、DevOpsの考え方に従い、構築・運用の自動化、構成の標準化などによって解消できます。しかし、これらを満たす環境を自前で準備するには、学習コストが高い、技術蓄積に時間がかかる、頻繁なバージョンアップに追従し維持管理が必要であることから、非常に困難です。クラウドネイティブ・アプリケーションプラットフォーム（以下、CNAP）は、ソフトバンクが実践するDevOpsノウハウを凝縮した標準化・自動化環境をプラットフォーム提供するサービスです。あらかじめ設計を標準化、構築プロセスを自動化したLow Code構成パッケージをご提供し、当社がパッケージを維持管理することで、従来の課題から解放され、お客さまは本来注力すべき開発業務に集中できます。今回は、LINEのMessaging APIを活用したお問い合わせ管理システムの開発でのCNAP活用事例をご紹介します。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#service-image">
+    スクリーンショット
+   </a>
+  </h3>
+  <p>
+   <img src="/media/messaging-api/technicalcase/softbank/ja/softbank-overview_1.webp"/>
+  </p>
+  <p>
+   <img src="/media/messaging-api/technicalcase/softbank/ja/softbank-overview_2.webp"/>
+  </p>
+  <p>
+   <img src="/media/messaging-api/technicalcase/softbank/ja/softbank-overview_3.webp"/>
+  </p>
+  <p>
+   <img src="/media/messaging-api/technicalcase/softbank/ja/softbank-overview_4.webp"/>
+  </p>
+  <hr/>
+  <h2>
+   <div>
+   </div>
+   <a href="#integration-with-line">
+    LINEとの連携
+   </a>
+  </h2>
+  <h3>
+   <div>
+   </div>
+   <a href="#cnap-poc">
+    CNAP PoC事例：Messaging APIを活用したお問い合わせ管理システムの開発
+   </a>
+  </h3>
+  <p>
+   CNAPのPoCを実施するにあたり、お客さまにとってわかりやすい事例を検討しました。その中で、特にお客さまからのリクエストの多い、LINEを活用したお問い合わせ管理システムを開発することとしました。LINEは月間アクティブユーザーが9,400万人（※LINE社調べ 2022年12月末時点）と、国内のコミュニケーションプラットフォームとして確固たる地位を築いております。法人のお客さまにおいてもエンドユーザーとの接点としてLINEを活用することで、より多くのエンドユーザーへのリーチと顧客満足度の向上が期待できます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#release-impact">
+    CNAPのリリース後、御社にとってどのような効果があったか？
+   </a>
+  </h3>
+  <p>
+   CNAPは2022年6月にサービス提供を開始いたしました。
+  </p>
+  <p>
+   既に多くのお客さまにご利用・ご検討いただいており、たくさんのポジティブなコメントをいただいております。今回ご紹介するLINEのMessaging APIを活用したお問い合わせ管理システムの開発においても、CNAPを採用することで、複雑なインフラ基盤を抽象化された構成ファイルを用いて定義できるようになり、インフラ構築期間を大幅に短縮することができました。また、アプリケーションの開発者自身がセルフサービスでリリース・監視・運用できる構成になっていることから、リリースの高速化にも貢献しています。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#data-privacy">
+    LINEのMessaging APIを活用したシステムデータの利活用と個人情報保護の取り組み
+   </a>
+  </h3>
+  <p>
+   LINEのMessaging APIによって取得したユーザー情報やメッセージなどの各種データをデータベースに保存しています。ユーザー情報は個人情報に該当することから、今回開発するシステムのデータベースに保持するのはユーザーIDのみとし、追加の情報はユーザーの許諾を得た上で都度Messaging API経由で取得するようにしています。この仕組みは扱う個人情報を最小限にするだけでなく、ユーザー情報の変更についての考慮も最小限にできます。メッセージ情報に関しては、振り返りや分析のために保持しますが、一定期間で削除可能な設計により、コスト増大を回避することができるようになっています。システムで扱うシークレット情報については、CNAPによって自動的に構成されるシークレット・マネージャーにて管理されています。
+  </p>
+  <hr/>
+  <h2>
+   <div>
+   </div>
+   <a href="#system-overview">
+    システムの解説
+   </a>
+  </h2>
+  <p>
+   <img src="/media/messaging-api/technicalcase/softbank/ja/softbank-system-diagram.webp"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#cnap-azure-deploy">
+    CNAPによるAzure環境へのデプロイ自動化
+   </a>
+  </h3>
+  <p>
+   フロントエンドからバックエンドまで、インフラはすべてAzure上に構築しています。当社ではMicrosoft Azure / Google Cloud / Amazon Web Services（AWS）の各パブリッククラウドに対応したMSPサービスをご提供しています。同サービスは内製開発しており、その経験から各パブリッククラウドに関する幅広いスキルを有しております。中でもAzureは、2019年10月からいち早くMSPサービスの提供を開始しており、最も得意とするパブリッククラウドです。そのため、今回の事例ではAzureを採用しました。CNAPでは、システムの構成情報を抽象化して記述したYAMLファイルをGitリポジトリにPushするだけで、Kubernetes領域だけでなく周辺の関連リソースまで一括でデプロイ・管理することができます。Google CloudやAWSもサポートしております。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#aks-opt">
+    Azure Kubernetes Serviceを利用したパフォーマンスおよびコストの最適化
+   </a>
+  </h3>
+  <p>
+   アプリケーションはKubernetesクラスター上で動作させていることから、Azure Kubernetes Serviceのコストが最も多くを占めています。一方で、クラスターを構成するノード上には複数のPodを配置できることから、ノードの処理量が許す限り、複数のサービスを同居させることも可能です。またKubernetesを使用することで負荷に応じて動的にスケーリングすることも可能です。このため、各サービスの負荷に応じてアプリケーションのパフォーマンスを最適化しつつ、コストを最小限に抑えることができます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#cnap-architecture">
+    AKSをはじめとするCNAPの構成要素
+   </a>
+  </h3>
+  <p>
+   CNAPはAKSをはじめとするマネージドサービスをコアに、複数のOSS群を高度に統合して構成された、インフラ運用の自動化を強力にサポートするプラットフォームです。アプリケーションのパッケージング基盤としてHelmを採用し、GitOpsを実現するCD（Continuous Delivery）基盤としてFlux CDを採用しています。また、アプリケーションのメトリクスやログ、エラーの監視のためには、PrometheusとGrafanaを採用しています。CNAPでは、当社のアプリケーション開発や運用において蓄積されたノウハウに基づいて、運用実績のあるOSS群を推奨の設定値にてご提供することで、お客さまご自身でセルフサービスでの管理・運用・モニタリングが可能な構成になっております。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#future-goals">
+    今後どうしていきたいか？
+   </a>
+  </h3>
+  <p>
+   CNAPではアプリケーションのインフラレイヤーを抽象化、さらにマネージドな基盤をご提供することで、お客さまがアプリケーションの開発に注力できる環境をご提供しています。CNAPをご活用いただくことで、LINEのAPIを使ったアプリケーション開発をはじめ、多くのアプリケーション開発をご支援できるものと考えており、今後もサービスを拡張し、お客さまに寄り添ったサービスをご提供できるよう、努めてまいります。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#message-to-service-developers">
+    これからサービスを開発される方に一言
+   </a>
+  </h3>
+  <p>
+   先にも述べましたが、LINEは圧倒的なアクティブユーザー数を誇るため、LINEのプラットフォーム上でサービスを展開することで、エンドユーザーへのリーチの可能性が広がります。LINEのプラットフォームには非常に多くのAPIが用意されており、それらの組み合わせによっては、アイデア次第でさまざまなアプリケーションを開発することができます。アプリケーション開発の際には、ぜひCNAPのことを思い出していただき、導入をご検討いただけますと幸いです。
+  </p>
+  <hr/>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-links">
+    ユーザー導入事例関連リンク
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="https://www.softbank.jp/biz/services/platform/msp-service/cnap/">
+     クラウドネイティブ・アプリケーションプラットフォーム（CNAP）
+    </a>
+   </li>
+   <li>
+    <a href="https://www.softbank.jp/biz/services/platform/msp-service/">
+     MSPサービス
+    </a>
+   </li>
+   <li>
+    <a href="https://www.softbank.jp/business/">
+     ソフトバンク株式会社
+    </a>
+   </li>
+  </ul>
+ </div>
+</main>

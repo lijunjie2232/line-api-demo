@@ -1,0 +1,474 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   Flex Messageを送信する
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./using-flex-messages/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/using-flex-messages/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   Flex Messageは、通常のLINEメッセージに比べ、より豊かでインタラクティブなレイアウトが可能なメッセージです。通常のLINEメッセージでは、テキスト、画像、動画など1種類のソースしか配信されません。しかし、Flex Messageでは、
+   <a href="https://www.w3.org/TR/css-flexbox-1/">
+    CSS Flexible Box（CSS Flexbox）
+   </a>
+   の仕様に基づいて、レイアウトを自由にカスタマイズできます。
+  </p>
+  <p>
+   Flex Messageの構成要素は、コンテナ、ブロック、コンポーネントです。各Flex Messageは、メッセージバブルを含むコンテナという単一の最上位構造を持ちます。コンテナには複数のメッセージバブルを含めることができます。バブルはブロックで構成され、ブロックはコンポーネントで構成されています。
+  </p>
+  <p>
+   Flex Messageでは、テキストの書字方向を左から右（左横書き）、または右から左（右横書き）に指定できます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     Flex Messageの制限事項
+    </span>
+   </div>
+   <div>
+    <p>
+     受信端末の環境によって、同じFlex Messageでも描画結果が異なる可能性があります。描画に影響を与える要素には、OS、LINEのバージョン、端末の解像度、言語設定、フォントなどがあります。
+    </p>
+   </div>
+  </div>
+  <p>
+   <img src="/media/messaging-api/using-flex-messages/bubbleSamples-Update1.png"/>
+  </p>
+  <p>
+   他のメッセージタイプと同様に、Flex MessageはJSON形式で記述します。Flex Messageについて詳しくは、以下のページを参照してください。
+  </p>
+  <ul>
+   <li>
+    <a href="./flex-message-elements/">
+     Flex Messageの要素
+    </a>
+   </li>
+   <li>
+    <a href="./flex-message-layout/">
+     Flex Messageのレイアウト
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#flex-message">
+     Flex Message
+    </a>
+    （Messaging APIリファレンス）
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#operating-environment">
+    動作環境
+   </a>
+  </h2>
+  <p>
+   Flex Messageは、すべてのバージョンのLINEでサポートされます。なお、以下の機能は、LINEの特定のバージョンのみサポートしています。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      機能
+     </th>
+     <th>
+      iOS版LINE
+      <br/>
+      Android版LINE
+     </th>
+     <th>
+      PC版LINE
+      <br/>
+      （macOS版、Windows版）
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      <ul>
+       <li>
+        <a href="/ja/reference/messaging-api/#box">
+         ボックス
+        </a>
+        の
+        <code>
+         maxWidth
+        </code>
+        プロパティ
+       </li>
+       <li>
+        <a href="/ja/reference/messaging-api/#box">
+         ボックス
+        </a>
+        の
+        <code>
+         maxHeight
+        </code>
+        プロパティ
+       </li>
+       <li>
+        <a href="/ja/reference/messaging-api/#f-text">
+         テキスト
+        </a>
+        の
+        <code>
+         lineSpacing
+        </code>
+        プロパティ
+       </li>
+       <li>
+        <a href="/ja/reference/messaging-api/#f-video">
+         動画
+        </a>
+        ※1
+       </li>
+      </ul>
+     </td>
+     <td>
+      11.22.0以上
+     </td>
+     <td>
+      7.7.0以上
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <ul>
+       <li>
+        <a href="/ja/reference/messaging-api/#bubble">
+         バブル
+        </a>
+        の
+        <code>
+         size
+        </code>
+        プロパティの
+        <code>
+         deca
+        </code>
+        と
+        <code>
+         hecto
+        </code>
+        ※2
+       </li>
+       <li>
+        <a href="/ja/reference/messaging-api/#button">
+         ボタン
+        </a>
+        、
+        <a href="/ja/reference/messaging-api/#f-text">
+         テキスト
+        </a>
+        、および
+        <a href="/ja/reference/messaging-api/#icon">
+         アイコン
+        </a>
+        の
+        <code>
+         scaling
+        </code>
+        プロパティ
+       </li>
+      </ul>
+     </td>
+     <td>
+      13.6.0以上
+     </td>
+     <td>
+      7.17.0以上
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   ※1 動画をサポートしていないLINEのバージョンにおいてもコンテンツを適切に表示するには、
+   <code>
+    altContent
+   </code>
+   プロパティを指定します。このプロパティで指定した画像が動画の代わりに表示されます。
+  </p>
+  <p>
+   ※2 LINEのバージョンが
+   <code>
+    deca
+   </code>
+   と
+   <code>
+    hecto
+   </code>
+   をサポートするバージョンに満たない場合、バブルのサイズは
+   <code>
+    kilo
+   </code>
+   として表示されます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#checking-behavior-in-flex-message-simulator">
+    Flex Message Simulator
+   </a>
+  </h2>
+  <p>
+   <a href="/flex-simulator/">
+    Flex Message Simulator
+   </a>
+   を使うと、メッセージを実際に送信しなくても、描画された状態を確認できます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-messages/flex-message-simulator-ja.png"/>
+  </p>
+  <p>
+   Flex Message Simulatorについて詳しくは、
+   <a href="./using-flex-message-simulator/">
+    チュートリアル
+   </a>
+   を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#sending-hello-world">
+    「Hello, World!」メッセージを送る
+   </a>
+  </h2>
+  <p>
+   Flex Messageを始めるにあたり、「Hello, World！」をFlex Messageとして送信してみましょう。まず、
+   <a href="#preparing-json-data">
+    Flex MessageをJSONで定義
+   </a>
+   し、
+   <a href="#sending-messages-with-the-messaging-api">
+    Messaging APIを呼び出し
+   </a>
+   てメッセージを送信します。
+  </p>
+  <p>
+   <img src="/media/messaging-api/using-flex-messages/helloWorld.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#preparing-json-data">
+    JSONでFlex Messageを定義する
+   </a>
+  </h3>
+  <p>
+   Messaging APIを呼び出してFlex Messageを送信する前に、Flex MessageをJSONで定義します。以下は、JSONでFlex Messageを定義する方法で、"Hello, World!"というメッセージを作ります。このFlex Messageにはメッセージバブルが1つあればよいので、
+   <a href="./flex-message-elements/#bubble">
+    バブルコンテナ
+   </a>
+   を使用します。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "type"</span><span>: </span><span>"bubble"</span><span>, </span><span>// 1
+</span></span><span><span>  "body"</span><span>: {
+</span></span><span><span>    // 2
+</span></span><span><span>    "type"</span><span>: </span><span>"box"</span><span>, </span><span>// 3
+</span></span><span><span>    "layout"</span><span>: </span><span>"horizontal"</span><span>, </span><span>// 4
+</span></span><span><span>    "contents"</span><span>: [
+</span></span><span><span>      // 5
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>, </span><span>// 6
+</span></span><span><span>        "text"</span><span>: </span><span>"Hello,"
+</span></span><span><span>      },
+</span></span><span><span>      {
+</span></span><span><span>        "type"</span><span>: </span><span>"text"</span><span>, </span><span>// 6
+</span></span><span><span>        "text"</span><span>: </span><span>"World!"
+</span></span><span><span>      }
+</span></span><span><span>    ]
+</span></span><span><span>  }
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   1～6の説明は以下のとおりです。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      dummy
+     </th>
+     <th>
+      dummy
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      1
+     </td>
+     <td>
+      単体のメッセージバブルのコンテナを作成します。このように、コンテナの種類を
+      <code>
+       "bubble"
+      </code>
+      にします。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      2
+     </td>
+     <td>
+      バブルの内容を保持するバブルを指定します。メッセージの表示に必要なブロックは、
+      <a href="./flex-message-elements/#block">
+       ボディ
+      </a>
+      1点です。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      3
+     </td>
+     <td>
+      ボディに、
+      <a href="./flex-message-elements/#box">
+       ボックス
+      </a>
+      を設定します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      4
+     </td>
+     <td>
+      ボディの方向を水平に設定します。ボックス内の子コンポーネントが水平に配置されます。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      5
+     </td>
+     <td>
+      ボックス内に配置するコンポーネントを指定します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      6
+     </td>
+     <td>
+      「Hello,」と「World!」の2つのテキストを挿入します。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#sending-messages-with-the-messaging-api">
+    Messaging APIで送信する
+   </a>
+  </h3>
+  <p>
+   Flex Messsageは、「
+   <a href="./sending-messages/">
+    メッセージを送信する
+   </a>
+   」のいずれの方法でも送信できます。メッセージリクエストのリクエストボディで、
+   <code>
+    message.contents
+   </code>
+   プロパティに
+   <a href="/ja/reference/messaging-api/#flex-message">
+    Flex Message
+   </a>
+   オブジェクトの定義を設定します。
+  </p>
+  <p>
+   以下は、プッシュメッセージを送信するリクエストの例です。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/message/push</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-d </span><span>'{
+</span></span><span><span>  "to": "U4af4980629...",
+</span></span><span><span>  "messages": [
+</span></span><span><span>    {
+</span></span><span><span>      "type": "flex",
+</span></span><span><span>      "altText": "This is a Flex Message",
+</span></span><span><span>      "contents": {
+</span></span><span><span>        "type": "bubble",
+</span></span><span><span>        "body": {
+</span></span><span><span>          "type": "box",
+</span></span><span><span>          "layout": "horizontal",
+</span></span><span><span>          "contents": [
+</span></span><span><span>            {
+</span></span><span><span>              "type": "text",
+</span></span><span><span>              "text": "Hello,"
+</span></span><span><span>            },
+</span></span><span><span>            {
+</span></span><span><span>              "type": "text",
+</span></span><span><span>              "text": "World!"
+</span></span><span><span>            }
+</span></span><span><span>          ]
+</span></span><span><span>        }
+</span></span><span><span>      }
+</span></span><span><span>    }
+</span></span><span><span>  ]
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-using-flex-messages-pages">
+    関連ページ
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="./flex-message-elements/">
+     Flex Messageの要素
+    </a>
+   </li>
+   <li>
+    <a href="./flex-message-layout/">
+     Flex Messageのレイアウト
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#flex-message">
+     Flex Message
+    </a>
+    （APIリファレンス）
+   </li>
+   <li>
+    <a href="/flex-simulator/">
+     Flex Message Simulator
+    </a>
+   </li>
+  </ul>
+ </div>
+</main>

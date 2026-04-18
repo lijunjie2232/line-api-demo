@@ -1,0 +1,408 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   ユーザーIDを取得する
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./getting-user-ids/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/getting-user-ids/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   Messaging APIで特定のユーザーに対してメッセージを送信するには、ユーザーIDでユーザーを指定する必要があります。このページでは、ユーザーIDの取得方法について解説します。
+  </p>
+  <ul>
+   <li>
+    <a href="#what-is-user-id">
+     ユーザーIDとは
+    </a>
+    <ul>
+     <li>
+      <a href="#user-id-issuance-unit">
+       ユーザーIDが発行される単位
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#getting-user-ids">
+     ユーザーIDを取得する
+    </a>
+    <ul>
+     <li>
+      <a href="#get-own-user-id">
+       開発者が自分自身のユーザーIDを取得する
+      </a>
+     </li>
+     <li>
+      <a href="#get-user-ids-in-webhook">
+       WebhookからユーザーIDを取得する
+      </a>
+     </li>
+     <li>
+      <a href="#get-all-friends-user-ids">
+       友だち全員のユーザーIDを取得する
+      </a>
+     </li>
+     <li>
+      <a href="#get-member-user-ids">
+       グループトークや複数人トークのメンバー全員のユーザーIDを取得する
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#checking-user-id-is-valid">
+     ユーザーIDが有効かを確認する
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#what-is-user-id">
+    ユーザーIDとは
+   </a>
+  </h2>
+  <p>
+   ユーザーIDとは、ユーザーの一意な識別子です。ユーザーIDは、LINEで登録されているユーザーの表示名や、LINEでの友だち検索に利用するLINE IDとは異なります。ユーザーIDはLINEプラットフォームが発行する値で、
+   <code>
+    U8189cf6745fc0d808977bdb0b9f22995
+   </code>
+   のように、
+   <code>
+    U[0-9a-f]{32}
+   </code>
+   の正規表現にマッチする文字列です。
+  </p>
+  <p>
+   <img src="/media/messaging-api/getting-user-ids/display-name-and-id-and-user-id-ja.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#user-id-issuance-unit">
+    ユーザーIDが発行される単位
+   </a>
+  </h3>
+  <p>
+   ユーザーIDは、同じユーザーであってもプロバイダーごとに異なる値が発行されます。プロバイダーが同じであれば、チャネルの種類（LINEログインチャネルやMessaging APIチャネル）にかかわらず、同じユーザーIDが割り当てられます。
+  </p>
+  <p>
+   たとえば同じプロバイダーの配下に、Messaging APIチャネルと、LINEログインチャネルがあった場合、それぞれのチャネルで取得したAさんのユーザーIDは同一の値です。しかし、AさんのユーザーIDを異なるプロバイダーの配下にあるチャネルで取得した場合、AさんのユーザーIDはそれぞれのプロバイダーごとに異なる値となります。
+  </p>
+  <p>
+   <img src="/media/messaging-api/getting-user-ids/user-id-for-each-provider-ja.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#getting-user-ids">
+    ユーザーIDを取得する
+   </a>
+  </h2>
+  <p>
+   ユーザーIDを取得する方法は4つあります。
+  </p>
+  <ol>
+   <li>
+    <a href="#get-own-user-id">
+     開発者が自分自身のユーザーIDを取得する
+    </a>
+   </li>
+   <li>
+    <a href="#get-user-ids-in-webhook">
+     WebhookからユーザーIDを取得する
+    </a>
+   </li>
+   <li>
+    <a href="#get-all-friends-user-ids">
+     友だち全員のユーザーIDを取得する
+    </a>
+   </li>
+   <li>
+    <a href="#get-member-user-ids">
+     グループトークや複数人トークのメンバーのユーザーIDを取得する
+    </a>
+   </li>
+  </ol>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-own-user-id">
+    開発者が自分自身のユーザーIDを取得する
+   </a>
+  </h3>
+  <p>
+   開発者は自分自身のユーザーIDを
+   <a href="/console/">
+    LINE Developersコンソール
+   </a>
+   のチャネルの［
+   <strong>
+    チャネル基本設定
+   </strong>
+   ］タブにある［
+   <strong>
+    あなたのユーザーID
+   </strong>
+   ］で確認できます。詳しくは、『LINE Developersコンソールドキュメント』の「
+   <a href="/ja/docs/line-developers-console/managing-roles/#roles-for-channel">
+    チャネルの権限
+   </a>
+   」を参照してください。開発者が自分自身のユーザーIDを取得するためのAPIはありません。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     LINEアカウントとビジネスIDの連携が必要です
+    </span>
+   </div>
+   <div>
+    <p>
+     ［
+     <strong>
+      チャネル基本設定
+     </strong>
+     ］タブにある［
+     <strong>
+      あなたのユーザーID
+     </strong>
+     ］は、LINEアカウントと未連携のビジネスIDでは表示されません。LINEアカウントの連携状況による表示の違いは以下のとおりです。
+    </p>
+    <table>
+     <thead>
+      <tr>
+       <th>
+        LINEアカウントが連携済み
+       </th>
+       <th>
+        LINEアカウントが未連携
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <img src="/media/messaging-api/getting-user-ids/get-own-user-id-linked-line-account-ja.png"/>
+       </td>
+       <td>
+        <img src="/media/messaging-api/getting-user-ids/get-own-user-id-unlinked-line-account-ja.png"/>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <p>
+     LINEアカウントの連携方法について詳しくは、『LINE Developersコンソールドキュメント』の「
+     <a href="/ja/docs/line-developers-console/login-account/#link-business-account-with-line-account">
+      ビジネスIDにLINEアカウントを連携させる
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-user-ids-in-webhook">
+    WebhookからユーザーIDを取得する
+   </a>
+  </h3>
+  <p>
+   ユーザーが、LINE公式アカウントを友だち追加したり、LINE公式アカウントにメッセージを送ったりすると、
+   <a href="/console/">
+    LINE Developersコンソール
+   </a>
+   の［
+   <strong>
+    Webhook URL
+   </strong>
+   ］で指定したURL（ボットサーバー）に対して、LINEプラットフォームからWebhookが送られます。ユーザーIDは、このWebhookに含まれています。
+  </p>
+  <p>
+   以下は、LINE公式アカウントを友だち追加したときに送られる
+   <a href="/ja/reference/messaging-api/#webhook-event-objects">
+    Webhookイベントオブジェクト
+   </a>
+   の例です。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "destination"</span><span>: </span><span>"xxxxxxxxxx"</span><span>,
+</span></span><span><span>  "events"</span><span>: [
+</span></span><span><span>    {
+</span></span><span><span>      "type"</span><span>: </span><span>"follow"</span><span>,
+</span></span><span><span>      "timestamp"</span><span>: </span><span>1462629479859</span><span>,
+</span></span><span><span>      "source"</span><span>: {
+</span></span><span><span>        // ユーザーIDはsourceオブジェクトのuserIdプロパティから取得できる
+</span></span><span><span>        "type"</span><span>: </span><span>"user"</span><span>,
+</span></span><span><span>        "userId"</span><span>: </span><span>"U8189cf6745fc0d808977bdb0b9f22995"
+</span></span><span><span>      },
+</span></span><span><span>      "replyToken"</span><span>: </span><span>"nHuyWiB7yP5Zw52FIkcQobQuGDXCTA"</span><span>,
+</span></span><span><span>      "mode"</span><span>: </span><span>"active"</span><span>,
+</span></span><span><span>      "webhookEventId"</span><span>: </span><span>"01FZ74A0TDDPYRVKNK77XKC3ZR"</span><span>,
+</span></span><span><span>      "deliveryContext"</span><span>: {
+</span></span><span><span>        "isRedelivery"</span><span>: </span><span>false
+</span></span><span><span>      }
+</span></span><span><span>    }
+</span></span><span><span>  ]
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   ただし、ユーザーがプロフィール情報の取得に同意していない場合、WebhookにユーザーIDは含まれません。詳しくは、「
+   <a href="./user-consent/">
+    ユーザーのプロフィール情報取得の同意
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-all-friends-user-ids">
+    友だち全員のユーザーIDを取得する
+   </a>
+  </h3>
+  <p>
+   LINE公式アカウントと友だちになっているユーザー全員のユーザーIDは、
+   <a href="/ja/reference/messaging-api/#get-follower-ids">
+    LINE公式アカウントを友だち追加したユーザーのリストを取得する
+   </a>
+   エンドポイントで取得できます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     注意
+    </span>
+   </div>
+   <div>
+    <p>
+     この機能は認証済アカウントまたは
+     <span>
+      <a href="/ja/glossary/#premium-account">
+       プレミアムアカウント
+      </a>
+      <span>
+      </span>
+     </span>
+     でのみご利用いただけます。アカウント種別について詳しくは、『LINEヤフー for Business』の「
+     <a href="https://www.lycbiz.com/jp/service/line-official-account/account-type/">
+      LINE公式アカウント アカウント種別
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-member-user-ids">
+    グループトークや複数人トークのメンバー全員のユーザーIDを取得する
+   </a>
+  </h3>
+  <p>
+   LINE公式アカウントが参加しているグループトークや複数人トークのメンバー全員のユーザーIDは、以下のエンドポイントで取得できます。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-group-member-user-ids">
+     グループトークのメンバーのユーザーIDを取得する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-room-member-user-ids">
+     複数人トークのメンバーのユーザーIDを取得する
+    </a>
+   </li>
+  </ul>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     注意
+    </span>
+   </div>
+   <div>
+    <p>
+     この機能は認証済アカウントまたは
+     <span>
+      <a href="/ja/glossary/#premium-account">
+       プレミアムアカウント
+      </a>
+      <span>
+      </span>
+     </span>
+     でのみご利用いただけます。アカウント種別について詳しくは、『LINEヤフー for Business』の「
+     <a href="https://www.lycbiz.com/jp/service/line-official-account/account-type/">
+      LINE公式アカウント アカウント種別
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     WebhookからもユーザーIDを取得できます
+    </span>
+   </div>
+   <div>
+    <p>
+     ユーザーがグループトークや複数人トークに参加したり、メッセージを送ったりすると、ボットサーバーにWebhookが送信されます。WebhookにはユーザーIDが含まれているため、APIリクエストを実行せずにユーザーIDを取得できます。詳しくは、「
+     <a href="#get-user-ids-in-webhook">
+      WebhookからユーザーIDを取得する
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#checking-user-id-is-valid">
+    ユーザーIDが有効かを確認する
+   </a>
+  </h2>
+  <p>
+   ユーザーIDを知っていても、そのユーザーIDが無効な場合はメッセージを送信できません。
+  </p>
+  <p>
+   ユーザーIDが有効かを確認するには、
+   <a href="/ja/reference/messaging-api/#get-profile">
+    プロフィール情報を取得する
+   </a>
+   エンドポイントを使用してください。ユーザーIDが有効な場合は、HTTPステータスコード
+   <code>
+    200
+   </code>
+   が返ります。
+   <code>
+    200
+   </code>
+   以外が返ってきた場合、そのユーザーIDは無効のため、メッセージは送信できません。
+  </p>
+ </div>
+</main>

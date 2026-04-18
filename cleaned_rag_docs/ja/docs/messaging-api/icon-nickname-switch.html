@@ -1,0 +1,206 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   アイコンと表示名をカスタマイズする
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./icon-nickname-switch/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/icon-nickname-switch/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   APIを使って以下のメッセージを送る際には、LINE公式アカウントのアイコンや表示名をカスタマイズできます。
+   <a href="/ja/reference/messaging-api/#message-objects">
+    メッセージオブジェクト
+   </a>
+   の種類に制限はありません。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#send-push-message">
+     プッシュメッセージを送る
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#send-multicast-message">
+     マルチキャストメッセージを送る
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#send-narrowcast-message">
+     ナローキャストメッセージを送る
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#send-broadcast-message">
+     ブロードキャストメッセージを送る
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#send-reply-message">
+     応答メッセージを送る
+    </a>
+   </li>
+  </ul>
+  <p>
+   メッセージのアイコンや表示名を指定しない場合は、デフォルトのアイコンとLINE公式アカウント名が表示されます。
+  </p>
+  <p>
+   アイコンや表示名をカスタマイズする場合は、まず開発者自身のLINEアカウントに対してアイコンと表示名をカスタマイズしたプッシュメッセージを送信して、メッセージの見た目を確認することを推奨します。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#customise-icon-and-display-name">
+    アイコンと表示名をカスタマイズする
+   </a>
+  </h2>
+  <p>
+   デフォルトのメッセージと、アイコンと表示名を指定したメッセージの見た目の違いは下図のとおりです。表示名には
+   <code>
+    from 'アカウント名'
+   </code>
+   が付いています。これは、LINE公式アカウントを識別しやすくし、他のアカウントとの誤認を防ぐためのものです。トーク画面上部に表示されるアカウント名は、どのような場合でも変わりません。
+  </p>
+  <p>
+   <img src="/media/messaging-api/icon-nickname-switch/icon-nickname-switch.jpg"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#example-request">
+    リクエストの例
+   </a>
+  </h3>
+  <p>
+   以下は、アイコンと表示名をカスタマイズしてメッセージを送信するリクエストの例です。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/message/push</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}'</span><span> \
+</span></span><span><span>-d </span><span>'{
+</span></span><span><span>    "to": "U1234....",
+</span></span><span><span>    "messages": [
+</span></span><span><span>        {
+</span></span><span><span>            "type": "text",
+</span></span><span><span>            "text": "Hello, I am Cony!!",
+</span></span><span><span>            "sender": {
+</span></span><span><span>                "name": "Cony",
+</span></span><span><span>                "iconUrl": "https://line.me/conyprof"
+</span></span><span><span>            }
+</span></span><span><span>        }
+</span></span><span><span>    ]
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#icon-and-display-name-customization-scope">
+    アイコンと表示名のカスタマイズ範囲
+   </a>
+  </h2>
+  <p>
+   このセクションでは、アイコンと表示名のカスタマイズが適用される場所について説明します。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#chat-room">
+    トークルーム
+   </a>
+  </h3>
+  <p>
+   メッセージに指定したアイコンと表示名は、そのメッセージのアイコンと表示名のみに影響します。
+  </p>
+  <ul>
+   <li>
+    メッセージバブル：カスタマイズされたアイコンと表示名（
+    <code>
+     表示名 from 'アカウント名'
+    </code>
+    ）が表示されます。
+   </li>
+   <li>
+    トークルームの名前：上部に表示されるトークルーム名はLINE公式アカウントのままです。
+   </li>
+   <li>
+    ビジネスプロフィールページ：LINE公式アカウントのビジネスプロフィールページに表示されるプロフィール画像や表示名はカスタマイズできません。
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#message-search-result">
+    メッセージ検索結果
+   </a>
+  </h3>
+  <p>
+   アイコンと表示名がカスタマイズされたメッセージが検索結果に表示される場合、カスタマイズされたアイコンと表示名が
+   <code>
+    from 'アカウント名'
+   </code>
+   と共に表示されます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#chat-list-and-preview">
+    トークリストとプレビュー
+   </a>
+  </h3>
+  <p>
+   トークリストに表示されるLINE公式アカウントのアイコンや表示名はカスタマイズできません。ただし、テキスト以外のメッセージのプレビューには、カスタマイズされたアイコンと表示名が表示されます。たとえば、表示名をカスタマイズして写真を送信した場合、プレビューメッセージには「（表示名）が写真を送信しました」と表示されます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#chat-list-search-screen">
+    トークリスト検索画面
+   </a>
+  </h3>
+  <p>
+   トークリスト検索画面に表示されるLINE公式アカウントは、デフォルトのアイコンと表示名で表示されます。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#friend-list">
+    友だちリスト
+   </a>
+  </h3>
+  <p>
+   友だちリストに表示されるLINE公式アカウントは、デフォルトのアイコンと表示名で表示されます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-icon-nickname-switch-pages">
+    関連ページ
+   </a>
+  </h2>
+  <p>
+   アイコンと表示名のカスタマイズの仕様について詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#icon-nickname-switch">
+    アイコンと表示名のカスタマイズ
+   </a>
+   」を参照してください。
+  </p>
+ </div>
+</main>

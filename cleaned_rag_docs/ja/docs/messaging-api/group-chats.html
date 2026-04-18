@@ -1,0 +1,332 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   グループトークと複数人トーク
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./group-chats/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/group-chats/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   LINE公式アカウントは、Messaging APIを使用してグループトークや複数人トーク内のユーザーと対話できます。このページでは、グループトークや複数人トークでのLINE公式アカウントの使い方について説明します。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#group-chat-types">
+    複数のユーザーとのトークの種類
+   </a>
+  </h2>
+  <p>
+   LINEには、複数のユーザーとのトークとして、
+   <strong>
+    グループトーク
+   </strong>
+   と
+   <strong>
+    複数人トーク
+   </strong>
+   の2種類があります。グループトークまたは複数人トークのユーザーは
+   <strong>
+    メンバー
+   </strong>
+   と呼びます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     複数人トークはグループトークに統合されました
+    </span>
+   </div>
+   <div>
+    <p>
+     LINEバージョン10.17.0以降、複数人トークはグループトークに統合されました。統合以前に作成された複数人トークは引き続き利用できますが、バージョン10.17.0以降のLINEで複数の友だちとのトークを新規作成した場合は、必ずグループトークになります。詳しくは、『LINEみんなの使い方ガイド』の「
+     <a href="https://guide.line.me/ja/friends-and-groups/create-groups.html">
+      グループを作成・管理する
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#group">
+    グループトーク
+   </a>
+  </h3>
+  <p>
+   グループトークは、複数人での継続的な利用を想定して設計されたトークです。グループトークには識別子として
+   <span>
+    <a href="/ja/glossary/#group-id">
+     グループID
+    </a>
+    <span>
+    </span>
+   </span>
+   が発行されます。ユーザーはグループトークを作成して、特定の名前をつけられます。グループトークはアルバム、ノートなどの機能に対応しています。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     ヒント
+    </span>
+   </div>
+   <div>
+    <p>
+     ユーザーが1対1のトークに3人目のユーザーを招待した場合は、グループトークが作成されます。グループトークでは、グループに招待されたユーザーの承認フローの有無を設定できます。設定方法について詳しくは、『LINEみんなの使い方ガイド』の「
+     <a href="https://guide.line.me/ja/friends-and-groups/create-groups.html">
+      グループを作成・管理する
+     </a>
+     」を参照してください。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#room">
+    複数人トーク
+   </a>
+  </h3>
+  <p>
+   複数人トークは、複数人での一時的な利用を想定して設計されたトークです。複数人トークには識別子として
+   <span>
+    <a href="/ja/glossary/#room-id">
+     トークルームID
+    </a>
+    <span>
+    </span>
+   </span>
+   が発行されます。複数人トークでは、参加しているメンバーの名前がトークルームの名前として自動的に設定されます。複数人トークはアルバム、ノートなどの機能には対応していません。
+  </p>
+  <p>
+   LINEバージョン10.17.0以降、複数人トークはグループトークに統合されました。統合以前に作成された複数人トークは引き続き利用できますが、バージョン10.17.0以降のLINEで複数の友だちとのトークを新規作成した場合は、必ずグループトークになります。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#add-bot-group-room">
+    グループトークや複数人トークにLINE公式アカウントを招待する
+   </a>
+  </h2>
+  <p>
+   LINEユーザーは、グループトークや複数人トークにLINE公式アカウントを招待できます。招待されるためには、
+   <a href="/console/">
+    LINE Developersコンソール
+   </a>
+   のチャネル設定にある［
+   <strong>
+    Messaging API設定
+   </strong>
+   ］タブで、［
+   <strong>
+    グループトーク・複数人トークへの参加を許可する
+   </strong>
+   ］を有効にしておく必要があります。この設定は、デフォルトでは無効になっています。また、グループトークや複数人トークに同時に複数のLINE公式アカウントは参加できないことに注意してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#receiving-webhook-events">
+    Webhookイベントを受け取る
+   </a>
+  </h2>
+  <p>
+   1対1のトークと同様に、グループトークや複数人トークでもWebhookイベントを受信できます。詳しくは、「
+   <a href="./receiving-messages/#webhook-event-in-one-on-one-talk-or-group-chat">
+    トークでのWebhookイベント
+   </a>
+   」および『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#webhook-event-objects">
+    Webhookイベントオブジェクト
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#tip-for-using-message-events">
+    メッセージイベント利用時のヒント
+   </a>
+  </h3>
+  <p>
+   1対1のトークと同様に、LINE公式アカウントが追加されているグループトークや複数人トークにメッセージが送られた場合も、メッセージイベントがボットサーバーに送られます。
+  </p>
+  <p>
+   <a href="/ja/reference/messaging-api/#message-event">
+    メッセージイベント
+   </a>
+   の
+   <code>
+    source
+   </code>
+   プロパティには、送信元グループトークのグループID（
+   <code>
+    groupId
+   </code>
+   ）または送信元複数人トークのトークルームID（
+   <code>
+    roomId
+   </code>
+   ）が含まれます。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>"source"</span><span>: {
+</span></span><span><span>    "type"</span><span>: </span><span>"group"</span><span>,
+</span></span><span><span>    "groupId"</span><span>: </span><span>"Ca56f94637c..."</span><span>,
+</span></span><span><span>    "userId"</span><span>: </span><span>"U4af4980629..."
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   グループIDおよびトークルームIDについて詳しくは、「
+   <a href="/ja/faq/#what-are-userid-groupid-and-roomid">
+    ユーザーID、グループID、トークルームIDとはどのような値ですか？
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#sending-request-to-endpoint">
+    エンドポイントにリクエストを送る
+   </a>
+  </h2>
+  <p>
+   グループトークおよび複数人トークの特有の操作は以下のとおりです。詳しくは、『
+   <a href="/ja/reference/messaging-api/">
+    Messaging APIリファレンス
+   </a>
+   』を参照してください。
+  </p>
+  <ul>
+   <li>
+    <strong>
+     グループトーク
+    </strong>
+    <ul>
+     <li>
+      <a href="/ja/reference/messaging-api/#get-group-summary">
+       グループトークの概要を取得する
+      </a>
+     </li>
+     <li>
+      <a href="/ja/reference/messaging-api/#get-members-group-count">
+       グループトークに参加しているユーザーの人数を取得する
+      </a>
+     </li>
+     <li>
+      <a href="/ja/reference/messaging-api/#get-group-member-user-ids">
+       グループトークのメンバーのユーザーIDを取得する
+      </a>
+     </li>
+     <li>
+      <a href="/ja/reference/messaging-api/#get-group-member-profile">
+       グループトークのメンバーのプロフィールを取得する
+      </a>
+     </li>
+     <li>
+      <a href="/ja/reference/messaging-api/#leave-group">
+       グループトークから退出する
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <strong>
+     複数人トーク
+    </strong>
+    <ul>
+     <li>
+      <a href="/ja/reference/messaging-api/#get-members-room-count">
+       複数人トークに参加しているユーザーの人数を取得する
+      </a>
+     </li>
+     <li>
+      <a href="/ja/reference/messaging-api/#get-room-member-user-ids">
+       複数人トークのメンバーのユーザーIDを取得する
+      </a>
+     </li>
+     <li>
+      <a href="/ja/reference/messaging-api/#get-room-member-profile">
+       複数人トークのメンバーのプロフィールを取得する
+      </a>
+     </li>
+     <li>
+      <a href="/ja/reference/messaging-api/#leave-room">
+       複数人トークから退出する
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#tip-for-sending-messages">
+    メッセージ送信時のヒント
+   </a>
+  </h3>
+  <p>
+   1対1のトークと同様に、LINE公式アカウントが追加されているグループトークや複数人トークに
+   <a href="/ja/reference/messaging-api/#send-reply-message">
+    応答メッセージ
+   </a>
+   と
+   <a href="/ja/reference/messaging-api/#send-push-message">
+    プッシュメッセージ
+   </a>
+   を送信できます。
+  </p>
+  <p>
+   プッシュメッセージを送るときは、送信先として、リクエストボディの
+   <code>
+    to
+   </code>
+   プロパティにグループIDまたはルームIDを指定します。送信先のIDは、
+   <a href="/ja/reference/messaging-api/#webhook-event-objects">
+    Webhookイベントオブジェクト
+   </a>
+   に含まれています。メッセージはグループトークや複数人トークのすべてのメンバーに表示されます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     ヒント
+    </span>
+   </div>
+   <div>
+    <p>
+     グループトークや複数人トークで、複数のユーザーを指定して
+     <a href="/ja/reference/messaging-api/#send-multicast-message">
+      マルチキャストメッセージを送る
+     </a>
+     ことはできません。
+    </p>
+   </div>
+  </div>
+ </div>
+</main>

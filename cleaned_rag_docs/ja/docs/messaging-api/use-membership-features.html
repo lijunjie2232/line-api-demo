@@ -1,0 +1,138 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   メンバーシップ機能を使う
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./use-membership-features/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/use-membership-features/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   <a href="https://www.lycbiz.com/jp/service/line-official-account/Membership/">
+    メンバーシップ
+   </a>
+   とは、LINE公式アカウント上で利用できる月額課金制の会員機能です。ユーザーはLINE公式アカウントのメンバーシッププランに加入することで、メンバー限定の特典が受けられます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#endpoints">
+    メンバーシップの情報を取得するエンドポイント
+   </a>
+  </h2>
+  <p>
+   Messaging APIでは、以下のエンドポイントでメンバーシップの情報を取得できます。
+  </p>
+  <ul>
+   <li>
+    <a href="#get-a-users-membership-subscription-status">
+     ユーザーのメンバーシップ加入状況を取得する
+    </a>
+   </li>
+   <li>
+    <a href="#get-membership-user-ids">
+     メンバーシップに加入しているユーザーの一覧を取得する
+    </a>
+   </li>
+   <li>
+    <a href="#get-membership-plans">
+     提供中のメンバーシッププランを取得する
+    </a>
+   </li>
+  </ul>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     メンバーシップをはじめるには
+    </span>
+   </div>
+   <div>
+    <p>
+     メンバーシップの設定や公開といった操作は、
+     <a href="https://manager.line.biz/">
+      LINE Official Account Manager
+     </a>
+     で行います。詳しくは、『LINEヤフー for Business』の「
+     <a href="https://www.lycbiz.com/jp/column/line-official-account/service-information/membership/">
+      LINEで簡単にサブスクリプションサービスが作成できる！LINE公式アカウントの「メンバーシップ」機能とは？
+     </a>
+     」を参照してください。
+    </p>
+    <p>
+     なお現時点でメンバーシップ機能が利用できる対象は、日本のLINE公式アカウントのみです。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-a-users-membership-subscription-status">
+    ユーザーのメンバーシップ加入状況を取得する
+   </a>
+  </h3>
+  <p>
+   このエンドポイントでは、ユーザーのIDを指定して、そのユーザーが加入しているメンバーシップの情報を取得できます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#get-a-users-membership-subscription-status">
+    ユーザーのメンバーシップ加入状況を取得する
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-membership-user-ids">
+    メンバーシップに加入しているユーザーの一覧を取得する
+   </a>
+  </h3>
+  <p>
+   このエンドポイントでは、LINE公式アカウントのメンバーシップに加入しているユーザーのユーザーIDの一覧を取得できます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#get-membership-user-ids">
+    メンバーシップに加入しているユーザーの一覧を取得する
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-membership-plans">
+    提供中のメンバーシッププランを取得する
+   </a>
+  </h3>
+  <p>
+   このエンドポイントでは、対象のLINE公式アカウントで提供中のメンバーシッププランを取得できます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#get-membership-plans">
+    提供中のメンバーシッププランを取得する
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#membership-event">
+    Webhookのメンバーシップイベント
+   </a>
+  </h2>
+  <p>
+   ユーザーがLINE公式アカウントのメンバーシップに加入や継続課金、またはメンバーシップを退会した際に、Webhookのメンバーシップイベントが送信されます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#membership-event">
+    メンバーシップイベント
+   </a>
+   」を参照してください。
+  </p>
+ </div>
+</main>

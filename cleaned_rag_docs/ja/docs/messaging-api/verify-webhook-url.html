@@ -1,0 +1,148 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   Webhook URLを検証する
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./verify-webhook-url/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/verify-webhook-url/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   Messaging APIのWebhookを利用する場合、LINEプラットフォームからWebhook URL（ボットサーバー）へ疎通できることを、以下のいずれかの方法で検証してください。
+  </p>
+  <ul>
+   <li>
+    <a href="#verify-method-01">
+     検証方法1. Webhook URL検証用のエンドポイントで検証する
+    </a>
+   </li>
+   <li>
+    <a href="#verify-method-02">
+     検証方法2. LINE DevelopersコンソールからWebhook URLの［検証］ボタンで検証する
+    </a>
+   </li>
+  </ul>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     疎通確認のリクエストにはステータスコード200を返してください
+    </span>
+   </div>
+   <div>
+    <p>
+     疎通確認の際は、Webhookイベントが含まれないHTTP POSTリクエストが送信されます。この場合も、ステータスコード
+     <code>
+      200
+     </code>
+     を返してください。
+    </p>
+    <p>
+     Webhookイベントが含まれないHTTP POSTリクエストの例：
+    </p>
+    <div>
+     <span>
+      json
+     </span>
+     <pre><code><span><span>{
+</span></span><span><span>  "destination"</span><span>: </span><span>"xxxxxxxxxx"</span><span>,
+</span></span><span><span>  "events"</span><span>: []
+</span></span><span><span>}
+</span></span></code></pre>
+    </div>
+   </div>
+  </div>
+  <p>
+   Webhook URLを検証した結果、ボットサーバーがWebhookを受信できていない場合は、
+   <a href="#investigate-webhook-reception-failure">
+    Webhookの受信に失敗する原因を調査
+   </a>
+   してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#verify-method-01">
+    検証方法1. Webhook URL検証用のエンドポイントで検証する
+   </a>
+  </h2>
+  <p>
+   Webhook URL検証用のエンドポイントで検証してください。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#test-webhook-endpoint">
+     Webhookエンドポイントを検証する
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#verify-method-02">
+    検証方法2. LINE DevelopersコンソールからWebhook URLの［検証］ボタンで検証する
+   </a>
+  </h2>
+  <p>
+   <a href="/console/">
+    LINE Developersコンソール
+   </a>
+   からWebhook URLの［
+   <strong>
+    検証
+   </strong>
+   ］ボタンで検証してください。
+  </p>
+  <p>
+   <img src="/media/news/webhook-url.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#investigate-webhook-reception-failure">
+    Webhookの受信に失敗する原因を調査する
+   </a>
+  </h2>
+  <p>
+   Webhook URLを検証した結果、ボットサーバーがWebhookを受信できていない場合は、以下の方法で原因を調査してください。
+  </p>
+  <ul>
+   <li>
+    Webhook URL検証用のエンドポイントから返ってきた
+    <a href="/ja/reference/messaging-api/#test-webhook-endpoint-response">
+     レスポンス
+    </a>
+    や
+    <a href="/ja/reference/messaging-api/#test-webhook-endpoint-error-response">
+     エラーレスポンス
+    </a>
+    を確認する
+   </li>
+   <li>
+    <a href="./check-webhook-error-statistics/">
+     Webhookのエラーの原因と統計情報を確認する
+    </a>
+   </li>
+   <li>
+    <a href="./ssl-tls-spec-of-the-webhook-source/">
+     Webhook送信元のSSL/TLS仕様
+    </a>
+    を確認する
+   </li>
+  </ul>
+ </div>
+</main>

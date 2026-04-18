@@ -1,0 +1,167 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   ユーザーのプロフィール情報取得の同意
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./user-consent/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/user-consent/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   <span>
+    <a href="/ja/glossary/#line-official-account">
+     LINE公式アカウント
+    </a>
+    <span>
+    </span>
+   </span>
+   がユーザーの
+   <span>
+    <a href="/ja/glossary/#profile-information">
+     プロフィール情報
+    </a>
+    <span>
+    </span>
+   </span>
+   を取得するには、ユーザーがプロフィール情報の取得に同意している必要があります。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#line-ios-android-users">
+    iOS版LINEまたはAndroid版LINEを使用しているユーザーの場合
+   </a>
+  </h2>
+  <p>
+   iOS版LINEまたはAndroid版LINEを使用しているユーザーは、LINEの利用開始時にプロフィール情報の取得に同意しています。たとえば以下のようなユーザーが該当します。
+  </p>
+  <ul>
+   <li>
+    iOS版LINEまたはAndroid版LINEでLINEアカウントを作成して、使用している
+   </li>
+   <li>
+    もともとPC版LINEでLINEアカウントを作成したが、そのアカウントでiOS版LINEまたはAndroid版LINEも使用している
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#non-line-ios-android-users">
+    iOS版LINEまたはAndroid版LINEを使用していないユーザーの場合
+   </a>
+  </h2>
+  <p>
+   iOS版LINEまたはAndroid版LINEを使用していないユーザーは、プロフィール情報の取得に同意することができません。たとえば、過去にPC版LINEでLINEアカウントを作成し、以降もPC版LINEだけを使用しているユーザーが該当します。なお、このようなユーザーもLINE公式アカウントを友だち追加したり、トークに招待したりできます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     注意
+    </span>
+   </div>
+   <div>
+    <p>
+     2020年4月より、PC版LINEでは新規のLINEアカウントを作成できなくなりました。
+    </p>
+   </div>
+  </div>
+  <p>
+   なおユーザーがプロフィール情報の取得に同意していない場合、以下のWebhookイベントオブジェクトや、エンドポイントからのレスポンスに、そのユーザーのプロフィール情報は含まれません。また、Webhookの
+   <a href="/ja/reference/messaging-api/#membership-event">
+    メンバーシップイベント
+   </a>
+   は送信されません。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#webhook-event-objects">
+     Webhookイベントオブジェクト
+    </a>
+    の
+    <a href="/ja/reference/messaging-api/#source-user">
+     送信元ユーザー
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#wh-text">
+     テキストメッセージオブジェクト
+    </a>
+    の
+    <code>
+     mention
+    </code>
+    オブジェクト
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-follower-ids">
+     LINE公式アカウントを友だち追加したユーザーのリストを取得する
+    </a>
+    エンドポイント
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-membership-user-ids">
+     メンバーシップに加入しているユーザーの一覧を取得する
+    </a>
+    エンドポイント
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-group-member-user-ids">
+     グループトークのメンバーのユーザーIDを取得する
+    </a>
+    エンドポイント
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-room-member-user-ids">
+     複数人トークのメンバーのユーザーIDを取得する
+    </a>
+    エンドポイント
+   </li>
+  </ul>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     ユーザーのプロフィール情報が取得できない
+    </span>
+   </div>
+   <div>
+    <p>
+     ユーザーのプロフィール情報が取得できない場合、以下の理由が考えられます。
+    </p>
+    <ul>
+     <li>
+      ユーザーがプロフィール情報の取得に同意していない
+     </li>
+     <li>
+      ユーザーが対象のLINE公式アカウントを友だち追加していない
+     </li>
+     <li>
+      ユーザーが対象のLINE公式アカウントを友だち追加した後にブロックした
+     </li>
+     <li>
+      ユーザーがグループトークや複数人トークから対象のLINE公式アカウントを退出させた
+     </li>
+     <li>
+      対象のLINE公式アカウントが入っているグループトークや複数人トークから、ユーザーが退出した
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</main>

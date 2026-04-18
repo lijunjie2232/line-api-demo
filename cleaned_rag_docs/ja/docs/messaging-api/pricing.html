@@ -1,0 +1,392 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   Messaging APIの料金
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./pricing/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/pricing/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   このページでは、Messaging APIを使ってメッセージを送る際に発生する料金について説明します。
+  </p>
+  <ul>
+   <li>
+    <a href="#pricing-system">
+     料金の仕組み
+    </a>
+    <ul>
+     <li>
+      <a href="#global-pricing">
+       国・地域ごとの料金プラン
+      </a>
+     </li>
+     <li>
+      <a href="#examples-of-subscription-plans">
+       料金プランの例
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#when-you-exceed-the-limit-of-free-messages">
+     無料メッセージ通数を超過した場合
+    </a>
+   </li>
+   <li>
+    <a href="#how-to-count-the-number-of-messages-sent">
+     メッセージ通数のカウント方法について
+    </a>
+   </li>
+   <li>
+    <a href="#sending-methods-that-are-counted-towards-the-number-of-messages">
+     料金プランのメッセージ通数としてカウントされる送信方法
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#pricing-system">
+    料金の仕組み
+   </a>
+  </h2>
+  <p>
+   LINE公式アカウントには、無料のプランと、月額固定費がかかるプランがあります。
+  </p>
+  <p>
+   いずれのプランも、毎月一定数のメッセージを無料で送信できます。送信できる無料メッセージ通数は、料金プランによって異なります。また、月の途中で上位の料金プランに変更すると、その月の無料メッセージ通数を増やすことができます。
+  </p>
+  <p>
+   無料メッセージ通数を超えて、追加メッセージを送信できるプランもあります。追加メッセージを送信すると、送信数に応じた料金がかかります。追加メッセージを送信するには、
+   <a href="https://manager.line.biz/">
+    LINE Official Account Manager
+   </a>
+   で対象のLINE公式アカウントを選択して、追加メッセージが利用可能な料金プランに変更した上で、追加メッセージ数の上限目安を設定する必要があります。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#global-pricing">
+    国・地域ごとの料金プラン
+   </a>
+  </h3>
+  <p>
+   国・地域ごとの料金プランについては、下記を参照してください。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      国・地域
+     </th>
+     <th>
+      料金情報
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      日本
+     </td>
+     <td>
+      <a href="https://www.lycbiz.com/jp/service/line-official-account/plan/">
+       LINE公式アカウント料金プラン
+      </a>
+      <br/>
+      <a href="https://www.lycbiz.com/jp/manual/OfficialAccountManager/account-settings_plan/">
+       利用と請求（プラン変更やお支払い関連の管理）
+      </a>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      台湾
+     </td>
+     <td>
+      <a href="https://tw.linebiz.com/service/account-solutions/line-official-account/">
+       LINE Official Account
+      </a>
+      <br/>
+      <a href="https://tw.linebiz.com/faq/oa-price/">
+       LINE Official Account - FAQ
+      </a>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      タイ
+     </td>
+     <td>
+      <a href="https://lineforbusiness.com/th/service/line-oa-features/broadcast-message">
+       LINE Official Account
+      </a>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      その他の地域
+     </td>
+     <td>
+      <a href="https://www.lycbiz.jp/en/other/">
+       LINE Official Account
+      </a>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#examples-of-subscription-plans">
+    料金プランの例
+   </a>
+  </h3>
+  <p>
+   次の表は、日本の料金プランの例です。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+     </th>
+     <th>
+      コミュニケーションプラン
+     </th>
+     <th>
+      ライトプラン
+     </th>
+     <th>
+      スタンダードプラン
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      月額固定費
+      <sup>
+       <a href="#user-content-fn-1">
+        1
+       </a>
+      </sup>
+     </td>
+     <td>
+      0円
+     </td>
+     <td>
+      5,000円
+     </td>
+     <td>
+      15,000円
+     </td>
+    </tr>
+    <tr>
+     <td>
+      無料メッセージ通数 （月）
+     </td>
+     <td>
+      200通
+     </td>
+     <td>
+      5,000通
+     </td>
+     <td>
+      30,000通
+     </td>
+    </tr>
+    <tr>
+     <td>
+      追加メッセージ料金
+      <sup>
+       <a href="#user-content-fn-1">
+        1
+       </a>
+      </sup>
+     </td>
+     <td>
+      不可
+     </td>
+     <td>
+      不可
+     </td>
+     <td>
+      ～3円/通
+      <sup>
+       <a href="#user-content-fn-2">
+        2
+       </a>
+      </sup>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   たとえば、月に1,000通のメッセージを送信したい場合は、無料メッセージ通数が5,000通のライトプランを選択します。
+  </p>
+  <p>
+   月に40,000通のメッセージを送信するには、無料メッセージ通数が30,000通のスタンダードプランを選択した上で、無料分を超過する10,000通分の追加メッセージ料金が必要になります。
+  </p>
+  <p>
+   料金プランは国または地域によって異なりますので、
+   <a href="#global-pricing">
+    該当する地域の料金プラン
+   </a>
+   をご確認ください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#when-you-exceed-the-limit-of-free-messages">
+    無料メッセージ通数を超過した場合
+   </a>
+  </h2>
+  <p>
+   当月に送信できるメッセージ通数の上限を超えてメッセージを送信しようとした場合、エラーレスポンスが返りメッセージは送信されません。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#status-codes">
+    ステータスコード
+   </a>
+   」および「
+   <a href="/ja/reference/messaging-api/#error-responses">
+    エラーレスポンス
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   当月の利用状況は、以下のエンドポイントで確認できます。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-quota">
+     当月に送信できるメッセージ数の上限目安を取得する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-consumption">
+     当月のメッセージ利用状況を取得する
+    </a>
+   </li>
+  </ul>
+  <p>
+   料金プランを変更して無料メッセージ通数を増やす、または追加メッセージを送信する方法については、「
+   <a href="#pricing-system">
+    料金の仕組み
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#how-to-count-the-number-of-messages-sent">
+    メッセージ通数のカウント方法について
+   </a>
+  </h2>
+  <p>
+   メッセージ通数は、メッセージの送信対象となった人数でカウントされます。たとえばメッセージオブジェクトを4件指定したプッシュメッセージを、5人いるトークルームに対して1回送った場合、カウントされるメッセージ通数は5通です。1回のリクエストで指定した
+   <a href="/ja/reference/messaging-api/#message-objects">
+    メッセージオブジェクト
+   </a>
+   の件数は、メッセージ通数には影響しません。
+  </p>
+  <p>
+   またLINE公式アカウントをブロックしているユーザーIDや、存在していないユーザーIDなど、メッセージが実際には届かないユーザーを宛先に指定してメッセージを送信した場合は、メッセージ通数にはカウントされません。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#sending-methods-that-are-counted-towards-the-number-of-messages">
+    料金プランのメッセージ通数としてカウントされる送信方法
+   </a>
+  </h2>
+  <p>
+   Messaging APIについて、すべてのメッセージ送信が料金プランのメッセージ通数としてカウントされるわけではありません。メッセージ通数としてカウントされる送信方法とされない方法を以下に示します。
+  </p>
+  <ul>
+   <li>
+    メッセージ通数としてカウントされる送信方法
+    <ul>
+     <li>
+      <a href="/ja/reference/messaging-api/#send-push-message">
+       プッシュメッセージ
+      </a>
+     </li>
+     <li>
+      <a href="/ja/reference/messaging-api/#send-multicast-message">
+       マルチキャストメッセージ
+      </a>
+     </li>
+     <li>
+      <a href="/ja/reference/messaging-api/#send-broadcast-message">
+       ブロードキャストメッセージ
+      </a>
+     </li>
+     <li>
+      <a href="/ja/reference/messaging-api/#send-narrowcast-message">
+       ナローキャストメッセージ
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    メッセージ通数としてカウントされない送信方法
+    <ul>
+     <li>
+      <a href="/ja/reference/messaging-api/#send-reply-message">
+       応答メッセージ
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <p>
+   Messaging API以外のメッセージ機能の料金について詳しくは、『LINEヤフー for Business』の「
+   <a href="https://www.lycbiz.com/jp/service/line-official-account/plan/">
+    課金対象となるメッセージについて
+   </a>
+   」を参照してください。
+  </p>
+  <section>
+   <h2>
+    <div>
+    </div>
+    <a href="#footnote-label">
+     Footnotes
+    </a>
+   </h2>
+   <ol>
+    <li>
+     税別。
+     <a href="#user-content-fnref-1">
+      ↩
+     </a>
+     <a href="#user-content-fnref-1-2">
+      ↩
+      <sup>
+       2
+      </sup>
+     </a>
+    </li>
+    <li>
+     追加メッセージの単価は送信数によって異なります。
+     <a href="#user-content-fnref-2">
+      ↩
+     </a>
+    </li>
+   </ol>
+  </section>
+ </div>
+</main>

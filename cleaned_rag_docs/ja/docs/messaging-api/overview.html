@@ -1,0 +1,393 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   Messaging APIの概要
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./overview/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/overview/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   Messaging APIを使って、ユーザー個人に合わせた体験をLINE上で提供するボットを作成できます。
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     LINE公式アカウントとは
+    </span>
+   </div>
+   <div>
+    <p>
+     LINE公式アカウントがどのようなものかが分からない場合は、総合学習プラットフォーム「
+     <a href="https://lymcampus.jp/">
+      LINEヤフーマーケティングキャンパス
+     </a>
+     」をご利用ください。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#how-messaging-api-works">
+    Messaging APIの仕組み
+   </a>
+  </h2>
+  <p>
+   Messaging APIを利用することで、ボットサーバーはLINEプラットフォームとデータをやりとりできます。リクエストはHTTPSでJSON形式により送信されます。ボットサーバーとLINEプラットフォームの通信の流れは以下のようになります。
+  </p>
+  <ol>
+   <li>
+    ユーザーがLINE公式アカウントにメッセージを送信します。
+   </li>
+   <li>
+    LINEプラットフォームからボットサーバーのWebhook URLにWebhookイベントが送信されます。
+   </li>
+   <li>
+    ボットサーバーはWebhookイベントを確認し、LINEプラットフォームを通じてユーザーに応答します。
+   </li>
+  </ol>
+  <p>
+   <img src="/media/messaging-api/overview/messaging-api-architecture.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#line-api-use-case">
+    デモを試す
+   </a>
+  </h2>
+  <p>
+   Messaging APIを体験してみましょう。お手持ちのスマートフォンでデモを見ることができます。 QRコードを読み取ると、デモ用のLINE公式アカウントを友だち追加できます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/demo/messaging-api-demo-qr-code-ja.png"/>
+  </p>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     デモアプリで取得するデータについて
+    </span>
+   </div>
+   <div>
+    <p>
+     デモ用のLINE公式アカウントには、端末の「位置情報」を送信する機能があります。「位置情報」を送信する機能を希望しない場合は、ご利用の端末の「位置情報共有」をOFFにしてからご利用ください。なお、皆さまのLINEアカウントから、「プロフィール情報の一部（ユーザーID）」を取得します。ただし、これらの情報はサーバーには保存されません。上記をご理解のうえ、ご利用ください。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#what-you-can-do">
+    Messaging APIでできること
+   </a>
+  </h2>
+  <p>
+   Messaging APIでできることは以下のとおりです。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#send-reply-messages">
+    応答メッセージを送る
+   </a>
+  </h3>
+  <p>
+   Messaging APIを利用すると、LINE公式アカウントと対話するユーザーに対して、メッセージを返信できます。詳しくは「
+   <a href="./sending-messages/">
+    メッセージを送信する
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#send-messages-at-any-time">
+    任意のタイミングでメッセージを送る
+   </a>
+  </h3>
+  <p>
+   Messaging APIを利用すると、いつでもユーザーに直接メッセージを送ることができます。詳しくは、「
+   <a href="./sending-messages/">
+    メッセージを送信する
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#send-different-message-types">
+    さまざまなタイプのメッセージを送る
+   </a>
+  </h3>
+  <p>
+   Messaging APIでは、以下のようなさまざまなタイプのメッセージをユーザーに送信できます。これらのメッセージの仕様の詳細については、「
+   <a href="./message-types/">
+    メッセージタイプ
+   </a>
+   」を参照してください。
+  </p>
+  <ul>
+   <li>
+    <a href="./message-types/#text-messages">
+     テキストメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#text-messages-v2">
+     テキストメッセージ（v2）
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#sticker-messages">
+     スタンプメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#image-messages">
+     画像メッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#video-messages">
+     動画メッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#audio-messages">
+     音声メッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#location-messages">
+     位置情報メッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#coupon-messages">
+     クーポンメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#imagemap-messages">
+     イメージマップメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#template-messages">
+     テンプレートメッセージ
+    </a>
+   </li>
+   <li>
+    <a href="./message-types/#flex-messages">
+     Flex Message
+    </a>
+   </li>
+  </ul>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-content-sent-by-users">
+    ユーザーが送ったコンテンツを取得する
+   </a>
+  </h3>
+  <p>
+   Messaging APIを利用すると、ユーザーが送信した画像、動画、音声、ファイルを取得できます。ユーザーが送信したコンテンツは、一定期間が経過すると自動的に削除されます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#get-content">
+    コンテンツを取得する
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-user-profiles">
+    ユーザープロフィールを取得する
+   </a>
+  </h3>
+  <p>
+   Messaging APIでは、LINE公式アカウントと1対1のトークやグループトークでやりとりしているユーザーのプロフィール情報を取得することができます。取得できるプロフィール情報の種類は、ユーザーの表示名、言語、プロフィール画像、ステータスメッセージです。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#get-profile">
+    プロフィール情報を取得する
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#join-group-chats">
+    グループトークに参加する
+   </a>
+  </h3>
+  <p>
+   Messaging APIを利用すると、グループトークでメッセージを送信したり、グループトークのメンバーの情報を取得したりできます。詳しくは、「
+   <a href="./group-chats/">
+    グループトークと複数人トーク
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#use-rich-menus">
+    リッチメニューを使う
+   </a>
+  </h3>
+  <p>
+   Messaging APIでは、トークルーム内にリッチメニューを設定したり、リッチメニューをカスタマイズしたりできます。リッチメニューは、ユーザーがLINE公式アカウントとどのようにやりとりできるかを見つけるのに役立ちます。ユーザーは、いつでもトークルームからこのメニューを利用できます。詳しくは、「
+   <a href="./using-rich-menus/">
+    リッチメニューを使う
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#use-beacons">
+    ビーコンを使う
+   </a>
+  </h3>
+  <p>
+   LINE Beaconでは、Beaconエリアに入ったユーザーとLINE公式アカウントが対話するよう設定できます。詳しくは、「
+   <a href="./using-beacons/">
+    ビーコンを使う
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#use-account-link">
+    アカウント連携を使う
+   </a>
+  </h3>
+  <p>
+   Messaging APIを利用することで、プロバイダーが提供するサービスのユーザーと、LINE公式アカウントと友だちになっているLINEアカウントを、安全に連携できます。詳しくは、「
+   <a href="./linking-accounts/">
+    ユーザーアカウントの連携
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-number-of-messages">
+    送信メッセージ数を取得する
+   </a>
+  </h3>
+  <p>
+   Messaging APIでは、LINE公式アカウントから送信したメッセージ数を取得できます。なお、APIで取得できるのはMessaging APIにより送信されたメッセージの数であり、LINE Official Account Managerから送信されたメッセージの数は含まれません。詳しくは、以下を参照してください。
+  </p>
+  <ul>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-quota">
+     当月に送信できるメッセージ数の上限目安を取得する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-consumption">
+     当月のメッセージ利用状況を取得する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-number-of-reply-messages">
+     送信済みの応答メッセージの数を取得する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-number-of-push-messages">
+     送信済みのプッシュメッセージの数を取得する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-number-of-multicast-messages">
+     送信済みのマルチキャストメッセージの数を取得する
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/#get-number-of-broadcast-messages">
+     送信済みのブロードキャストメッセージの数を取得する
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#line-official-account-plan">
+    Messaging APIの料金
+   </a>
+  </h2>
+  <p>
+   Messaging APIは無料ではじめられます。どなたでもMessaging APIを使って、LINE公式アカウントからメッセージを送信できます。
+  </p>
+  <p>
+   毎月、一定数のメッセージを無料で送信できます。無料メッセージ通数は、LINE公式アカウントの
+   <a href="https://www.lycbiz.com/jp/service/line-official-account/plan/">
+    料金プラン
+   </a>
+   によって異なります。料金プランは国または地域によって異なる場合がありますので、該当する地域の料金プランをご確認ください。
+  </p>
+  <p>
+   Messaging APIの料金について詳しくは、「
+   <a href="./pricing/">
+    Messaging APIの料金
+   </a>
+   」を参照してください。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#next-steps-with-the-messaging-api">
+    次のステップ
+   </a>
+  </h2>
+  <p>
+   次のステップとして、
+   <a href="./getting-started/">
+    Messaging APIを使って
+   </a>
+   ボットを作成しましょう。まず、LINE公式アカウントを開設します。LINE公式アカウントを開設すると、そのLINE公式アカウント用のMessaging APIチャネルを作成できます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#related-pages-for-messaging-api">
+    関連ページ
+   </a>
+  </h2>
+  <ul>
+   <li>
+    <a href="./development-guidelines/">
+     Messaging API開発ガイドライン
+    </a>
+   </li>
+   <li>
+    <a href="./line-bot-sdk/">
+     LINE Messaging API SDK
+    </a>
+   </li>
+   <li>
+    <a href="/ja/reference/messaging-api/">
+     Messaging APIリファレンス
+    </a>
+   </li>
+  </ul>
+ </div>
+</main>

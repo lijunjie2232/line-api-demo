@@ -1,0 +1,342 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   ユーザー単位のリッチメニューを使う
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./use-per-user-rich-menus/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/use-per-user-rich-menus/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   このページでは、「ユーザー単位のリッチメニュー」の設定方法について説明します。
+  </p>
+  <ul>
+   <li>
+    <a href="#about-per-user-rich-menu">
+     ユーザー単位のリッチメニューとは
+    </a>
+   </li>
+   <li>
+    <a href="#set-per-user-rich-menu">
+     ユーザー単位のリッチメニューを設定する
+    </a>
+    <ul>
+     <li>
+      <a href="#create-a-rich-menu">
+       1. リッチメニューを作成し、画像を添付する
+      </a>
+     </li>
+     <li>
+      <a href="#prepare-user-id">
+       2. ユーザーIDを準備する
+      </a>
+     </li>
+     <li>
+      <a href="#link-the-rich-menu-to-user">
+       3. リッチメニューとユーザーをリンクする
+      </a>
+     </li>
+     <li>
+      <a href="#unlink-the-rich-menu-from-user">
+       4. リッチメニューとユーザーのリンクを解除する
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#swich-rich-menus">
+     ユーザーがリッチメニューを切り替えられるようにする
+    </a>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#about-per-user-rich-menu">
+    ユーザー単位のリッチメニューとは
+   </a>
+  </h2>
+  <p>
+   Messaging APIでは、リッチメニューをユーザー単位で設定できます。そのため、複数のリッチメニューを用意し、ユーザーごとに異なるリッチメニューを設定することで、ユーザー体験を向上させることもできます。
+  </p>
+  <p>
+   ユーザー単位のリッチメニューには、以下のような特徴があります。
+  </p>
+  <ol>
+   <li>
+    表示優先度がデフォルトのリッチメニューよりも高い
+    <ul>
+     <li>
+      ユーザー単位のリッチメニューは、表示優先度がデフォルトのリッチメニューよりも高く設定されています。そのため、LINE公式アカウントにデフォルトのリッチメニューを設定している場合に、あるユーザーに対して、ユーザー単位のリッチメニューを設定したときには、ユーザー単位のリッチメニューが優先して表示されます。詳しくは、「
+      <a href="./rich-menus-overview/#rich-menu-display">
+       リッチメニューの表示優先度
+      </a>
+      」を参照してください。
+     </li>
+    </ul>
+   </li>
+   <li>
+    即時に設定が反映され表示が切り替わる
+    <ul>
+     <li>
+      ユーザー単位のリッチメニューは、ユーザーがトーク画面に再入室しなくても、即時に設定が反映され表示が切り替わります。詳しくは、「
+      <a href="./rich-menus-overview/#when-setting-change-takes-effect">
+       リッチメニューの設定変更が反映されるタイミング
+      </a>
+      」を参照してください。
+     </li>
+    </ul>
+   </li>
+  </ol>
+  <h2>
+   <div>
+   </div>
+   <a href="#set-per-user-rich-menu">
+    ユーザー単位のリッチメニューを設定する
+   </a>
+  </h2>
+  <p>
+   ユーザー単位のリッチメニューの基本的な設定手順は以下のとおりです。
+  </p>
+  <ol>
+   <li>
+    <a href="#create-a-rich-menu">
+     リッチメニューを作成し、画像を添付する
+    </a>
+   </li>
+   <li>
+    <a href="#prepare-user-id">
+     ユーザーIDを準備する
+    </a>
+   </li>
+   <li>
+    <a href="#link-the-rich-menu-to-user">
+     リッチメニューとユーザーをリンクする
+    </a>
+   </li>
+   <li>
+    <a href="#unlink-the-rich-menu-from-user">
+     リッチメニューとユーザーのリンクを解除
+    </a>
+    して、ユーザー単位のリッチメニューの表示を終了する（任意）
+   </li>
+  </ol>
+  <h3>
+   <div>
+   </div>
+   <a href="#create-a-rich-menu">
+    1. リッチメニューを作成し、画像を添付する
+   </a>
+  </h3>
+  <p>
+   まずはリッチメニューを作成します。リッチメニューの作成方法について詳しくは、「
+   <a href="./using-rich-menus/">
+    リッチメニューを使う
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   ここでは、以下のリッチメニュー用のテンプレート画像（
+   <code>
+    richmenu-template-guide-07.png
+   </code>
+   ）を使用します。任意のディレクトリに保存してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/rich-menu/richmenu-template-guide-07.png"/>
+  </p>
+  <p>
+   以下のコマンドをターミナルで実行して、
+   <a href="/ja/reference/messaging-api/#create-rich-menu">
+    リッチメニューを作成
+   </a>
+   してください。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/richmenu</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-d </span><span>\
+</span></span><span><span>'{
+</span></span><span><span>    "size": {
+</span></span><span><span>        "width": 2500,
+</span></span><span><span>        "height": 1686
+</span></span><span><span>    },
+</span></span><span><span>    "selected": true,
+</span></span><span><span>    "name": "ユーザー単位のリッチメニューのテスト",
+</span></span><span><span>    "chatBarText": "Tap to open",
+</span></span><span><span>    "areas": [
+</span></span><span><span>        {
+</span></span><span><span>            "bounds": {
+</span></span><span><span>                "x": 0,
+</span></span><span><span>                "y": 0,
+</span></span><span><span>                "width": 2500,
+</span></span><span><span>                "height": 1686
+</span></span><span><span>            },
+</span></span><span><span>            "action": {
+</span></span><span><span>                "type": "uri",
+</span></span><span><span>                "label": "タップ領域A",
+</span></span><span><span>                "uri": "https://developers.line.biz/ja/news/"
+</span></span><span><span>            }
+</span></span><span><span>        }
+</span></span><span><span>    ]
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <p>
+   次に、以下のコマンドをターミナルで実行して、
+   <a href="/ja/reference/messaging-api/#upload-rich-menu-image">
+    リッチメニューに画像をアップロードして添付
+   </a>
+   してください。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api-data.line.me/v2/bot/richmenu/{richMenuId}/content</span><span> \
+</span></span><span><span>-H </span><span>"Authorization: Bearer {channel access token}"</span><span> \
+</span></span><span><span>-H </span><span>"Content-Type: image/png"</span><span> \
+</span></span><span><span>-T </span><span>richmenu-template-guide-07.png
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#prepare-user-id">
+    2. ユーザーIDを準備する
+   </a>
+  </h3>
+  <p>
+   リッチメニューを表示するユーザーのユーザーIDを準備します。ここでは、実際に表示を確認するために自分のユーザーIDを用意してください。
+  </p>
+  <p>
+   ユーザーIDの例：
+   <code>
+    U8189cf6745fc0d808977bdb0b9f22995
+   </code>
+  </p>
+  <p>
+   ユーザーIDの取得について詳しくは、「
+   <a href="./getting-user-ids/">
+    ユーザーIDを取得する
+   </a>
+   」の「
+   <a href="./getting-user-ids/#get-own-user-id">
+    開発者が自分自身のユーザーIDを取得する
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#link-the-rich-menu-to-user">
+    3. リッチメニューとユーザーをリンクする
+   </a>
+  </h3>
+  <p>
+   リッチメニューとユーザーIDが用意できたら、
+   <a href="/ja/reference/messaging-api/#link-rich-menu-to-user">
+    ユーザーとリッチメニューをリンク
+   </a>
+   します。以下のコマンドをターミナルで実行してください。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/user/{userId}/richmenu/{richMenuId}</span><span> \
+</span></span><span><span>-H </span><span>"Authorization: Bearer {channel access token}"
+</span></span></code></pre>
+  </div>
+  <h4>
+   <div>
+   </div>
+   <a href="#check-the-rich-menu">
+    3-1. リッチメニューの表示を確認する
+   </a>
+  </h4>
+  <p>
+   手順3.で設定したユーザー単位のリッチメニューが表示されることを確認します。リッチメニューを設定したLINE公式アカウントのトーク画面を開きます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/rich-menu/per-user-rich-menu-example.png"/>
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#unlink-the-rich-menu-from-user">
+    4. リッチメニューとユーザーのリンクを解除する
+   </a>
+  </h3>
+  <p>
+   最後に
+   <a href="/ja/reference/messaging-api/#unlink-rich-menu-from-user">
+    リッチメニューとユーザーのリンクを解除
+   </a>
+   し、リッチメニューの表示を終了します。手順4.で開いたトーク画面を表示したまま、以下のコマンドをターミナルで実行してください。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> DELETE</span><span> https://api.line.me/v2/bot/user/{userId}/richmenu</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'
+</span></span></code></pre>
+  </div>
+  <p>
+   ユーザー単位のリッチメニューは設定が即時に反映されるため、実行が完了したタイミングで、ユーザー単位のリッチメニューの表示が終了します。
+  </p>
+  <p>
+   なお、デフォルトのリッチメニューが設定されている場合は、デフォルトのリッチメニューが代わりに表示されます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#swich-rich-menus">
+    ユーザーがリッチメニューを切り替えられるようにする
+   </a>
+  </h2>
+  <p>
+   ユーザー単位のリッチメニューを活用して、タブ切り替えが可能なリッチメニューをユーザーに提供できます。
+   <span>
+    <a href="/ja/glossary/#rich-menu-alias">
+     リッチメニューエイリアス
+    </a>
+    <span>
+    </span>
+   </span>
+   と
+   <a href="/ja/reference/messaging-api/#richmenu-switch-action">
+    リッチメニュー切替アクション
+   </a>
+   を使うことで、簡単にリッチメニューの切り替えを実装できます。
+  </p>
+  <p>
+   <img src="/media/messaging-api/rich-menu/switching-richmenu-ja.png"/>
+  </p>
+  <p>
+   詳しくは、「
+   <a href="./switch-rich-menus/">
+    リッチメニューでタブ切り替えを行う
+   </a>
+   」を参照してください。
+  </p>
+ </div>
+</main>

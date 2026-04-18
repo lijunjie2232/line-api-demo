@@ -1,0 +1,511 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   送信したメッセージの統計情報を取得する
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./unit-based-statistics-aggregation/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/unit-based-statistics-aggregation/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   複数のユーザーに送信した
+   <a href="/ja/reference/messaging-api/#send-push-message">
+    プッシュメッセージ
+   </a>
+   や
+   <a href="/ja/reference/messaging-api/#send-multicast-message">
+    マルチキャストメッセージ
+   </a>
+   について、ユーザーがメッセージをどのように操作したかを示す統計情報を、ユニットごとに集計できます。
+  </p>
+  <p>
+   通常、プッシュメッセージやマルチキャストメッセージでは、ユーザーのプライバシー保護の観点から、メッセージの開封やURLのタップなど、ユーザーがメッセージに対して行った操作については、統計情報を取得できません。しかし、任意の「ユニット」単位で情報を集計し、個人が特定できない形にすることで、統計情報の取得が可能です。
+  </p>
+  <p>
+   下図のように、ユニット名を付与してメッセージを送信することで、ユニットごとのメッセージの統計情報を取得できるようになります。
+  </p>
+  <p>
+   <img src="/media/news/customAggregationUnits_ja.png"/>
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#about-message-statistics">
+    メッセージの統計情報とは
+   </a>
+  </h2>
+  <p>
+   メッセージについて、ユニットごとに以下のような統計情報が取得できます。
+  </p>
+  <ul>
+   <li>
+    メッセージを開封した人数
+   </li>
+   <li>
+    メッセージ内のいずれかのURLをタップした人数
+   </li>
+   <li>
+    メッセージ内のいずれかの動画または音声の再生を開始した人数
+   </li>
+  </ul>
+  <p>
+   メッセージの統計情報を取得することで、送信したメッセージに対してユーザーがどのような操作をしたかを知ることができます。このような統計情報を用いることで、以下のような情報を確認できます。
+  </p>
+  <p>
+   <strong>
+    取得した統計情報を用いた例
+   </strong>
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      送信対象の人数
+     </th>
+     <th>
+      開封数
+     </th>
+     <th>
+      開封率
+     </th>
+     <th>
+      URLタップ数
+     </th>
+     <th>
+      URLタップ率
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      500
+     </td>
+     <td>
+      433
+     </td>
+     <td>
+      87%
+     </td>
+     <td>
+      323
+     </td>
+     <td>
+      65%
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h3>
+   <div>
+   </div>
+   <a href="#notes-about-message-statistics">
+    集計される統計情報についての注意点
+   </a>
+  </h3>
+  <p>
+   統計情報の数値は、多少の誤差を含むことがあります。またプライバシーを保護するため、次のような場合、個人の操作に関する統計情報の値は
+   <code>
+    null
+   </code>
+   になります。
+  </p>
+  <ul>
+   <li>
+    集計された統計情報の値が20未満だった場合。
+   </li>
+   <li>
+    集計された統計情報の値が20以上であっても、そのイベントを発生させた実人数が20人未満だった場合。
+    <ul>
+     <li>
+      たとえば、動画が再生開始された回数が30回だったとしても、動画を再生開始した人数が15人だった場合は、どちらの値も
+      <code>
+       null
+      </code>
+      になります。
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#assign-names-to-units-when-sending-messages">
+    ユニット名を付与する
+   </a>
+  </h2>
+  <p>
+   統計情報を取得するには、プッシュメッセージやマルチキャストメッセージを送信する際に、任意の集計単位のユニット名を付与する必要があります。ユニット名を付与するには、プッシュメッセージやマルチキャストメッセージの送信時に、リクエストボディの
+   <code>
+    customAggregationUnits
+   </code>
+   プロパティにユニット名を指定してください。メッセージ送信時に指定できるユニット名は1つだけです。プッシュメッセージやマルチキャストメッセージの送信方法について詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#messages">
+    メッセージ
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   以下の例では、
+   <code>
+    promotion_a
+   </code>
+   というユニット名を付与してプッシュメッセージを送信しています。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/message/push</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-d </span><span>'{
+</span></span><span><span>    "to": "U4af4980629...",
+</span></span><span><span>    "messages":[
+</span></span><span><span>        {
+</span></span><span><span>            "type": "text",
+</span></span><span><span>            "text": "Hello, world1"
+</span></span><span><span>        }
+</span></span><span><span>    ],
+</span></span><span><span>    "customAggregationUnits": [
+</span></span><span><span>        "promotion_a"
+</span></span><span><span>    ]
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     ユニット名の後付けや変更について
+    </span>
+   </div>
+   <div>
+    <p>
+     既に送信したメッセージに後からユニット名を付与したり、ユニット名を変更したりすることはできません。
+    </p>
+   </div>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#limit-to-the-number-of-units">
+    ユニット名の種類数の上限
+   </a>
+  </h3>
+  <p>
+   当月中（その月の1日～末日）に、最大で1,000種類のユニット名を付与してメッセージを送信できます。
+  </p>
+  <p>
+   たとえば3月に
+   <code>
+    promotion_0001
+   </code>
+   から
+   <code>
+    promotion_1000
+   </code>
+   まで1,000種類のユニット名を付与してメッセージを送信したとします。その場合、翌月（4月）に同じ
+   <code>
+    promotion_0001
+   </code>
+   から
+   <code>
+    promotion_1000
+   </code>
+   までの1,000種類のユニット名を付与してメッセージを送信することも可能ですし、新しいユニット名である
+   <code>
+    promotion_1001
+   </code>
+   から
+   <code>
+    promotion_2000
+   </code>
+   までの1,000種類を付与してメッセージを送信することも可能です。
+  </p>
+  <p>
+   なお、1,001種類目以降のユニット名を付与してメッセージを送ると、そのユニット名はメッセージに付与されていないものとして扱われます。たとえば
+   <code>
+    promotion_0001
+   </code>
+   から
+   <code>
+    promotion_1500
+   </code>
+   まで1,500種類のユニット名を付与してメッセージを送ろうとした場合、1,001種類目となる
+   <code>
+    promotion_1001
+   </code>
+   以降については、メッセージは送信されますがユニット名はメッセージに付与されません。
+  </p>
+  <p>
+   ユニット名の種類が多い場合は、以下のいずれかの方法でユニット名が付与できる、あるいは付与できたことを確認してください。
+  </p>
+  <ul>
+   <li>
+    当月のユニット名がまだ1,000種類に達していないことを、メッセージの送信前に「
+    <a href="/ja/reference/messaging-api/#get-the-number-of-unit-name-types-assigned-during-this-month">
+     当月中に付与したユニット名の種類数を取得する
+    </a>
+    」エンドポイントで確認する
+   </li>
+   <li>
+    メッセージの送信後に「
+    <a href="/ja/reference/messaging-api/#get-a-list-of-unit-names-assigned-during-this-month">
+     当月中に付与したユニット名のリストを取得する
+    </a>
+    」エンドポイントで、付与したユニット名が存在することを確認する
+   </li>
+  </ul>
+  <div>
+   <div>
+    <i>
+    </i>
+    <span>
+     ユニット名の制限について
+    </span>
+   </div>
+   <div>
+    <p>
+     ユニット名を付与する際には「当月中に最大で1,000種類まで」という制限がありますが、メッセージの送信後に
+     <a href="#get-statistics-per-unit">
+      ユニットごとの統計情報を取得する
+     </a>
+     際には、
+     <code>
+      from
+     </code>
+     から
+     <code>
+      to
+     </code>
+     までの集計対象期間に存在するすべてのユニットの統計情報が取得できます。
+    </p>
+   </div>
+  </div>
+  <h2>
+   <div>
+   </div>
+   <a href="#get-statistics-per-unit">
+    ユニットごとの統計情報を取得する
+   </a>
+  </h2>
+  <p>
+   ユニット名を付与して送信したプッシュメッセージやマルチキャストメッセージの統計情報は、「
+   <a href="/ja/reference/messaging-api/#get-statistics-per-unit">
+    ユニットごとの統計情報を取得する
+   </a>
+   」エンドポイントで取得できます。以下の例では、
+   <code>
+    promotion_a
+   </code>
+   という名前のユニットの統計情報を取得しています。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> GET</span><span> https://api.line.me/v2/bot/insight/message/event/aggregation</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>--data-urlencode </span><span>'customAggregationUnit=promotion_a'</span><span> \
+</span></span><span><span>--data-urlencode </span><span>'from=20210301'</span><span> \
+</span></span><span><span>--data-urlencode </span><span>'to=20210331'</span><span> \
+</span></span><span><span>-G
+</span></span></code></pre>
+  </div>
+  <p>
+   なお、当月中に付与したユニット名は、「
+   <a href="/ja/reference/messaging-api/#get-a-list-of-unit-names-assigned-during-this-month">
+    当月に付与したユニット名のリストを取得する
+   </a>
+   」エンドポイントで取得できます。前月以前に付与したユニット名を確認するためのエンドポイントはありません。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#get-statistics-of-a-message-containing-the-url">
+    URLを含むメッセージの統計情報を取得する例
+   </a>
+  </h2>
+  <p>
+   以下の手順は、URLを含むメッセージの統計情報をユニットごとに取得する例です。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-statistics-of-a-message-containing-the-url-step-1">
+    1. ユニット名を付与してメッセージを送信する
+   </a>
+  </h3>
+  <p>
+   まず、複数のユーザーに同じ内容のメッセージを送ります。
+  </p>
+  <p>
+   <img src="/media/messaging-api/insight/new-item-message-example-ja.png"/>
+  </p>
+  <p>
+   ここでは、マルチキャストメッセージを使って、150人のユーザーにメッセージを送るとします。このとき、
+   <code>
+    customAggregationUnits
+   </code>
+   プロパティでユニット名を指定します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> POST</span><span> https://api.line.me/v2/bot/message/multicast</span><span> \
+</span></span><span><span>-H </span><span>'Content-Type: application/json'</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>-d </span><span>'{
+</span></span><span><span>    "to": ["U4af4980629...","U0c229f96c4...",...],</span><span> // 150件のユーザーID
+</span></span><span><span>    "messages":[
+</span></span><span><span>        {
+</span></span><span><span>            "type": "text",
+</span></span><span><span>            "text": "🆕 新商品が入荷しました！\nhttps://example.com/new-item/"
+</span></span><span><span>        }
+</span></span><span><span>    ],
+</span></span><span><span>    "customAggregationUnits": [
+</span></span><span><span>        "new-item-message-yyyymmdd"
+</span></span><span><span>    ]
+</span></span><span><span>}'
+</span></span></code></pre>
+  </div>
+  <h3>
+   <div>
+   </div>
+   <a href="#get-statistics-of-a-message-containing-the-url-step-2">
+    2.　統計情報を取得して集計する
+   </a>
+  </h3>
+  <p>
+   メッセージを送信してから数日待ち、ユニットごとの統計情報を取得します。
+  </p>
+  <div>
+   <span>
+    sh
+   </span>
+   <pre><code><span><span>curl</span><span> -v</span><span> -X</span><span> GET</span><span> https://api.line.me/v2/bot/insight/message/event/aggregation</span><span> \
+</span></span><span><span>-H </span><span>'Authorization: Bearer {channel access token}'</span><span> \
+</span></span><span><span>--data-urlencode </span><span>'customAggregationUnit=new-item-message-yyyymmdd'</span><span> \
+</span></span><span><span>--data-urlencode </span><span>'from=20210301'</span><span> \
+</span></span><span><span>--data-urlencode </span><span>'to=20210331'</span><span> \
+</span></span><span><span>-G
+</span></span></code></pre>
+  </div>
+  <p>
+   この例では、以下のような統計情報が取得できます。
+  </p>
+  <div>
+   <span>
+    json
+   </span>
+   <pre><code><span><span>{
+</span></span><span><span>  "overview"</span><span>: {
+</span></span><span><span>    "uniqueImpression"</span><span>: </span><span>111</span><span>,
+</span></span><span><span>    "uniqueClick"</span><span>: </span><span>74</span><span>,
+</span></span><span><span>    "uniqueMediaPlayed"</span><span>: </span><span>null</span><span>,
+</span></span><span><span>    "uniqueMediaPlayed100Percent"</span><span>: </span><span>null
+</span></span><span><span>  },
+</span></span><span><span>  "messages"</span><span>: [
+</span></span><span><span>    {
+</span></span><span><span>      "seq"</span><span>: </span><span>1</span><span>,
+</span></span><span><span>      "impression"</span><span>: </span><span>111</span><span>,
+</span></span><span><span>      "uniqueImpression"</span><span>: </span><span>111</span><span>,
+</span></span><span><span>      "mediaPlayed"</span><span>: </span><span>null</span><span>,
+</span></span><span><span>      "mediaPlayed25Percent"</span><span>: </span><span>null</span><span>,
+</span></span><span><span>      "mediaPlayed50Percent"</span><span>: </span><span>null</span><span>,
+</span></span><span><span>      "mediaPlayed75Percent"</span><span>: </span><span>null</span><span>,
+</span></span><span><span>      "mediaPlayed100Percent"</span><span>: </span><span>null</span><span>,
+</span></span><span><span>      "uniqueMediaPlayed"</span><span>: </span><span>null</span><span>,
+</span></span><span><span>      "uniqueMediaPlayed25Percent"</span><span>: </span><span>null</span><span>,
+</span></span><span><span>      "uniqueMediaPlayed50Percent"</span><span>: </span><span>null</span><span>,
+</span></span><span><span>      "uniqueMediaPlayed75Percent"</span><span>: </span><span>null</span><span>,
+</span></span><span><span>      "uniqueMediaPlayed100Percent"</span><span>: </span><span>null
+</span></span><span><span>    }
+</span></span><span><span>  ],
+</span></span><span><span>  "clicks"</span><span>: [
+</span></span><span><span>    {
+</span></span><span><span>      "seq"</span><span>: </span><span>1</span><span>,
+</span></span><span><span>      "url"</span><span>: </span><span>"https://example.com/new-item/"</span><span>,
+</span></span><span><span>      "click"</span><span>: </span><span>74</span><span>,
+</span></span><span><span>      "uniqueClick"</span><span>: </span><span>74</span><span>,
+</span></span><span><span>      "uniqueClickOfRequest"</span><span>: </span><span>74
+</span></span><span><span>    }
+</span></span><span><span>  ]
+</span></span><span><span>}
+</span></span></code></pre>
+  </div>
+  <p>
+   これらの情報を用いて、メッセージの開封率や、URLのタップ率などを確認できます。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      送信対象の人数
+     </th>
+     <th>
+      開封数
+     </th>
+     <th>
+      開封率
+     </th>
+     <th>
+      URLタップ数
+     </th>
+     <th>
+      URLタップ率
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      150
+     </td>
+     <td>
+      111
+     </td>
+     <td>
+      74%
+     </td>
+     <td>
+      74
+     </td>
+     <td>
+      67%
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h2>
+   <div>
+   </div>
+   <a href="#get-statistics-on-narrowcast-or-broadcast">
+    ナローキャストメッセージまたはブロードキャストメッセージの統計情報を取得する
+   </a>
+  </h2>
+  <p>
+   「ユーザーの操作に基づく統計情報を取得する」エンドポイントを使うことで、LINE公式アカウントから送信したナローキャストメッセージまたはブロードキャストメッセージに対して、ユーザーがどのように操作したかを示す統計情報を確認できます。詳しくは、『Messaging APIリファレンス』の「
+   <a href="/ja/reference/messaging-api/#get-message-event">
+    ユーザーの操作に基づく統計情報を取得する
+   </a>
+   」を参照してください。
+  </p>
+ </div>
+</main>

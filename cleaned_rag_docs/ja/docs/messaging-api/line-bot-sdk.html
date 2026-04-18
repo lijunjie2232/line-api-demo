@@ -1,0 +1,532 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   LINE Messaging API SDK
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./line-bot-sdk/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/line-bot-sdk/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <div>
+   <p>
+    LINE Messaging API SDKには、ライブラリ、ツール、およびサンプルが含まれています。SDKを使えば、Messaging APIを組み込んだボットアプリの開発を簡単に始めることができます。
+    <a href="#official-sdks">
+     公式SDK
+    </a>
+    と
+    <a href="#community-sdks">
+     コミュニティSDK
+    </a>
+    の両方とも、オープンソースとして提供されておりさまざまなプログラミング言語で利用できます。
+   </p>
+   <h3>
+    <div>
+    </div>
+    <a href="#official-sdks">
+     公式SDK
+    </a>
+   </h3>
+   <p>
+    公式SDKは以下の言語をサポートしています。
+   </p>
+   <ul>
+    <li>
+     <a href="https://github.com/line/line-bot-sdk-java">
+      Java
+     </a>
+     （
+     <a href="https://github.com/line/line-bot-sdk-java/releases">
+      リリースノート
+     </a>
+     ）
+    </li>
+    <li>
+     <a href="https://github.com/line/line-bot-sdk-php">
+      PHP
+     </a>
+     （
+     <a href="https://github.com/line/line-bot-sdk-php/releases">
+      リリースノート
+     </a>
+     ）
+    </li>
+    <li>
+     <a href="https://github.com/line/line-bot-sdk-python">
+      Python
+     </a>
+     （
+     <a href="https://github.com/line/line-bot-sdk-python/releases">
+      リリースノート
+     </a>
+     ）
+    </li>
+    <li>
+     <a href="https://github.com/line/line-bot-sdk-nodejs">
+      Node.js
+     </a>
+     （
+     <a href="https://github.com/line/line-bot-sdk-nodejs/releases">
+      リリースノート
+     </a>
+     ）
+    </li>
+    <li>
+     <a href="https://github.com/line/line-bot-sdk-go">
+      Go
+     </a>
+     （
+     <a href="https://github.com/line/line-bot-sdk-go/releases">
+      リリースノート
+     </a>
+     ）
+    </li>
+    <li>
+     <a href="https://github.com/line/line-bot-sdk-ruby">
+      Ruby
+     </a>
+     （
+     <a href="https://github.com/line/line-bot-sdk-ruby/releases">
+      リリースノート
+     </a>
+     ）
+    </li>
+   </ul>
+   <h4>
+    <div>
+    </div>
+    <a href="#official-sdks-archives">
+     アーカイブ
+    </a>
+   </h4>
+   <p>
+    以下の言語の公式SDKは、更新を終了しました。各SDKは引き続き使用できますが、今後は新機能の追加やバグフィックス、セキュリティの改善などの変更は一切行われません。
+   </p>
+   <ul>
+    <li>
+     <a href="https://github.com/line/line-bot-sdk-perl">
+      Perl
+     </a>
+     （
+     <a href="https://github.com/line/line-bot-sdk-perl/releases">
+      リリースノート
+     </a>
+     ）
+    </li>
+   </ul>
+   <h3>
+    <div>
+    </div>
+    <a href="#line-openapi">
+     LINE OpenAPI
+    </a>
+   </h3>
+   <p>
+    LINE OpenAPIは、Messaging APIやLIFFのサーバーAPIなど、LINEプラットフォームが提供しているAPIのインタフェースを、OpenAPIの仕様に従って定義したものです。LINE OpenAPIを用いることで、SDKが提供されていないプログラミング言語でも、
+    <a href="https://github.com/OpenAPITools/openapi-generator">
+     OpenAPI Generator
+    </a>
+    や
+    <a href="https://github.com/swagger-api/swagger-codegen">
+     Swagger Codegen
+    </a>
+    などのコードジェネレーターにより、LINEプラットフォームが提供している機能を利用しやすくなります。
+   </p>
+   <ul>
+    <li>
+     <a href="https://github.com/line/line-openapi">
+      LINE OpenAPI
+     </a>
+    </li>
+   </ul>
+   <h3>
+    <div>
+    </div>
+    <a href="#community-sdks">
+     コミュニティSDKとライブラリ
+    </a>
+   </h3>
+   <p>
+    サードパーティの開発者が開発するSDKとライブラリです。一般的なオープンソースライセンスが適用されます。LINEヤフー株式会社はコミュニティSDKに対して限定的なレビューを行いますが、これらのSDKの公式サポートや動作保証は提供しません。各SDKの適用ライセンスと免責事項を参照してください。
+   </p>
+   <table>
+    <thead>
+     <tr>
+      <th>
+       ライブラリ
+      </th>
+      <th>
+       言語/
+       <br/>
+       技術
+      </th>
+      <th>
+       概要
+      </th>
+      <th>
+       公開者
+      </th>
+      <th>
+       ライセンス
+      </th>
+      <th>
+       GitHubスター数
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       <a href="https://github.com/micksatana/fireliff-cli">
+        fireliff-cli
+       </a>
+      </td>
+      <td>
+       N/A
+      </td>
+      <td>
+       LIFF用のCLI
+      </td>
+      <td>
+       <a href="https://github.com/intocode-dev">
+        intocode
+       </a>
+      </td>
+      <td>
+       MIT
+      </td>
+      <td>
+       <a href="https://github.com/kenakamu/LINEChannelConnector">
+        <img src="https://img.shields.io/github/stars/intocode-io/fireliff-cli.svg"/>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <a href="https://github.com/kenakamu/LINEChannelConnector">
+        LINEChannelConnector
+       </a>
+      </td>
+      <td>
+       N/A
+      </td>
+      <td>
+       BotBuilder用のコネクター
+      </td>
+      <td>
+       <a href="https://github.com/kenakamu">
+        kenakamu
+       </a>
+      </td>
+      <td>
+       MIT
+      </td>
+      <td>
+       <a href="https://github.com/kenakamu/LINEChannelConnector">
+        <img src="https://img.shields.io/github/stars/kenakamu/LINEChannelConnector.svg"/>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <a href="https://github.com/shidec/line_bot_framework">
+        line_bot_framework
+       </a>
+      </td>
+      <td>
+       PHP
+      </td>
+      <td>
+       ボット開発フレームワーク
+      </td>
+      <td>
+       <a href="https://github.com/shidec">
+        shidec
+       </a>
+      </td>
+      <td>
+       MIT
+      </td>
+      <td>
+       <a href="https://github.com/shidec/line_bot_framework">
+        <img src="https://img.shields.io/github/stars/shidec/line_bot_framework.svg"/>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <a href="https://github.com/mgilangjanuar/line-chatbot-boilerplate">
+        line-chatbot-boilerplate
+       </a>
+      </td>
+      <td>
+       Python
+      </td>
+      <td>
+       ボット開発テンプレート
+      </td>
+      <td>
+       <a href="https://github.com/mgilangjanuar">
+        mgilangjanuar
+       </a>
+      </td>
+      <td>
+       MIT
+      </td>
+      <td>
+       <a href="https://github.com/mgilangjanuar/line-chatbot-boilerplate">
+        <img src="https://img.shields.io/github/stars/mgilangjanuar/line-chatbot-boilerplate.svg"/>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <a href="https://github.com/kenakamu/linesimulator">
+        LINESimulator
+       </a>
+      </td>
+      <td>
+       N/A
+      </td>
+      <td>
+       ボット開発デバッグ用のLINEシミュレーター
+      </td>
+      <td>
+       <a href="https://github.com/kenakamu">
+        kenakamu
+       </a>
+      </td>
+      <td>
+       MIT
+      </td>
+      <td>
+       <a href="https://github.com/kenakamu/linesimulator">
+        <img src="https://img.shields.io/github/stars/kenakamu/linesimulator.svg"/>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <a href="https://github.com/kenakamu/line-richmenus-manager">
+        line-richmenus-manager
+       </a>
+      </td>
+      <td>
+       N/A
+      </td>
+      <td>
+       リッチメニューの作成・管理のためのGUIツール
+      </td>
+      <td>
+       <a href="https://github.com/kenakamu">
+        kenakamu
+       </a>
+      </td>
+      <td>
+       MIT
+      </td>
+      <td>
+       <a href="https://github.com/kenakamu/line-richmenus-manager">
+        <img src="https://img.shields.io/github/stars/kenakamu/line-richmenus-manager.svg"/>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <a href="https://github.com/boybundit/linebot">
+        linebot
+       </a>
+      </td>
+      <td>
+       Node.js
+      </td>
+      <td>
+       Node.js向けLINE Messaging API SDK
+      </td>
+      <td>
+       <a href="https://github.com/boybundit">
+        boybundit
+       </a>
+      </td>
+      <td>
+       MIT
+      </td>
+      <td>
+       <a href="https://github.com/boybundit/linebot">
+        <img src="https://img.shields.io/github/stars/boybundit/linebot.svg"/>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <a href="https://github.com/Wolke/botbuilder-linebot-connector">
+        botbuilder-linebot-connector
+       </a>
+      </td>
+      <td>
+       Node.js
+      </td>
+      <td>
+       LINE Messaging API向けMicrosoft Bot Framework v3コネクター
+      </td>
+      <td>
+       <a href="https://github.com/Wolke">
+        Wolke
+       </a>
+      </td>
+      <td>
+       MIT
+      </td>
+      <td>
+       <a href="https://github.com/Wolke/botbuilder-linebot-connector">
+        <img src="https://img.shields.io/github/stars/Wolke/botbuilder-linebot-connector.svg"/>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <a href="https://github.com/Yoctol/bottender">
+        bottender
+       </a>
+      </td>
+      <td>
+       Node.js
+      </td>
+      <td>
+       複数のプラットフォームで動作するボットを短時間で作成できるフレームワーク
+      </td>
+      <td>
+       <a href="https://github.com/Yoctol">
+        Yoctol
+       </a>
+      </td>
+      <td>
+       MIT
+      </td>
+      <td>
+       <a href="https://github.com/Yoctol/bottender">
+        <img src="https://img.shields.io/github/stars/Yoctol/bottender.svg"/>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <a href="https://github.com/bottenderjs/messaging-apis/tree/master/packages/messaging-api-line">
+        messaging-api-line
+       </a>
+      </td>
+      <td>
+       Node.js
+      </td>
+      <td>
+       Node.js向けLINE Messaging API SDK
+      </td>
+      <td>
+       <a href="https://github.com/Yoctol">
+        Yoctol
+       </a>
+      </td>
+      <td>
+       MIT
+      </td>
+      <td>
+       <a href="https://github.com/bottenderjs/messaging-apis/tree/master/packages/messaging-api-line">
+        <img src="https://img.shields.io/github/stars/Yoctol/messaging-apis.svg"/>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <a href="https://github.com/dlemstra/line-bot-sdk-dotnet">
+        line-bot-sdk-dotnet
+       </a>
+      </td>
+      <td>
+       C#
+      </td>
+      <td>
+       .NET Standard向けLINE Messaging API SDK
+      </td>
+      <td>
+       <a href="https://github.com/dlemstra">
+        dlemstra
+       </a>
+      </td>
+      <td>
+       Apache-2.0
+      </td>
+      <td>
+       <a href="https://github.com/dlemstra/line-bot-sdk-dotnet">
+        <img src="https://img.shields.io/github/stars/dlemstra/line-bot-sdk-dotnet.svg"/>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <a href="https://github.com/pierre3/LineMessagingApi">
+        LineMessagingApi
+       </a>
+      </td>
+      <td>
+       C#
+      </td>
+      <td>
+       C#向けLINE Messaging API SDK
+      </td>
+      <td>
+       <a href="https://github.com/pierre3">
+        pierre3
+       </a>
+      </td>
+      <td>
+       MIT
+      </td>
+      <td>
+       <a href="https://github.com/pierre3/LineMessagingApi">
+        <img src="https://img.shields.io/github/stars/pierre3/LineMessagingApi.svg"/>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <a href="https://github.com/moleike/line-bot-sdk">
+        line-bot-sdk
+       </a>
+      </td>
+      <td>
+       Haskell
+      </td>
+      <td>
+       Haskell向けLINE Messaging API SDK
+      </td>
+      <td>
+       <a href="https://github.com/moleike">
+        moleike
+       </a>
+      </td>
+      <td>
+       BSD
+      </td>
+      <td>
+       <a href="https://github.com/moleike/line-bot-sdk">
+        <img src="https://img.shields.io/github/stars/moleike/line-bot-sdk.svg"/>
+       </a>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</main>

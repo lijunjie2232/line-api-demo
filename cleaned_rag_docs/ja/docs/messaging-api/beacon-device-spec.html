@@ -1,0 +1,781 @@
+<main class="markdown-content">
+ <div>
+  <h1>
+   LINE Beacon端末の仕様
+  </h1>
+  <div>
+   <button>
+    <span>
+    </span>
+    LLM用にコピー
+   </button>
+   <a href="./beacon-device-spec/index.html.md">
+    <span>
+    </span>
+    Markdownで表示
+   </a>
+   <a href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/beacon-device-spec/index.html.md">
+    <span>
+    </span>
+    GitHubで表示
+   </a>
+  </div>
+  <p>
+   このLINE Beaconの仕様は、LINE Beaconを利用するためにビーコン端末を導入したい法人ユーザー向けの仕様です。ビーコン端末は本仕様に準拠する必要があります。
+  </p>
+  <p>
+   <a href="https://github.com/line/line-simple-beacon">
+    LINE Simple Beacon
+   </a>
+   と異なり、LINE Beaconのパケットには、セキュリティを保護する仕組みとして
+   <a href="#generating-secure-message">
+    Secure message
+   </a>
+   が含まれます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#requirements-for-devices-compliant-with-line-beacon-specs">
+    LINE Beacon対応端末の要件
+   </a>
+  </h2>
+  <p>
+   LINE Beaconに対応するビーコン端末とは、Bluetooth® Low Energy Version 4.0とAppleの
+   <a href="https://developer.apple.com/ibeacon/">
+    iBeacon
+   </a>
+   に対応し、LINE Beaconパケットをアドバタイズできるビーコン端末です。具体的には、以下の条件を満たす必要があります。
+  </p>
+  <ul>
+   <li>
+    <a href="#line-beacon-packet">
+     LINE Beaconパケット
+    </a>
+    をアドバタイズする。
+   </li>
+   <li>
+    SHA-256とXOR（排他的論理和）の演算でハッシュ化したデータから
+    <a href="#generating-secure-message">
+     Secure message
+    </a>
+    を生成する。
+   </li>
+   <li>
+    Secure messageを15秒間隔で更新する。
+   </li>
+   <li>
+    端末固有の
+    <a href="#hwid">
+     HWID
+    </a>
+    が割り当てられ、端末本体にHWIDが表示されている。
+   </li>
+  </ul>
+  <h2>
+   <div>
+   </div>
+   <a href="#line-beacon-packet">
+    LINE Beaconパケット
+   </a>
+  </h2>
+  <p>
+   LINEがビーコン端末を迅速に発見できるよう、Generic access profileで規定されるBroadcaster role（BLUETOOTH SPECIFICATION Version 4.0
+   <span>
+    Vol 3
+   </span>
+   , Part C Section 2.2.2.1）に従って、ビーコン端末を制御する必要があります。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#packet-transmission-interval">
+    パケットの送信間隔
+   </a>
+  </h3>
+  <p>
+   LINE Beaconパケットは、152.5ミリ秒間隔で送信することを強く推奨します。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#format-of-ad-data">
+    アドバタイジングパケットの仕様
+   </a>
+  </h3>
+  <p>
+   アドバタイジングパケットは、以下の図のように、3つのAD structureから構成してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/beacon-device-spec/advDataFormat.png"/>
+  </p>
+  <p>
+   アドバタイジングパケットの仕様は以下のとおりです。値カラムの16進数の値は、説明カラムの括弧書きの値と同等です。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      オクテット
+     </th>
+     <th>
+      フィールド
+     </th>
+     <th>
+      値
+     </th>
+     <th>
+      説明
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      00
+     </td>
+     <td>
+      Length
+     </td>
+     <td>
+      0x02
+     </td>
+     <td>
+      第1のAD structureのデータ長（2バイト）
+     </td>
+    </tr>
+    <tr>
+     <td>
+      01
+     </td>
+     <td>
+      AD type
+     </td>
+     <td>
+      0x01
+     </td>
+     <td>
+      第1のAD structureのAD type（Flags）
+     </td>
+    </tr>
+    <tr>
+     <td>
+      02
+     </td>
+     <td>
+      AD data
+     </td>
+     <td>
+      0x06
+     </td>
+     <td>
+      Flags（LE General Discoverable Mode、BR/EDR Not Supported）
+     </td>
+    </tr>
+    <tr>
+     <td>
+      03
+     </td>
+     <td>
+      Length
+     </td>
+     <td>
+      0x03
+     </td>
+     <td>
+      第2のAD structureのデータ長（3バイト）
+     </td>
+    </tr>
+    <tr>
+     <td>
+      04
+     </td>
+     <td>
+      AD type
+     </td>
+     <td>
+      0x03
+     </td>
+     <td>
+      第2のAD structureのAD type（Complete list of 16-bit UUIDs available）
+     </td>
+    </tr>
+    <tr>
+     <td>
+      05
+     </td>
+     <td>
+      16-bit UUID
+     </td>
+     <td>
+      0x6F
+     </td>
+     <td>
+      次のバイトと合わせてLINEの16ビットUUID（0xFE6F）を示します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      06
+     </td>
+     <td>
+      16-bit UUID
+     </td>
+     <td>
+      0xFE
+     </td>
+     <td>
+      前のバイトと合わせてLINEの16ビットUUID（0xFE6F）を示します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      07
+     </td>
+     <td>
+      Length
+     </td>
+     <td>
+      0x11
+     </td>
+     <td>
+      第3のAD structureのデータ長（17バイト）
+     </td>
+    </tr>
+    <tr>
+     <td>
+      08
+     </td>
+     <td>
+      AD type
+     </td>
+     <td>
+      0x16
+     </td>
+     <td>
+      第3のAD structureのAD type（Service Data - 16-bit UUID）
+     </td>
+    </tr>
+    <tr>
+     <td>
+      09
+     </td>
+     <td>
+      16-bit UUID
+     </td>
+     <td>
+      0x6F
+     </td>
+     <td>
+      次のバイトと合わせてLINEの16ビットUUID（0xFE6F）を示します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      10
+     </td>
+     <td>
+      16-bit UUID
+     </td>
+     <td>
+      0xFE
+     </td>
+     <td>
+      前のバイトと合わせてLINEの16ビットUUID（0xFE6F）を示します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      11
+     </td>
+     <td>
+      Frame type
+     </td>
+     <td>
+      0x02
+     </td>
+     <td>
+      フレームタイプ（LINE Beacon）
+     </td>
+    </tr>
+    <tr>
+     <td>
+      12-16
+     </td>
+     <td>
+      HWID
+     </td>
+     <td>
+      端末固有の値
+     </td>
+     <td>
+      ビーコン端末の5バイトの固有ID。詳しくは、「
+      <a href="#hwid">
+       HWID
+      </a>
+      」を参照してください。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      17
+     </td>
+     <td>
+      Measured TxPower
+     </td>
+     <td>
+      端末固有の値
+     </td>
+     <td>
+      LINEがインストールされているデバイスとビーコン端末の距離が1メートルの場合のRSSI（受信信号強度インジケータ）。iBeaconパケットと同様の値を設定します。詳しくは、iBeaconのドキュメントを参照してください。
+      <br/>
+      RSSIのデータを利用しない場合は、0x7Fを指定します。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      18-21
+     </td>
+     <td>
+      Message authentication code
+     </td>
+     <td>
+      変動値
+     </td>
+     <td>
+      <a href="#step-one-generate-message-auth-code">
+       メッセージ認証
+      </a>
+      のための4バイトコード
+     </td>
+    </tr>
+    <tr>
+     <td>
+      22-23
+     </td>
+     <td>
+      Masked timestamp
+     </td>
+     <td>
+      変動値
+     </td>
+     <td>
+      2バイトの
+      <a href="#step-two-generate-masked-timestamp">
+       マスクしたタイムスタンプ
+      </a>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      24
+     </td>
+     <td>
+      Battery level
+     </td>
+     <td>
+      変動値
+     </td>
+     <td>
+      <a href="#battery-level">
+       バッテリー残量
+      </a>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      25-30
+     </td>
+     <td>
+      Non-significant part
+     </td>
+     <td>
+      0x00
+     </td>
+     <td>
+      未使用部。すべて0x00を指定します。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h2>
+   <div>
+   </div>
+   <a href="#generating-secure-message">
+    Secure messageを生成する
+   </a>
+  </h2>
+  <p>
+   Secure messageは、LINE Beaconパケットの改ざんやリプレイ攻撃を防ぐために使用します。Secure messageは、Message authentication code、Masked timestamp、およびBattery levelを連結した7バイトのデータです。ビーコン端末から発信されたSecure messageは、LINE経由でLINEプラットフォームに送信され、検証されます。
+  </p>
+  <p>
+   Secure messageを生成するには、SHA-256で生成したハッシュ値に対してXOR（排他的論理和）演算を3回実行します。以下の図は、Secure messageの生成の流れを示します。生成に必要なパラメータについては、「
+   <a href="#parameters">
+    Secure messageに必要なパラメータ
+   </a>
+   」を参照してください。
+  </p>
+  <p>
+   <img src="/media/messaging-api/beacon-device-spec/secureMessageAlgorithm.png"/>
+  </p>
+  <p>
+   Secure messageは、以下の手順に従って生成します。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#step-one-generate-message-auth-code">
+    1. Message authentication codeを生成する
+   </a>
+  </h3>
+  <ol>
+   <li>
+    以下の項目を順に連結し、SHA-256を使って32バイトのハッシュ値を生成します。
+    <ul>
+     <li>
+      <a href="#timestamp">
+       Timestamp
+      </a>
+     </li>
+     <li>
+      <a href="#hwid">
+       HWID
+      </a>
+     </li>
+     <li>
+      <a href="#vendor-key">
+       Vendor key
+      </a>
+     </li>
+     <li>
+      <a href="#lot-key">
+       Lot key
+      </a>
+     </li>
+     <li>
+      <a href="#battery-level">
+       Battery level
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    ハッシュ値の前半の16バイトと後半の16バイトの排他的論理和を求めます。
+   </li>
+   <li>
+    前のステップで得た値の前半の8バイトと後半の8バイトの排他的論理和を求めます。
+   </li>
+   <li>
+    前のステップで得た値の前半の4バイトと後半の4バイトの排他的論理和を求めます。
+   </li>
+  </ol>
+  <p>
+   これで、Message authentication codeが完成します。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#step-two-generate-masked-timestamp">
+    2. Masked timestampを生成する
+   </a>
+  </h3>
+  <p>
+   タイムスタンプの冒頭から6バイトをマスクして、末尾の2バイトを残します。これがMasked timestampです。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#step-three-concatentate-items">
+    3. 項目を連結する
+   </a>
+  </h3>
+  <p>
+   Secure messageを生成するには、以下の項目を順に連結します。
+  </p>
+  <ul>
+   <li>
+    <a href="#step-one-generate-message-auth-code">
+     ステップ1
+    </a>
+    で生成したMessage authentication code
+   </li>
+   <li>
+    <a href="#step-two-generate-masked-timestamp">
+     ステップ2
+    </a>
+    で生成したMasked timestamp
+   </li>
+   <li>
+    <a href="#battery-level">
+     Battery level
+    </a>
+   </li>
+  </ul>
+  <p>
+   これで、Secure messageが完成します。Secure messageを生成するためのビーコン端末の開発とテストについては、「
+   <a href="./secure-message-sample/">
+    Secure message生成のサンプルデータとコード
+   </a>
+   」を参照してください。
+  </p>
+  <h3>
+   <div>
+   </div>
+   <a href="#parameters">
+    Secure messageに必要なパラメータ
+   </a>
+  </h3>
+  <p>
+   Secure messageを生成するには、以下のパラメータが必要です。
+  </p>
+  <ul>
+   <li>
+    <a href="#battery-level">
+     Battery level
+    </a>
+   </li>
+   <li>
+    <a href="#hwid">
+     HWID
+    </a>
+   </li>
+   <li>
+    <a href="#lot-key">
+     Lot key
+    </a>
+   </li>
+   <li>
+    <a href="#timestamp">
+     Timestamp
+    </a>
+   </li>
+   <li>
+    <a href="#vendor-key">
+     Vendor key
+    </a>
+   </li>
+  </ul>
+  <p>
+   HWID、Lot key、およびVendor keyは、LINEヤフー株式会社が生成し管理するデータです。これらのパラメータを取得するには、LINEヤフー株式会社の貴社担当者までお問い合わせください。申請フォームを提出し、承認されると、パラメータが発行されます。
+  </p>
+  <h4>
+   <div>
+   </div>
+   <a href="#battery-level">
+    Battery level
+   </a>
+  </h4>
+  <p>
+   Battery levelとは、バッテリー残量のことです。以下の表に従って、残量を指定してください。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      10進数値
+     </th>
+     <th>
+      16進数値
+     </th>
+     <th>
+      説明
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      0
+     </td>
+     <td>
+      0x00
+     </td>
+     <td>
+      不明、または外部電源に接続されています。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      1
+     </td>
+     <td>
+      0x01
+     </td>
+     <td>
+      残量0%。完全放電の状態です。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      2
+     </td>
+     <td>
+      0x02
+     </td>
+     <td>
+      残量10%
+     </td>
+    </tr>
+    <tr>
+     <td>
+      …
+     </td>
+     <td>
+      …
+     </td>
+     <td>
+      …
+     </td>
+    </tr>
+    <tr>
+     <td>
+      10
+     </td>
+     <td>
+      0x0A
+     </td>
+     <td>
+      残量90%
+     </td>
+    </tr>
+    <tr>
+     <td>
+      11
+     </td>
+     <td>
+      0x0B
+     </td>
+     <td>
+      残量100%。完全充電の状態です。
+     </td>
+    </tr>
+    <tr>
+     <td>
+      (12-255)
+     </td>
+     <td>
+      0x0C-0xFF
+     </td>
+     <td>
+      将来の利用のため予約されています。使用しないでください。
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h4>
+   <div>
+   </div>
+   <a href="#hwid">
+    HWID
+   </a>
+  </h4>
+  <p>
+   HWIDはLINEヤフー株式会社によって発行される、ビーコン端末のハードウェアIDです。HWIDは16進数表記の10文字の文字列です。これをバイト配列に変換し、5バイトのバイナリデータとしてビーコン端末に書き込みます。また、HWIDはビーコン端末本体に表示してください。
+  </p>
+  <h4>
+   <div>
+   </div>
+   <a href="#lot-key">
+    Lot key
+   </a>
+  </h4>
+  <p>
+   Lot keyはLINEヤフー株式会社によって発行される、ロットごとに割り当てるキーです。Lot keyは16文字の文字列です。HWIDの場合と同様にバイト配列に変換し、8バイトのバイナリデータとしてビーコン端末に書き込みます。
+  </p>
+  <h4>
+   <div>
+   </div>
+   <a href="#timestamp">
+    Timestamp
+   </a>
+  </h4>
+  <p>
+   符号なし64ビット整数型のタイムスタンプです。
+  </p>
+  <ul>
+   <li>
+    ビーコン端末の電源を初めて投入した時点からインクリメントを開始します。
+   </li>
+   <li>
+    0から開始し、15秒ごとにインクリメントします。たとえば、ビーコン端末の電源を投入してから1分後のタイムスタンプは4になります。
+   </li>
+   <li>
+    ビーコン端末の電源を再投入するときにタイムスタンプを0にリセットせず、電源が切れる前の時点のタイムスタンプを引き続きインクリメントしてください。
+   </li>
+   <li>
+    端末のHWIDを新たに発行されたHWIDに書き換える場合、タイムスタンプは再び0から開始するようにリセットしてください。
+   </li>
+  </ul>
+  <h4>
+   <div>
+   </div>
+   <a href="#vendor-key">
+    Vendor key
+   </a>
+  </h4>
+  <p>
+   Vendor keyはLINEヤフー株式会社によって発行される、製造者ごとに割り当てるキーです。Vendor keyは16進数表記の8文字の文字列です。HWIDの場合と同様にバイト配列に変換し、4バイトのバイナリデータとしてビーコン端末に書き込みます。
+  </p>
+  <h2>
+   <div>
+   </div>
+   <a href="#ibeacon-packet">
+    iBeaconパケット
+   </a>
+  </h2>
+  <p>
+   LINE Beaconデバイスが付近にあることをiOSデバイスに通知するため、iBeaconパケットを必ず送信してください。以下のLINE Beacon特有のパラメータをiBeaconパケットに含めてください。
+  </p>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      パラメータ
+     </th>
+     <th>
+      値
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      UUID
+     </td>
+     <td>
+      D0D2CE24-9EFC-11E5-82C4-1C6A7A17EF38
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Major
+     </td>
+     <td>
+      0x4C49
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Minor
+     </td>
+     <td>
+      0x4E45
+     </td>
+    </tr>
+    <tr>
+     <td>
+     </td>
+     <td>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   iBeaconパケットのAD structureと送信間隔については、『Proximity Beacon Specification』を参照してください。このドキュメントは、
+   <a href="https://developer.apple.com/ibeacon/">
+    Apple DeveloperサイトのiBeaconのセクション
+   </a>
+   からダウンロードできます。
+  </p>
+ </div>
+</main>
