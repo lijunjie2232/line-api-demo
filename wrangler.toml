@@ -1,0 +1,7 @@
+name = "line-api-test-worker"
+main = "src/index.js"
+compatibility_date = "2024-04-18"
+
+[vars]
+# LINE_CHANNEL_SECRET = "YOUR_CHANNEL_SECRET" (Set via wrangler secret put)
+# LINE_CHANNEL_ACCESS_TOKEN = "YOUR_ACCESS_TOKEN" (Set via wrangler secret put)
