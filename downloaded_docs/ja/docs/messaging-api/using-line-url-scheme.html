@@ -1,0 +1,3958 @@
+<!DOCTYPE html>
+<html class="" lang="ja-JP" style="">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <style id="nuxt-ui-colors">
+   @layer theme {
+  :root, :host {
+  --ui-color-primary-50: var(--color-green-50, oklch(98.2% 0.018 155.826));
+  --ui-color-primary-100: var(--color-green-100, oklch(96.2% 0.044 156.743));
+  --ui-color-primary-200: var(--color-green-200, oklch(92.5% 0.084 155.995));
+  --ui-color-primary-300: var(--color-green-300, oklch(87.1% 0.15 154.449));
+  --ui-color-primary-400: var(--color-green-400, oklch(79.2% 0.209 151.711));
+  --ui-color-primary-500: var(--color-green-500, oklch(72.3% 0.219 149.579));
+  --ui-color-primary-600: var(--color-green-600, oklch(62.7% 0.194 149.214));
+  --ui-color-primary-700: var(--color-green-700, oklch(52.7% 0.154 150.069));
+  --ui-color-primary-800: var(--color-green-800, oklch(44.8% 0.119 151.328));
+  --ui-color-primary-900: var(--color-green-900, oklch(39.3% 0.095 152.535));
+  --ui-color-primary-950: var(--color-green-950, oklch(26.6% 0.065 152.934));
+  --ui-color-secondary-50: var(--color-blue-50, oklch(97% 0.014 254.604));
+  --ui-color-secondary-100: var(--color-blue-100, oklch(93.2% 0.032 255.585));
+  --ui-color-secondary-200: var(--color-blue-200, oklch(88.2% 0.059 254.128));
+  --ui-color-secondary-300: var(--color-blue-300, oklch(80.9% 0.105 251.813));
+  --ui-color-secondary-400: var(--color-blue-400, oklch(70.7% 0.165 254.624));
+  --ui-color-secondary-500: var(--color-blue-500, oklch(62.3% 0.214 259.815));
+  --ui-color-secondary-600: var(--color-blue-600, oklch(54.6% 0.245 262.881));
+  --ui-color-secondary-700: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  --ui-color-secondary-800: var(--color-blue-800, oklch(42.4% 0.199 265.638));
+  --ui-color-secondary-900: var(--color-blue-900, oklch(37.9% 0.146 265.522));
+  --ui-color-secondary-950: var(--color-blue-950, oklch(28.2% 0.091 267.935));
+  --ui-color-success-50: var(--color-green-50, oklch(98.2% 0.018 155.826));
+  --ui-color-success-100: var(--color-green-100, oklch(96.2% 0.044 156.743));
+  --ui-color-success-200: var(--color-green-200, oklch(92.5% 0.084 155.995));
+  --ui-color-success-300: var(--color-green-300, oklch(87.1% 0.15 154.449));
+  --ui-color-success-400: var(--color-green-400, oklch(79.2% 0.209 151.711));
+  --ui-color-success-500: var(--color-green-500, oklch(72.3% 0.219 149.579));
+  --ui-color-success-600: var(--color-green-600, oklch(62.7% 0.194 149.214));
+  --ui-color-success-700: var(--color-green-700, oklch(52.7% 0.154 150.069));
+  --ui-color-success-800: var(--color-green-800, oklch(44.8% 0.119 151.328));
+  --ui-color-success-900: var(--color-green-900, oklch(39.3% 0.095 152.535));
+  --ui-color-success-950: var(--color-green-950, oklch(26.6% 0.065 152.934));
+  --ui-color-info-50: var(--color-blue-50, oklch(97% 0.014 254.604));
+  --ui-color-info-100: var(--color-blue-100, oklch(93.2% 0.032 255.585));
+  --ui-color-info-200: var(--color-blue-200, oklch(88.2% 0.059 254.128));
+  --ui-color-info-300: var(--color-blue-300, oklch(80.9% 0.105 251.813));
+  --ui-color-info-400: var(--color-blue-400, oklch(70.7% 0.165 254.624));
+  --ui-color-info-500: var(--color-blue-500, oklch(62.3% 0.214 259.815));
+  --ui-color-info-600: var(--color-blue-600, oklch(54.6% 0.245 262.881));
+  --ui-color-info-700: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  --ui-color-info-800: var(--color-blue-800, oklch(42.4% 0.199 265.638));
+  --ui-color-info-900: var(--color-blue-900, oklch(37.9% 0.146 265.522));
+  --ui-color-info-950: var(--color-blue-950, oklch(28.2% 0.091 267.935));
+  --ui-color-warning-50: var(--color-yellow-50, oklch(98.7% 0.026 102.212));
+  --ui-color-warning-100: var(--color-yellow-100, oklch(97.3% 0.071 103.193));
+  --ui-color-warning-200: var(--color-yellow-200, oklch(94.5% 0.129 101.54));
+  --ui-color-warning-300: var(--color-yellow-300, oklch(90.5% 0.182 98.111));
+  --ui-color-warning-400: var(--color-yellow-400, oklch(85.2% 0.199 91.936));
+  --ui-color-warning-500: var(--color-yellow-500, oklch(79.5% 0.184 86.047));
+  --ui-color-warning-600: var(--color-yellow-600, oklch(68.1% 0.162 75.834));
+  --ui-color-warning-700: var(--color-yellow-700, oklch(55.4% 0.135 66.442));
+  --ui-color-warning-800: var(--color-yellow-800, oklch(47.6% 0.114 61.907));
+  --ui-color-warning-900: var(--color-yellow-900, oklch(42.1% 0.095 57.708));
+  --ui-color-warning-950: var(--color-yellow-950, oklch(28.6% 0.066 53.813));
+  --ui-color-error-50: var(--color-red-50, oklch(97.1% 0.013 17.38));
+  --ui-color-error-100: var(--color-red-100, oklch(93.6% 0.032 17.717));
+  --ui-color-error-200: var(--color-red-200, oklch(88.5% 0.062 18.334));
+  --ui-color-error-300: var(--color-red-300, oklch(80.8% 0.114 19.571));
+  --ui-color-error-400: var(--color-red-400, oklch(70.4% 0.191 22.216));
+  --ui-color-error-500: var(--color-red-500, oklch(63.7% 0.237 25.331));
+  --ui-color-error-600: var(--color-red-600, oklch(57.7% 0.245 27.325));
+  --ui-color-error-700: var(--color-red-700, oklch(50.5% 0.213 27.518));
+  --ui-color-error-800: var(--color-red-800, oklch(44.4% 0.177 26.899));
+  --ui-color-error-900: var(--color-red-900, oklch(39.6% 0.141 25.723));
+  --ui-color-error-950: var(--color-red-950, oklch(25.8% 0.092 26.042));
+  --ui-color-neutral-50: var(--color-slate-50, oklch(98.4% 0.003 247.858));
+  --ui-color-neutral-100: var(--color-slate-100, oklch(96.8% 0.007 247.896));
+  --ui-color-neutral-200: var(--color-slate-200, oklch(92.9% 0.013 255.508));
+  --ui-color-neutral-300: var(--color-slate-300, oklch(86.9% 0.022 252.894));
+  --ui-color-neutral-400: var(--color-slate-400, oklch(70.4% 0.04 256.788));
+  --ui-color-neutral-500: var(--color-slate-500, oklch(55.4% 0.046 257.417));
+  --ui-color-neutral-600: var(--color-slate-600, oklch(44.6% 0.043 257.281));
+  --ui-color-neutral-700: var(--color-slate-700, oklch(37.2% 0.044 257.287));
+  --ui-color-neutral-800: var(--color-slate-800, oklch(27.9% 0.041 260.031));
+  --ui-color-neutral-900: var(--color-slate-900, oklch(20.8% 0.042 265.755));
+  --ui-color-neutral-950: var(--color-slate-950, oklch(12.9% 0.042 264.695));
+  }
+  :root, :host, .light {
+  --ui-primary: var(--ui-color-primary-500);
+  --ui-secondary: var(--ui-color-secondary-500);
+  --ui-success: var(--ui-color-success-500);
+  --ui-info: var(--ui-color-info-500);
+  --ui-warning: var(--ui-color-warning-500);
+  --ui-error: var(--ui-color-error-500);
+  }
+  .dark {
+  --ui-primary: var(--ui-color-primary-400);
+  --ui-secondary: var(--ui-color-secondary-400);
+  --ui-success: var(--ui-color-success-400);
+  --ui-info: var(--ui-color-info-400);
+  --ui-warning: var(--ui-color-warning-400);
+  --ui-error: var(--ui-color-error-400);
+  }
+}
+  </style>
+  <title>
+   LINE URLスキームでLINEの機能を使う | LINE Developers
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="https://static.line-scdn.net/laicon/edge/latest/laicon.min.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/entry.RjUY_jqM.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/BaseLayout.DryLLHoQ.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/TransitionExpand.C7MR6gY2.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/MarkdownControls.BbnXTJ19.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/HeaderAnchor.DXszml2g.css" rel="stylesheet"/>
+  <link as="fetch" crossorigin="anonymous" href="./using-line-url-scheme/_payload.json?b7cd7a21-3fab-4351-b588-f3a82989c407" rel="preload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C4Qefsoz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/D7tIDfdc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DS7rYW_M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DlAUqK2U.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DLfO8wDK.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/Ccjmmn3c.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CEXHtn8H.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B4DL1Cgs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B0gykE3i.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BFu_P-Ux.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DJi4jbM6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DZRjkML6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BJRELFIM.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C0hVKBUl.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CUpphwBz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BheWnx7M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C0MXvZso.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/vST1u8lx.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BffxFq_0.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CyAW9Z2F.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BUNJUvUR.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C945TDiu.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/bTg4ECcz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DYazWEBN.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/xOr79HUc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CTeDT3Cq.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CoRt-dtU.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/ClbflBZs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/5rLYfZ6F.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BRHV2bHS.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DuB1lYPf.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BN_7HF1G.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DWBlcy01.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B6sVujaj.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DEKEuJU2.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BPUzo62M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C308N652.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DMRlQYjX.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CMRidz-K.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CnrI_PHs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DP-8-zy_.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/ByRlcCLv.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DkhTipoD.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CmV3vphY.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C3hkkU40.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CudgkPls.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C1EJ6VMG.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DUpy5nRH.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BIQOJEGl.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CTLgqFkF.js" rel="modulepreload"/>
+  <script crossorigin="" src="/_nuxt/C4Qefsoz.js" type="module">
+  </script>
+  <meta content="LINE URLスキームでLINEの機能を使う" property="og:title"/>
+  <meta content="https://developers.line.biz/images/ogtags/twitter-ogtag.jpg" property="og:image"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta content="@LINE_DEV" name="twitter:site:id"/>
+  <meta content="https://developers.line.biz/images/ogtags/twitter-ogtag.jpg" name="twitter:image"/>
+  <link href="./using-line-url-scheme/" id="i18n-can" rel="canonical"/>
+  <meta content="https://developers.line.biz/ja/docs/messaging-api/using-line-url-scheme/" property="og:url"/>
+  <meta content="ja_JP" id="i18n-og" property="og:locale"/>
+  <meta content="en_US" id="i18n-og-alt-en-US" property="og:locale:alternate"/>
+  <meta content="LINE URLスキームを使って、ユーザーに特定のコンテンツを開いたり特定の動作を実行したりさせることができます。URLスキームは、iOSまたはAndroid版のLINEでサポートされます。Webアプリ、モバイルアプリ、またはボットアプリでURLスキームを利用できます。" property="og:description"/>
+  <meta content="LINE URLスキームでLINEの機能を使う" name="twitter:title"/>
+  <meta content="LINE URLスキームを使って、ユーザーに特定のコンテンツを開いたり特定の動作を実行したりさせることができます。URLスキームは、iOSまたはAndroid版のLINEでサポートされます。Webアプリ、モバイルアプリ、またはボットアプリでURLスキームを利用できます。" name="twitter:description"/>
+  <script>
+   "use strict";(()=>{const t=window,e=document.documentElement,c=["dark","light"],n=getStorageValue("localStorage","nuxt-color-mode")||"system";let i=n==="system"?u():n;const r=e.getAttribute("data-color-mode-forced");r&&(i=r),l(i),t["__NUXT_COLOR_MODE__"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=""+o+"",a="";e.classList?e.classList.add(s):e.className+=" "+s,a&&e.setAttribute("data-"+a,o)}function d(o){const s=""+o+"",a="";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,"g"),""),a&&e.removeAttribute("data-"+a)}function f(o){return t.matchMedia("(prefers-color-scheme"+o+")")}function u(){if(t.matchMedia&&f("").media!=="not all"){for(const o of c)if(f(":"+o).matches)return o}return"light"}})();function getStorageValue(t,e){switch(t){case"localStorage":return window.localStorage.getItem(e);case"sessionStorage":return window.sessionStorage.getItem(e);case"cookie":return getCookie(e);default:return null}}function getCookie(t){const c=("; "+window.document.cookie).split("; "+t+"=");if(c.length===2)return c.pop()?.split(";").shift()}
+  </script>
+ </head>
+ <body class="" style="">
+  <div class="isolate" id="__nuxt">
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <div class="nuxt-loading-indicator" style="position:fixed;top:0;right:0;left:0;pointer-events:none;width:auto;height:3px;opacity:0;background:repeating-linear-gradient(to right,#00dc82 0%,#34cdfe 50%,#0047e1 100%);background-size:0% auto;transform:scaleX(0%);transform-origin:left;transition:transform 0.1s, height 0.4s, opacity 0.4s;z-index:999999;">
+   </div>
+   <!--[-->
+   <!--[-->
+   <div class="relative h-screen" data-v-856df627="">
+    <header class="h-[64px] border-b bg-white px-5 transition sm:px-8 md:h-[89px] dark:bg-black fixed z-50 w-full bg-white" data-v-856df627="" data-v-d701af64="" id="navbar">
+     <div class="flex h-full items-center justify-between" data-v-d701af64="">
+      <div class="flex h-full items-center justify-between gap-14 overflow-x-hidden" data-v-d701af64="">
+       <a class="" data-v-d701af64="" href="/ja/">
+        <div class="logo relative" data-v-d701af64="">
+         <img alt="LINE Developers" class="logo logo-default" data-v-d701af64="" id="logo-black" src="/images/common/logo-black.svg"/>
+         <img alt="LINE Developers" class="logo transition" data-v-d701af64="" id="logo-white" src="/images/common/logo-white.svg"/>
+        </div>
+       </a>
+       <div class="navlinks-wrapper hidden-on-search dark:border-ldsgray-750 top-0 bottom-0 left-0 hidden h-full w-10/12 max-w-full transform flex-col justify-between gap-6 overflow-x-hidden overflow-y-auto border-0 bg-transparent px-0 py-0 text-black lg:flex dark:bg-transparent dark:text-white" data-v-d701af64="" id="navlinks-wrapper">
+        <div class="hide-scrollbar flex h-full items-center justify-between overflow-x-auto" data-v-d701af64="" id="navlinks">
+         <!--[-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/about/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            About
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/news/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            ニュース
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/services/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            プロダクト
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4 router-link-active" data-v-0a8e869e="" data-v-d701af64="" href="/ja/docs/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            ドキュメント
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/tips/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            Tips
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/faq/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            FAQ
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/glossary/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            用語集
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4 cursor-default" data-v-0a8e869e="" data-v-d701af64="">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            その他
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--]-->
+        </div>
+       </div>
+      </div>
+      <div class="h-full" data-v-d701af64="">
+       <div class="flex h-full items-center justify-between gap-3" data-v-d701af64="">
+        <!--[-->
+        <!--[-->
+        <button class="custom header-nav-item h-[36px] rounded px-2 transition hover:opacity-60" data-grace-area-trigger="" data-state="closed" data-v-d701af64="">
+         <span class="lar la-search">
+         </span>
+        </button>
+        <!--v-if-->
+        <!--]-->
+        <!--]-->
+        <!--[-->
+        <!--[-->
+        <!--[-->
+        <button class="focus-visible:outline-primary text-muted hidden! lg:flex! custom header-nav-item flex h-[36px] min-h-[32px] cursor-pointer items-center gap-1 rounded px-2 transition-opacity hover:text-inherit hover:no-underline hover:opacity-60 dark:hover:text-inherit" data-grace-area-trigger="" data-state="closed" type="button" variant="link">
+         <!--[-->
+         <!--[-->
+         <span class="lar la-earth">
+         </span>
+         <span class="lar la-caret-down la-xs">
+         </span>
+         <!--]-->
+         <!--]-->
+        </button>
+        <!--]-->
+        <!-- -->
+        <!--v-if-->
+        <!--]-->
+        <!--]-->
+        <!--[-->
+        <!--[-->
+        <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse bg-elevated light:bg-gray-300 h-[36px] w-32 rounded-full dark:bg-gray-700" role="alert">
+         <!--[-->
+         <!--]-->
+        </div>
+        <!--]-->
+        <!--]-->
+        <a class="text-white custom hidden-on-search navbar-btn group relative flex h-[36px] w-[36px] items-center justify-center overflow-hidden rounded-full transition hidden lg:flex" data-v-d701af64="" href="#">
+         <div class="bg-ldsgray-800 navbar-btn-bg absolute left-0 z-0 h-full w-full rounded-full transition group-hover:opacity-80">
+         </div>
+         <span class="lar la-sun la-lg z-10">
+         </span>
+        </a>
+        <!--[-->
+        <!--[-->
+        <button class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:text-primary/75 active:text-primary/75 disabled:text-primary aria-disabled:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary p-1.5 ml-1 lg:hidden!" data-slot="base" data-v-d701af64="" type="button">
+         <!--[-->
+         <!--[-->
+         <!-- -->
+         <!--]-->
+         <!--[-->
+         <div aria-expanded="false" class="vp-toggle-sidebar-button" data-v-d701af64="" role="button" tabindex="0" title="Toggle side nav">
+          <div aria-hidden="true" class="icon">
+           <span class="btn-mobile-sidebar">
+           </span>
+           <span class="btn-mobile-sidebar">
+           </span>
+           <span class="btn-mobile-sidebar">
+           </span>
+          </div>
+         </div>
+         <!--]-->
+         <!--[-->
+         <!-- -->
+         <!--]-->
+         <!--]-->
+        </button>
+        <!--]-->
+        <!--]-->
+       </div>
+      </div>
+     </div>
+     <!--[-->
+     <!--[-->
+     <span class="hidden" data-grace-area-trigger="" data-state="closed" data-v-d701af64="">
+     </span>
+     <!-- -->
+     <!--v-if-->
+     <!--]-->
+     <!--]-->
+     <!-- -->
+    </header>
+    <div class="sidebar-mask fixed top-0 left-0 z-40 h-full w-full backdrop-blur-sm" data-v-856df627="" style="display:none;">
+    </div>
+    <div class="theme-container flex min-h-screen flex-col pt-[64px] md:pt-[89px]" data-v-856df627="" id="page-wrapper">
+     <div class="content-wrapper z-10 text-white bg-page-header-blue lg:h-[140px]" data-v-856df627="" data-v-f9b4630c="" id="pageHeader">
+      <!-- -->
+      <div class="flex h-full items-center" data-v-f9b4630c="">
+       <div class="w-full" data-v-f9b4630c="">
+        <div class="content-container relative mx-auto py-4 sm:py-8" data-v-5de5e8ce="" data-v-f9b4630c="">
+         <div class="flex items-center gap-5 overflow-hidden sm:gap-12" data-v-117ee8c6="" data-v-5de5e8ce="">
+          <a class="hover:bg-white/20 custom flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center rounded-md border border-white/50 text-sm text-white transition" data-v-117ee8c6="" href="#">
+           <span class="lar la-chevron-left" data-v-117ee8c6="">
+           </span>
+          </a>
+          <div class="hide-scrollbar transparent-edges h-[56px] flex-shrink-1 overflow-x-scroll text-black" data-v-117ee8c6="">
+           <!--[-->
+           <div class="loading-skeleton-wrapper flex gap-4 overflow-hidden opacity-30 sm:gap-6 md:gap-8" data-v-117ee8c6="">
+            <!--[-->
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <!--]-->
+           </div>
+           <!--]-->
+          </div>
+          <a class="hover:bg-white/20 custom flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center rounded-md border border-white/50 text-sm text-white transition" data-v-117ee8c6="" href="#">
+           <span class="lar la-chevron-right" data-v-117ee8c6="">
+           </span>
+          </a>
+         </div>
+         <!-- -->
+        </div>
+       </div>
+      </div>
+     </div>
+     <nav aria-label="breadcrumb" class="breadcrumb-nav border-b content-wrapper" data-v-5647f7c2="" data-v-856df627="" id="breadcrumbNav">
+      <ol class="content-container breadcrumb-nav mx-auto flex flex-wrap gap-x-2 py-4 text-sm" data-v-5647f7c2="">
+       <!--[-->
+       <li class="breadcrumb-item" data-v-5647f7c2="">
+        <span class="text-ldsgray-650 dark:text-ldsgray-400 cursor-default" data-v-5647f7c2="">
+         Home
+        </span>
+       </li>
+       <!--]-->
+       <li class="breadcrumb-item inline-flex h-full items-center" data-v-5647f7c2="">
+        <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 mt-[3px] inline-block h-4 w-24" data-v-5647f7c2="" role="alert">
+         <!--[-->
+         <!--]-->
+        </div>
+       </li>
+      </ol>
+     </nav>
+     <!-- -->
+     <!-- -->
+     <div class="content-wrapper mt-0 grow" data-v-856df627="" id="content-wrapper" style="min-height:calc(100dvh - 560px);">
+      <div class="mt-0 2xl:mt-[80px] 2xl:gap-[80px] 2xl:pt-8 mb-[200px] docs-content-container 3xl:mr-auto mr-auto ml-auto 2xl:mr-0 2xl:grid" data-v-856df627="" style="grid-template-columns:160px 1fr;">
+       <div class="sidebar hide-scrollbar sticky top-40 w-full overflow-x-hidden z-30 hidden flex-shrink-0 2xl:block" data-v-2fa9d756="" data-v-856df627="">
+        <ul class="p-0" data-v-2fa9d756="">
+         <!--[-->
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             APIリファレンス
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             開発ガイドライン
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             クイックスタート
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-transparent" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-linegreen font-bold custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             ガイド
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-90 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <div class="border-ldsgray-300 dark:border-ldsgray-700 border-collapse rounded border" data-v-d147b524="">
+            <ul data-v-d147b524="">
+             <!--[-->
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./sending-messages/">
+               <!--[-->
+               メッセージを送信する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./text-character-count/">
+               <!--[-->
+               テキストの文字数のカウント
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./getting-user-ids/">
+               <!--[-->
+               ユーザーIDを取得する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./sticker-list/">
+               <!--[-->
+               スタンプ
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./emoji-list/">
+               <!--[-->
+               LINE絵文字
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./using-audience/">
+               <!--[-->
+               オーディエンスを使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./using-quick-reply/">
+               <!--[-->
+               クイックリプライを使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./unit-based-statistics-aggregation/">
+               <!--[-->
+               送信したメッセージの統計情報を取得する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a aria-current="page" class="router-link-active router-link-exact-active bg-linegreen !dark:text-white relative gap-3 rounded font-bold !text-white custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./using-line-url-scheme/">
+               <!--[-->
+               LINE URLスキームでLINEの機能を使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./using-beacons/">
+               <!--[-->
+               LINEでビーコンを使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./sharing-bot/">
+               <!--[-->
+               LINE公式アカウントの友だちを増やす
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./linking-accounts/">
+               <!--[-->
+               ユーザーアカウントの連携
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./icon-nickname-switch/">
+               <!--[-->
+               アイコンと表示名をカスタマイズする
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./use-loading-indicator/">
+               <!--[-->
+               ローディングのアニメーションを表示する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./use-membership-features/">
+               <!--[-->
+               メンバーシップ機能を使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./send-coupons-to-users/">
+               <!--[-->
+               クーポンを作成してユーザーに送る
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./get-quote-tokens/">
+               <!--[-->
+               引用トークンを取得する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./mark-as-read/">
+               <!--[-->
+               メッセージに既読をつける
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./retrying-api-request/">
+               <!--[-->
+               失敗したAPIリクエストを再試行する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./stop-using-line-official-account/">
+               <!--[-->
+               LINE公式アカウントの利用を停止する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./stop-using-messaging-api/">
+               <!--[-->
+               Messaging APIの利用を停止する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./measure-impressions/">
+               <!--[-->
+               インプレッションを計測する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./nodejs-sample/">
+               <!--[-->
+               チュートリアル - 応答ボットを作る
+               <!--]-->
+              </a>
+             </li>
+             <!--]-->
+            </ul>
+           </div>
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             Webhook
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リッチメニュー
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             LINE Bot Designer
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             Flex Message
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             概念
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リファレンス
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リソース
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700 border-b-0" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             導入事例
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <!--]-->
+        </ul>
+       </div>
+       <div class="content-container mt-[80px] 2xl:mt-0 lg:grid lg:gap-[60px]" data-v-856df627="" style="grid-template-columns:1fr 180px;">
+        <div class="content-with-sidebars" data-v-856df627="">
+         <!--[-->
+         <!--[-->
+         <main class="markdown-content">
+          <div>
+           <h1 class="text-4xl text-highlighted font-bold mb-8 scroll-mt-[calc(45px+var(--ui-header-height))] lg:scroll-mt-(--ui-header-height)" id="">
+            <!--[-->
+            LINE URLスキームでLINEの機能を使う
+            <!--]-->
+           </h1>
+           <div class="-mt-12 mb-12 flex flex-wrap items-center justify-start gap-1.5 text-xs sm:-mt-16 sm:mb-16" data-v-48a65092="">
+            <button class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white" data-v-48a65092="">
+             <span class="lar la-regular la-copy" data-v-48a65092="">
+             </span>
+             LLM用にコピー
+            </button>
+            <a class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white no-external-icon" data-v-48a65092="" href="./using-line-url-scheme/index.html.md" rel="nofollow" target="_blank">
+             <!--[-->
+             <span class="lar la-regular la-markdown" data-v-48a65092="">
+             </span>
+             Markdownで表示
+             <!--]-->
+            </a>
+            <a class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white no-external-icon" data-v-48a65092="" href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/using-line-url-scheme/index.html.md" rel="nofollow" target="_blank">
+             <!--[-->
+             <span class="la lapr" data-v-48a65092="" role="img" style="height:1em;aspect-ratio:1;display:inline-grid;place-items:stretch;">
+              <svg data-laicon-version="5.1" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+               <g transform="translate(-2 -2)">
+                <path d="M2 11.873a9.874 9.874 0 0 0 6.752 9.368c.494.09.674-.215.674-.477 0-.234-.008-.855-.013-1.679-2.746.6-3.326-1.323-3.326-1.323a2.611 2.611 0 0 0-1.1-1.444c-.9-.613.068-.6.068-.6a2.073 2.073 0 0 1 1.512 1.017 2.1 2.1 0 0 0 2.873.821 2.1 2.1 0 0 1 .627-1.32c-2.192-.249-4.5-1.1-4.5-4.88A3.821 3.821 0 0 1 6.59 8.707a3.547 3.547 0 0 1 .1-2.612s.826-.266 2.71 1.012a9.338 9.338 0 0 1 4.943 0C16.23 5.829 17.057 6.1 17.057 6.1a3.538 3.538 0 0 1 .1 2.612 3.811 3.811 0 0 1 1.015 2.649c0 3.793-2.308 4.628-4.508 4.872a2.354 2.354 0 0 1 .671 1.828c0 1.32-.012 2.385-.012 2.708 0 .264.177.572.678.475A9.873 9.873 0 1 0 2 11.873z">
+                </path>
+               </g>
+              </svg>
+             </span>
+             GitHubで表示
+             <!--]-->
+            </a>
+           </div>
+           <div>
+            <p>
+             <!--[-->
+             LINE URLスキームを使うと、スタンプショップやLIFFアプリを開いたり、カメラを起動したりできます。LINE URLスキームは、LINE公式アカウントでも利用できます。たとえば、
+             <a class="" href="./using-rich-menus/">
+              <!--[-->
+              <!--[-->
+              リッチメニュー
+              <!--]-->
+              <!--]-->
+             </a>
+             にLINE URLスキームを開く
+             <a class="" href="/ja/reference/messaging-api/#uri-action">
+              <!--[-->
+              <!--[-->
+              アクション
+              <!--]-->
+              <!--]-->
+             </a>
+             を設定しておくことで、メニューをタップしたユーザーに対してLINE内のコンテンツを表示できます。
+             <!--]-->
+            </p>
+            <h2 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="supported-line-url-schemes">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#supported-line-url-schemes">
+              <!--[-->
+              <!--[-->
+              サポートされているLINE URLスキーム
+              <!--]-->
+              <!--]-->
+             </a>
+            </h2>
+            <p>
+             <!--[-->
+             サポートされているLINE URLスキームは、以下のとおりです。
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/
+                 <!--]-->
+                </code>
+                で始まるURLスキーム
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                LINEアプリの機能を使うためのURLスキーム
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://liff.line.me/
+                 <!--]-->
+                </code>
+                で始まるURLスキーム
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                <a class="" href="/ja/docs/liff/overview/">
+                 <!--[-->
+                 <!--[-->
+                 LIFFアプリ
+                 <!--]-->
+                 <!--]-->
+                </a>
+                を開くためのURLスキーム
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://miniapp.line.me/
+                 <!--]-->
+                </code>
+                で始まるURLスキーム
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                <a class="" href="/ja/docs/line-mini-app/discover/introduction/">
+                 <!--[-->
+                 <!--[-->
+                 LINEミニアプリ
+                 <!--]-->
+                 <!--]-->
+                </a>
+                を開くためのURLスキーム
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <div class="danger custom-block">
+             <div class="custom-block-title">
+              <i class="las la-exclamation-triangle mr-2">
+              </i>
+              <span>
+               「line://」は非推奨です
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               ユーザーが
+               <code>
+                <!--[-->
+                line://
+                <!--]-->
+               </code>
+               で始まるURLにアクセスした際に、ユーザーおよびLINEヤフー株式会社の意図に反して、LINE以外のアプリを起動させる「乗っ取り攻撃」を防ぐため、
+               <code>
+                <!--[-->
+                line://
+                <!--]-->
+               </code>
+               は非推奨です。「乗っ取り攻撃」は、特定の条件を満たした場合にのみ成立します。
+               <!--]-->
+              </p>
+              <p>
+               <!--[-->
+               なお、
+               <code>
+                <!--[-->
+                line://
+                <!--]-->
+               </code>
+               を廃止する時期は未定です。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <div class="warning custom-block">
+             <div class="custom-block-title">
+              <i class="las la-exclamation-circle mr-2">
+              </i>
+              <span>
+               LINE以外のネイティブアプリを起動するURLスキームはLINEヤフー株式会社では提供していません
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               LINE以外のネイティブアプリを起動するURLスキームは、LINEヤフー株式会社では提供していません。ただし他社が提供するネイティブアプリにおいて、そのアプリを起動するURLスキームが用意されている場合は、そのURLスキームをLINEの
+               <a class="" href="./using-rich-menus/">
+                <!--[-->
+                <!--[-->
+                リッチメニュー
+                <!--]-->
+                <!--]-->
+               </a>
+               や
+               <a class="" href="./using-flex-messages/">
+                <!--[-->
+                <!--[-->
+                Flex Message
+                <!--]-->
+                <!--]-->
+               </a>
+               などのURIアクションで利用することはできます。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <h2 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="what-happens-when-line-url-is-clicked">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#what-happens-when-line-url-is-clicked">
+              <!--[-->
+              <!--[-->
+              LINE URLスキームをクリックしたときの動作
+              <!--]-->
+              <!--]-->
+             </a>
+            </h2>
+            <p>
+             <!--[-->
+             ユーザーがLINE URLスキームを使ったURLにアクセスすると、LINEが自動的に起動してURLで指定されたコンテンツが表示されます。ユーザーがLINEをインストールしていない場合の動作は、LINE URLスキームごとに異なります。
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                LINEをインストールしていない場合の動作
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                ウェブブラウザが開き、LINEのダウンロードを求めるページが開く。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 line://
+                 <!--]-->
+                </code>
+                （非推奨）
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                何も起きないか、エラーページが開く。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <h2 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="supported-platforms">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#supported-platforms">
+              <!--[-->
+              <!--[-->
+              動作環境
+              <!--]-->
+              <!--]-->
+             </a>
+            </h2>
+            <p>
+             <!--[-->
+             LINE URLスキームは、iOS版LINEまたはAndroid版LINEをインストールしたスマートフォンで利用できます。
+             <!--]-->
+            </p>
+            <div class="warning custom-block">
+             <div class="custom-block-title">
+              <i class="las la-exclamation-circle mr-2">
+              </i>
+              <span>
+               注意
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               LINE URLスキームは、デスクトップ版（macOS、Windows）のLINEではサポートされません。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <h2 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="available-line-url-schemes">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#available-line-url-schemes">
+              <!--[-->
+              <!--[-->
+              LINEで利用できるURLスキーム
+              <!--]-->
+              <!--]-->
+             </a>
+            </h2>
+            <p>
+             <!--[-->
+             LINEで利用できるURLスキームは以下のとおりです。なお、指定の動作環境でのみサポートされているLINE URLスキームについては、それぞれの項目内に記載しています。
+             <!--]-->
+            </p>
+            <ul>
+             <!--[-->
+             <li>
+              <!--[-->
+              <a class="" href="#opening-the-camera-and-camera-roll">
+               <!--[-->
+               <!--[-->
+               カメラとカメラロールを開く
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <li>
+              <!--[-->
+              <a class="" href="#sending-the-location-screen">
+               <!--[-->
+               <!--[-->
+               位置情報を送る
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <li>
+              <!--[-->
+              <a class="" href="#sharing-line-official-account">
+               <!--[-->
+               <!--[-->
+               LINE公式アカウントをシェアする
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <li>
+              <!--[-->
+              <a class="" href="#opening-line-voom-and-profile">
+               <!--[-->
+               <!--[-->
+               LINE公式アカウントのLINE VOOMやビジネスプロフィールを開く
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <li>
+              <!--[-->
+              <a class="" href="#opening-chat-screen">
+               <!--[-->
+               <!--[-->
+               LINE公式アカウントとのトーク画面を開く
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <li>
+              <!--[-->
+              <a class="" href="#sending-text-messages">
+               <!--[-->
+               <!--[-->
+               テキストメッセージを送る
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <li>
+              <!--[-->
+              <a class="" href="#opening-profile-information">
+               <!--[-->
+               <!--[-->
+               プロフィール情報を開く
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <li>
+              <!--[-->
+              <a class="" href="#opening-common-line-app-screens">
+               <!--[-->
+               <!--[-->
+               その他の画面を開く
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <li>
+              <!--[-->
+              <a class="" href="#opening-line-app-settings-screens">
+               <!--[-->
+               <!--[-->
+               設定画面を開く
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <li>
+              <!--[-->
+              <a class="" href="#opening-the-sticker-shop">
+               <!--[-->
+               <!--[-->
+               スタンプショップを開く
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <li>
+              <!--[-->
+              <a class="" href="#opening-the-theme-shop">
+               <!--[-->
+               <!--[-->
+               着せかえショップを開く
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <li>
+              <!--[-->
+              <a class="" href="#opening-a-liff-app">
+               <!--[-->
+               <!--[-->
+               LIFFアプリを開く
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <li>
+              <!--[-->
+              <a class="" href="#opening-url-in-external-browser">
+               <!--[-->
+               <!--[-->
+               URLを外部ブラウザで開く
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+             </li>
+             <!--]-->
+            </ul>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="opening-the-camera-and-camera-roll">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#opening-the-camera-and-camera-roll">
+              <!--[-->
+              <!--[-->
+              カメラとカメラロールを開く
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             このLINE URLスキームを使うと、カメラまたはカメラロールを開くことができます。カメラロールは、ユーザーがトークに送信する画像を選択する画面です。
+             <!--]-->
+            </p>
+            <div class="warning custom-block">
+             <div class="custom-block-title">
+              <i class="las la-exclamation-circle mr-2">
+              </i>
+              <span>
+               カメラまたはカメラロールを開く際の制限事項
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               このURLスキームは、LINEのトーク（オープンチャットを含む）でのみサポートされます。トーク以外の機能や、LINE以外のアプリ、LIFFアプリではサポートされません。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <p>
+             <!--[-->
+             <!--[-->
+             <!-- -->
+             <!-- -->
+             <!--[-->
+             <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-240" data-state="closed" src="/media/messaging-api/using-line-url-scheme/camera-screen.png" type="button"/>
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+             <!--]-->
+            </p>
+            <p>
+             <!--[-->
+             <!--[-->
+             <!-- -->
+             <!-- -->
+             <!--[-->
+             <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-240" data-state="closed" src="/media/messaging-api/using-line-url-scheme/camera-roll.png" type="button"/>
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/camera/
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                カメラを開きます。前面カメラ（インカメラ）と背面カメラ（アウトカメラ）など複数のカメラが搭載されているスマートフォンの場合、使用するカメラを指定することはできません。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/cameraRoll/single
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                カメラロールを開きます。トーク内で共有する画像を1つ選択できます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/cameraRoll/multi
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                カメラロールを開きます。トーク内で共有する画像を複数選択できます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="sending-the-location-screen">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#sending-the-location-screen">
+              <!--[-->
+              <!--[-->
+              位置情報を送る
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             このLINE URLスキームを使うと、「位置情報」画面を開き、位置情報をLINE公式アカウントに送信できます。
+             <!--]-->
+            </p>
+            <div class="warning custom-block">
+             <div class="custom-block-title">
+              <i class="las la-exclamation-circle mr-2">
+              </i>
+              <span>
+               「位置情報」画面を開く際の制限事項
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               このURLスキームはLINE公式アカウントとの1対1のトークでのみサポートされます。他の種類のトークや、LINE以外のアプリ、LIFFアプリではサポートされません。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <p>
+             <!--[-->
+             <!--[-->
+             <!-- -->
+             <!-- -->
+             <!--[-->
+             <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-240" data-state="closed" src="/media/messaging-api/using-line-url-scheme/location.png" type="button"/>
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/location/
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「位置情報」画面を開きます。ユーザーは、地図にピンを刺してシェアする位置情報を選択できます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="sharing-line-official-account">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#sharing-line-official-account">
+              <!--[-->
+              <!--[-->
+              LINE公式アカウントをシェアする
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             このLINE URLスキームを使うと、指定したLINE公式アカウントをユーザーやユーザーの友だちにおすすめして、LINE公式アカウントを友だち追加するように促すことができます。
+             <!--]-->
+            </p>
+            <p>
+             <!--[-->
+             <!--[-->
+             <!-- -->
+             <!-- -->
+             <!--[-->
+             <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-240" data-state="closed" src="/media/messaging-api/using-line-url-scheme/bot-add-friend-ja.png" type="button"/>
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 line.me/R/ti/p/
+                 <code>
+                  <!--[-->
+                  {Percent-encoded LINE ID}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                指定したLINE公式アカウントのビジネスプロフィールを開きます。LINE公式アカウントとすでに友だちだった場合は、1対1のトーク画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 line.me/R/nv/recommendOA/
+                 <code>
+                  <!--[-->
+                  {Percent-encoded LINE ID}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「送信先を選択」画面を開きます。友だち、グループトーク、または複数人トークを選択してLINE公式アカウントのリンクをシェアできます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <div class="warning custom-block">
+             <div class="custom-block-title">
+              <i class="las la-exclamation-circle mr-2">
+              </i>
+              <span>
+               「Percent-encoded LINE ID」はパーセントエンコードしてください
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               <code>
+                <!--[-->
+                {Percent-encoded LINE ID}
+                <!--]-->
+               </code>
+               はUTF-8を用いて
+               <a class="" href="https://developer.mozilla.org/ja/docs/Glossary/Percent-encoding" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                パーセントエンコード
+                <!--]-->
+                <!--]-->
+               </a>
+               してください。たとえば、LINE IDが
+               <code>
+                <!--[-->
+                @linedevelopers
+                <!--]-->
+               </code>
+               の場合は、
+               <code>
+                <!--[-->
+                https://line.me/R/ti/p/%40linedevelopers
+                <!--]-->
+               </code>
+               や
+               <code>
+                <!--[-->
+                https://line.me/R/nv/recommendOA/%40linedevelopers
+                <!--]-->
+               </code>
+               のようにします。LINE IDをパーセントエンコードせずにそのまま置き換えた場合も動作しますが、非推奨です。
+               <!--]-->
+              </p>
+              <p>
+               <!--[-->
+               ただし「送信先を選択」画面を開くURLスキーム（
+               <code>
+                <!--[-->
+                https://line.me/R/nv/recommendOA/%40linedevelopers
+                <!--]-->
+               </code>
+               ）でLINE IDをパーセントエンコードした場合、Android版のLINEバージョン13.8.0未満では動作しません。
+               <!--]-->
+              </p>
+              <p>
+               <!--[-->
+               LINE公式アカウントのLINE IDは、
+               <a class="" href="https://help.linebiz.com/lineadshelp/s/article/L000001191?language=ja" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                ベーシックIDとプレミアムID
+                <!--]-->
+                <!--]-->
+               </a>
+               のどちらも利用できます。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <div class="tip custom-block">
+             <div class="custom-block-title">
+              <i class="las la-check-circle mr-2">
+              </i>
+              <span>
+               LINE公式アカウントのLINE IDを確認するには？
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               LINE公式アカウントのLINE IDは
+               <a class="" href="https://manager.line.biz/" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                LINE Official Account Manager
+                <!--]-->
+                <!--]-->
+               </a>
+               で確認できます。詳しくは、「
+               <a class="" href="./sharing-bot/#share-the-line-id-of-your-line-official-account">
+                <!--[-->
+                <!--[-->
+                LINE公式アカウントのLINE IDをシェアする
+                <!--]-->
+                <!--]-->
+               </a>
+               」を参照してください。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <div class="tip custom-block">
+             <div class="custom-block-title">
+              <i class="las la-check-circle mr-2">
+              </i>
+              <span>
+               パソコンのブラウザで開いた場合
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               ユーザーが
+               <code>
+                <!--[-->
+                https://line.me/R/ti/p/{Percent-encoded LINE ID}
+                <!--]-->
+               </code>
+               をパソコンで開いた場合、LINE公式アカウントのWeb版プロフィール（例：
+               <a class="" href="https://line.me/R/ti/p/%40linecharacter" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                LINE FRIENDSのプロフィール
+                <!--]-->
+                <!--]-->
+               </a>
+               ）や、QRコードが表示されます。どちらが表示されるかは、以下の条件を満たしているかどうかで異なります。
+               <!--]-->
+              </p>
+              <ul>
+               <!--[-->
+               <li>
+                <!--[-->
+                LINE公式アカウントが認証済アカウントである
+                <!--]-->
+               </li>
+               <li>
+                <!--[-->
+                Web版プロフィールを「利用する」設定にしている
+                <!--]-->
+               </li>
+               <!--]-->
+              </ul>
+              <p>
+               <!--[-->
+               どちらの条件も満たしている場合、LINE公式アカウントのWeb版プロフィールがQRコード付きで表示されます。条件を満たしていない場合は、LINE公式アカウントのQRコードのみが表示されます。利用中の未認証アカウントを認証済アカウントに変更したり、Web版プロフィールを利用したりするための設定は、
+               <a class="" href="https://manager.line.biz/" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                LINE Official Account Manager
+                <!--]-->
+                <!--]-->
+               </a>
+               から行うことができます。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="opening-line-voom-and-profile">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#opening-line-voom-and-profile">
+              <!--[-->
+              <!--[-->
+              LINE公式アカウントのLINE VOOMやビジネスプロフィールを開く
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             このLINE URLスキームを使うと、LINE公式アカウントのLINE VOOMやビジネスプロフィールを開くことができます。
+             <!--]-->
+            </p>
+            <p>
+             <!--[-->
+             <!--[-->
+             <!-- -->
+             <!-- -->
+             <!--[-->
+             <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-240" data-state="closed" src="/media/messaging-api/using-line-url-scheme/bot-line-voom.png" type="button"/>
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 line.me/R/home/public/main?id=
+                 <code>
+                  <!--[-->
+                  {LINE ID without @}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                指定したLINE公式アカウントのLINE VOOMを開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 line.me/R/home/public/profile?id=
+                 <code>
+                  <!--[-->
+                  {LINE ID without @}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                指定したLINE公式アカウントのビジネスプロフィールを開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 line.me/R/home/public/post?id=
+                 <code>
+                  <!--[-->
+                  {LINE ID without @}
+                  <!--]-->
+                 </code>
+                 &amp;postId=
+                 <code>
+                  <!--[-->
+                  {postId}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                指定したLINE公式アカウントの特定のLINE VOOMの投稿を開きます。各投稿のIDは、
+                <a class="" href="https://voom-studio.line.biz/" rel="nofollow" target="_blank">
+                 <!--[-->
+                 <!--[-->
+                 LINE VOOM Studio
+                 <!--]-->
+                 <!--]-->
+                </a>
+                で確認できます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <div class="warning custom-block">
+             <div class="custom-block-title">
+              <i class="las la-exclamation-circle mr-2">
+              </i>
+              <span>
+               このURLスキームではLINE IDの先頭の@を含めないでください
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               <code>
+                <!--[-->
+                {LINE ID without @}
+                <!--]-->
+               </code>
+               は、LINE公式アカウントのLINE IDに置き換えてください。ベーシックIDと
+               <span>
+                <!--[-->
+                <a class="" href="/ja/glossary/#premium-id">
+                 <!--[-->
+                 <!--[-->
+                 プレミアムID
+                 <!--]-->
+                 <!--]-->
+                </a>
+                <!--]-->
+                <!--[-->
+                <!--[-->
+                <span aria-controls="" aria-expanded="false" aria-haspopup="dialog" class="text-ldsgray-500 lar la-question-circle ml-px" data-state="closed" id="reka-popover-trigger-v-0-0-1-0-2-0-0-37-0-1-0" type="button">
+                </span>
+                <!-- -->
+                <!--v-if-->
+                <!--]-->
+                <!--]-->
+               </span>
+               のどちらも指定できます。なお、LINE IDの先頭の
+               <code>
+                <!--[-->
+                @
+                <!--]-->
+               </code>
+               を含めないでください。たとえば、LINE IDが
+               <code>
+                <!--[-->
+                @linedevelopers
+                <!--]-->
+               </code>
+               の場合は、
+               <code>
+                <!--[-->
+                https://line.me/R/home/public/main?id=linedevelopers
+                <!--]-->
+               </code>
+               のようにします。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <div class="tip custom-block">
+             <div class="custom-block-title">
+              <i class="las la-check-circle mr-2">
+              </i>
+              <span>
+               LINE公式アカウントのLINE IDを確認するには？
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               LINE公式アカウントのLINE IDは
+               <a class="" href="https://manager.line.biz/" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                LINE Official Account Manager
+                <!--]-->
+                <!--]-->
+               </a>
+               で確認できます。詳しくは、「
+               <a class="" href="./sharing-bot/#share-the-line-id-of-your-line-official-account">
+                <!--[-->
+                <!--[-->
+                LINE公式アカウントのLINE IDをシェアする
+                <!--]-->
+                <!--]-->
+               </a>
+               」を参照してください。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <div class="tip custom-block">
+             <div class="custom-block-title">
+              <i class="las la-check-circle mr-2">
+              </i>
+              <span>
+               LINE VOOMへの投稿とビジネスプロフィールのカスタマイズ
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               あなたが管理しているLINE公式アカウントのLINE VOOMに投稿したり、ビジネスプロフィールをカスタマイズしたりするには、
+               <a class="" href="https://voom-studio.line.biz/" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                LINE VOOM Studio
+                <!--]-->
+                <!--]-->
+               </a>
+               や
+               <a class="" href="https://manager.line.biz/" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                LINE Official Account Manager
+                <!--]-->
+                <!--]-->
+               </a>
+               を使います。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="opening-chat-screen">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#opening-chat-screen">
+              <!--[-->
+              <!--[-->
+              LINE公式アカウントとのトーク画面を開く
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             このLINE URLスキームを使うと、LINE公式アカウントとのトーク画面を開くことができます。
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 line.me/R/oaMessage/
+                 <code>
+                  <!--[-->
+                  {Percent-encoded LINE ID}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                LINE公式アカウントとのトーク画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 line.me/R/oaMessage/
+                 <code>
+                  <!--[-->
+                  {Percent-encoded LINE ID}
+                  <!--]-->
+                 </code>
+                 /?
+                 <code>
+                  <!--[-->
+                  {text_message}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 {text_message}
+                 <!--]-->
+                </code>
+                に設定したテキストメッセージがメッセージ入力欄に入力された状態で、LINE公式アカウントとのトーク画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <div class="warning custom-block">
+             <div class="custom-block-title">
+              <i class="las la-exclamation-circle mr-2">
+              </i>
+              <span>
+               「Percent-encoded LINE ID」と「text_message」はパーセントエンコードしてください
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               <code>
+                <!--[-->
+                {Percent-encoded LINE ID}
+                <!--]-->
+               </code>
+               と
+               <code>
+                <!--[-->
+                {text_message}
+                <!--]-->
+               </code>
+               はUTF-8を用いて
+               <a class="" href="https://developer.mozilla.org/ja/docs/Glossary/Percent-encoding" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                パーセントエンコード
+                <!--]-->
+                <!--]-->
+               </a>
+               してください。たとえば、LINE IDが
+               <code>
+                <!--[-->
+                @linedevelopers
+                <!--]-->
+               </code>
+               のLINE公式アカウントに対して、
+               <code>
+                <!--[-->
+                こんにちは
+                <!--]-->
+               </code>
+               というテキストメッセージを送信する場合は、
+               <code>
+                <!--[-->
+                https://line.me/R/oaMessage/%40linedevelopers/?%E3%81%93%E3%82%93%E3%81%AB%E3%81%A1%E3%81%AF
+                <!--]-->
+               </code>
+               のようにします。LINE IDをパーセントエンコードせずにそのまま置き換えた場合も動作しますが、非推奨です。
+               <!--]-->
+              </p>
+              <p>
+               <!--[-->
+               LINE公式アカウントのLINE IDは、
+               <a class="" href="https://help.linebiz.com/lineadshelp/s/article/L000001191?language=ja" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                ベーシックIDとプレミアムID
+                <!--]-->
+                <!--]-->
+               </a>
+               のどちらも利用できます。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <div class="tip custom-block">
+             <div class="custom-block-title">
+              <i class="las la-check-circle mr-2">
+              </i>
+              <span>
+               LINE公式アカウントのLINE IDを確認するには？
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               LINE公式アカウントのLINE IDは
+               <a class="" href="https://manager.line.biz/" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                LINE Official Account Manager
+                <!--]-->
+                <!--]-->
+               </a>
+               で確認できます。詳しくは、「
+               <a class="" href="./sharing-bot/#share-the-line-id-of-your-line-official-account">
+                <!--[-->
+                <!--[-->
+                LINE公式アカウントのLINE IDをシェアする
+                <!--]-->
+                <!--]-->
+               </a>
+               」を参照してください。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="sending-text-messages">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#sending-text-messages">
+              <!--[-->
+              <!--[-->
+              テキストメッセージを送る
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             このLINE URLスキームを使うと、ユーザーの友だちまたはLINE公式アカウントに送信するテキストメッセージを設定できます。
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 line.me/R/share?text=
+                 <code>
+                  <!--[-->
+                  {text_message}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「送信先を選択」画面を開きます。ユーザーは、友だち、グループトーク、または複数人トークを選択して、
+                <code>
+                 <!--[-->
+                 {text_message}
+                 <!--]-->
+                </code>
+                に設定されたテキストメッセージを送信できます。テキストはKeepメモやLINE VOOM、他のアプリにも送信できます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <div class="warning custom-block">
+             <div class="custom-block-title">
+              <i class="las la-exclamation-circle mr-2">
+              </i>
+              <span>
+               「text_message」はパーセントエンコードしてください
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               <code>
+                <!--[-->
+                {text_message}
+                <!--]-->
+               </code>
+               はUTF-8を用いて
+               <a class="" href="https://developer.mozilla.org/ja/docs/Glossary/Percent-encoding" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                パーセントエンコード
+                <!--]-->
+                <!--]-->
+               </a>
+               してください。たとえば、
+               <code>
+                <!--[-->
+                こんにちは
+                <!--]-->
+               </code>
+               というテキストメッセージを指定する場合は、
+               <code>
+                <!--[-->
+                https://line.me/R/share?text=%E3%81%93%E3%82%93%E3%81%AB%E3%81%A1%E3%81%AF
+                <!--]-->
+               </code>
+               のようにします。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="opening-profile-information">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#opening-profile-information">
+              <!--[-->
+              <!--[-->
+              プロフィール情報を開く
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             このLINE URLスキームを使うと、ユーザーの「プロフィール」画面を開きます。この画面では、表示名、ステータスメッセージ、およびLINE IDを設定できます。また、さまざまなLINEプロフィール情報を確認できます。
+             <!--]-->
+            </p>
+            <p>
+             <!--[-->
+             <!--[-->
+             <!-- -->
+             <!-- -->
+             <!--[-->
+             <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-240" data-state="closed" src="/media/messaging-api/using-line-url-scheme/my-profile.png" type="button"/>
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/profile
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                ユーザーの「プロフィール」画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/profileSetId
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                ユーザーの「ID」画面を開きます。LINE IDが未設定の場合は、LINE IDを設定できます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="opening-common-line-app-screens">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#opening-common-line-app-screens">
+              <!--[-->
+              <!--[-->
+              その他の画面を開く
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             このLINE URLスキームを使うと、トークタブを含むLINEのさまざまな画面を開きます。
+             <!--]-->
+            </p>
+            <p>
+             <!--[-->
+             <!--[-->
+             <!-- -->
+             <!-- -->
+             <!--[-->
+             <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-240" data-state="closed" src="/media/messaging-api/using-line-url-scheme/shopping-tab-ja.png" type="button"/>
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/chat
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                トークタブを開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/commerce
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                ショッピングタブを開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/wallet
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                ウォレットタブを開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/addFriends
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「友だち追加」画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/officialAccounts
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「LINE公式アカウント」画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/timeline
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                LINE VOOMの「フォロー中」画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="opening-line-app-settings-screens">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#opening-line-app-settings-screens">
+              <!--[-->
+              <!--[-->
+              「設定」画面を開く
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             このLINE URLスキームを使うと、LINEのさまざまな設定画面を開きます。
+             <!--]-->
+            </p>
+            <p>
+             <!--[-->
+             <!--[-->
+             <!-- -->
+             <!-- -->
+             <!--[-->
+             <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-240" data-state="closed" src="/media/messaging-api/using-line-url-scheme/settings.png" type="button"/>
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/settings
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「設定」画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/settings/account
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「アカウント」設定画面を開きます。ユーザーのLINEアカウント情報が表示されます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/connectedApps
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「アカウント」 &gt; 「連動アプリ」設定画面を開きます。この画面では、認証済みアプリに付与されている権限を確認したり、アプリの連動を解除したりできます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/connectedDevices
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「アカウント」 &gt;「ログイン中の端末」設定画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/settings/privacy
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「プライバシー管理」の設定画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/settings/sticker
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「スタンプ」設定画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/stickerShop/mySticker
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「スタンプ」 &gt; 「マイスタンプ」設定画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/settings/themeSettingsMenu
+                 <!--]-->
+                </code>
+                （iOS）、
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/settings/theme
+                 <!--]-->
+                </code>
+                （Android）
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「着せかえ」設定画面を開きます。
+                <br/>
+                iOSとAndroidでスキームが異なります。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/themeSettings
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「着せかえ」 &gt; 「マイ着せかえ」設定画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/notificationServiceDetail
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「通知」 &gt; 「連動アプリ」設定画面を開きます。この画面では、連動アプリの通知設定を設定できます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/settings/chatSettings
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「トーク」設定画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/suggestSettings
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「トーク」 &gt; 「サジェスト表示」設定画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/settings/callSettings
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「通話」設定画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/settings/addressBookSync
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「友だち」設定画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/settings/timelineSettings
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「LINE VOOM」設定画面を開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="opening-the-sticker-shop">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#opening-the-sticker-shop">
+              <!--[-->
+              <!--[-->
+              スタンプショップを開く
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             このLINE URLスキームを使うと、公式スタンプやクリエイターズスタンプの購入を促すために、LINE内でスタンプショップを開くことができます。
+             <!--]-->
+            </p>
+            <p>
+             <!--[-->
+             <!--[-->
+             <!-- -->
+             <!-- -->
+             <!--[-->
+             <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-240" data-state="closed" src="/media/messaging-api/using-line-url-scheme/sticker-shop-categories.png" type="button"/>
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 line.me/R/shop/sticker/detail/
+                 <code>
+                  <!--[-->
+                  {package_id}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                指定されたスタンプの「スタンプ情報」画面を開きます。
+                <code>
+                 <!--[-->
+                 {package_id}
+                 <!--]-->
+                </code>
+                には、
+                <a class="" href="https://store.line.me/" rel="nofollow" target="_blank">
+                 <!--[-->
+                 <!--[-->
+                 LINE STORE
+                 <!--]-->
+                 <!--]-->
+                </a>
+                のスタンプページのURLに含まれる数字を指定します。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 line.me/R/shop/category/
+                 <code>
+                  <!--[-->
+                  {category_id}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                「公式スタンプ」セクション内の指定されたカテゴリの人気ランキングが表示されます。
+                <code>
+                 <!--[-->
+                 {category_id}
+                 <!--]-->
+                </code>
+                には、
+                <a class="" href="https://store.line.me/" rel="nofollow" target="_blank">
+                 <!--[-->
+                 <!--[-->
+                 LINE STORE
+                 <!--]-->
+                 <!--]-->
+                </a>
+                の「公式スタンプ」セクション内のカテゴリページのURLに含まれる数字を指定します。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 line.me/R/shop/sticker/author/
+                 <code>
+                  <!--[-->
+                  {author_id}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                指定された作成者のスタンプリストを開きます。
+                <code>
+                 <!--[-->
+                 {author_id}
+                 <!--]-->
+                </code>
+                には、
+                <a class="" href="https://store.line.me/" rel="nofollow" target="_blank">
+                 <!--[-->
+                 <!--[-->
+                 LINE STORE
+                 <!--]-->
+                 <!--]-->
+                </a>
+                のスタンプの作成者ページのURLに含まれる数字を指定します。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/nv/stickerShop
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                スタンプショップのホームタブを開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/shop/sticker/hot
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                スタンプショップの人気タブを開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/shop/sticker/new
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                スタンプショップの新着タブを開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/shop/sticker/event
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                スタンプショップの無料タブを開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/shop/sticker/category
+                 <!--]-->
+                </code>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                スタンプショップのカテゴリータブを開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <div class="tip custom-block">
+             <div class="custom-block-title">
+              <i class="las la-check-circle mr-2">
+              </i>
+              <span>
+               独自のスタンプセットを作成するには？
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               ユーザー向けに独自のスタンプセットを作成するには、
+               <a class="" href="https://creator.line.me/ja/" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                LINE Creators Market
+                <!--]-->
+                <!--]-->
+               </a>
+               サイトで
+               <a class="" href="https://creator.line.me/ja/stickermaker/" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                LINEスタンプメーカー
+                <!--]-->
+                <!--]-->
+               </a>
+               アプリを使用してください。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="opening-the-theme-shop">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#opening-the-theme-shop">
+              <!--[-->
+              <!--[-->
+              着せかえショップを開く
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             このLINE URLスキームを使うと、公式着せかえやクリエイターズ着せかえの購入を促すために、LINE内で着せかえショップを開くことができます。
+             <!--]-->
+            </p>
+            <p>
+             <!--[-->
+             <!--[-->
+             <!-- -->
+             <!-- -->
+             <!--[-->
+             <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-240" data-state="closed" src="/media/messaging-api/using-line-url-scheme/theme-shop.png" type="button"/>
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 line.me/R/shop/theme/detail?id=
+                 <code>
+                  <!--[-->
+                  {product_id}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                指定された公式着せかえ、またはクリエイターズ着せかえの「着せかえ情報」画面を開きます。
+                <code>
+                 <!--[-->
+                 {product_id}
+                 <!--]-->
+                </code>
+                には、
+                <a class="" href="https://store.line.me/" rel="nofollow" target="_blank">
+                 <!--[-->
+                 <!--[-->
+                 LINE STORE
+                 <!--]-->
+                 <!--]-->
+                </a>
+                の、着せかえページのURLに含まれるIDを指定します。たとえば、「
+                <a class="" href="https://store.line.me/themeshop/product/0bac8fed-4c75-40c5-9982-e9ecc3b9d191/ja" rel="nofollow" target="_blank">
+                 <!--[-->
+                 <!--[-->
+                 マットホワイト
+                 <!--]-->
+                 <!--]-->
+                </a>
+                <code>
+                 <!--[-->
+                 https://store.line.me/themeshop/product/0bac8fed-4c75-40c5-9982-e9ecc3b9d191/ja
+                 <!--]-->
+                </code>
+                」を開く場合、
+                <code>
+                 <!--[-->
+                 0bac8fed-4c75-40c5-9982-e9ecc3b9d191
+                 <!--]-->
+                </code>
+                を指定します。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="opening-a-liff-app">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#opening-a-liff-app">
+              <!--[-->
+              <!--[-->
+              LIFFアプリを開く
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             このLINE URLスキームを使うと、指定したLIFFアプリを開くことができます。LIFFアプリは、
+             <a class="" href="/ja/docs/liff/overview/">
+              <!--[-->
+              <!--[-->
+              LINE Front-end Framework（LIFF）
+              <!--]-->
+              <!--]-->
+             </a>
+             を利用して動作するウェブアプリです。
+             <!--]-->
+            </p>
+            <p>
+             <!--[-->
+             <!--[-->
+             <!-- -->
+             <!-- -->
+             <!--[-->
+             <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-240" data-state="closed" src="/media/messaging-api/using-line-url-scheme/liff-app.png" type="button"/>
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+             <!--]-->
+            </p>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                LINE URLスキーム
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 liff.line.me/
+                 <code>
+                  <!--[-->
+                  {liffId}
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                指定したLIFF IDのLIFFアプリを開きます。このURLスキームを、LIFF URLと呼びます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 liff.line.me/
+                 <code>
+                  <!--[-->
+                  {liffId}
+                  <!--]-->
+                 </code>
+                 /path_A/path_B/?key1=value1&amp;key2=value2
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                指定したLIFF IDでLIFFアプリを開きます。
+                <code>
+                 <!--[-->
+                 /path_A/path_B/?key1=value1&amp;key2=value2
+                 <!--]-->
+                </code>
+                を追加情報として渡します。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+            <p>
+             <!--[-->
+             LIFFアプリが開くまでの処理について詳しくは、『LIFFドキュメント』の「
+             <a class="" href="/ja/docs/liff/opening-liff-app/">
+              <!--[-->
+              <!--[-->
+              LIFFアプリを開く
+              <!--]-->
+              <!--]-->
+             </a>
+             」を参照してください。
+             <!--]-->
+            </p>
+            <div class="warning custom-block">
+             <div class="custom-block-title">
+              <i class="las la-exclamation-circle mr-2">
+              </i>
+              <span>
+               「https://line.me/R/app/{liffId}」および「line://app/{liffId}」は非推奨です
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               <a class="" href="/ja/docs/liff/versioning-policy/#life-cycle-schedule">
+                <!--[-->
+                <!--[-->
+                LIFF v1
+                <!--]-->
+                <!--]-->
+               </a>
+               向けに提供されていた以下の形式のLIFF URLは、
+               <span>
+                <!--[-->
+                <a class="" href="/ja/glossary/#deprecated">
+                 <!--[-->
+                 <!--[-->
+                 非推奨
+                 <!--]-->
+                 <!--]-->
+                </a>
+                <!--]-->
+                <!--[-->
+                <!--[-->
+                <span aria-controls="" aria-expanded="false" aria-haspopup="dialog" class="text-ldsgray-500 lar la-question-circle ml-px" data-state="closed" id="reka-popover-trigger-v-0-0-1-0-2-0-0-75-0-1-0" type="button">
+                </span>
+                <!-- -->
+                <!--v-if-->
+                <!--]-->
+                <!--]-->
+               </span>
+               です。
+               <!--]-->
+              </p>
+              <ul>
+               <!--[-->
+               <li>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 https://line.me/R/app/{liffId}
+                 <!--]-->
+                </code>
+                <!--]-->
+               </li>
+               <li>
+                <!--[-->
+                <code>
+                 <!--[-->
+                 line://app/{liffId}
+                 <!--]-->
+                </code>
+                <!--]-->
+               </li>
+               <!--]-->
+              </ul>
+              <!--]-->
+             </div>
+            </div>
+            <h3 class="relative">
+             <div class="absolute -top-40 -left-1 h-px w-px" id="opening-url-in-external-browser">
+             </div>
+             <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#opening-url-in-external-browser">
+              <!--[-->
+              <!--[-->
+              URLを外部ブラウザで開く
+              <!--]-->
+              <!--]-->
+             </a>
+            </h3>
+            <p>
+             <!--[-->
+             クエリパラメータを使うと、
+             <span>
+              <!--[-->
+              <a class="" href="/ja/glossary/#line-iab">
+               <!--[-->
+               <!--[-->
+               LINE内ブラウザ
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+              <!--[-->
+              <!--[-->
+              <span aria-controls="" aria-expanded="false" aria-haspopup="dialog" class="text-ldsgray-500 lar la-question-circle ml-px" data-state="closed" id="reka-popover-trigger-v-0-0-1-0-2-0-0-77-0-0" type="button">
+              </span>
+              <!-- -->
+              <!--v-if-->
+              <!--]-->
+              <!--]-->
+             </span>
+             の代わりに
+             <span>
+              <!--[-->
+              <a class="" href="/ja/glossary/#external-browser">
+               <!--[-->
+               <!--[-->
+               外部ブラウザ
+               <!--]-->
+               <!--]-->
+              </a>
+              <!--]-->
+              <!--[-->
+              <!--[-->
+              <span aria-controls="" aria-expanded="false" aria-haspopup="dialog" class="text-ldsgray-500 lar la-question-circle ml-px" data-state="closed" id="reka-popover-trigger-v-0-0-1-0-2-0-0-77-1-0" type="button">
+              </span>
+              <!-- -->
+              <!--v-if-->
+              <!--]-->
+              <!--]-->
+             </span>
+             でURLを開くことができます。
+             <!--]-->
+            </p>
+            <div class="warning custom-block">
+             <div class="custom-block-title">
+              <i class="las la-exclamation-circle mr-2">
+              </i>
+              <span>
+               これらのクエリパラメータはLIFFアプリではサポートされません
+              </span>
+             </div>
+             <div>
+              <!--[-->
+              <p>
+               <!--[-->
+               これらのクエリパラメータは、LINEアプリからアクセスするすべてのURLで機能します。ただし、LIFFアプリのみ例外的にサポートされないため、LIFF URLにクエリパラメータを付与しても機能しません。
+               <!--]-->
+              </p>
+              <!--]-->
+             </div>
+            </div>
+            <table>
+             <!--[-->
+             <thead>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <th>
+                <!--[-->
+                クエリパラメータ付きのURL
+                <!--]-->
+               </th>
+               <th>
+                <!--[-->
+                説明
+                <!--]-->
+               </th>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </thead>
+             <tbody>
+              <!--[-->
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 example.com/?
+                 <code>
+                  <!--[-->
+                  openExternalBrowser=1
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                対象のURLを外部ブラウザで開きます。
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <tr>
+               <!--[-->
+               <td>
+                <!--[-->
+                https://
+                <span>
+                 example.com/?
+                 <code>
+                  <!--[-->
+                  openInAppBrowser=0
+                  <!--]-->
+                 </code>
+                </span>
+                <!--]-->
+               </td>
+               <td>
+                <!--[-->
+                対象のURLをChromeカスタムタブで開きます。（Android版LINEのみ対応）
+                <!--]-->
+               </td>
+               <!--]-->
+              </tr>
+              <!--]-->
+             </tbody>
+             <!--]-->
+            </table>
+           </div>
+          </div>
+         </main>
+         <!--]-->
+         <!--]-->
+        </div>
+        <div class="toc text-caption-docs-side hide-scrollbar sticky top-48 overflow-y-auto 2xl:top-40" data-v-70444712="" data-v-856df627="" id="side-toc">
+         <ul data-v-70444712="">
+          <!--[-->
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#supported-line-url-schemes">
+            サポートされているLINE URLスキーム
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#what-happens-when-line-url-is-clicked">
+            LINE URLスキームをクリックしたときの動作
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#supported-platforms">
+            動作環境
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-[8px] custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#available-line-url-schemes">
+            LINEで利用できるURLスキーム
+           </a>
+           <ul class="font-caption-docs-side dark:border-ldsgray-750 mb-8 flex flex-col gap-5 border-l pr-3 pl-5" data-v-70444712="">
+            <!--[-->
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#opening-the-camera-and-camera-roll">
+              カメラとカメラロールを開く
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#sending-the-location-screen">
+              位置情報を送る
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#sharing-line-official-account">
+              LINE公式アカウントをシェアする
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#opening-line-voom-and-profile">
+              LINE公式アカウントのLINE VOOMやビジネスプロフィールを開く
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#opening-chat-screen">
+              LINE公式アカウントとのトーク画面を開く
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#sending-text-messages">
+              テキストメッセージを送る
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#opening-profile-information">
+              プロフィール情報を開く
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#opening-common-line-app-screens">
+              その他の画面を開く
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#opening-line-app-settings-screens">
+              「設定」画面を開く
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#opening-the-sticker-shop">
+              スタンプショップを開く
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#opening-the-theme-shop">
+              着せかえショップを開く
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#opening-a-liff-app">
+              LIFFアプリを開く
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#opening-url-in-external-browser">
+              URLを外部ブラウザで開く
+             </a>
+            </li>
+            <!--]-->
+           </ul>
+          </li>
+          <!--]-->
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+     <footer class="font-main-card-text-product dark:border-ldsgray-750 content-wrapper w-full border-t py-8 text-black dark:bg-black dark:text-white" data-v-856df627="" id="footer">
+      <div class="content-container mx-auto">
+       <div class="footer-copyright-en w-full whitespace-nowrap">
+        © LY Corporation
+       </div>
+       <div class="flex flex-col justify-between lg:flex-row">
+        <div>
+         <ul class="my-6 flex flex-col gap-y-2 p-0 md:my-2 md:flex-row md:items-center md:gap-x-4">
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/about/">
+            LINE Developersサイトとは
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/terms-and-policies/">
+            規約とポリシー
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/trademark/">
+            商標について
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white no-external-icon" href="https://api.line-status.info/" target="_blank">
+            <!--[-->
+            LINE API Status
+            <span class="ml-1 inline-block">
+             <span class="las la-arrow-out-square text-xs opacity-50">
+             </span>
+            </span>
+            <!--]-->
+           </a>
+          </li>
+         </ul>
+        </div>
+        <div class="flex flex-row items-center justify-start gap-7">
+         <!--[-->
+         <!--[-->
+         <!--[-->
+         <button class="focus-visible:outline-primary hover:text-default transition-colors custom flex h-full cursor-pointer items-center text-black dark:text-white" data-grace-area-trigger="" data-state="closed" type="button" variant="link">
+          <!--[-->
+          <!--[-->
+          Family Sites
+          <span class="lar la-chevron-down la-xs relative ml-1">
+          </span>
+          <!--]-->
+          <!--]-->
+         </button>
+         <!--]-->
+         <!-- -->
+         <!--v-if-->
+         <!--]-->
+         <!--]-->
+         <div class="flex items-center gap-3">
+          <!-- -->
+          <a class="custom no-external-icon" href="https://twitter.com/lycorptech_jp" target="_blank">
+           <span class="lapr la-x-com la-lg">
+           </span>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </footer>
+     <!-- -->
+    </div>
+   </div>
+   <div data-v-856df627="">
+    <!--[-->
+    <!-- -->
+    <!-- -->
+    <!--v-if-->
+    <!--]-->
+   </div>
+   <!-- -->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+   <!--[-->
+   <!--]-->
+   <!--v-if-->
+   <!--]-->
+   <!--[-->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+  </div>
+  <div id="teleports">
+  </div>
+  <script>
+   window.__NUXT__={};window.__NUXT__.config={public:{gtag:{enabled:true,initMode:"auto",id:"G-K94RFW73WS",initCommands:[],config:{},tags:[],loadingStrategy:"defer",url:"https://www.googletagmanager.com/gtag/js"},mdc:{components:{prose:true,map:{accordion:"ProseAccordion","accordion-item":"ProseAccordionItem",badge:"ProseBadge",callout:"ProseCallout",card:"ProseCard","card-group":"ProseCardGroup",caution:"ProseCaution","code-collapse":"ProseCodeCollapse","code-group":"ProseCodeGroup","code-icon":"ProseCodeIcon","code-preview":"ProseCodePreview","code-tree":"ProseCodeTree",collapsible:"ProseCollapsible",field:"ProseField","field-group":"ProseFieldGroup",icon:"ProseIcon",kbd:"ProseKbd",note:"ProseNote",steps:"ProseSteps",tabs:"ProseTabs","tabs-item":"ProseTabsItem",tip:"ProseTip",warning:"ProseWarning"},customElements:[]},headings:{anchorLinks:{h1:false,h2:true,h3:true,h4:true,h5:false,h6:false}},highlight:{theme:"github-dark-default",noApiRoute:true,langs:["csharp","css","scss","go","groovy","html","java","javascript","json","objective-c","perl","php","python","ruby","shellscript","sh","swift","ts","typescript","xml","yaml"],wrapperStyle:true,highlighter:"shiki",shikiEngine:"oniguruma"}},content:{wsUrl:""},i18n:{baseUrl:"/",defaultLocale:"",rootRedirect:"",redirectStatusCode:302,skipSettingLocaleOnNavigate:false,locales:[{code:"en",name:"EN",language:"en-US"},{code:"ja",name:"JP",language:"ja-JP"}],detectBrowserLanguage:false,experimental:{localeDetector:"",typedPages:true,typedOptionsAndMessages:false,alternateLinkCanonicalQueries:true,devCache:false,cacheLifetime:"",stripMessagesPayload:false,preload:false,strictSeo:false,nitroContextDetection:true,httpCacheDuration:10},domainLocales:{en:{domain:""},ja:{domain:""}}}},app:{baseURL:"/",buildId:"b7cd7a21-3fab-4351-b588-f3a82989c407",buildAssetsDir:"/_nuxt/",cdnURL:""}}
+  </script>
+  <script data-nuxt-data="nuxt-app" data-src="/ja/docs/messaging-api/using-line-url-scheme/_payload.json?b7cd7a21-3fab-4351-b588-f3a82989c407" data-ssr="true" id="__NUXT_DATA__" type="application/json">
+   [{"state":1,"once":14,"_errors":15,"serverRendered":5,"path":17,"pinia":18,"prerenderedAt":206},["Reactive",2],{"$scolor-mode":3,"$si18n:cached-locale-configs":7,"$si18n:resolved-locale":12,"$stoasts":13},{"preference":4,"value":4,"unknown":5,"forced":6},"system",true,false,{"en":8,"ja":10},{"fallbacks":9,"cacheable":5},[],{"fallbacks":11,"cacheable":5},[],"ja",[],["Set"],["ShallowReactive",16],{"h4272989689":-1,"h1823631342":-1,"h114163769":-1,"h3699743855":-1},"/ja/docs/messaging-api/using-line-url-scheme/",["Reactive",19],{"devdocs":20},{"userData":21,"feedbackForm":23,"socialPlugins":24,"ui":25},{"isInitialized":6,"isLoading":6,"isLoggedIn":6,"profileData":22,"showNewNewsNotificationBadge":6},{},{"isInitialized":6,"isLoading":6,"isAvailable":6,"isShown":6},{"userAgreement":6},{"isHome":6,"isErrorPage":6,"isMobileSidebarOpen":6,"isMobileSecondarySidebarOpen":6,"isMobileNarrow":6,"isMobile":6,"isWide":6,"navDropdown":26,"isNavBgTransparent":6,"isDarkMode":6,"apiRefBlockToOpen":27,"apiRefBlockOpened":27,"toc":28,"isDisabledScrollToAnchor":6,"isActiveSetHashOnScroll":5,"isSearchModalOpen":6,"breadcrumbNewsPageTitle":27},{"isShown":6,"type":27,"label":27,"contents":27},"",[29,53,102,143,174,177],{"id":30,"depth":31,"text":32,"children":33},"about-line-bot",2,"LINEボットについて",[34,38,41,44,47,50],{"id":35,"depth":36,"text":37},"about-line-developers-site",3,"LINE Developersとは",{"id":39,"depth":36,"text":40},"how-line-bot-work","LINEボットのしくみ",{"id":42,"depth":36,"text":43},"relationship-between-line-bot-and-channel","LINEボットとチャネルの関係性について",{"id":45,"depth":36,"text":46},"glossary","各種用語について",{"id":48,"depth":36,"text":49},"line-bot-development-flow","LINEボット開発手順",{"id":51,"depth":36,"text":52},"checks-before-release","LINEボットリリース前のご確認事項",{"id":54,"depth":31,"text":55,"children":56},"receive-webhook-events","ボットサーバーにおけるWebhookイベント受信時の注意",[57,68,71,74,77,80,83,86],{"id":58,"depth":36,"text":59,"children":60},"bot-server-security","セキュリティを考慮した通信およびボットサーバー環境",[61,65],{"id":62,"depth":63,"text":64},"https-communication-compatible",4,"TLS 1.2以上に対応したHTTPS通信",{"id":66,"depth":63,"text":67},"environment-that-complies-with-security-guidelines","セキュリティガイドラインに準拠した環境構築",{"id":69,"depth":36,"text":70},"verify-webhook-events","受信したWebhookイベントの検証",{"id":72,"depth":36,"text":73},"a-lot-of-webhooks","大量かつ集中的なWebhookイベント送信への対応",{"id":75,"depth":36,"text":76},"webhook-settings","WebhookのON/OFF設定",{"id":78,"depth":36,"text":79},"webhook-and-auto-reply-settings","WebhookのON/OFFおよび自動応答メッセージの設定について",{"id":81,"depth":36,"text":82},"webhook-flow-image","Webhookリクエスト受信時の処理フロー",{"id":84,"depth":36,"text":85},"error-notification","Webhookリクエスト送信時に問題が発生した場合",{"id":87,"depth":36,"text":88,"children":89},"other-webhook-points","その他注意事項",[90,93,96,99],{"id":91,"depth":63,"text":92},"include-some-webhook-event","1つのWebhookに複数のWebhookイベントオブジェクトが含まれる場合があります",{"id":94,"depth":63,"text":95},"change-webhook-event-architecture","Webhookイベントオブジェクトの構造変更への対応",{"id":97,"depth":63,"text":98},"wehhook-header","Webhookリクエストに含まれるヘッダーについて",{"id":100,"depth":63,"text":101},"protect-abuse","想定しないトーク送信に対する処理について",{"id":103,"depth":31,"text":104,"children":105},"send-api-requests","APIリクエスト送信時の注意",[106,109,112,115,118,121,134,137,140],{"id":107,"depth":36,"text":108},"issue-channel-access-token","チャネルアクセストークンの発行",{"id":110,"depth":36,"text":111},"renew-channel-access-token","チャネルアクセストークンの再発行",{"id":113,"depth":36,"text":114},"limit-of-issue","チャネルアクセストークンの発行上限",{"id":116,"depth":36,"text":117},"message-requests","メッセージ送信リクエスト",{"id":119,"depth":36,"text":120},"retry-message-requests","メッセージ送信リクエストのリトライ",{"id":122,"depth":36,"text":123,"children":124},"request-limits","リクエストの制限",[125,128,131],{"id":126,"depth":63,"text":127},"text-limit","テキストメッセージの制限",{"id":129,"depth":63,"text":130},"body-limit","リクエストサイズの制限",{"id":132,"depth":63,"text":133},"text-ratelimit","リクエストレートの制限",{"id":135,"depth":36,"text":136},"how-to-send-messages","メッセージの送信方法",{"id":138,"depth":36,"text":139},"use-higher-TLS1-2","HTTPS（TLS 1.2以上）の利用",{"id":141,"depth":36,"text":142},"control-user-access","大量のアクセスへの対応",{"id":144,"depth":31,"text":145,"children":146},"about-line-login","LINEログイン利用時の注意",[147,150,153,156,159,162,165,168,171],{"id":148,"depth":36,"text":149},"login-flow","LINEログインの認可と認証のプロセス",{"id":151,"depth":36,"text":152},"about-callback-url","コールバックURLについて",{"id":154,"depth":36,"text":155},"making-an-authorization-request","ウェブアプリで認可レスポンスまたはエラーレスポンスを受け取る",{"id":157,"depth":36,"text":158},"issue-access-token","アクセストークンを発行する",{"id":160,"depth":36,"text":161},"verfy-id-token","IDトークンを検証する",{"id":163,"depth":36,"text":164},"other-login-apis","その他のLINEログインAPI",{"id":166,"depth":36,"text":167},"line-login-id-connect","LINEログインで取得した情報と自社で管理する情報との紐づけ（ID連携）",{"id":169,"depth":36,"text":170},"add-friend-option","友だち追加オプション",{"id":172,"depth":36,"text":173},"validate-state","stateの検証",{"id":175,"depth":31,"text":176},"about-liff","LINE Front-end Framework（LIFF）",{"id":178,"depth":31,"text":179,"children":180},"other-features","その他の機能",[181,184,187,190],{"id":182,"depth":36,"text":183},"open-browser","遷移先ブラウザの設定方法について",{"id":185,"depth":36,"text":186},"line-urlscheme","URLスキームについて",{"id":188,"depth":36,"text":189},"about-channel-permissions","チャネルの権限について",{"id":191,"depth":36,"text":192,"children":193},"about-sticker","Messaging APIで利用可能なスタンプや絵文字について",[194,197,200,203],{"id":195,"depth":63,"text":196},"send-sticker","Messaging APIでスタンプを送信する",{"id":198,"depth":63,"text":199},"receive-sticker","ユーザーから送信されたスタンプを確認する",{"id":201,"depth":63,"text":202},"send-emojis","LINE絵文字の送信",{"id":204,"depth":63,"text":205},"receive-emojis","LINE絵文字の受信",1776129207614]
+  </script>
+ </body>
+</html>

@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html class="" lang="ja-JP" style="">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <style id="nuxt-ui-colors">
+   @layer theme {
+  :root, :host {
+  --ui-color-primary-50: var(--color-green-50, oklch(98.2% 0.018 155.826));
+  --ui-color-primary-100: var(--color-green-100, oklch(96.2% 0.044 156.743));
+  --ui-color-primary-200: var(--color-green-200, oklch(92.5% 0.084 155.995));
+  --ui-color-primary-300: var(--color-green-300, oklch(87.1% 0.15 154.449));
+  --ui-color-primary-400: var(--color-green-400, oklch(79.2% 0.209 151.711));
+  --ui-color-primary-500: var(--color-green-500, oklch(72.3% 0.219 149.579));
+  --ui-color-primary-600: var(--color-green-600, oklch(62.7% 0.194 149.214));
+  --ui-color-primary-700: var(--color-green-700, oklch(52.7% 0.154 150.069));
+  --ui-color-primary-800: var(--color-green-800, oklch(44.8% 0.119 151.328));
+  --ui-color-primary-900: var(--color-green-900, oklch(39.3% 0.095 152.535));
+  --ui-color-primary-950: var(--color-green-950, oklch(26.6% 0.065 152.934));
+  --ui-color-secondary-50: var(--color-blue-50, oklch(97% 0.014 254.604));
+  --ui-color-secondary-100: var(--color-blue-100, oklch(93.2% 0.032 255.585));
+  --ui-color-secondary-200: var(--color-blue-200, oklch(88.2% 0.059 254.128));
+  --ui-color-secondary-300: var(--color-blue-300, oklch(80.9% 0.105 251.813));
+  --ui-color-secondary-400: var(--color-blue-400, oklch(70.7% 0.165 254.624));
+  --ui-color-secondary-500: var(--color-blue-500, oklch(62.3% 0.214 259.815));
+  --ui-color-secondary-600: var(--color-blue-600, oklch(54.6% 0.245 262.881));
+  --ui-color-secondary-700: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  --ui-color-secondary-800: var(--color-blue-800, oklch(42.4% 0.199 265.638));
+  --ui-color-secondary-900: var(--color-blue-900, oklch(37.9% 0.146 265.522));
+  --ui-color-secondary-950: var(--color-blue-950, oklch(28.2% 0.091 267.935));
+  --ui-color-success-50: var(--color-green-50, oklch(98.2% 0.018 155.826));
+  --ui-color-success-100: var(--color-green-100, oklch(96.2% 0.044 156.743));
+  --ui-color-success-200: var(--color-green-200, oklch(92.5% 0.084 155.995));
+  --ui-color-success-300: var(--color-green-300, oklch(87.1% 0.15 154.449));
+  --ui-color-success-400: var(--color-green-400, oklch(79.2% 0.209 151.711));
+  --ui-color-success-500: var(--color-green-500, oklch(72.3% 0.219 149.579));
+  --ui-color-success-600: var(--color-green-600, oklch(62.7% 0.194 149.214));
+  --ui-color-success-700: var(--color-green-700, oklch(52.7% 0.154 150.069));
+  --ui-color-success-800: var(--color-green-800, oklch(44.8% 0.119 151.328));
+  --ui-color-success-900: var(--color-green-900, oklch(39.3% 0.095 152.535));
+  --ui-color-success-950: var(--color-green-950, oklch(26.6% 0.065 152.934));
+  --ui-color-info-50: var(--color-blue-50, oklch(97% 0.014 254.604));
+  --ui-color-info-100: var(--color-blue-100, oklch(93.2% 0.032 255.585));
+  --ui-color-info-200: var(--color-blue-200, oklch(88.2% 0.059 254.128));
+  --ui-color-info-300: var(--color-blue-300, oklch(80.9% 0.105 251.813));
+  --ui-color-info-400: var(--color-blue-400, oklch(70.7% 0.165 254.624));
+  --ui-color-info-500: var(--color-blue-500, oklch(62.3% 0.214 259.815));
+  --ui-color-info-600: var(--color-blue-600, oklch(54.6% 0.245 262.881));
+  --ui-color-info-700: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  --ui-color-info-800: var(--color-blue-800, oklch(42.4% 0.199 265.638));
+  --ui-color-info-900: var(--color-blue-900, oklch(37.9% 0.146 265.522));
+  --ui-color-info-950: var(--color-blue-950, oklch(28.2% 0.091 267.935));
+  --ui-color-warning-50: var(--color-yellow-50, oklch(98.7% 0.026 102.212));
+  --ui-color-warning-100: var(--color-yellow-100, oklch(97.3% 0.071 103.193));
+  --ui-color-warning-200: var(--color-yellow-200, oklch(94.5% 0.129 101.54));
+  --ui-color-warning-300: var(--color-yellow-300, oklch(90.5% 0.182 98.111));
+  --ui-color-warning-400: var(--color-yellow-400, oklch(85.2% 0.199 91.936));
+  --ui-color-warning-500: var(--color-yellow-500, oklch(79.5% 0.184 86.047));
+  --ui-color-warning-600: var(--color-yellow-600, oklch(68.1% 0.162 75.834));
+  --ui-color-warning-700: var(--color-yellow-700, oklch(55.4% 0.135 66.442));
+  --ui-color-warning-800: var(--color-yellow-800, oklch(47.6% 0.114 61.907));
+  --ui-color-warning-900: var(--color-yellow-900, oklch(42.1% 0.095 57.708));
+  --ui-color-warning-950: var(--color-yellow-950, oklch(28.6% 0.066 53.813));
+  --ui-color-error-50: var(--color-red-50, oklch(97.1% 0.013 17.38));
+  --ui-color-error-100: var(--color-red-100, oklch(93.6% 0.032 17.717));
+  --ui-color-error-200: var(--color-red-200, oklch(88.5% 0.062 18.334));
+  --ui-color-error-300: var(--color-red-300, oklch(80.8% 0.114 19.571));
+  --ui-color-error-400: var(--color-red-400, oklch(70.4% 0.191 22.216));
+  --ui-color-error-500: var(--color-red-500, oklch(63.7% 0.237 25.331));
+  --ui-color-error-600: var(--color-red-600, oklch(57.7% 0.245 27.325));
+  --ui-color-error-700: var(--color-red-700, oklch(50.5% 0.213 27.518));
+  --ui-color-error-800: var(--color-red-800, oklch(44.4% 0.177 26.899));
+  --ui-color-error-900: var(--color-red-900, oklch(39.6% 0.141 25.723));
+  --ui-color-error-950: var(--color-red-950, oklch(25.8% 0.092 26.042));
+  --ui-color-neutral-50: var(--color-slate-50, oklch(98.4% 0.003 247.858));
+  --ui-color-neutral-100: var(--color-slate-100, oklch(96.8% 0.007 247.896));
+  --ui-color-neutral-200: var(--color-slate-200, oklch(92.9% 0.013 255.508));
+  --ui-color-neutral-300: var(--color-slate-300, oklch(86.9% 0.022 252.894));
+  --ui-color-neutral-400: var(--color-slate-400, oklch(70.4% 0.04 256.788));
+  --ui-color-neutral-500: var(--color-slate-500, oklch(55.4% 0.046 257.417));
+  --ui-color-neutral-600: var(--color-slate-600, oklch(44.6% 0.043 257.281));
+  --ui-color-neutral-700: var(--color-slate-700, oklch(37.2% 0.044 257.287));
+  --ui-color-neutral-800: var(--color-slate-800, oklch(27.9% 0.041 260.031));
+  --ui-color-neutral-900: var(--color-slate-900, oklch(20.8% 0.042 265.755));
+  --ui-color-neutral-950: var(--color-slate-950, oklch(12.9% 0.042 264.695));
+  }
+  :root, :host, .light {
+  --ui-primary: var(--ui-color-primary-500);
+  --ui-secondary: var(--ui-color-secondary-500);
+  --ui-success: var(--ui-color-success-500);
+  --ui-info: var(--ui-color-info-500);
+  --ui-warning: var(--ui-color-warning-500);
+  --ui-error: var(--ui-color-error-500);
+  }
+  .dark {
+  --ui-primary: var(--ui-color-primary-400);
+  --ui-secondary: var(--ui-color-secondary-400);
+  --ui-success: var(--ui-color-success-400);
+  --ui-info: var(--ui-color-info-400);
+  --ui-warning: var(--ui-color-warning-400);
+  --ui-error: var(--ui-color-error-400);
+  }
+}
+  </style>
+  <title>
+   リッチメニューでタブ切り替えを行う | LINE Developers
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="https://static.line-scdn.net/laicon/edge/latest/laicon.min.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/entry.RjUY_jqM.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/BaseLayout.DryLLHoQ.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/TransitionExpand.C7MR6gY2.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/MarkdownControls.BbnXTJ19.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/HeaderAnchor.DXszml2g.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/ProsePre.D5orA6B_.css" rel="stylesheet"/>
+  <link as="fetch" crossorigin="anonymous" href="./switch-rich-menus/_payload.json?b7cd7a21-3fab-4351-b588-f3a82989c407" rel="preload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C4Qefsoz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/D7tIDfdc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DS7rYW_M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DlAUqK2U.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DLfO8wDK.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/Ccjmmn3c.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CEXHtn8H.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B4DL1Cgs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B0gykE3i.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BFu_P-Ux.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DJi4jbM6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DZRjkML6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BJRELFIM.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C0hVKBUl.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CUpphwBz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BheWnx7M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C0MXvZso.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/vST1u8lx.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BffxFq_0.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CyAW9Z2F.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BUNJUvUR.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C945TDiu.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/bTg4ECcz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DYazWEBN.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/xOr79HUc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CTeDT3Cq.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CoRt-dtU.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/ClbflBZs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/5rLYfZ6F.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B6sVujaj.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CTLgqFkF.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DEKEuJU2.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BIQOJEGl.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/SU5N3tJc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C1EJ6VMG.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BPUzo62M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C308N652.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CmV3vphY.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DMRlQYjX.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CMRidz-K.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CnrI_PHs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DP-8-zy_.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/ByRlcCLv.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DkhTipoD.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CudgkPls.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/D5ri4A5D.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BZrkcSa6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C3hkkU40.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DUpy5nRH.js" rel="modulepreload"/>
+  <script crossorigin="" src="/_nuxt/C4Qefsoz.js" type="module">
+  </script>
+  <meta content="リッチメニューでタブ切り替えを行う" property="og:title"/>
+  <meta content="https://developers.line.biz/images/ogtags/twitter-ogtag.jpg" property="og:image"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta content="@LINE_DEV" name="twitter:site:id"/>
+  <meta content="https://developers.line.biz/images/ogtags/twitter-ogtag.jpg" name="twitter:image"/>
+  <link href="./switch-rich-menus/" id="i18n-can" rel="canonical"/>
+  <meta content="https://developers.line.biz/ja/docs/messaging-api/switch-rich-menus/" property="og:url"/>
+  <meta content="ja_JP" id="i18n-og" property="og:locale"/>
+  <meta content="en_US" id="i18n-og-alt-en-US" property="og:locale:alternate"/>
+  <meta content="ユーザー単位のリッチメニューを活用して、タブ切り替えが可能なリッチメニューをユーザーに提供できます。とリッチメニュー切替アクションを使うことで、タブ切り替えのように、複数のリッチメニューを簡単に切り替えられます。たとえばリッチメニューAとリッチメニューBを切り替えたい場合、以下の手順に従って設定します。事前にリッチメニ..." property="og:description"/>
+  <meta content="リッチメニューでタブ切り替えを行う" name="twitter:title"/>
+  <meta content="ユーザー単位のリッチメニューを活用して、タブ切り替えが可能なリッチメニューをユーザーに提供できます。とリッチメニュー切替アクションを使うことで、タブ切り替えのように、複数のリッチメニューを簡単に切り替えられます。たとえばリッチメニューAとリッチメニューBを切り替えたい場合、以下の手順に従って設定します。事前にリッチメニ..." name="twitter:description"/>
+  <script>
+   "use strict";(()=>{const t=window,e=document.documentElement,c=["dark","light"],n=getStorageValue("localStorage","nuxt-color-mode")||"system";let i=n==="system"?u():n;const r=e.getAttribute("data-color-mode-forced");r&&(i=r),l(i),t["__NUXT_COLOR_MODE__"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=""+o+"",a="";e.classList?e.classList.add(s):e.className+=" "+s,a&&e.setAttribute("data-"+a,o)}function d(o){const s=""+o+"",a="";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,"g"),""),a&&e.removeAttribute("data-"+a)}function f(o){return t.matchMedia("(prefers-color-scheme"+o+")")}function u(){if(t.matchMedia&&f("").media!=="not all"){for(const o of c)if(f(":"+o).matches)return o}return"light"}})();function getStorageValue(t,e){switch(t){case"localStorage":return window.localStorage.getItem(e);case"sessionStorage":return window.sessionStorage.getItem(e);case"cookie":return getCookie(e);default:return null}}function getCookie(t){const c=("; "+window.document.cookie).split("; "+t+"=");if(c.length===2)return c.pop()?.split(";").shift()}
+  </script>
+ </head>
+ <body class="" style="">
+  <div class="isolate" id="__nuxt">
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <div class="nuxt-loading-indicator" style="position:fixed;top:0;right:0;left:0;pointer-events:none;width:auto;height:3px;opacity:0;background:repeating-linear-gradient(to right,#00dc82 0%,#34cdfe 50%,#0047e1 100%);background-size:0% auto;transform:scaleX(0%);transform-origin:left;transition:transform 0.1s, height 0.4s, opacity 0.4s;z-index:999999;">
+   </div>
+   <!--[-->
+   <!--[-->
+   <div class="relative h-screen" data-v-856df627="">
+    <header class="h-[64px] border-b bg-white px-5 transition sm:px-8 md:h-[89px] dark:bg-black fixed z-50 w-full bg-white" data-v-856df627="" data-v-d701af64="" id="navbar">
+     <div class="flex h-full items-center justify-between" data-v-d701af64="">
+      <div class="flex h-full items-center justify-between gap-14 overflow-x-hidden" data-v-d701af64="">
+       <a class="" data-v-d701af64="" href="/ja/">
+        <div class="logo relative" data-v-d701af64="">
+         <img alt="LINE Developers" class="logo logo-default" data-v-d701af64="" id="logo-black" src="/images/common/logo-black.svg"/>
+         <img alt="LINE Developers" class="logo transition" data-v-d701af64="" id="logo-white" src="/images/common/logo-white.svg"/>
+        </div>
+       </a>
+       <div class="navlinks-wrapper hidden-on-search dark:border-ldsgray-750 top-0 bottom-0 left-0 hidden h-full w-10/12 max-w-full transform flex-col justify-between gap-6 overflow-x-hidden overflow-y-auto border-0 bg-transparent px-0 py-0 text-black lg:flex dark:bg-transparent dark:text-white" data-v-d701af64="" id="navlinks-wrapper">
+        <div class="hide-scrollbar flex h-full items-center justify-between overflow-x-auto" data-v-d701af64="" id="navlinks">
+         <!--[-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/about/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            About
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/news/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            ニュース
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/services/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            プロダクト
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4 router-link-active" data-v-0a8e869e="" data-v-d701af64="" href="/ja/docs/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            ドキュメント
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/tips/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            Tips
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/faq/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            FAQ
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/glossary/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            用語集
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4 cursor-default" data-v-0a8e869e="" data-v-d701af64="">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            その他
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--]-->
+        </div>
+       </div>
+      </div>
+      <div class="h-full" data-v-d701af64="">
+       <div class="flex h-full items-center justify-between gap-3" data-v-d701af64="">
+        <!--[-->
+        <!--[-->
+        <button class="custom header-nav-item h-[36px] rounded px-2 transition hover:opacity-60" data-grace-area-trigger="" data-state="closed" data-v-d701af64="">
+         <span class="lar la-search">
+         </span>
+        </button>
+        <!--v-if-->
+        <!--]-->
+        <!--]-->
+        <!--[-->
+        <!--[-->
+        <!--[-->
+        <button class="focus-visible:outline-primary text-muted hidden! lg:flex! custom header-nav-item flex h-[36px] min-h-[32px] cursor-pointer items-center gap-1 rounded px-2 transition-opacity hover:text-inherit hover:no-underline hover:opacity-60 dark:hover:text-inherit" data-grace-area-trigger="" data-state="closed" type="button" variant="link">
+         <!--[-->
+         <!--[-->
+         <span class="lar la-earth">
+         </span>
+         <span class="lar la-caret-down la-xs">
+         </span>
+         <!--]-->
+         <!--]-->
+        </button>
+        <!--]-->
+        <!-- -->
+        <!--v-if-->
+        <!--]-->
+        <!--]-->
+        <!--[-->
+        <!--[-->
+        <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse bg-elevated light:bg-gray-300 h-[36px] w-32 rounded-full dark:bg-gray-700" role="alert">
+         <!--[-->
+         <!--]-->
+        </div>
+        <!--]-->
+        <!--]-->
+        <a class="text-white custom hidden-on-search navbar-btn group relative flex h-[36px] w-[36px] items-center justify-center overflow-hidden rounded-full transition hidden lg:flex" data-v-d701af64="" href="#">
+         <div class="bg-ldsgray-800 navbar-btn-bg absolute left-0 z-0 h-full w-full rounded-full transition group-hover:opacity-80">
+         </div>
+         <span class="lar la-sun la-lg z-10">
+         </span>
+        </a>
+        <!--[-->
+        <!--[-->
+        <button class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:text-primary/75 active:text-primary/75 disabled:text-primary aria-disabled:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary p-1.5 ml-1 lg:hidden!" data-slot="base" data-v-d701af64="" type="button">
+         <!--[-->
+         <!--[-->
+         <!-- -->
+         <!--]-->
+         <!--[-->
+         <div aria-expanded="false" class="vp-toggle-sidebar-button" data-v-d701af64="" role="button" tabindex="0" title="Toggle side nav">
+          <div aria-hidden="true" class="icon">
+           <span class="btn-mobile-sidebar">
+           </span>
+           <span class="btn-mobile-sidebar">
+           </span>
+           <span class="btn-mobile-sidebar">
+           </span>
+          </div>
+         </div>
+         <!--]-->
+         <!--[-->
+         <!-- -->
+         <!--]-->
+         <!--]-->
+        </button>
+        <!--]-->
+        <!--]-->
+       </div>
+      </div>
+     </div>
+     <!--[-->
+     <!--[-->
+     <span class="hidden" data-grace-area-trigger="" data-state="closed" data-v-d701af64="">
+     </span>
+     <!-- -->
+     <!--v-if-->
+     <!--]-->
+     <!--]-->
+     <!-- -->
+    </header>
+    <div class="sidebar-mask fixed top-0 left-0 z-40 h-full w-full backdrop-blur-sm" data-v-856df627="" style="display:none;">
+    </div>
+    <div class="theme-container flex min-h-screen flex-col pt-[64px] md:pt-[89px]" data-v-856df627="" id="page-wrapper">
+     <div class="content-wrapper z-10 text-white bg-page-header-blue lg:h-[140px]" data-v-856df627="" data-v-f9b4630c="" id="pageHeader">
+      <!-- -->
+      <div class="flex h-full items-center" data-v-f9b4630c="">
+       <div class="w-full" data-v-f9b4630c="">
+        <div class="content-container relative mx-auto py-4 sm:py-8" data-v-5de5e8ce="" data-v-f9b4630c="">
+         <div class="flex items-center gap-5 overflow-hidden sm:gap-12" data-v-117ee8c6="" data-v-5de5e8ce="">
+          <a class="hover:bg-white/20 custom flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center rounded-md border border-white/50 text-sm text-white transition" data-v-117ee8c6="" href="#">
+           <span class="lar la-chevron-left" data-v-117ee8c6="">
+           </span>
+          </a>
+          <div class="hide-scrollbar transparent-edges h-[56px] flex-shrink-1 overflow-x-scroll text-black" data-v-117ee8c6="">
+           <!--[-->
+           <div class="loading-skeleton-wrapper flex gap-4 overflow-hidden opacity-30 sm:gap-6 md:gap-8" data-v-117ee8c6="">
+            <!--[-->
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <!--]-->
+           </div>
+           <!--]-->
+          </div>
+          <a class="hover:bg-white/20 custom flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center rounded-md border border-white/50 text-sm text-white transition" data-v-117ee8c6="" href="#">
+           <span class="lar la-chevron-right" data-v-117ee8c6="">
+           </span>
+          </a>
+         </div>
+         <!-- -->
+        </div>
+       </div>
+      </div>
+     </div>
+     <nav aria-label="breadcrumb" class="breadcrumb-nav border-b content-wrapper" data-v-5647f7c2="" data-v-856df627="" id="breadcrumbNav">
+      <ol class="content-container breadcrumb-nav mx-auto flex flex-wrap gap-x-2 py-4 text-sm" data-v-5647f7c2="">
+       <!--[-->
+       <li class="breadcrumb-item" data-v-5647f7c2="">
+        <span class="text-ldsgray-650 dark:text-ldsgray-400 cursor-default" data-v-5647f7c2="">
+         Home
+        </span>
+       </li>
+       <!--]-->
+       <li class="breadcrumb-item inline-flex h-full items-center" data-v-5647f7c2="">
+        <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 mt-[3px] inline-block h-4 w-24" data-v-5647f7c2="" role="alert">
+         <!--[-->
+         <!--]-->
+        </div>
+       </li>
+      </ol>
+     </nav>
+     <!-- -->
+     <!-- -->
+     <div class="content-wrapper mt-0 grow" data-v-856df627="" id="content-wrapper" style="min-height:calc(100dvh - 560px);">
+      <div class="mt-0 2xl:mt-[80px] 2xl:gap-[80px] 2xl:pt-8 mb-[200px] docs-content-container 3xl:mr-auto mr-auto ml-auto 2xl:mr-0 2xl:grid" data-v-856df627="" style="grid-template-columns:160px 1fr;">
+       <div class="sidebar hide-scrollbar sticky top-40 w-full overflow-x-hidden z-30 hidden flex-shrink-0 2xl:block" data-v-2fa9d756="" data-v-856df627="">
+        <ul class="p-0" data-v-2fa9d756="">
+         <!--[-->
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             APIリファレンス
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             開発ガイドライン
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             クイックスタート
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             ガイド
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             Webhook
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-transparent" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-linegreen font-bold custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リッチメニュー
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-90 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <div class="border-ldsgray-300 dark:border-ldsgray-700 border-collapse rounded border" data-v-d147b524="">
+            <ul data-v-d147b524="">
+             <!--[-->
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./rich-menus-overview/">
+               <!--[-->
+               リッチメニューの概要
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./using-rich-menus/">
+               <!--[-->
+               リッチメニューを使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./use-per-user-rich-menus/">
+               <!--[-->
+               ユーザー単位のリッチメニューを使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a aria-current="page" class="router-link-active router-link-exact-active bg-linegreen !dark:text-white relative gap-3 rounded font-bold !text-white custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./switch-rich-menus/">
+               <!--[-->
+               リッチメニューでタブ切り替えを行う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./try-rich-menu/">
+               <!--[-->
+               リッチメニューを試す
+               <!--]-->
+              </a>
+             </li>
+             <!--]-->
+            </ul>
+           </div>
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             LINE Bot Designer
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             Flex Message
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             概念
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リファレンス
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リソース
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700 border-b-0" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             導入事例
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <!--]-->
+        </ul>
+       </div>
+       <div class="content-container mt-[80px] 2xl:mt-0 lg:grid lg:gap-[60px]" data-v-856df627="" style="grid-template-columns:1fr 180px;">
+        <div class="content-with-sidebars" data-v-856df627="">
+         <!--[-->
+         <!--[-->
+         <main class="markdown-content">
+          <div>
+           <h1 class="text-4xl text-highlighted font-bold mb-8 scroll-mt-[calc(45px+var(--ui-header-height))] lg:scroll-mt-(--ui-header-height)" id="">
+            <!--[-->
+            リッチメニューでタブ切り替えを行う
+            <!--]-->
+           </h1>
+           <div class="-mt-12 mb-12 flex flex-wrap items-center justify-start gap-1.5 text-xs sm:-mt-16 sm:mb-16" data-v-48a65092="">
+            <button class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white" data-v-48a65092="">
+             <span class="lar la-regular la-copy" data-v-48a65092="">
+             </span>
+             LLM用にコピー
+            </button>
+            <a class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white no-external-icon" data-v-48a65092="" href="./switch-rich-menus/index.html.md" rel="nofollow" target="_blank">
+             <!--[-->
+             <span class="lar la-regular la-markdown" data-v-48a65092="">
+             </span>
+             Markdownで表示
+             <!--]-->
+            </a>
+            <a class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white no-external-icon" data-v-48a65092="" href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/switch-rich-menus/index.html.md" rel="nofollow" target="_blank">
+             <!--[-->
+             <span class="la lapr" data-v-48a65092="" role="img" style="height:1em;aspect-ratio:1;display:inline-grid;place-items:stretch;">
+              <svg data-laicon-version="5.1" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+               <g transform="translate(-2 -2)">
+                <path d="M2 11.873a9.874 9.874 0 0 0 6.752 9.368c.494.09.674-.215.674-.477 0-.234-.008-.855-.013-1.679-2.746.6-3.326-1.323-3.326-1.323a2.611 2.611 0 0 0-1.1-1.444c-.9-.613.068-.6.068-.6a2.073 2.073 0 0 1 1.512 1.017 2.1 2.1 0 0 0 2.873.821 2.1 2.1 0 0 1 .627-1.32c-2.192-.249-4.5-1.1-4.5-4.88A3.821 3.821 0 0 1 6.59 8.707a3.547 3.547 0 0 1 .1-2.612s.826-.266 2.71 1.012a9.338 9.338 0 0 1 4.943 0C16.23 5.829 17.057 6.1 17.057 6.1a3.538 3.538 0 0 1 .1 2.612 3.811 3.811 0 0 1 1.015 2.649c0 3.793-2.308 4.628-4.508 4.872a2.354 2.354 0 0 1 .671 1.828c0 1.32-.012 2.385-.012 2.708 0 .264.177.572.678.475A9.873 9.873 0 1 0 2 11.873z">
+                </path>
+               </g>
+              </svg>
+             </span>
+             GitHubで表示
+             <!--]-->
+            </a>
+           </div>
+           <p>
+            <!--[-->
+            ユーザー単位のリッチメニューを活用して、タブ切り替えが可能なリッチメニューをユーザーに提供できます。
+            <span>
+             <!--[-->
+             <a class="" href="/ja/glossary/#rich-menu-alias">
+              <!--[-->
+              <!--[-->
+              リッチメニューエイリアス
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+             <!--[-->
+             <!--[-->
+             <span aria-controls="" aria-expanded="false" aria-haspopup="dialog" class="text-ldsgray-500 lar la-question-circle ml-px" data-state="closed" id="reka-popover-trigger-v-0-0-1-0-2-0-0" type="button">
+             </span>
+             <!-- -->
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+            </span>
+            と
+            <a class="" href="/ja/reference/messaging-api/#richmenu-switch-action">
+             <!--[-->
+             <!--[-->
+             リッチメニュー切替アクション
+             <!--]-->
+             <!--]-->
+            </a>
+            を使うことで、タブ切り替えのように、複数のリッチメニューを簡単に切り替えられます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in w-fix-640" data-state="closed" src="/media/messaging-api/rich-menu/switching-richmenu-ja.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            たとえばリッチメニューAとリッチメニューBを切り替えたい場合、以下の手順に従って設定します。
+            <!--]-->
+           </p>
+           <ol>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a class="" href="#richmenu-switch-01">
+              <!--[-->
+              <!--[-->
+              リッチメニューの画像を準備する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#richmenu-switch-02">
+              <!--[-->
+              <!--[-->
+              リッチメニューAを作成する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#richmenu-switch-03">
+              <!--[-->
+              <!--[-->
+              リッチメニューAに画像をアップロードする
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#richmenu-switch-04">
+              <!--[-->
+              <!--[-->
+              リッチメニューBを作成する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#richmenu-switch-05">
+              <!--[-->
+              <!--[-->
+              リッチメニューBに画像をアップロードする
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#richmenu-switch-06">
+              <!--[-->
+              <!--[-->
+              リッチメニューAをデフォルトにする
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#richmenu-switch-07">
+              <!--[-->
+              <!--[-->
+              リッチメニューエイリアスAを作成する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#richmenu-switch-08">
+              <!--[-->
+              <!--[-->
+              リッチメニューエイリアスBを作成する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#richmenu-switch-09">
+              <!--[-->
+              <!--[-->
+              リッチメニューの表示を終了する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <!--]-->
+           </ol>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="richmenu-switch-01">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#richmenu-switch-01">
+             <!--[-->
+             <!--[-->
+             1. リッチメニューの画像を準備する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            事前にリッチメニューAの画像（
+            <code>
+             <!--[-->
+             richmenu-a.png
+             <!--]-->
+            </code>
+            ）と、リッチメニューBの画像（
+            <code>
+             <!--[-->
+             richmenu-b.png
+             <!--]-->
+            </code>
+            ）を準備しておきます。使用できる画像について詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#upload-rich-menu-image-requirements">
+             <!--[-->
+             <!--[-->
+             リッチメニューの画像の要件
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <table>
+            <!--[-->
+            <thead>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <th align="center">
+               <!--[-->
+               リッチメニューAの画像
+               <!--]-->
+              </th>
+              <th align="center">
+               <!--[-->
+               リッチメニューBの画像
+               <!--]-->
+              </th>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </thead>
+            <tbody>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <td align="center">
+               <!--[-->
+               <!--[-->
+               <!-- -->
+               <!-- -->
+               <!--[-->
+               <img alt="リッチメニューAの画像" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in w-fix-240" data-state="closed" src="/media/messaging-api/rich-menu/richmenu-a.png" type="button"/>
+               <!--v-if-->
+               <!--]-->
+               <!--]-->
+               <!--]-->
+              </td>
+              <td align="center">
+               <!--[-->
+               <!--[-->
+               <!-- -->
+               <!-- -->
+               <!--[-->
+               <img alt="リッチメニューBの画像" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in w-fix-240" data-state="closed" src="/media/messaging-api/rich-menu/richmenu-b.png" type="button"/>
+               <!--v-if-->
+               <!--]-->
+               <!--]-->
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </tbody>
+            <!--]-->
+           </table>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="richmenu-switch-02">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#richmenu-switch-02">
+             <!--[-->
+             <!--[-->
+             2. リッチメニューAを作成する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            Messaging APIで
+            <a class="" href="/ja/reference/messaging-api/#create-rich-menu">
+             <!--[-->
+             <!--[-->
+             リッチメニューを作成
+             <!--]-->
+             <!--]-->
+            </a>
+            します。この例では、タップ
+            <a class="" href="/ja/reference/messaging-api/#area-object">
+             <!--[-->
+             <!--[-->
+             領域オブジェクト
+             <!--]-->
+             <!--]-->
+            </a>
+            のアクションに、以下を指定しています。
+            <!--]-->
+           </p>
+           <ul>
+            <!--[-->
+            <li>
+             <!--[-->
+             <strong>
+              <!--[-->
+              リッチメニューAの左側のタップ領域
+              <!--]-->
+             </strong>
+             <ul>
+              <!--[-->
+              <li>
+               <!--[-->
+               アクション：
+               <a class="" href="/ja/reference/messaging-api/#uri-action">
+                <!--[-->
+                <!--[-->
+                URIアクション
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </li>
+              <li>
+               <!--[-->
+               URI：
+               <a class="" href="/ja/">
+                <!--[-->
+                <!--[-->
+                LINE Developersサイト
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </li>
+              <!--]-->
+             </ul>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <strong>
+              <!--[-->
+              リッチメニューAの右側のタップ領域
+              <!--]-->
+             </strong>
+             <ul>
+              <!--[-->
+              <li>
+               <!--[-->
+               アクション：
+               <a class="" href="/ja/reference/messaging-api/#richmenu-switch-action">
+                <!--[-->
+                <!--[-->
+                リッチメニュー切替アクション
+                <!--]-->
+                <!--]-->
+               </a>
+               （type：
+               <code>
+                <!--[-->
+                richmenuswitch
+                <!--]-->
+               </code>
+               ）
+               <!--]-->
+              </li>
+              <li>
+               <!--[-->
+               切替先：リッチメニューB（richMenuAliasId：
+               <code>
+                <!--[-->
+                richmenu-alias-b
+                <!--]-->
+               </code>
+               ）
+               <!--]-->
+              </li>
+              <!--]-->
+             </ul>
+             <!--]-->
+            </li>
+            <!--]-->
+           </ul>
+           <div class="relative" code="curl -v -X POST https://api.line.me/v2/bot/richmenu \
+-H 'Authorization: Bearer {channel access token}' \
+-H 'Content-Type: application/json' \
+-d \
+'{
+    &quot;size&quot;: {
+        &quot;width&quot;: 2500,
+        &quot;height&quot;: 1686
+    },
+    &quot;selected&quot;: false,
+    &quot;name&quot;: &quot;richmenu-a&quot;,
+    &quot;chatBarText&quot;: &quot;Tap to open&quot;,
+    &quot;areas&quot;: [
+        {
+            &quot;bounds&quot;: {
+                &quot;x&quot;: 0,
+                &quot;y&quot;: 0,
+                &quot;width&quot;: 1250,
+                &quot;height&quot;: 1686
+            },
+            &quot;action&quot;: {
+                &quot;type&quot;: &quot;uri&quot;,
+                &quot;uri&quot;: &quot;https://developers.line.biz/&quot;
+            }
+        },
+        {
+            &quot;bounds&quot;: {
+                &quot;x&quot;: 1251,
+                &quot;y&quot;: 0,
+                &quot;width&quot;: 1250,
+                &quot;height&quot;: 1686
+            },
+            &quot;action&quot;: {
+                &quot;type&quot;: &quot;richmenuswitch&quot;,
+                &quot;richMenuAliasId&quot;: &quot;richmenu-alias-b&quot;,
+                &quot;data&quot;: &quot;richmenu-changed-to-b&quot;
+            }
+        }
+    ]
+}'
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">curl</span><span class="sFSAA"> -v</span><span class="sFSAA"> -X</span><span class="s9uIt"> POST</span><span class="s9uIt"> https://api.line.me/v2/bot/richmenu</span><span class="suJrU"> \
+</span></span><span class="line" line="2"><span class="sZEs4">-H </span><span class="s9uIt">'Authorization: Bearer {channel access token}'</span><span class="suJrU"> \
+</span></span><span class="line" line="3"><span class="sZEs4">-H </span><span class="s9uIt">'Content-Type: application/json'</span><span class="suJrU"> \
+</span></span><span class="line" line="4"><span class="sZEs4">-d </span><span class="suJrU">\
+</span></span><span class="line" line="5"><span class="s9uIt">'{
+</span></span><span class="line" line="6"><span class="s9uIt">    "size": {
+</span></span><span class="line" line="7"><span class="s9uIt">        "width": 2500,
+</span></span><span class="line" line="8"><span class="s9uIt">        "height": 1686
+</span></span><span class="line" line="9"><span class="s9uIt">    },
+</span></span><span class="line" line="10"><span class="s9uIt">    "selected": false,
+</span></span><span class="line" line="11"><span class="s9uIt">    "name": "richmenu-a",
+</span></span><span class="line" line="12"><span class="s9uIt">    "chatBarText": "Tap to open",
+</span></span><span class="line" line="13"><span class="s9uIt">    "areas": [
+</span></span><span class="line" line="14"><span class="s9uIt">        {
+</span></span><span class="line" line="15"><span class="s9uIt">            "bounds": {
+</span></span><span class="line" line="16"><span class="s9uIt">                "x": 0,
+</span></span><span class="line" line="17"><span class="s9uIt">                "y": 0,
+</span></span><span class="line" line="18"><span class="s9uIt">                "width": 1250,
+</span></span><span class="line" line="19"><span class="s9uIt">                "height": 1686
+</span></span><span class="line" line="20"><span class="s9uIt">            },
+</span></span><span class="line" line="21"><span class="s9uIt">            "action": {
+</span></span><span class="line" line="22"><span class="s9uIt">                "type": "uri",
+</span></span><span class="line" line="23"><span class="s9uIt">                "uri": "https://developers.line.biz/"
+</span></span><span class="line" line="24"><span class="s9uIt">            }
+</span></span><span class="line" line="25"><span class="s9uIt">        },
+</span></span><span class="line" line="26"><span class="s9uIt">        {
+</span></span><span class="line" line="27"><span class="s9uIt">            "bounds": {
+</span></span><span class="line" line="28"><span class="s9uIt">                "x": 1251,
+</span></span><span class="line" line="29"><span class="s9uIt">                "y": 0,
+</span></span><span class="line" line="30"><span class="s9uIt">                "width": 1250,
+</span></span><span class="line" line="31"><span class="s9uIt">                "height": 1686
+</span></span><span class="line" line="32"><span class="s9uIt">            },
+</span></span><span class="line" line="33"><span class="s9uIt">            "action": {
+</span></span><span class="line" line="34"><span class="s9uIt">                "type": "richmenuswitch",
+</span></span><span class="line" line="35"><span class="s9uIt">                "richMenuAliasId": "richmenu-alias-b",
+</span></span><span class="line" line="36"><span class="s9uIt">                "data": "richmenu-changed-to-b"
+</span></span><span class="line" line="37"><span class="s9uIt">            }
+</span></span><span class="line" line="38"><span class="s9uIt">        }
+</span></span><span class="line" line="39"><span class="s9uIt">    ]
+</span></span><span class="line" line="40"><span class="s9uIt">}'
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            リッチメニューAが作成されると、レスポンスとしてリッチメニューのIDが返ります。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "richMenuId": "richmenu-19682466851b21e2d7c0ed482ee0930f"
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "richMenuId"</span><span class="sZEs4">: </span><span class="s9uIt">"richmenu-19682466851b21e2d7c0ed482ee0930f"
+</span></span><span class="line" line="3"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="richmenu-switch-03">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#richmenu-switch-03">
+             <!--[-->
+             <!--[-->
+             3. リッチメニューAに画像をアップロードする
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            リッチメニューを作成したら、Messaging APIでリッチメニューA用の「
+            <a class="" href="/ja/reference/messaging-api/#upload-rich-menu-image">
+             <!--[-->
+             <!--[-->
+             画像をアップロード
+             <!--]-->
+             <!--]-->
+            </a>
+            」します。
+            <a class="" href="#richmenu-switch-02">
+             <!--[-->
+             <!--[-->
+             手順2
+             <!--]-->
+             <!--]-->
+            </a>
+            で取得したリッチメニューAのリッチメニューIDを、パスパラメータで指定します。
+            <!--]-->
+           </p>
+           <div class="relative" code="curl -v -X POST https://api-data.line.me/v2/bot/richmenu/richmenu-19682466851b21e2d7c0ed482ee0930f/content \
+-H 'Authorization: Bearer {channel access token}' \
+-H &quot;Content-Type: image/png&quot; \
+-T richmenu-a.png
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">curl</span><span class="sFSAA"> -v</span><span class="sFSAA"> -X</span><span class="s9uIt"> POST</span><span class="s9uIt"> https://api-data.line.me/v2/bot/richmenu/richmenu-19682466851b21e2d7c0ed482ee0930f/content</span><span class="suJrU"> \
+</span></span><span class="line" line="2"><span class="sZEs4">-H </span><span class="s9uIt">'Authorization: Bearer {channel access token}'</span><span class="suJrU"> \
+</span></span><span class="line" line="3"><span class="sZEs4">-H </span><span class="s9uIt">"Content-Type: image/png"</span><span class="suJrU"> \
+</span></span><span class="line" line="4"><span class="sZEs4">-T </span><span class="s9uIt">richmenu-a.png
+</span></span></code><!--]--></pre>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="richmenu-switch-04">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#richmenu-switch-04">
+             <!--[-->
+             <!--[-->
+             4. リッチメニューBを作成する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            リッチメニューAと同様の手順で、リッチメニューB（
+            <code>
+             <!--[-->
+             richmenu-b
+             <!--]-->
+            </code>
+            ）を作成します。タップ
+            <a class="" href="/ja/reference/messaging-api/#area-object">
+             <!--[-->
+             <!--[-->
+             領域オブジェクト
+             <!--]-->
+             <!--]-->
+            </a>
+            のアクションに、以下を指定します。
+            <!--]-->
+           </p>
+           <ul>
+            <!--[-->
+            <li>
+             <!--[-->
+             <strong>
+              <!--[-->
+              リッチメニューBの左側のタップ領域
+              <!--]-->
+             </strong>
+             <ul>
+              <!--[-->
+              <li>
+               <!--[-->
+               アクション：
+               <a class="" href="/ja/reference/messaging-api/#richmenu-switch-action">
+                <!--[-->
+                <!--[-->
+                リッチメニュー切替アクション
+                <!--]-->
+                <!--]-->
+               </a>
+               （type：
+               <code>
+                <!--[-->
+                richmenuswitch
+                <!--]-->
+               </code>
+               ）
+               <!--]-->
+              </li>
+              <li>
+               <!--[-->
+               切替先：リッチメニューA（richMenuAliasId：
+               <code>
+                <!--[-->
+                richmenu-alias-a
+                <!--]-->
+               </code>
+               ）
+               <!--]-->
+              </li>
+              <!--]-->
+             </ul>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <strong>
+              <!--[-->
+              リッチメニューBの右側のタップ領域
+              <!--]-->
+             </strong>
+             <ul>
+              <!--[-->
+              <li>
+               <!--[-->
+               アクション：
+               <a class="" href="/ja/reference/messaging-api/#uri-action">
+                <!--[-->
+                <!--[-->
+                URIアクション
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </li>
+              <li>
+               <!--[-->
+               URI：
+               <a class="" href="https://techblog.lycorp.co.jp/" rel="nofollow" target="_blank">
+                <!--[-->
+                <!--[-->
+                LINEヤフー Tech Blog
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </li>
+              <!--]-->
+             </ul>
+             <!--]-->
+            </li>
+            <!--]-->
+           </ul>
+           <div class="relative" code="curl -v -X POST https://api.line.me/v2/bot/richmenu \
+-H 'Authorization: Bearer {channel access token}' \
+-H 'Content-Type: application/json' \
+-d \
+'{
+    &quot;size&quot;: {
+        &quot;width&quot;: 2500,
+        &quot;height&quot;: 1686
+    },
+    &quot;selected&quot;: false,
+    &quot;name&quot;: &quot;richmenu-b&quot;,
+    &quot;chatBarText&quot;: &quot;Tap to open&quot;,
+    &quot;areas&quot;: [
+        {
+            &quot;bounds&quot;: {
+                &quot;x&quot;: 0,
+                &quot;y&quot;: 0,
+                &quot;width&quot;: 1250,
+                &quot;height&quot;: 1686
+            },
+            &quot;action&quot;: {
+                &quot;type&quot;: &quot;richmenuswitch&quot;,
+                &quot;richMenuAliasId&quot;: &quot;richmenu-alias-a&quot;,
+                &quot;data&quot;: &quot;richmenu-changed-to-a&quot;
+            }
+        },
+        {
+            &quot;bounds&quot;: {
+                &quot;x&quot;: 1251,
+                &quot;y&quot;: 0,
+                &quot;width&quot;: 1250,
+                &quot;height&quot;: 1686
+            },
+            &quot;action&quot;: {
+                &quot;type&quot;: &quot;uri&quot;,
+                &quot;uri&quot;: &quot;https://techblog.lycorp.co.jp/&quot;
+            }
+        }
+    ]
+}'
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">curl</span><span class="sFSAA"> -v</span><span class="sFSAA"> -X</span><span class="s9uIt"> POST</span><span class="s9uIt"> https://api.line.me/v2/bot/richmenu</span><span class="suJrU"> \
+</span></span><span class="line" line="2"><span class="sZEs4">-H </span><span class="s9uIt">'Authorization: Bearer {channel access token}'</span><span class="suJrU"> \
+</span></span><span class="line" line="3"><span class="sZEs4">-H </span><span class="s9uIt">'Content-Type: application/json'</span><span class="suJrU"> \
+</span></span><span class="line" line="4"><span class="sZEs4">-d </span><span class="suJrU">\
+</span></span><span class="line" line="5"><span class="s9uIt">'{
+</span></span><span class="line" line="6"><span class="s9uIt">    "size": {
+</span></span><span class="line" line="7"><span class="s9uIt">        "width": 2500,
+</span></span><span class="line" line="8"><span class="s9uIt">        "height": 1686
+</span></span><span class="line" line="9"><span class="s9uIt">    },
+</span></span><span class="line" line="10"><span class="s9uIt">    "selected": false,
+</span></span><span class="line" line="11"><span class="s9uIt">    "name": "richmenu-b",
+</span></span><span class="line" line="12"><span class="s9uIt">    "chatBarText": "Tap to open",
+</span></span><span class="line" line="13"><span class="s9uIt">    "areas": [
+</span></span><span class="line" line="14"><span class="s9uIt">        {
+</span></span><span class="line" line="15"><span class="s9uIt">            "bounds": {
+</span></span><span class="line" line="16"><span class="s9uIt">                "x": 0,
+</span></span><span class="line" line="17"><span class="s9uIt">                "y": 0,
+</span></span><span class="line" line="18"><span class="s9uIt">                "width": 1250,
+</span></span><span class="line" line="19"><span class="s9uIt">                "height": 1686
+</span></span><span class="line" line="20"><span class="s9uIt">            },
+</span></span><span class="line" line="21"><span class="s9uIt">            "action": {
+</span></span><span class="line" line="22"><span class="s9uIt">                "type": "richmenuswitch",
+</span></span><span class="line" line="23"><span class="s9uIt">                "richMenuAliasId": "richmenu-alias-a",
+</span></span><span class="line" line="24"><span class="s9uIt">                "data": "richmenu-changed-to-a"
+</span></span><span class="line" line="25"><span class="s9uIt">            }
+</span></span><span class="line" line="26"><span class="s9uIt">        },
+</span></span><span class="line" line="27"><span class="s9uIt">        {
+</span></span><span class="line" line="28"><span class="s9uIt">            "bounds": {
+</span></span><span class="line" line="29"><span class="s9uIt">                "x": 1251,
+</span></span><span class="line" line="30"><span class="s9uIt">                "y": 0,
+</span></span><span class="line" line="31"><span class="s9uIt">                "width": 1250,
+</span></span><span class="line" line="32"><span class="s9uIt">                "height": 1686
+</span></span><span class="line" line="33"><span class="s9uIt">            },
+</span></span><span class="line" line="34"><span class="s9uIt">            "action": {
+</span></span><span class="line" line="35"><span class="s9uIt">                "type": "uri",
+</span></span><span class="line" line="36"><span class="s9uIt">                "uri": "https://techblog.lycorp.co.jp/"
+</span></span><span class="line" line="37"><span class="s9uIt">            }
+</span></span><span class="line" line="38"><span class="s9uIt">        }
+</span></span><span class="line" line="39"><span class="s9uIt">    ]
+</span></span><span class="line" line="40"><span class="s9uIt">}'
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            リッチメニューBが作成されると、レスポンスとしてリッチメニューのIDが返ります。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "richMenuId": "richmenu-4ecc8d672d9da4ba375fb82fa938fe5e"
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "richMenuId"</span><span class="sZEs4">: </span><span class="s9uIt">"richmenu-4ecc8d672d9da4ba375fb82fa938fe5e"
+</span></span><span class="line" line="3"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="richmenu-switch-05">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#richmenu-switch-05">
+             <!--[-->
+             <!--[-->
+             5. リッチメニューBに画像をアップロードする
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            リッチメニューBを作成したら、Messaging APIでリッチメニューB用の「
+            <a class="" href="/ja/reference/messaging-api/#upload-rich-menu-image">
+             <!--[-->
+             <!--[-->
+             画像をアップロード
+             <!--]-->
+             <!--]-->
+            </a>
+            」します。
+            <a class="" href="#richmenu-switch-04">
+             <!--[-->
+             <!--[-->
+             手順4
+             <!--]-->
+             <!--]-->
+            </a>
+            で取得したリッチメニューIDを、パスパラメータで指定します。
+            <!--]-->
+           </p>
+           <div class="relative" code="curl -v -X POST https://api-data.line.me/v2/bot/richmenu/richmenu-4ecc8d672d9da4ba375fb82fa938fe5e/content \
+-H 'Authorization: Bearer {channel access token}' \
+-H &quot;Content-Type: image/png&quot; \
+-T richmenu-b.png
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">curl</span><span class="sFSAA"> -v</span><span class="sFSAA"> -X</span><span class="s9uIt"> POST</span><span class="s9uIt"> https://api-data.line.me/v2/bot/richmenu/richmenu-4ecc8d672d9da4ba375fb82fa938fe5e/content</span><span class="suJrU"> \
+</span></span><span class="line" line="2"><span class="sZEs4">-H </span><span class="s9uIt">'Authorization: Bearer {channel access token}'</span><span class="suJrU"> \
+</span></span><span class="line" line="3"><span class="sZEs4">-H </span><span class="s9uIt">"Content-Type: image/png"</span><span class="suJrU"> \
+</span></span><span class="line" line="4"><span class="sZEs4">-T </span><span class="s9uIt">richmenu-b.png
+</span></span></code><!--]--></pre>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="richmenu-switch-06">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#richmenu-switch-06">
+             <!--[-->
+             <!--[-->
+             6. リッチメニューAをデフォルトにする
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            「
+            <a class="" href="/ja/reference/messaging-api/#set-default-rich-menu">
+             <!--[-->
+             <!--[-->
+             デフォルトのリッチメニューを設定する
+             <!--]-->
+             <!--]-->
+            </a>
+            」エンドポイントを使って、リッチメニューAをデフォルトのリッチメニューにします。
+            <!--]-->
+           </p>
+           <div class="relative" code="curl -v -X POST https://api.line.me/v2/bot/user/all/richmenu/richmenu-19682466851b21e2d7c0ed482ee0930f \
+-H 'Authorization: Bearer {channel access token}'
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">curl</span><span class="sFSAA"> -v</span><span class="sFSAA"> -X</span><span class="s9uIt"> POST</span><span class="s9uIt"> https://api.line.me/v2/bot/user/all/richmenu/richmenu-19682466851b21e2d7c0ed482ee0930f</span><span class="suJrU"> \
+</span></span><span class="line" line="2"><span class="sZEs4">-H </span><span class="s9uIt">'Authorization: Bearer {channel access token}'
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            これによりリッチメニューAが表示されるようになります。しかし、リッチメニューエイリアスBが未作成のため、右側をタップしてもまだリッチメニューBには切り替わりません。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="デフォルトのリッチメニューが表示された" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in w-fix-240 border" data-state="closed" src="/media/messaging-api/rich-menu/set-default-rich-menu.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <div class="warning custom-block">
+            <div class="custom-block-title">
+             <i class="las la-exclamation-circle mr-2">
+             </i>
+             <span>
+              リッチメニューAが表示されない場合
+             </span>
+            </div>
+            <div>
+             <!--[-->
+             <p>
+              <!--[-->
+              デフォルトのリッチメニューよりも表示優先順位の高い、ユーザー単位のリッチメニューが既に設定されていた場合、リッチメニューAは表示されません。その場合は、表示されている
+              <a class="" href="/ja/reference/messaging-api/#delete-rich-menu">
+               <!--[-->
+               <!--[-->
+               リッチメニューを削除する
+               <!--]-->
+               <!--]-->
+              </a>
+              か、
+              <a class="" href="/ja/reference/messaging-api/#unlink-rich-menu-from-user">
+               <!--[-->
+               <!--[-->
+               リッチメニューとユーザーのリンクを解除する
+               <!--]-->
+               <!--]-->
+              </a>
+              ことで、リッチメニューAが表示されるようになります。詳しくは、「
+              <a class="" href="./rich-menus-overview/#rich-menu-display">
+               <!--[-->
+               <!--[-->
+               リッチメニューの表示優先度
+               <!--]-->
+               <!--]-->
+              </a>
+              」を参照してください。
+              <!--]-->
+             </p>
+             <!--]-->
+            </div>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="richmenu-switch-07">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#richmenu-switch-07">
+             <!--[-->
+             <!--[-->
+             7. リッチメニューエイリアスAを作成する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            リッチメニューAの
+            <a class="" href="/ja/reference/messaging-api/#create-rich-menu-alias">
+             <!--[-->
+             <!--[-->
+             リッチメニューエイリアスを作成
+             <!--]-->
+             <!--]-->
+            </a>
+            します。以下の例では、
+            <a class="" href="#richmenu-switch-02">
+             <!--[-->
+             <!--[-->
+             手順2
+             <!--]-->
+             <!--]-->
+            </a>
+            で作成しておいたリッチメニューAに、リッチメニューエイリアス
+            <code>
+             <!--[-->
+             richmenu-alias-a
+             <!--]-->
+            </code>
+            を設定します。
+            <!--]-->
+           </p>
+           <div class="relative" code="curl -v -X POST https://api.line.me/v2/bot/richmenu/alias \
+-H 'Authorization: Bearer {channel access token}' \
+-H 'Content-Type: application/json' \
+-d \
+'{
+    &quot;richMenuAliasId&quot;: &quot;richmenu-alias-a&quot;,
+    &quot;richMenuId&quot;: &quot;richmenu-19682466851b21e2d7c0ed482ee0930f&quot;
+}'
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">curl</span><span class="sFSAA"> -v</span><span class="sFSAA"> -X</span><span class="s9uIt"> POST</span><span class="s9uIt"> https://api.line.me/v2/bot/richmenu/alias</span><span class="suJrU"> \
+</span></span><span class="line" line="2"><span class="sZEs4">-H </span><span class="s9uIt">'Authorization: Bearer {channel access token}'</span><span class="suJrU"> \
+</span></span><span class="line" line="3"><span class="sZEs4">-H </span><span class="s9uIt">'Content-Type: application/json'</span><span class="suJrU"> \
+</span></span><span class="line" line="4"><span class="sZEs4">-d </span><span class="suJrU">\
+</span></span><span class="line" line="5"><span class="s9uIt">'{
+</span></span><span class="line" line="6"><span class="s9uIt">    "richMenuAliasId": "richmenu-alias-a",
+</span></span><span class="line" line="7"><span class="s9uIt">    "richMenuId": "richmenu-19682466851b21e2d7c0ed482ee0930f"
+</span></span><span class="line" line="8"><span class="s9uIt">}'
+</span></span></code><!--]--></pre>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="richmenu-switch-08">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#richmenu-switch-08">
+             <!--[-->
+             <!--[-->
+             8. リッチメニューエイリアスBを作成する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            同様にリッチメニューBの
+            <a class="" href="/ja/reference/messaging-api/#create-rich-menu-alias">
+             <!--[-->
+             <!--[-->
+             リッチメニューエイリアスを作成
+             <!--]-->
+             <!--]-->
+            </a>
+            します。以下の例では、
+            <a class="" href="#richmenu-switch-04">
+             <!--[-->
+             <!--[-->
+             手順4
+             <!--]-->
+             <!--]-->
+            </a>
+            で作成しておいたリッチメニューBに、リッチメニューエイリアス
+            <code>
+             <!--[-->
+             richmenu-alias-b
+             <!--]-->
+            </code>
+            を設定します。
+            <!--]-->
+           </p>
+           <div class="relative" code="curl -v -X POST https://api.line.me/v2/bot/richmenu/alias \
+-H 'Authorization: Bearer {channel access token}' \
+-H 'Content-Type: application/json' \
+-d \
+'{
+    &quot;richMenuAliasId&quot;: &quot;richmenu-alias-b&quot;,
+    &quot;richMenuId&quot;: &quot;richmenu-4ecc8d672d9da4ba375fb82fa938fe5e&quot;
+}'
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">curl</span><span class="sFSAA"> -v</span><span class="sFSAA"> -X</span><span class="s9uIt"> POST</span><span class="s9uIt"> https://api.line.me/v2/bot/richmenu/alias</span><span class="suJrU"> \
+</span></span><span class="line" line="2"><span class="sZEs4">-H </span><span class="s9uIt">'Authorization: Bearer {channel access token}'</span><span class="suJrU"> \
+</span></span><span class="line" line="3"><span class="sZEs4">-H </span><span class="s9uIt">'Content-Type: application/json'</span><span class="suJrU"> \
+</span></span><span class="line" line="4"><span class="sZEs4">-d </span><span class="suJrU">\
+</span></span><span class="line" line="5"><span class="s9uIt">'{
+</span></span><span class="line" line="6"><span class="s9uIt">    "richMenuAliasId": "richmenu-alias-b",
+</span></span><span class="line" line="7"><span class="s9uIt">    "richMenuId": "richmenu-4ecc8d672d9da4ba375fb82fa938fe5e"
+</span></span><span class="line" line="8"><span class="s9uIt">}'
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            これで、リッチメニューAで右側の領域をタップするとリッチメニューBに切り替わるようになりました。リッチメニューBで左側の領域をタップすると、リッチメニューAに戻ります。
+            <!--]-->
+           </p>
+           <table>
+            <!--[-->
+            <thead>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <th align="center">
+               <!--[-->
+               リッチメニューA
+               <!--]-->
+              </th>
+              <th align="center">
+               <!--[-->
+               リッチメニューB
+               <!--]-->
+              </th>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </thead>
+            <tbody>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <td align="center">
+               <!--[-->
+               <!--[-->
+               <!-- -->
+               <!-- -->
+               <!--[-->
+               <img alt="リッチメニューA" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in w-fix-240 border" data-state="closed" src="/media/messaging-api/rich-menu/set-default-rich-menu.png" type="button"/>
+               <!--v-if-->
+               <!--]-->
+               <!--]-->
+               <!--]-->
+              </td>
+              <td align="center">
+               <!--[-->
+               <!--[-->
+               <!-- -->
+               <!-- -->
+               <!--[-->
+               <img alt="リッチメニューB" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in w-fix-240 border" data-state="closed" src="/media/messaging-api/rich-menu/switch-rich-menu.png" type="button"/>
+               <!--v-if-->
+               <!--]-->
+               <!--]-->
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </tbody>
+            <!--]-->
+           </table>
+           <p>
+            <!--[-->
+            リッチメニューエイリアスと紐づくリッチメニューは、「
+            <a class="" href="/ja/reference/messaging-api/#update-rich-menu-alias">
+             <!--[-->
+             <!--[-->
+             リッチメニューエイリアスを更新する
+             <!--]-->
+             <!--]-->
+            </a>
+            」エンドポイントを使って、いつでも変更できます。
+            <!--]-->
+           </p>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="richmenu-switch-09">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#richmenu-switch-09">
+             <!--[-->
+             <!--[-->
+             9. リッチメニューの表示を終了する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            リッチメニューの表示を終了したい場合は、Messaging APIで以下の手順で実施します。
+            <!--]-->
+           </p>
+           <ol>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a class="" href="/ja/reference/messaging-api/#clear-default-rich-menu">
+              <!--[-->
+              <!--[-->
+              デフォルトのリッチメニューを解除する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="/ja/reference/messaging-api/#delete-rich-menu-alias">
+              <!--[-->
+              <!--[-->
+              リッチメニューエイリアスを削除する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="/ja/reference/messaging-api/#delete-rich-menu">
+              <!--[-->
+              <!--[-->
+              リッチメニューを削除する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <!--]-->
+           </ol>
+           <p>
+            <!--[-->
+            なお、
+            <a class="" href="/ja/reference/messaging-api/#unlink-rich-menu-from-user">
+             <!--[-->
+             <!--[-->
+             ユーザーとのリンクを解除
+             <!--]-->
+             <!--]-->
+            </a>
+            せずにリッチメニューを削除できます。しかしこの場合、リッチメニューは即時には削除されず、ユーザーがトーク画面に再入室したときに削除が反映されます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            LINE公式アカウントと友だちになっているユーザーの、ユーザーIDが分かっている場合は、リッチメニューを削除する代わりに、リッチメニューのリンクを解除できます。リッチメニューを保持した状態でリッチメニューとユーザーのリンクを解除するには、以下の手順に従って設定します。
+            <!--]-->
+           </p>
+           <ul>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a class="" href="/ja/reference/messaging-api/#unlink-rich-menu-from-user">
+              <!--[-->
+              <!--[-->
+              リッチメニューとユーザーのリンクを解除する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="/ja/reference/messaging-api/#unlink-rich-menu-from-users">
+              <!--[-->
+              <!--[-->
+              複数のユーザーのリッチメニューのリンクを解除する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <!--]-->
+           </ul>
+           <p>
+            <!--[-->
+            リッチメニューとユーザーのリンクを解除した場合、リッチメニューは即時に表示されなくなります。
+            <!--]-->
+           </p>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="when-the-intended-rich-menu-isnt-displayed">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#when-the-intended-rich-menu-isnt-displayed">
+             <!--[-->
+             <!--[-->
+             意図したリッチメニューが表示されないときは
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            意図したリッチメニューが表示されない場合は、以下の点を確認してください。
+            <!--]-->
+           </p>
+           <ul>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a class="" href="#youll-still-see-the-rich-menu-after-you-clear-the-default">
+              <!--[-->
+              <!--[-->
+              デフォルトのリッチメニューを解除してもリッチメニューが表示され続けてしまう
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#you-see-a-different-rich-menu">
+              <!--[-->
+              <!--[-->
+              新しいデフォルトのリッチメニューを設定したのに他のリッチメニューが表示されてしまう
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <!--]-->
+           </ul>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="youll-still-see-the-rich-menu-after-you-clear-the-default">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#youll-still-see-the-rich-menu-after-you-clear-the-default">
+             <!--[-->
+             <!--[-->
+             デフォルトのリッチメニューを解除してもリッチメニューが表示され続けてしまう
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            リッチメニュー切替アクションでリッチメニューAからリッチメニューBに、またはリッチメニューBからリッチメニューAに切り替わった場合、表示されるリッチメニューは、表示優先順位が最も高いユーザー単位のリッチメニューです。そのため、
+            <a class="" href="#richmenu-switch-06">
+             <!--[-->
+             <!--[-->
+             手順6
+             <!--]-->
+             <!--]-->
+            </a>
+            で設定したデフォルトのリッチメニューを解除しただけでは、リッチメニューAもしくはリッチメニューBは引き続き表示されたままとなります。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            その場合は、
+            <a class="" href="/ja/reference/messaging-api/#delete-rich-menu">
+             <!--[-->
+             <!--[-->
+             リッチメニューを削除する
+             <!--]-->
+             <!--]-->
+            </a>
+            か、
+            <a class="" href="/ja/reference/messaging-api/#unlink-rich-menu-from-user">
+             <!--[-->
+             <!--[-->
+             リッチメニューとユーザーのリンクを解除する
+             <!--]-->
+             <!--]-->
+            </a>
+            ことで、リッチメニューの表示を終了できます。リッチメニューの表示優先順位について詳しくは、「
+            <a class="" href="./rich-menus-overview/#rich-menu-display">
+             <!--[-->
+             <!--[-->
+             リッチメニューの表示優先度
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="you-see-a-different-rich-menu">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#you-see-a-different-rich-menu">
+             <!--[-->
+             <!--[-->
+             新しいデフォルトのリッチメニューを設定したのに他のリッチメニューが表示されてしまう
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            新しいデフォルトのリッチメニューを設定したのに他のリッチメニューが表示されてしまう場合は、デフォルトのリッチメニューよりも表示優先順位の高い、ユーザー単位のリッチメニューが設定されている可能性があります。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            その場合は、意図せず表示されている
+            <a class="" href="/ja/reference/messaging-api/#delete-rich-menu">
+             <!--[-->
+             <!--[-->
+             リッチメニューを削除する
+             <!--]-->
+             <!--]-->
+            </a>
+            か、
+            <a class="" href="/ja/reference/messaging-api/#unlink-rich-menu-from-user">
+             <!--[-->
+             <!--[-->
+             リッチメニューとユーザーのリンクを解除する
+             <!--]-->
+             <!--]-->
+            </a>
+            ことで、新しいリッチメニューが表示されるようになります。詳しくは、「
+            <a class="" href="./rich-menus-overview/#rich-menu-display">
+             <!--[-->
+             <!--[-->
+             リッチメニューの表示優先度
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <style>
+            html pre.shiki code .sQhOw, html code.shiki .sQhOw{--shiki-default:#FFA657}html pre.shiki code .sFSAA, html code.shiki .sFSAA{--shiki-default:#79C0FF}html pre.shiki code .s9uIt, html code.shiki .s9uIt{--shiki-default:#A5D6FF}html pre.shiki code .suJrU, html code.shiki .suJrU{--shiki-default:#FF7B72}html pre.shiki code .sZEs4, html code.shiki .sZEs4{--shiki-default:#E6EDF3}html .default .shiki span {color: var(--shiki-default);background: var(--shiki-default-bg);font-style: var(--shiki-default-font-style);font-weight: var(--shiki-default-font-weight);text-decoration: var(--shiki-default-text-decoration);}html .shiki span {color: var(--shiki-default);background: var(--shiki-default-bg);font-style: var(--shiki-default-font-style);font-weight: var(--shiki-default-font-weight);text-decoration: var(--shiki-default-text-decoration);}html pre.shiki code .sPWt5, html code.shiki .sPWt5{--shiki-default:#7EE787}
+           </style>
+          </div>
+         </main>
+         <!--]-->
+         <!--]-->
+        </div>
+        <div class="toc text-caption-docs-side hide-scrollbar sticky top-48 overflow-y-auto 2xl:top-40" data-v-70444712="" data-v-856df627="" id="side-toc">
+         <ul data-v-70444712="">
+          <!--[-->
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#richmenu-switch-01">
+            1. リッチメニューの画像を準備する
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#richmenu-switch-02">
+            2. リッチメニューAを作成する
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#richmenu-switch-03">
+            3. リッチメニューAに画像をアップロードする
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#richmenu-switch-04">
+            4. リッチメニューBを作成する
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#richmenu-switch-05">
+            5. リッチメニューBに画像をアップロードする
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#richmenu-switch-06">
+            6. リッチメニューAをデフォルトにする
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#richmenu-switch-07">
+            7. リッチメニューエイリアスAを作成する
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#richmenu-switch-08">
+            8. リッチメニューエイリアスBを作成する
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#richmenu-switch-09">
+            9. リッチメニューの表示を終了する
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-[8px] custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#when-the-intended-rich-menu-isnt-displayed">
+            意図したリッチメニューが表示されないときは
+           </a>
+           <ul class="font-caption-docs-side dark:border-ldsgray-750 mb-8 flex flex-col gap-5 border-l pr-3 pl-5" data-v-70444712="">
+            <!--[-->
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#youll-still-see-the-rich-menu-after-you-clear-the-default">
+              デフォルトのリッチメニューを解除してもリッチメニューが表示され続けてしまう
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#you-see-a-different-rich-menu">
+              新しいデフォルトのリッチメニューを設定したのに他のリッチメニューが表示されてしまう
+             </a>
+            </li>
+            <!--]-->
+           </ul>
+          </li>
+          <!--]-->
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+     <footer class="font-main-card-text-product dark:border-ldsgray-750 content-wrapper w-full border-t py-8 text-black dark:bg-black dark:text-white" data-v-856df627="" id="footer">
+      <div class="content-container mx-auto">
+       <div class="footer-copyright-en w-full whitespace-nowrap">
+        © LY Corporation
+       </div>
+       <div class="flex flex-col justify-between lg:flex-row">
+        <div>
+         <ul class="my-6 flex flex-col gap-y-2 p-0 md:my-2 md:flex-row md:items-center md:gap-x-4">
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/about/">
+            LINE Developersサイトとは
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/terms-and-policies/">
+            規約とポリシー
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/trademark/">
+            商標について
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white no-external-icon" href="https://api.line-status.info/" target="_blank">
+            <!--[-->
+            LINE API Status
+            <span class="ml-1 inline-block">
+             <span class="las la-arrow-out-square text-xs opacity-50">
+             </span>
+            </span>
+            <!--]-->
+           </a>
+          </li>
+         </ul>
+        </div>
+        <div class="flex flex-row items-center justify-start gap-7">
+         <!--[-->
+         <!--[-->
+         <!--[-->
+         <button class="focus-visible:outline-primary hover:text-default transition-colors custom flex h-full cursor-pointer items-center text-black dark:text-white" data-grace-area-trigger="" data-state="closed" type="button" variant="link">
+          <!--[-->
+          <!--[-->
+          Family Sites
+          <span class="lar la-chevron-down la-xs relative ml-1">
+          </span>
+          <!--]-->
+          <!--]-->
+         </button>
+         <!--]-->
+         <!-- -->
+         <!--v-if-->
+         <!--]-->
+         <!--]-->
+         <div class="flex items-center gap-3">
+          <!-- -->
+          <a class="custom no-external-icon" href="https://twitter.com/lycorptech_jp" target="_blank">
+           <span class="lapr la-x-com la-lg">
+           </span>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </footer>
+     <!-- -->
+    </div>
+   </div>
+   <div data-v-856df627="">
+    <!--[-->
+    <!-- -->
+    <!-- -->
+    <!--v-if-->
+    <!--]-->
+   </div>
+   <!-- -->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+   <!--[-->
+   <!--]-->
+   <!--v-if-->
+   <!--]-->
+   <!--[-->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+  </div>
+  <div id="teleports">
+  </div>
+  <script>
+   window.__NUXT__={};window.__NUXT__.config={public:{gtag:{enabled:true,initMode:"auto",id:"G-K94RFW73WS",initCommands:[],config:{},tags:[],loadingStrategy:"defer",url:"https://www.googletagmanager.com/gtag/js"},mdc:{components:{prose:true,map:{accordion:"ProseAccordion","accordion-item":"ProseAccordionItem",badge:"ProseBadge",callout:"ProseCallout",card:"ProseCard","card-group":"ProseCardGroup",caution:"ProseCaution","code-collapse":"ProseCodeCollapse","code-group":"ProseCodeGroup","code-icon":"ProseCodeIcon","code-preview":"ProseCodePreview","code-tree":"ProseCodeTree",collapsible:"ProseCollapsible",field:"ProseField","field-group":"ProseFieldGroup",icon:"ProseIcon",kbd:"ProseKbd",note:"ProseNote",steps:"ProseSteps",tabs:"ProseTabs","tabs-item":"ProseTabsItem",tip:"ProseTip",warning:"ProseWarning"},customElements:[]},headings:{anchorLinks:{h1:false,h2:true,h3:true,h4:true,h5:false,h6:false}},highlight:{theme:"github-dark-default",noApiRoute:true,langs:["csharp","css","scss","go","groovy","html","java","javascript","json","objective-c","perl","php","python","ruby","shellscript","sh","swift","ts","typescript","xml","yaml"],wrapperStyle:true,highlighter:"shiki",shikiEngine:"oniguruma"}},content:{wsUrl:""},i18n:{baseUrl:"/",defaultLocale:"",rootRedirect:"",redirectStatusCode:302,skipSettingLocaleOnNavigate:false,locales:[{code:"en",name:"EN",language:"en-US"},{code:"ja",name:"JP",language:"ja-JP"}],detectBrowserLanguage:false,experimental:{localeDetector:"",typedPages:true,typedOptionsAndMessages:false,alternateLinkCanonicalQueries:true,devCache:false,cacheLifetime:"",stripMessagesPayload:false,preload:false,strictSeo:false,nitroContextDetection:true,httpCacheDuration:10},domainLocales:{en:{domain:""},ja:{domain:""}}}},app:{baseURL:"/",buildId:"b7cd7a21-3fab-4351-b588-f3a82989c407",buildAssetsDir:"/_nuxt/",cdnURL:""}}
+  </script>
+  <script data-nuxt-data="nuxt-app" data-src="/ja/docs/messaging-api/switch-rich-menus/_payload.json?b7cd7a21-3fab-4351-b588-f3a82989c407" data-ssr="true" id="__NUXT_DATA__" type="application/json">
+   [{"state":1,"once":14,"_errors":15,"serverRendered":5,"path":17,"pinia":18,"prerenderedAt":39},["Reactive",2],{"$scolor-mode":3,"$si18n:cached-locale-configs":7,"$si18n:resolved-locale":12,"$stoasts":13},{"preference":4,"value":4,"unknown":5,"forced":6},"system",true,false,{"en":8,"ja":10},{"fallbacks":9,"cacheable":5},[],{"fallbacks":11,"cacheable":5},[],"ja",[],["Set"],["ShallowReactive",16],{"h216790134":-1,"h1152975851":-1,"h2180394678":-1},"/ja/docs/messaging-api/switch-rich-menus/",["Reactive",19],{"devdocs":20},{"userData":21,"feedbackForm":23,"socialPlugins":24,"ui":25},{"isInitialized":6,"isLoading":6,"isLoggedIn":6,"profileData":22,"showNewNewsNotificationBadge":6},{},{"isInitialized":6,"isLoading":6,"isAvailable":6,"isShown":6},{"userAgreement":6},{"isHome":6,"isErrorPage":6,"isMobileSidebarOpen":6,"isMobileSecondarySidebarOpen":6,"isMobileNarrow":6,"isMobile":6,"isWide":6,"navDropdown":26,"isNavBgTransparent":6,"isDarkMode":6,"apiRefBlockToOpen":27,"apiRefBlockOpened":27,"toc":28,"isDisabledScrollToAnchor":6,"isActiveSetHashOnScroll":5,"isSearchModalOpen":6,"breadcrumbNewsPageTitle":27},{"isShown":6,"type":27,"label":27,"contents":27},"",[29,33,36],{"id":30,"depth":31,"text":32},"verify-method-01",2,"検証方法1. Webhook URL検証用のエンドポイントで検証する",{"id":34,"depth":31,"text":35},"verify-method-02","検証方法2. LINE DevelopersコンソールからWebhook URLの［検証］ボタンで検証する",{"id":37,"depth":31,"text":38},"investigate-webhook-reception-failure","Webhookの受信に失敗する原因を調査する",1776129205693]
+  </script>
+ </body>
+</html>

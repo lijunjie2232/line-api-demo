@@ -1,0 +1,2783 @@
+<!DOCTYPE html>
+<html class="" lang="ja-JP" style="">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <style id="nuxt-ui-colors">
+   @layer theme {
+  :root, :host {
+  --ui-color-primary-50: var(--color-green-50, oklch(98.2% 0.018 155.826));
+  --ui-color-primary-100: var(--color-green-100, oklch(96.2% 0.044 156.743));
+  --ui-color-primary-200: var(--color-green-200, oklch(92.5% 0.084 155.995));
+  --ui-color-primary-300: var(--color-green-300, oklch(87.1% 0.15 154.449));
+  --ui-color-primary-400: var(--color-green-400, oklch(79.2% 0.209 151.711));
+  --ui-color-primary-500: var(--color-green-500, oklch(72.3% 0.219 149.579));
+  --ui-color-primary-600: var(--color-green-600, oklch(62.7% 0.194 149.214));
+  --ui-color-primary-700: var(--color-green-700, oklch(52.7% 0.154 150.069));
+  --ui-color-primary-800: var(--color-green-800, oklch(44.8% 0.119 151.328));
+  --ui-color-primary-900: var(--color-green-900, oklch(39.3% 0.095 152.535));
+  --ui-color-primary-950: var(--color-green-950, oklch(26.6% 0.065 152.934));
+  --ui-color-secondary-50: var(--color-blue-50, oklch(97% 0.014 254.604));
+  --ui-color-secondary-100: var(--color-blue-100, oklch(93.2% 0.032 255.585));
+  --ui-color-secondary-200: var(--color-blue-200, oklch(88.2% 0.059 254.128));
+  --ui-color-secondary-300: var(--color-blue-300, oklch(80.9% 0.105 251.813));
+  --ui-color-secondary-400: var(--color-blue-400, oklch(70.7% 0.165 254.624));
+  --ui-color-secondary-500: var(--color-blue-500, oklch(62.3% 0.214 259.815));
+  --ui-color-secondary-600: var(--color-blue-600, oklch(54.6% 0.245 262.881));
+  --ui-color-secondary-700: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  --ui-color-secondary-800: var(--color-blue-800, oklch(42.4% 0.199 265.638));
+  --ui-color-secondary-900: var(--color-blue-900, oklch(37.9% 0.146 265.522));
+  --ui-color-secondary-950: var(--color-blue-950, oklch(28.2% 0.091 267.935));
+  --ui-color-success-50: var(--color-green-50, oklch(98.2% 0.018 155.826));
+  --ui-color-success-100: var(--color-green-100, oklch(96.2% 0.044 156.743));
+  --ui-color-success-200: var(--color-green-200, oklch(92.5% 0.084 155.995));
+  --ui-color-success-300: var(--color-green-300, oklch(87.1% 0.15 154.449));
+  --ui-color-success-400: var(--color-green-400, oklch(79.2% 0.209 151.711));
+  --ui-color-success-500: var(--color-green-500, oklch(72.3% 0.219 149.579));
+  --ui-color-success-600: var(--color-green-600, oklch(62.7% 0.194 149.214));
+  --ui-color-success-700: var(--color-green-700, oklch(52.7% 0.154 150.069));
+  --ui-color-success-800: var(--color-green-800, oklch(44.8% 0.119 151.328));
+  --ui-color-success-900: var(--color-green-900, oklch(39.3% 0.095 152.535));
+  --ui-color-success-950: var(--color-green-950, oklch(26.6% 0.065 152.934));
+  --ui-color-info-50: var(--color-blue-50, oklch(97% 0.014 254.604));
+  --ui-color-info-100: var(--color-blue-100, oklch(93.2% 0.032 255.585));
+  --ui-color-info-200: var(--color-blue-200, oklch(88.2% 0.059 254.128));
+  --ui-color-info-300: var(--color-blue-300, oklch(80.9% 0.105 251.813));
+  --ui-color-info-400: var(--color-blue-400, oklch(70.7% 0.165 254.624));
+  --ui-color-info-500: var(--color-blue-500, oklch(62.3% 0.214 259.815));
+  --ui-color-info-600: var(--color-blue-600, oklch(54.6% 0.245 262.881));
+  --ui-color-info-700: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  --ui-color-info-800: var(--color-blue-800, oklch(42.4% 0.199 265.638));
+  --ui-color-info-900: var(--color-blue-900, oklch(37.9% 0.146 265.522));
+  --ui-color-info-950: var(--color-blue-950, oklch(28.2% 0.091 267.935));
+  --ui-color-warning-50: var(--color-yellow-50, oklch(98.7% 0.026 102.212));
+  --ui-color-warning-100: var(--color-yellow-100, oklch(97.3% 0.071 103.193));
+  --ui-color-warning-200: var(--color-yellow-200, oklch(94.5% 0.129 101.54));
+  --ui-color-warning-300: var(--color-yellow-300, oklch(90.5% 0.182 98.111));
+  --ui-color-warning-400: var(--color-yellow-400, oklch(85.2% 0.199 91.936));
+  --ui-color-warning-500: var(--color-yellow-500, oklch(79.5% 0.184 86.047));
+  --ui-color-warning-600: var(--color-yellow-600, oklch(68.1% 0.162 75.834));
+  --ui-color-warning-700: var(--color-yellow-700, oklch(55.4% 0.135 66.442));
+  --ui-color-warning-800: var(--color-yellow-800, oklch(47.6% 0.114 61.907));
+  --ui-color-warning-900: var(--color-yellow-900, oklch(42.1% 0.095 57.708));
+  --ui-color-warning-950: var(--color-yellow-950, oklch(28.6% 0.066 53.813));
+  --ui-color-error-50: var(--color-red-50, oklch(97.1% 0.013 17.38));
+  --ui-color-error-100: var(--color-red-100, oklch(93.6% 0.032 17.717));
+  --ui-color-error-200: var(--color-red-200, oklch(88.5% 0.062 18.334));
+  --ui-color-error-300: var(--color-red-300, oklch(80.8% 0.114 19.571));
+  --ui-color-error-400: var(--color-red-400, oklch(70.4% 0.191 22.216));
+  --ui-color-error-500: var(--color-red-500, oklch(63.7% 0.237 25.331));
+  --ui-color-error-600: var(--color-red-600, oklch(57.7% 0.245 27.325));
+  --ui-color-error-700: var(--color-red-700, oklch(50.5% 0.213 27.518));
+  --ui-color-error-800: var(--color-red-800, oklch(44.4% 0.177 26.899));
+  --ui-color-error-900: var(--color-red-900, oklch(39.6% 0.141 25.723));
+  --ui-color-error-950: var(--color-red-950, oklch(25.8% 0.092 26.042));
+  --ui-color-neutral-50: var(--color-slate-50, oklch(98.4% 0.003 247.858));
+  --ui-color-neutral-100: var(--color-slate-100, oklch(96.8% 0.007 247.896));
+  --ui-color-neutral-200: var(--color-slate-200, oklch(92.9% 0.013 255.508));
+  --ui-color-neutral-300: var(--color-slate-300, oklch(86.9% 0.022 252.894));
+  --ui-color-neutral-400: var(--color-slate-400, oklch(70.4% 0.04 256.788));
+  --ui-color-neutral-500: var(--color-slate-500, oklch(55.4% 0.046 257.417));
+  --ui-color-neutral-600: var(--color-slate-600, oklch(44.6% 0.043 257.281));
+  --ui-color-neutral-700: var(--color-slate-700, oklch(37.2% 0.044 257.287));
+  --ui-color-neutral-800: var(--color-slate-800, oklch(27.9% 0.041 260.031));
+  --ui-color-neutral-900: var(--color-slate-900, oklch(20.8% 0.042 265.755));
+  --ui-color-neutral-950: var(--color-slate-950, oklch(12.9% 0.042 264.695));
+  }
+  :root, :host, .light {
+  --ui-primary: var(--ui-color-primary-500);
+  --ui-secondary: var(--ui-color-secondary-500);
+  --ui-success: var(--ui-color-success-500);
+  --ui-info: var(--ui-color-info-500);
+  --ui-warning: var(--ui-color-warning-500);
+  --ui-error: var(--ui-color-error-500);
+  }
+  .dark {
+  --ui-primary: var(--ui-color-primary-400);
+  --ui-secondary: var(--ui-color-secondary-400);
+  --ui-success: var(--ui-color-success-400);
+  --ui-info: var(--ui-color-info-400);
+  --ui-warning: var(--ui-color-warning-400);
+  --ui-error: var(--ui-color-error-400);
+  }
+}
+  </style>
+  <title>
+   チュートリアル - 応答ボットを作る | LINE Developers
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="https://static.line-scdn.net/laicon/edge/latest/laicon.min.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/entry.RjUY_jqM.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/BaseLayout.DryLLHoQ.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/TransitionExpand.C7MR6gY2.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/MarkdownControls.BbnXTJ19.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/HeaderAnchor.DXszml2g.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/ProsePre.D5orA6B_.css" rel="stylesheet"/>
+  <link as="fetch" crossorigin="anonymous" href="./nodejs-sample/_payload.json?b7cd7a21-3fab-4351-b588-f3a82989c407" rel="preload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C4Qefsoz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/D7tIDfdc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DS7rYW_M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DlAUqK2U.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DLfO8wDK.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/Ccjmmn3c.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CEXHtn8H.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B4DL1Cgs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B0gykE3i.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BFu_P-Ux.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DJi4jbM6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DZRjkML6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BJRELFIM.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C0hVKBUl.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CUpphwBz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BheWnx7M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C0MXvZso.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/vST1u8lx.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BffxFq_0.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CyAW9Z2F.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BUNJUvUR.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C945TDiu.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/bTg4ECcz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DYazWEBN.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/xOr79HUc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CTeDT3Cq.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CoRt-dtU.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/ClbflBZs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/5rLYfZ6F.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B6sVujaj.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DEKEuJU2.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BPUzo62M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C308N652.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/SU5N3tJc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C1EJ6VMG.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BZrkcSa6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CmV3vphY.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C3hkkU40.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/D5ri4A5D.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DUpy5nRH.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CTLgqFkF.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BIQOJEGl.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CudgkPls.js" rel="modulepreload"/>
+  <script crossorigin="" src="/_nuxt/C4Qefsoz.js" type="module">
+  </script>
+  <meta content="チュートリアル - 応答ボットを作る" property="og:title"/>
+  <meta content="https://developers.line.biz/images/ogtags/twitter-ogtag.jpg" property="og:image"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta content="@LINE_DEV" name="twitter:site:id"/>
+  <meta content="https://developers.line.biz/images/ogtags/twitter-ogtag.jpg" name="twitter:image"/>
+  <link href="./nodejs-sample/" id="i18n-can" rel="canonical"/>
+  <meta content="https://developers.line.biz/ja/docs/messaging-api/nodejs-sample/" property="og:url"/>
+  <meta content="ja_JP" id="i18n-og" property="og:locale"/>
+  <meta content="en_US" id="i18n-og-alt-en-US" property="og:locale:alternate"/>
+  <meta content="このチュートリアルでは、Node.jsとMessaging APIを使って、応答ボットでメッセージを送信する方法を学びます。Messaging APIは、サービスとLINEユーザーとの間で双方向のコミュニケーションを可能にする機能です。Messaging APIの機能を利用して、ユーザーとの交流を深めることができます。..." property="og:description"/>
+  <meta content="チュートリアル - 応答ボットを作る" name="twitter:title"/>
+  <meta content="このチュートリアルでは、Node.jsとMessaging APIを使って、応答ボットでメッセージを送信する方法を学びます。Messaging APIは、サービスとLINEユーザーとの間で双方向のコミュニケーションを可能にする機能です。Messaging APIの機能を利用して、ユーザーとの交流を深めることができます。..." name="twitter:description"/>
+  <script>
+   "use strict";(()=>{const t=window,e=document.documentElement,c=["dark","light"],n=getStorageValue("localStorage","nuxt-color-mode")||"system";let i=n==="system"?u():n;const r=e.getAttribute("data-color-mode-forced");r&&(i=r),l(i),t["__NUXT_COLOR_MODE__"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=""+o+"",a="";e.classList?e.classList.add(s):e.className+=" "+s,a&&e.setAttribute("data-"+a,o)}function d(o){const s=""+o+"",a="";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,"g"),""),a&&e.removeAttribute("data-"+a)}function f(o){return t.matchMedia("(prefers-color-scheme"+o+")")}function u(){if(t.matchMedia&&f("").media!=="not all"){for(const o of c)if(f(":"+o).matches)return o}return"light"}})();function getStorageValue(t,e){switch(t){case"localStorage":return window.localStorage.getItem(e);case"sessionStorage":return window.sessionStorage.getItem(e);case"cookie":return getCookie(e);default:return null}}function getCookie(t){const c=("; "+window.document.cookie).split("; "+t+"=");if(c.length===2)return c.pop()?.split(";").shift()}
+  </script>
+ </head>
+ <body class="" style="">
+  <div class="isolate" id="__nuxt">
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <div class="nuxt-loading-indicator" style="position:fixed;top:0;right:0;left:0;pointer-events:none;width:auto;height:3px;opacity:0;background:repeating-linear-gradient(to right,#00dc82 0%,#34cdfe 50%,#0047e1 100%);background-size:0% auto;transform:scaleX(0%);transform-origin:left;transition:transform 0.1s, height 0.4s, opacity 0.4s;z-index:999999;">
+   </div>
+   <!--[-->
+   <!--[-->
+   <div class="relative h-screen" data-v-856df627="">
+    <header class="h-[64px] border-b bg-white px-5 transition sm:px-8 md:h-[89px] dark:bg-black fixed z-50 w-full bg-white" data-v-856df627="" data-v-d701af64="" id="navbar">
+     <div class="flex h-full items-center justify-between" data-v-d701af64="">
+      <div class="flex h-full items-center justify-between gap-14 overflow-x-hidden" data-v-d701af64="">
+       <a class="" data-v-d701af64="" href="/ja/">
+        <div class="logo relative" data-v-d701af64="">
+         <img alt="LINE Developers" class="logo logo-default" data-v-d701af64="" id="logo-black" src="/images/common/logo-black.svg"/>
+         <img alt="LINE Developers" class="logo transition" data-v-d701af64="" id="logo-white" src="/images/common/logo-white.svg"/>
+        </div>
+       </a>
+       <div class="navlinks-wrapper hidden-on-search dark:border-ldsgray-750 top-0 bottom-0 left-0 hidden h-full w-10/12 max-w-full transform flex-col justify-between gap-6 overflow-x-hidden overflow-y-auto border-0 bg-transparent px-0 py-0 text-black lg:flex dark:bg-transparent dark:text-white" data-v-d701af64="" id="navlinks-wrapper">
+        <div class="hide-scrollbar flex h-full items-center justify-between overflow-x-auto" data-v-d701af64="" id="navlinks">
+         <!--[-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/about/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            About
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/news/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            ニュース
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/services/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            プロダクト
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4 router-link-active" data-v-0a8e869e="" data-v-d701af64="" href="/ja/docs/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            ドキュメント
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/tips/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            Tips
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/faq/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            FAQ
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/glossary/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            用語集
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4 cursor-default" data-v-0a8e869e="" data-v-d701af64="">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            その他
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--]-->
+        </div>
+       </div>
+      </div>
+      <div class="h-full" data-v-d701af64="">
+       <div class="flex h-full items-center justify-between gap-3" data-v-d701af64="">
+        <!--[-->
+        <!--[-->
+        <button class="custom header-nav-item h-[36px] rounded px-2 transition hover:opacity-60" data-grace-area-trigger="" data-state="closed" data-v-d701af64="">
+         <span class="lar la-search">
+         </span>
+        </button>
+        <!--v-if-->
+        <!--]-->
+        <!--]-->
+        <!--[-->
+        <!--[-->
+        <!--[-->
+        <button class="focus-visible:outline-primary text-muted hidden! lg:flex! custom header-nav-item flex h-[36px] min-h-[32px] cursor-pointer items-center gap-1 rounded px-2 transition-opacity hover:text-inherit hover:no-underline hover:opacity-60 dark:hover:text-inherit" data-grace-area-trigger="" data-state="closed" type="button" variant="link">
+         <!--[-->
+         <!--[-->
+         <span class="lar la-earth">
+         </span>
+         <span class="lar la-caret-down la-xs">
+         </span>
+         <!--]-->
+         <!--]-->
+        </button>
+        <!--]-->
+        <!-- -->
+        <!--v-if-->
+        <!--]-->
+        <!--]-->
+        <!--[-->
+        <!--[-->
+        <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse bg-elevated light:bg-gray-300 h-[36px] w-32 rounded-full dark:bg-gray-700" role="alert">
+         <!--[-->
+         <!--]-->
+        </div>
+        <!--]-->
+        <!--]-->
+        <a class="text-white custom hidden-on-search navbar-btn group relative flex h-[36px] w-[36px] items-center justify-center overflow-hidden rounded-full transition hidden lg:flex" data-v-d701af64="" href="#">
+         <div class="bg-ldsgray-800 navbar-btn-bg absolute left-0 z-0 h-full w-full rounded-full transition group-hover:opacity-80">
+         </div>
+         <span class="lar la-sun la-lg z-10">
+         </span>
+        </a>
+        <!--[-->
+        <!--[-->
+        <button class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:text-primary/75 active:text-primary/75 disabled:text-primary aria-disabled:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary p-1.5 ml-1 lg:hidden!" data-slot="base" data-v-d701af64="" type="button">
+         <!--[-->
+         <!--[-->
+         <!-- -->
+         <!--]-->
+         <!--[-->
+         <div aria-expanded="false" class="vp-toggle-sidebar-button" data-v-d701af64="" role="button" tabindex="0" title="Toggle side nav">
+          <div aria-hidden="true" class="icon">
+           <span class="btn-mobile-sidebar">
+           </span>
+           <span class="btn-mobile-sidebar">
+           </span>
+           <span class="btn-mobile-sidebar">
+           </span>
+          </div>
+         </div>
+         <!--]-->
+         <!--[-->
+         <!-- -->
+         <!--]-->
+         <!--]-->
+        </button>
+        <!--]-->
+        <!--]-->
+       </div>
+      </div>
+     </div>
+     <!--[-->
+     <!--[-->
+     <span class="hidden" data-grace-area-trigger="" data-state="closed" data-v-d701af64="">
+     </span>
+     <!-- -->
+     <!--v-if-->
+     <!--]-->
+     <!--]-->
+     <!-- -->
+    </header>
+    <div class="sidebar-mask fixed top-0 left-0 z-40 h-full w-full backdrop-blur-sm" data-v-856df627="" style="display:none;">
+    </div>
+    <div class="theme-container flex min-h-screen flex-col pt-[64px] md:pt-[89px]" data-v-856df627="" id="page-wrapper">
+     <div class="content-wrapper z-10 text-white bg-page-header-blue lg:h-[140px]" data-v-856df627="" data-v-f9b4630c="" id="pageHeader">
+      <!-- -->
+      <div class="flex h-full items-center" data-v-f9b4630c="">
+       <div class="w-full" data-v-f9b4630c="">
+        <div class="content-container relative mx-auto py-4 sm:py-8" data-v-5de5e8ce="" data-v-f9b4630c="">
+         <div class="flex items-center gap-5 overflow-hidden sm:gap-12" data-v-117ee8c6="" data-v-5de5e8ce="">
+          <a class="hover:bg-white/20 custom flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center rounded-md border border-white/50 text-sm text-white transition" data-v-117ee8c6="" href="#">
+           <span class="lar la-chevron-left" data-v-117ee8c6="">
+           </span>
+          </a>
+          <div class="hide-scrollbar transparent-edges h-[56px] flex-shrink-1 overflow-x-scroll text-black" data-v-117ee8c6="">
+           <!--[-->
+           <div class="loading-skeleton-wrapper flex gap-4 overflow-hidden opacity-30 sm:gap-6 md:gap-8" data-v-117ee8c6="">
+            <!--[-->
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <!--]-->
+           </div>
+           <!--]-->
+          </div>
+          <a class="hover:bg-white/20 custom flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center rounded-md border border-white/50 text-sm text-white transition" data-v-117ee8c6="" href="#">
+           <span class="lar la-chevron-right" data-v-117ee8c6="">
+           </span>
+          </a>
+         </div>
+         <!-- -->
+        </div>
+       </div>
+      </div>
+     </div>
+     <nav aria-label="breadcrumb" class="breadcrumb-nav border-b content-wrapper" data-v-5647f7c2="" data-v-856df627="" id="breadcrumbNav">
+      <ol class="content-container breadcrumb-nav mx-auto flex flex-wrap gap-x-2 py-4 text-sm" data-v-5647f7c2="">
+       <!--[-->
+       <li class="breadcrumb-item" data-v-5647f7c2="">
+        <span class="text-ldsgray-650 dark:text-ldsgray-400 cursor-default" data-v-5647f7c2="">
+         Home
+        </span>
+       </li>
+       <!--]-->
+       <li class="breadcrumb-item inline-flex h-full items-center" data-v-5647f7c2="">
+        <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 mt-[3px] inline-block h-4 w-24" data-v-5647f7c2="" role="alert">
+         <!--[-->
+         <!--]-->
+        </div>
+       </li>
+      </ol>
+     </nav>
+     <!-- -->
+     <!-- -->
+     <div class="content-wrapper mt-0 grow" data-v-856df627="" id="content-wrapper" style="min-height:calc(100dvh - 560px);">
+      <div class="mt-0 2xl:mt-[80px] 2xl:gap-[80px] 2xl:pt-8 mb-[200px] docs-content-container 3xl:mr-auto mr-auto ml-auto 2xl:mr-0 2xl:grid" data-v-856df627="" style="grid-template-columns:160px 1fr;">
+       <div class="sidebar hide-scrollbar sticky top-40 w-full overflow-x-hidden z-30 hidden flex-shrink-0 2xl:block" data-v-2fa9d756="" data-v-856df627="">
+        <ul class="p-0" data-v-2fa9d756="">
+         <!--[-->
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             APIリファレンス
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             開発ガイドライン
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             クイックスタート
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-transparent" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-linegreen font-bold custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             ガイド
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-90 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <div class="border-ldsgray-300 dark:border-ldsgray-700 border-collapse rounded border" data-v-d147b524="">
+            <ul data-v-d147b524="">
+             <!--[-->
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./sending-messages/">
+               <!--[-->
+               メッセージを送信する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./text-character-count/">
+               <!--[-->
+               テキストの文字数のカウント
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./getting-user-ids/">
+               <!--[-->
+               ユーザーIDを取得する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./sticker-list/">
+               <!--[-->
+               スタンプ
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./emoji-list/">
+               <!--[-->
+               LINE絵文字
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./using-audience/">
+               <!--[-->
+               オーディエンスを使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./using-quick-reply/">
+               <!--[-->
+               クイックリプライを使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./unit-based-statistics-aggregation/">
+               <!--[-->
+               送信したメッセージの統計情報を取得する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./using-line-url-scheme/">
+               <!--[-->
+               LINE URLスキームでLINEの機能を使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./using-beacons/">
+               <!--[-->
+               LINEでビーコンを使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./sharing-bot/">
+               <!--[-->
+               LINE公式アカウントの友だちを増やす
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./linking-accounts/">
+               <!--[-->
+               ユーザーアカウントの連携
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./icon-nickname-switch/">
+               <!--[-->
+               アイコンと表示名をカスタマイズする
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./use-loading-indicator/">
+               <!--[-->
+               ローディングのアニメーションを表示する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./use-membership-features/">
+               <!--[-->
+               メンバーシップ機能を使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./send-coupons-to-users/">
+               <!--[-->
+               クーポンを作成してユーザーに送る
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./get-quote-tokens/">
+               <!--[-->
+               引用トークンを取得する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./mark-as-read/">
+               <!--[-->
+               メッセージに既読をつける
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./retrying-api-request/">
+               <!--[-->
+               失敗したAPIリクエストを再試行する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./stop-using-line-official-account/">
+               <!--[-->
+               LINE公式アカウントの利用を停止する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./stop-using-messaging-api/">
+               <!--[-->
+               Messaging APIの利用を停止する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./measure-impressions/">
+               <!--[-->
+               インプレッションを計測する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a aria-current="page" class="router-link-active router-link-exact-active bg-linegreen !dark:text-white relative gap-3 rounded font-bold !text-white custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./nodejs-sample/">
+               <!--[-->
+               チュートリアル - 応答ボットを作る
+               <!--]-->
+              </a>
+             </li>
+             <!--]-->
+            </ul>
+           </div>
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             Webhook
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リッチメニュー
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             LINE Bot Designer
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             Flex Message
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             概念
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リファレンス
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リソース
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700 border-b-0" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             導入事例
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <!--]-->
+        </ul>
+       </div>
+       <div class="content-container mt-[80px] 2xl:mt-0 lg:grid lg:gap-[60px]" data-v-856df627="" style="grid-template-columns:1fr 180px;">
+        <div class="content-with-sidebars" data-v-856df627="">
+         <!--[-->
+         <!--[-->
+         <main class="markdown-content">
+          <div>
+           <h1 class="text-4xl text-highlighted font-bold mb-8 scroll-mt-[calc(45px+var(--ui-header-height))] lg:scroll-mt-(--ui-header-height)" id="">
+            <!--[-->
+            チュートリアル - 応答ボットを作る
+            <!--]-->
+           </h1>
+           <div class="-mt-12 mb-12 flex flex-wrap items-center justify-start gap-1.5 text-xs sm:-mt-16 sm:mb-16" data-v-48a65092="">
+            <button class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white" data-v-48a65092="">
+             <span class="lar la-regular la-copy" data-v-48a65092="">
+             </span>
+             LLM用にコピー
+            </button>
+            <a class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white no-external-icon" data-v-48a65092="" href="./nodejs-sample/index.html.md" rel="nofollow" target="_blank">
+             <!--[-->
+             <span class="lar la-regular la-markdown" data-v-48a65092="">
+             </span>
+             Markdownで表示
+             <!--]-->
+            </a>
+            <a class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white no-external-icon" data-v-48a65092="" href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/nodejs-sample/index.html.md" rel="nofollow" target="_blank">
+             <!--[-->
+             <span class="la lapr" data-v-48a65092="" role="img" style="height:1em;aspect-ratio:1;display:inline-grid;place-items:stretch;">
+              <svg data-laicon-version="5.1" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+               <g transform="translate(-2 -2)">
+                <path d="M2 11.873a9.874 9.874 0 0 0 6.752 9.368c.494.09.674-.215.674-.477 0-.234-.008-.855-.013-1.679-2.746.6-3.326-1.323-3.326-1.323a2.611 2.611 0 0 0-1.1-1.444c-.9-.613.068-.6.068-.6a2.073 2.073 0 0 1 1.512 1.017 2.1 2.1 0 0 0 2.873.821 2.1 2.1 0 0 1 .627-1.32c-2.192-.249-4.5-1.1-4.5-4.88A3.821 3.821 0 0 1 6.59 8.707a3.547 3.547 0 0 1 .1-2.612s.826-.266 2.71 1.012a9.338 9.338 0 0 1 4.943 0C16.23 5.829 17.057 6.1 17.057 6.1a3.538 3.538 0 0 1 .1 2.612 3.811 3.811 0 0 1 1.015 2.649c0 3.793-2.308 4.628-4.508 4.872a2.354 2.354 0 0 1 .671 1.828c0 1.32-.012 2.385-.012 2.708 0 .264.177.572.678.475A9.873 9.873 0 1 0 2 11.873z">
+                </path>
+               </g>
+              </svg>
+             </span>
+             GitHubで表示
+             <!--]-->
+            </a>
+           </div>
+           <p>
+            <!--[-->
+            このチュートリアルでは、Node.jsとMessaging APIを使って、応答ボットでメッセージを送信する方法を学びます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            Messaging APIは、サービスとLINEユーザーとの間で双方向のコミュニケーションを可能にする機能です。Messaging APIの機能を利用して、ユーザーとの交流を深めることができます。様々な種類のメッセージの送信、ユーザープロフィールの取得、ユーザーが送信したコンテンツの取得など、
+            <a class="" href="./overview/#what-you-can-do">
+             <!--[-->
+             <!--[-->
+             その機能は多岐にわたります
+             <!--]-->
+             <!--]-->
+            </a>
+            。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            このチュートリアルを最後まで進めると、ユーザーが送信したメッセージに自動的に応答するアプリが作成できます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="サンプルボットとの会話イメージ" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-320" data-state="closed" src="/media/messaging-api/node-js-sample/sample-bot-test.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="before-starting">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#before-starting">
+             <!--[-->
+             <!--[-->
+             始める前に
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            このチュートリアルは、JavaScriptとNode.jsの基本的な知識を必要とします。また、チュートリアルをスムーズに進めるために、「
+            <a class="" href="./overview/">
+             <!--[-->
+             <!--[-->
+             Messaging APIの概要
+             <!--]-->
+             <!--]-->
+            </a>
+            」を読んでおくことをお勧めします。
+            <!--]-->
+           </p>
+           <div class="tip custom-block">
+            <div class="custom-block-title">
+             <i class="las la-check-circle mr-2">
+             </i>
+             <span>
+              このチュートリアルではSDKを使用しません
+             </span>
+            </div>
+            <div>
+             <!--[-->
+             <p>
+              <!--[-->
+              このチュートリアルでは、Messaging APIの仕様を理解するために、LINEプラットフォームのSDKを使わずにNode.jsでMessaging APIを使用する方法を説明します。Node.jsを使ったプロジェクトで、Messaging APIをより少ないコード行数で素早く利用したい場合は、
+              <a class="" href="https://line.github.io/line-bot-sdk-nodejs/" rel="nofollow" target="_blank">
+               <!--[-->
+               <!--[-->
+               LINE Messaging API SDK for nodejs
+               <!--]-->
+               <!--]-->
+              </a>
+              を利用してください。
+              <!--]-->
+             </p>
+             <!--]-->
+            </div>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="what-you-will-need">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#what-you-will-need">
+             <!--[-->
+             <!--[-->
+             準備
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            チュートリアルで応答ボットを作成するために、まずは必要なシステムへの登録と、ツールをインストールします。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            アカウントを登録するもの：
+            <!--]-->
+           </p>
+           <ul>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a class="" href="/console/">
+              <!--[-->
+              <!--[-->
+              LINE Developersコンソール
+              <!--]-->
+              <!--]-->
+             </a>
+             のアカウント：LINE DevelopersコンソールにLINEアカウントまたはビジネスアカウントでログインし、まだお持ちでなければ
+             <a class="" href="/ja/docs/line-developers-console/login-account/#register-as-developer">
+              <!--[-->
+              <!--[-->
+              開発者アカウントを作成
+              <!--]-->
+              <!--]-->
+             </a>
+             してください。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="https://www.heroku.com/" rel="nofollow" target="_blank">
+              <!--[-->
+              <!--[-->
+              Heroku
+              <!--]-->
+              <!--]-->
+             </a>
+             アカウント
+             <div class="warning custom-block">
+              <div class="custom-block-title">
+               <i class="las la-exclamation-circle mr-2">
+               </i>
+               <span>
+                Herokuの無料プランは廃止されました
+               </span>
+              </div>
+              <div>
+               <!--[-->
+               <p>
+                <!--[-->
+                Herokuの無料プランは、2022年11月27日をもって廃止されました。このチュートリアルを無料で試したい場合は、他のプラットフォームを利用してください。詳しくは、「
+                <a class="" href="https://www.heroku.com/blog/next-chapter/" rel="nofollow" target="_blank">
+                 <!--[-->
+                 <!--[-->
+                 Heroku’s Next Chapter
+                 <!--]-->
+                 <!--]-->
+                </a>
+                」を参照してください。
+                <!--]-->
+               </p>
+               <!--]-->
+              </div>
+             </div>
+             <!--]-->
+            </li>
+            <!--]-->
+           </ul>
+           <p>
+            <!--[-->
+            インストールするもの：
+            <!--]-->
+           </p>
+           <ul>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a class="" href="https://nodejs.org/en" rel="nofollow" target="_blank">
+              <!--[-->
+              <!--[-->
+              Node.js
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="https://devcenter.heroku.com/articles/heroku-cli" rel="nofollow" target="_blank">
+              <!--[-->
+              <!--[-->
+              Heroku CLI
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="https://git-scm.com/downloads" rel="nofollow" target="_blank">
+              <!--[-->
+              <!--[-->
+              Git
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <!--]-->
+           </ul>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="set-up-heroku">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#set-up-heroku">
+             <!--[-->
+             <!--[-->
+             1. Herokuの設定
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            ターミナルまたはコマンドラインツールで、以下のコマンドを実行し、Heroku CLIにログインします。
+            <!--]-->
+           </p>
+           <div class="relative" code="heroku login
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">heroku</span><span class="s9uIt"> login
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            次に、チュートリアル用のディレクトリを作成し、そのディレクトリに移動します。そして、Gitを初期化してHerokuを使ったアプリを作成します。
+            <code>
+             <!--[-->
+             {Name of your app}
+             <!--]-->
+            </code>
+            は、
+            <code>
+             <!--[-->
+             msg-api-tutorial-{YYYYMMDD}
+             <!--]-->
+            </code>
+            などの一意の名前に置き換えてください。
+            <!--]-->
+           </p>
+           <div class="relative" code="mkdir sample-app
+cd sample-app
+git init
+heroku create {Name of your app}
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">mkdir</span><span class="s9uIt"> sample-app
+</span></span><span class="line" line="2"><span class="sFSAA">cd</span><span class="s9uIt"> sample-app
+</span></span><span class="line" line="3"><span class="sQhOw">git</span><span class="s9uIt"> init
+</span></span><span class="line" line="4"><span class="sQhOw">heroku</span><span class="s9uIt"> create</span><span class="s9uIt"> {Name</span><span class="s9uIt"> of</span><span class="s9uIt"> your</span><span class="s9uIt"> app}
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            アプリが問題なく作成されると、HerokuのURLが
+            <code>
+             <!--[-->
+             https://{Name of your app}.herokuapp.com/
+             <!--]-->
+            </code>
+            のような形式で生成されます。このURLはチュートリアルの中で必要になります。生成されたHerokuのURLを、ブラウザで開いてください。ウェルカムページが表示されます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="ウェルカムページ" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-480" data-state="closed" src="/media/messaging-api/node-js-sample/welcome-page.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="create-package-json">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#create-package-json">
+             <!--[-->
+             <!--[-->
+             2. プロジェクトの設定
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            npmがプロジェクトを識別できるように、
+            <code>
+             <!--[-->
+             package.json
+             <!--]-->
+            </code>
+            ファイルを作成する必要があります。このファイルには、プロジェクトのメタデータと依存関係を定義する必要があります。
+            <code>
+             <!--[-->
+             package.json
+             <!--]-->
+            </code>
+            は、npmパッケージを初期化するためのコマンド
+            <code>
+             <!--[-->
+             npm init
+             <!--]-->
+            </code>
+            で作成します。このチュートリアルでは特別な設定は必要ないので、
+            <code>
+             <!--[-->
+             -y
+             <!--]-->
+            </code>
+            コマンドを使用して、パッケージをセットアップするための質問をすべてスキップします。
+            <!--]-->
+           </p>
+           <div class="relative" code="npm init -y
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">npm</span><span class="s9uIt"> init</span><span class="sFSAA"> -y
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            以下のような
+            <code>
+             <!--[-->
+             package.json
+             <!--]-->
+            </code>
+            が作成されます。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "name": "sample-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "name"</span><span class="sZEs4">: </span><span class="s9uIt">"sample-app"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "version"</span><span class="sZEs4">: </span><span class="s9uIt">"1.0.0"</span><span class="sZEs4">,
+</span></span><span class="line" line="4"><span class="sPWt5">  "description"</span><span class="sZEs4">: </span><span class="s9uIt">""</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">  "main"</span><span class="sZEs4">: </span><span class="s9uIt">"index.js"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">  "scripts"</span><span class="sZEs4">: {
+</span></span><span class="line" line="7"><span class="sPWt5">    "test"</span><span class="sZEs4">: </span><span class="s9uIt">"echo </span><span class="suJrU">\"</span><span class="s9uIt">Error: no test specified</span><span class="suJrU">\"</span><span class="s9uIt"> &amp;&amp; exit 1"
+</span></span><span class="line" line="8"><span class="sZEs4">  },
+</span></span><span class="line" line="9"><span class="sPWt5">  "keywords"</span><span class="sZEs4">: [],
+</span></span><span class="line" line="10"><span class="sPWt5">  "author"</span><span class="sZEs4">: </span><span class="s9uIt">""</span><span class="sZEs4">,
+</span></span><span class="line" line="11"><span class="sPWt5">  "license"</span><span class="sZEs4">: </span><span class="s9uIt">"ISC"
+</span></span><span class="line" line="12"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            次に、スタートスクリプトを定義します。スタートスクリプトは、Herokuのようなサーバープラットフォームに、サーバーの起動時にどのファイルを使用するかを知らせるためのものです。このチュートリアルでは、サーバーの設定ファイルとして
+            <code>
+             <!--[-->
+             index.js
+             <!--]-->
+            </code>
+            を設定します。テキストエディタで
+            <code>
+             <!--[-->
+             package.json
+             <!--]-->
+            </code>
+            を開き、
+            <code>
+             <!--[-->
+             "start"
+             <!--]-->
+            </code>
+            プロパティに
+            <code>
+             <!--[-->
+             "node index.js"
+             <!--]-->
+            </code>
+            を指定してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "name": "sample-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "name"</span><span class="sZEs4">: </span><span class="s9uIt">"sample-app"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "version"</span><span class="sZEs4">: </span><span class="s9uIt">"1.0.0"</span><span class="sZEs4">,
+</span></span><span class="line" line="4"><span class="sPWt5">  "description"</span><span class="sZEs4">: </span><span class="s9uIt">""</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">  "main"</span><span class="sZEs4">: </span><span class="s9uIt">"index.js"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">  "scripts"</span><span class="sZEs4">: {
+</span></span><span class="line" line="7"><span class="sPWt5">    "start"</span><span class="sZEs4">: </span><span class="s9uIt">"node index.js"</span><span class="sZEs4">,
+</span></span><span class="line" line="8"><span class="sPWt5">    "test"</span><span class="sZEs4">: </span><span class="s9uIt">"echo </span><span class="suJrU">\"</span><span class="s9uIt">Error: no test specified</span><span class="suJrU">\"</span><span class="s9uIt"> &amp;&amp; exit 1"
+</span></span><span class="line" line="9"><span class="sZEs4">  },
+</span></span><span class="line" line="10"><span class="sPWt5">  "keywords"</span><span class="sZEs4">: [],
+</span></span><span class="line" line="11"><span class="sPWt5">  "author"</span><span class="sZEs4">: </span><span class="s9uIt">""</span><span class="sZEs4">,
+</span></span><span class="line" line="12"><span class="sPWt5">  "license"</span><span class="sZEs4">: </span><span class="s9uIt">"ISC"
+</span></span><span class="line" line="13"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            以下のコマンドを実行して、
+            <a class="" href="https://expressjs.com/" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             Express.js
+             <!--]-->
+             <!--]-->
+            </a>
+            のパッケージをインストールします。Express.jsは軽量なNode.jsのウェブサーバーフレームワークです。
+            <!--]-->
+           </p>
+           <div class="relative" code="npm install express
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">npm</span><span class="s9uIt"> install</span><span class="s9uIt"> express
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            Express.jsをインストールすると、
+            <code>
+             <!--[-->
+             package.json
+             <!--]-->
+            </code>
+            にパッケージの依存関係が追加されます。また、同時に
+            <code>
+             <!--[-->
+             node_modules
+             <!--]-->
+            </code>
+            というディレクトリが作成されます。このディレクトリには、ローカルでインストールしたパッケージが保存されますが、Herokuにはプッシュされないようにします。このディレクトリを除外するために、
+            <code>
+             <!--[-->
+             .gitignore
+             <!--]-->
+            </code>
+            ファイルを作成します。
+            <!--]-->
+           </p>
+           <div class="relative" code="touch .gitignore
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">touch</span><span class="s9uIt"> .gitignore
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            作成した
+            <code>
+             <!--[-->
+             .gitignore
+             <!--]-->
+            </code>
+            ファイルをテキストエディタで開き、以下のように除外したいディレクトリ名をファイルに追加します。
+            <!--]-->
+           </p>
+           <div class="relative" code="node_modules/
+">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             text
+            </span>
+            <pre class="language-text"><!--[--><code>node_modules/
+</code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            これにより、指定したディレクトリがプッシュされることはありません。
+            <!--]-->
+           </p>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="start-developing">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#start-developing">
+             <!--[-->
+             <!--[-->
+             3. ボットの実装
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            準備が完了しました。応答ボットを実装しましょう。
+            <!--]-->
+           </p>
+           <ol>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a class="" href="#global-config">
+              <!--[-->
+              <!--[-->
+              グローバル設定
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#middleware-config">
+              <!--[-->
+              <!--[-->
+              ミドルウェアの設定
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#routing-config">
+              <!--[-->
+              <!--[-->
+              ルーティングの設定
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#send-reply">
+              <!--[-->
+              <!--[-->
+              応答メッセージを送る
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <!--]-->
+           </ol>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="global-config">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#global-config">
+             <!--[-->
+             <!--[-->
+             3-1. グローバル設定
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            サーバー設定のためのJavaScriptファイル
+            <code>
+             <!--[-->
+             index.js
+             <!--]-->
+            </code>
+            を作りましょう。
+            <!--]-->
+           </p>
+           <div class="relative" code="touch index.js
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">touch</span><span class="s9uIt"> index.js
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            作成した
+            <code>
+             <!--[-->
+             index.js
+             <!--]-->
+            </code>
+            ファイルには、先ほどインストールした
+            <code>
+             <!--[-->
+             express
+             <!--]-->
+            </code>
+            パッケージをインポートするコードと、インスタンス化するコードを追加します。また、ボットがHTTPリクエストを処理できるように
+            <code>
+             <!--[-->
+             https
+             <!--]-->
+            </code>
+            パッケージもインポートします。このパッケージは、Node.jsにデフォルトで付属しているので、インストールする必要はありません。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <code>
+             <!--[-->
+             index.js
+             <!--]-->
+            </code>
+            をテキストエディタで開き、以下のコードを追加しましょう。
+            <!--]-->
+           </p>
+           <div class="relative" code='const https = require("https");
+const express = require("express");
+const app = express();
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             javascript
+            </span>
+            <pre class="language-javascript shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="suJrU">const</span><span class="sFSAA"> https</span><span class="suJrU"> =</span><span class="sc3cj"> require</span><span class="sZEs4">(</span><span class="s9uIt">"https"</span><span class="sZEs4">);
+</span></span><span class="line" line="2"><span class="suJrU">const</span><span class="sFSAA"> express</span><span class="suJrU"> =</span><span class="sc3cj"> require</span><span class="sZEs4">(</span><span class="s9uIt">"express"</span><span class="sZEs4">);
+</span></span><span class="line" line="3"><span class="suJrU">const</span><span class="sFSAA"> app</span><span class="suJrU"> =</span><span class="sc3cj"> express</span><span class="sZEs4">();
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            続いて、設定プロセスを簡素化する目的と、認証情報を保護する目的で環境変数を追加します。
+            <code>
+             <!--[-->
+             process.env.PORT
+             <!--]-->
+            </code>
+            は、サーバーがどのポートでListenするかを指定します。
+            <code>
+             <!--[-->
+             process.env.LINE_ACCESS_TOKEN
+             <!--]-->
+            </code>
+            は、Messaging APIを呼び出すために必要な
+            <span>
+             <!--[-->
+             <a class="" href="/ja/glossary/#channel-access-token">
+              <!--[-->
+              <!--[-->
+              チャネルアクセストークン
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+             <!--[-->
+             <!--[-->
+             <span aria-controls="" aria-expanded="false" aria-haspopup="dialog" class="text-ldsgray-500 lar la-question-circle ml-px" data-state="closed" id="reka-popover-trigger-v-0-0-1-0-45-2-0" type="button">
+             </span>
+             <!-- -->
+             <!--v-if-->
+             <!--]-->
+             <!--]-->
+            </span>
+            を指定します。
+            <code>
+             <!--[-->
+             index.js
+             <!--]-->
+            </code>
+            で、インポートしたパッケージの下に、以下を追加します。
+            <!--]-->
+           </p>
+           <div class="relative" code="const PORT = process.env.PORT || 3000;
+const TOKEN = process.env.LINE_ACCESS_TOKEN;
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             javascript
+            </span>
+            <pre class="language-javascript shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="suJrU">const</span><span class="sFSAA"> PORT</span><span class="suJrU"> =</span><span class="sZEs4"> process.env.</span><span class="sFSAA">PORT</span><span class="suJrU"> ||</span><span class="sFSAA"> 3000</span><span class="sZEs4">;
+</span></span><span class="line" line="2"><span class="suJrU">const</span><span class="sFSAA"> TOKEN</span><span class="suJrU"> =</span><span class="sZEs4"> process.env.</span><span class="sFSAA">LINE_ACCESS_TOKEN</span><span class="sZEs4">;
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="middleware-config">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#middleware-config">
+             <!--[-->
+             <!--[-->
+             3-2. ミドルウェアの設定
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            Express.jsは、ミドルウェアのウェブフレームワークです。ミドルウェア関数を使って、リクエストとレスポンスのサイクルを決めることができます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            このチュートリアルでは、Express.jsに付属する関数
+            <code>
+             <!--[-->
+             express.json()
+             <!--]-->
+            </code>
+            と
+            <code>
+             <!--[-->
+             express.urlencoded()
+             <!--]-->
+            </code>
+            を使用します。これらの関数は、それぞれリクエストオブジェクトをJSON、文字列、配列として扱うためにあらかじめ用意されているミドルウェア関数です。ミドルウェアの機能を使用するために、
+            <code>
+             <!--[-->
+             app.use()
+             <!--]-->
+            </code>
+            を呼び出します。
+            <code>
+             <!--[-->
+             index.js
+             <!--]-->
+            </code>
+            ファイルに以下のコードを追加します。
+            <!--]-->
+           </p>
+           <div class="relative" code="app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             javascript
+            </span>
+            <pre class="language-javascript shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">app.</span><span class="sc3cj">use</span><span class="sZEs4">(express.</span><span class="sc3cj">json</span><span class="sZEs4">());
+</span></span><span class="line" line="2"><span class="sZEs4">app.</span><span class="sc3cj">use</span><span class="sZEs4">(
+</span></span><span class="line" line="3"><span class="sZEs4">  express.</span><span class="sc3cj">urlencoded</span><span class="sZEs4">({
+</span></span><span class="line" line="4"><span class="sZEs4">    extended: </span><span class="sFSAA">true</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sZEs4">  })
+</span></span><span class="line" line="6"><span class="sZEs4">);
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="routing-config">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#routing-config">
+             <!--[-->
+             <!--[-->
+             3-3. ルーティングの設定
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            ボットサーバーに基本的なルーティングロジックを追加しましょう。ヘルスチェック等の失敗を防ぐために、ドメインのルート（
+            <code>
+             <!--[-->
+             /
+             <!--]-->
+            </code>
+            ）へのHTTP GETリクエストに対して、ステータス
+            <code>
+             <!--[-->
+             200
+             <!--]-->
+            </code>
+            を返すようにします。
+            <code>
+             <!--[-->
+             index.js
+             <!--]-->
+            </code>
+            ファイルに以下のコードを追加します。
+            <!--]-->
+           </p>
+           <div class="relative" code='app.get("/", (req, res) =&gt; {
+  res.sendStatus(200);
+});
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             javascript
+            </span>
+            <pre class="language-javascript shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">app.</span><span class="sc3cj">get</span><span class="sZEs4">(</span><span class="s9uIt">"/"</span><span class="sZEs4">, (</span><span class="sQhOw">req</span><span class="sZEs4">, </span><span class="sQhOw">res</span><span class="sZEs4">) </span><span class="suJrU">=&gt;</span><span class="sZEs4"> {
+</span></span><span class="line" line="2"><span class="sZEs4">  res.</span><span class="sc3cj">sendStatus</span><span class="sZEs4">(</span><span class="sFSAA">200</span><span class="sZEs4">);
+</span></span><span class="line" line="3"><span class="sZEs4">});
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            次に、
+            <code>
+             <!--[-->
+             app.listen()
+             <!--]-->
+            </code>
+            関数を使って、サーバーにリスナーを設定します。リスナーのポートには、先ほど設定した環境変数
+            <code>
+             <!--[-->
+             PORT
+             <!--]-->
+            </code>
+            を指定します。そのため、特に異なる指定がされていない限り、
+            <code>
+             <!--[-->
+             3000
+             <!--]-->
+            </code>
+            をListenします。
+            <code>
+             <!--[-->
+             index.js
+             <!--]-->
+            </code>
+            に、以下のコードを追加します。
+            <!--]-->
+           </p>
+           <div class="relative" code="app.listen(PORT, () =&gt; {
+  console.log(`Example app listening at http://localhost:${PORT}`);
+});
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             javascript
+            </span>
+            <pre class="language-javascript shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">app.</span><span class="sc3cj">listen</span><span class="sZEs4">(</span><span class="sFSAA">PORT</span><span class="sZEs4">, () </span><span class="suJrU">=&gt;</span><span class="sZEs4"> {
+</span></span><span class="line" line="2"><span class="sZEs4">  console.</span><span class="sc3cj">log</span><span class="sZEs4">(</span><span class="s9uIt">`Example app listening at http://localhost:${</span><span class="sFSAA">PORT</span><span class="s9uIt">}`</span><span class="sZEs4">);
+</span></span><span class="line" line="3"><span class="sZEs4">});
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            Listenする準備ができたので、LINEプラットフォームからWebhook URLに送られてくるリクエストを処理するコードを追加しましょう。ユーザーがボットにメッセージを送信すると、LINEプラットフォームは、ボットサーバーがホストするWebhook URLにHTTP POSTリクエスト（Webhookイベント）を送信します。LINEプラットフォームからのリクエストに応答するために、
+            <code>
+             <!--[-->
+             app.post()
+             <!--]-->
+            </code>
+            関数を使って、リクエストをルーティングします。
+            <code>
+             <!--[-->
+             index.js
+             <!--]-->
+            </code>
+            の、
+            <code>
+             <!--[-->
+             app.get()
+             <!--]-->
+            </code>
+            と
+            <code>
+             <!--[-->
+             app.listen()
+             <!--]-->
+            </code>
+            関数の間に、以下のコードを追加します。
+            <!--]-->
+           </p>
+           <div class="relative" code='app.post("/webhook", function (req, res) {
+  res.send("HTTP POST request sent to the webhook URL!");
+});
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             javascript
+            </span>
+            <pre class="language-javascript shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">app.</span><span class="sc3cj">post</span><span class="sZEs4">(</span><span class="s9uIt">"/webhook"</span><span class="sZEs4">, </span><span class="suJrU">function</span><span class="sZEs4"> (</span><span class="sQhOw">req</span><span class="sZEs4">, </span><span class="sQhOw">res</span><span class="sZEs4">) {
+</span></span><span class="line" line="2"><span class="sZEs4">  res.</span><span class="sc3cj">send</span><span class="sZEs4">(</span><span class="s9uIt">"HTTP POST request sent to the webhook URL!"</span><span class="sZEs4">);
+</span></span><span class="line" line="3"><span class="sZEs4">});
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            このコードは、
+            <code>
+             <!--[-->
+             /webhook
+             <!--]-->
+            </code>
+            エンドポイントにHTTP POSTリクエストが送られてきたときに、
+            <code>
+             <!--[-->
+             HTTP POST request sent to the webhook URL!
+             <!--]-->
+            </code>
+            というHTTPレスポンスを返すようにボットサーバーに指示するものです。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            ここまでで、
+            <code>
+             <!--[-->
+             index.js
+             <!--]-->
+            </code>
+            は以下のようになっているはずです。
+            <!--]-->
+           </p>
+           <div class="relative" code='const https = require("https");
+const express = require("express");
+const app = express();
+const PORT = process.env.PORT || 3000;
+const TOKEN = process.env.LINE_ACCESS_TOKEN;
+
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
+app.get("/", (req, res) =&gt; {
+  res.sendStatus(200);
+});
+
+app.post("/webhook", function (req, res) {
+  res.send("HTTP POST request sent to the webhook URL!");
+});
+
+app.listen(PORT, () =&gt; {
+  console.log(`Example app listening at http://localhost:${PORT}`);
+});
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             javascript
+            </span>
+            <pre class="language-javascript shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="suJrU">const</span><span class="sFSAA"> https</span><span class="suJrU"> =</span><span class="sc3cj"> require</span><span class="sZEs4">(</span><span class="s9uIt">"https"</span><span class="sZEs4">);
+</span></span><span class="line" line="2"><span class="suJrU">const</span><span class="sFSAA"> express</span><span class="suJrU"> =</span><span class="sc3cj"> require</span><span class="sZEs4">(</span><span class="s9uIt">"express"</span><span class="sZEs4">);
+</span></span><span class="line" line="3"><span class="suJrU">const</span><span class="sFSAA"> app</span><span class="suJrU"> =</span><span class="sc3cj"> express</span><span class="sZEs4">();
+</span></span><span class="line" line="4"><span class="suJrU">const</span><span class="sFSAA"> PORT</span><span class="suJrU"> =</span><span class="sZEs4"> process.env.</span><span class="sFSAA">PORT</span><span class="suJrU"> ||</span><span class="sFSAA"> 3000</span><span class="sZEs4">;
+</span></span><span class="line" line="5"><span class="suJrU">const</span><span class="sFSAA"> TOKEN</span><span class="suJrU"> =</span><span class="sZEs4"> process.env.</span><span class="sFSAA">LINE_ACCESS_TOKEN</span><span class="sZEs4">;
+</span></span><span class="line" line="6"><span emptylineplaceholder="true">
+</span></span><span class="line" line="7"><span class="sZEs4">app.</span><span class="sc3cj">use</span><span class="sZEs4">(express.</span><span class="sc3cj">json</span><span class="sZEs4">());
+</span></span><span class="line" line="8"><span class="sZEs4">app.</span><span class="sc3cj">use</span><span class="sZEs4">(
+</span></span><span class="line" line="9"><span class="sZEs4">  express.</span><span class="sc3cj">urlencoded</span><span class="sZEs4">({
+</span></span><span class="line" line="10"><span class="sZEs4">    extended: </span><span class="sFSAA">true</span><span class="sZEs4">,
+</span></span><span class="line" line="11"><span class="sZEs4">  })
+</span></span><span class="line" line="12"><span class="sZEs4">);
+</span></span><span class="line" line="13"><span emptylineplaceholder="true">
+</span></span><span class="line" line="14"><span class="sZEs4">app.</span><span class="sc3cj">get</span><span class="sZEs4">(</span><span class="s9uIt">"/"</span><span class="sZEs4">, (</span><span class="sQhOw">req</span><span class="sZEs4">, </span><span class="sQhOw">res</span><span class="sZEs4">) </span><span class="suJrU">=&gt;</span><span class="sZEs4"> {
+</span></span><span class="line" line="15"><span class="sZEs4">  res.</span><span class="sc3cj">sendStatus</span><span class="sZEs4">(</span><span class="sFSAA">200</span><span class="sZEs4">);
+</span></span><span class="line" line="16"><span class="sZEs4">});
+</span></span><span class="line" line="17"><span emptylineplaceholder="true">
+</span></span><span class="line" line="18"><span class="sZEs4">app.</span><span class="sc3cj">post</span><span class="sZEs4">(</span><span class="s9uIt">"/webhook"</span><span class="sZEs4">, </span><span class="suJrU">function</span><span class="sZEs4"> (</span><span class="sQhOw">req</span><span class="sZEs4">, </span><span class="sQhOw">res</span><span class="sZEs4">) {
+</span></span><span class="line" line="19"><span class="sZEs4">  res.</span><span class="sc3cj">send</span><span class="sZEs4">(</span><span class="s9uIt">"HTTP POST request sent to the webhook URL!"</span><span class="sZEs4">);
+</span></span><span class="line" line="20"><span class="sZEs4">});
+</span></span><span class="line" line="21"><span emptylineplaceholder="true">
+</span></span><span class="line" line="22"><span class="sZEs4">app.</span><span class="sc3cj">listen</span><span class="sZEs4">(</span><span class="sFSAA">PORT</span><span class="sZEs4">, () </span><span class="suJrU">=&gt;</span><span class="sZEs4"> {
+</span></span><span class="line" line="23"><span class="sZEs4">  console.</span><span class="sc3cj">log</span><span class="sZEs4">(</span><span class="s9uIt">`Example app listening at http://localhost:${</span><span class="sFSAA">PORT</span><span class="s9uIt">}`</span><span class="sZEs4">);
+</span></span><span class="line" line="24"><span class="sZEs4">});
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="send-reply">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#send-reply">
+             <!--[-->
+             <!--[-->
+             3-4. 応答メッセージを送る
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            応答ボットのコア機能である、ユーザーのメッセージに応答する機能を実装します。まず、ユーザーからメッセージを受信したことを識別する必要があります。Webhook URLで、
+            <code>
+             <!--[-->
+             type
+             <!--]-->
+            </code>
+            プロパティの値が
+            <code>
+             <!--[-->
+             message
+             <!--]-->
+            </code>
+            になっている
+            <a class="" href="/ja/reference/messaging-api/#message-event">
+             <!--[-->
+             <!--[-->
+             メッセージイベント
+             <!--]-->
+             <!--]-->
+            </a>
+            オブジェクトを受信したら、ユーザーからメッセージが送信されたと識別します。
+            <!--]-->
+           </p>
+           <div class="danger custom-block">
+            <div class="custom-block-title">
+             <i class="las la-exclamation-triangle mr-2">
+             </i>
+             <span>
+              ボットを本番用として公開する場合は署名を検証してください
+             </span>
+            </div>
+            <div>
+             <!--[-->
+             <p>
+              <!--[-->
+              本番用として、不特定多数のユーザー向けにボットを公開する場合には署名の検証が必要です。HTTPリクエストがLINEプラットフォームから送られたことを確認するために、リクエストヘッダーの
+              <code>
+               <!--[-->
+               x-line-signature
+               <!--]-->
+              </code>
+              に含まれる署名を検証してください。
+              <!--]-->
+             </p>
+             <p>
+              <!--[-->
+              署名の検証方法について詳しくは、「
+              <a class="" href="./receiving-messages/#verify-signature">
+               <!--[-->
+               <!--[-->
+               署名を検証する
+               <!--]-->
+               <!--]-->
+              </a>
+              」を参照してください。
+              <!--]-->
+             </p>
+             <!--]-->
+            </div>
+           </div>
+           <p>
+            <!--[-->
+            ユーザーに応答するには、
+            <a class="" href="/ja/reference/messaging-api/#send-reply-message">
+             <!--[-->
+             <!--[-->
+             応答メッセージを送る
+             <!--]-->
+             <!--]-->
+            </a>
+            エンドポイント（
+            <code>
+             <!--[-->
+             https://api.line.me/v2/bot/message/reply
+             <!--]-->
+            </code>
+            ）を使います。
+            <code>
+             <!--[-->
+             index.js
+             <!--]-->
+            </code>
+            の
+            <code>
+             <!--[-->
+             app.post
+             <!--]-->
+            </code>
+            から、応答メッセージを送るエンドポイント（
+            <code>
+             <!--[-->
+             https://api.line.me/v2/bot/message/reply
+             <!--]-->
+            </code>
+            ）を呼び出します。以下のコードで
+            <code>
+             <!--[-->
+             app.post
+             <!--]-->
+            </code>
+            を置き換えてください。それぞれの処理の詳しい説明は、コードコメントで確認してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='app.post("/webhook", function (req, res) {
+  res.send("HTTP POST request sent to the webhook URL!");
+  // ユーザーがボットにメッセージを送った場合、応答メッセージを送る
+  if (req.body.events[0].type === "message") {
+    // APIサーバーに送信する応答トークンとメッセージデータを文字列化する
+    const dataString = JSON.stringify({
+      // 応答トークンを定義
+      replyToken: req.body.events[0].replyToken,
+      // 返信するメッセージを定義
+      messages: [
+        {
+          type: "text",
+          text: "Hello, user",
+        },
+        {
+          type: "text",
+          text: "May I help you?",
+        },
+      ],
+    });
+
+    // リクエストヘッダー。仕様についてはMessaging APIリファレンスを参照してください。
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + TOKEN,
+    };
+
+    // Node.jsドキュメントのhttps.requestメソッドで定義されている仕様に従ったオプションを指定します。
+    const webhookOptions = {
+      hostname: "api.line.me",
+      path: "/v2/bot/message/reply",
+      method: "POST",
+      headers: headers,
+      body: dataString,
+    };
+
+    // messageタイプのHTTP POSTリクエストが/webhookエンドポイントに送信された場合、
+    // 変数webhookOptionsで定義したhttps://api.line.me/v2/bot/message/replyに対して
+    // HTTP POSTリクエストを送信します。
+
+    // リクエストの定義
+    const request = https.request(webhookOptions, (res) =&gt; {
+      res.on("data", (d) =&gt; {
+        process.stdout.write(d);
+      });
+    });
+
+    // エラーをハンドリング
+    // request.onは、APIサーバーへのリクエスト送信時に
+    // エラーが発生した場合にコールバックされる関数です。
+    request.on("error", (err) =&gt; {
+      console.error(err);
+    });
+
+    // 最後に、定義したリクエストを送信
+    request.write(dataString);
+    request.end();
+  }
+});
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             javascript
+            </span>
+            <pre class="language-javascript shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">app.</span><span class="sc3cj">post</span><span class="sZEs4">(</span><span class="s9uIt">"/webhook"</span><span class="sZEs4">, </span><span class="suJrU">function</span><span class="sZEs4"> (</span><span class="sQhOw">req</span><span class="sZEs4">, </span><span class="sQhOw">res</span><span class="sZEs4">) {
+</span></span><span class="line" line="2"><span class="sZEs4">  res.</span><span class="sc3cj">send</span><span class="sZEs4">(</span><span class="s9uIt">"HTTP POST request sent to the webhook URL!"</span><span class="sZEs4">);
+</span></span><span class="line" line="3"><span class="sH3jZ">  // ユーザーがボットにメッセージを送った場合、応答メッセージを送る
+</span></span><span class="line" line="4"><span class="suJrU">  if</span><span class="sZEs4"> (req.body.events[</span><span class="sFSAA">0</span><span class="sZEs4">].type </span><span class="suJrU">===</span><span class="s9uIt"> "message"</span><span class="sZEs4">) {
+</span></span><span class="line" line="5"><span class="sH3jZ">    // APIサーバーに送信する応答トークンとメッセージデータを文字列化する
+</span></span><span class="line" line="6"><span class="suJrU">    const</span><span class="sFSAA"> dataString</span><span class="suJrU"> =</span><span class="sFSAA"> JSON</span><span class="sZEs4">.</span><span class="sc3cj">stringify</span><span class="sZEs4">({
+</span></span><span class="line" line="7"><span class="sH3jZ">      // 応答トークンを定義
+</span></span><span class="line" line="8"><span class="sZEs4">      replyToken: req.body.events[</span><span class="sFSAA">0</span><span class="sZEs4">].replyToken,
+</span></span><span class="line" line="9"><span class="sH3jZ">      // 返信するメッセージを定義
+</span></span><span class="line" line="10"><span class="sZEs4">      messages: [
+</span></span><span class="line" line="11"><span class="sZEs4">        {
+</span></span><span class="line" line="12"><span class="sZEs4">          type: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="13"><span class="sZEs4">          text: </span><span class="s9uIt">"Hello, user"</span><span class="sZEs4">,
+</span></span><span class="line" line="14"><span class="sZEs4">        },
+</span></span><span class="line" line="15"><span class="sZEs4">        {
+</span></span><span class="line" line="16"><span class="sZEs4">          type: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="17"><span class="sZEs4">          text: </span><span class="s9uIt">"May I help you?"</span><span class="sZEs4">,
+</span></span><span class="line" line="18"><span class="sZEs4">        },
+</span></span><span class="line" line="19"><span class="sZEs4">      ],
+</span></span><span class="line" line="20"><span class="sZEs4">    });
+</span></span><span class="line" line="21"><span emptylineplaceholder="true">
+</span></span><span class="line" line="22"><span class="sH3jZ">    // リクエストヘッダー。仕様についてはMessaging APIリファレンスを参照してください。
+</span></span><span class="line" line="23"><span class="suJrU">    const</span><span class="sFSAA"> headers</span><span class="suJrU"> =</span><span class="sZEs4"> {
+</span></span><span class="line" line="24"><span class="s9uIt">      "Content-Type"</span><span class="sZEs4">: </span><span class="s9uIt">"application/json"</span><span class="sZEs4">,
+</span></span><span class="line" line="25"><span class="sZEs4">      Authorization: </span><span class="s9uIt">"Bearer "</span><span class="suJrU"> +</span><span class="sFSAA"> TOKEN</span><span class="sZEs4">,
+</span></span><span class="line" line="26"><span class="sZEs4">    };
+</span></span><span class="line" line="27"><span emptylineplaceholder="true">
+</span></span><span class="line" line="28"><span class="sH3jZ">    // Node.jsドキュメントのhttps.requestメソッドで定義されている仕様に従ったオプションを指定します。
+</span></span><span class="line" line="29"><span class="suJrU">    const</span><span class="sFSAA"> webhookOptions</span><span class="suJrU"> =</span><span class="sZEs4"> {
+</span></span><span class="line" line="30"><span class="sZEs4">      hostname: </span><span class="s9uIt">"api.line.me"</span><span class="sZEs4">,
+</span></span><span class="line" line="31"><span class="sZEs4">      path: </span><span class="s9uIt">"/v2/bot/message/reply"</span><span class="sZEs4">,
+</span></span><span class="line" line="32"><span class="sZEs4">      method: </span><span class="s9uIt">"POST"</span><span class="sZEs4">,
+</span></span><span class="line" line="33"><span class="sZEs4">      headers: headers,
+</span></span><span class="line" line="34"><span class="sZEs4">      body: dataString,
+</span></span><span class="line" line="35"><span class="sZEs4">    };
+</span></span><span class="line" line="36"><span emptylineplaceholder="true">
+</span></span><span class="line" line="37"><span class="sH3jZ">    // messageタイプのHTTP POSTリクエストが/webhookエンドポイントに送信された場合、
+</span></span><span class="line" line="38"><span class="sH3jZ">    // 変数webhookOptionsで定義したhttps://api.line.me/v2/bot/message/replyに対して
+</span></span><span class="line" line="39"><span class="sH3jZ">    // HTTP POSTリクエストを送信します。
+</span></span><span class="line" line="40"><span emptylineplaceholder="true">
+</span></span><span class="line" line="41"><span class="sH3jZ">    // リクエストの定義
+</span></span><span class="line" line="42"><span class="suJrU">    const</span><span class="sFSAA"> request</span><span class="suJrU"> =</span><span class="sZEs4"> https.</span><span class="sc3cj">request</span><span class="sZEs4">(webhookOptions, (</span><span class="sQhOw">res</span><span class="sZEs4">) </span><span class="suJrU">=&gt;</span><span class="sZEs4"> {
+</span></span><span class="line" line="43"><span class="sZEs4">      res.</span><span class="sc3cj">on</span><span class="sZEs4">(</span><span class="s9uIt">"data"</span><span class="sZEs4">, (</span><span class="sQhOw">d</span><span class="sZEs4">) </span><span class="suJrU">=&gt;</span><span class="sZEs4"> {
+</span></span><span class="line" line="44"><span class="sZEs4">        process.stdout.</span><span class="sc3cj">write</span><span class="sZEs4">(d);
+</span></span><span class="line" line="45"><span class="sZEs4">      });
+</span></span><span class="line" line="46"><span class="sZEs4">    });
+</span></span><span class="line" line="47"><span emptylineplaceholder="true">
+</span></span><span class="line" line="48"><span class="sH3jZ">    // エラーをハンドリング
+</span></span><span class="line" line="49"><span class="sH3jZ">    // request.onは、APIサーバーへのリクエスト送信時に
+</span></span><span class="line" line="50"><span class="sH3jZ">    // エラーが発生した場合にコールバックされる関数です。
+</span></span><span class="line" line="51"><span class="sZEs4">    request.</span><span class="sc3cj">on</span><span class="sZEs4">(</span><span class="s9uIt">"error"</span><span class="sZEs4">, (</span><span class="sQhOw">err</span><span class="sZEs4">) </span><span class="suJrU">=&gt;</span><span class="sZEs4"> {
+</span></span><span class="line" line="52"><span class="sZEs4">      console.</span><span class="sc3cj">error</span><span class="sZEs4">(err);
+</span></span><span class="line" line="53"><span class="sZEs4">    });
+</span></span><span class="line" line="54"><span emptylineplaceholder="true">
+</span></span><span class="line" line="55"><span class="sH3jZ">    // 最後に、定義したリクエストを送信
+</span></span><span class="line" line="56"><span class="sZEs4">    request.</span><span class="sc3cj">write</span><span class="sZEs4">(dataString);
+</span></span><span class="line" line="57"><span class="sZEs4">    request.</span><span class="sc3cj">end</span><span class="sZEs4">();
+</span></span><span class="line" line="58"><span class="sZEs4">  }
+</span></span><span class="line" line="59"><span class="sZEs4">});
+</span></span></code><!--]--></pre>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="prepare-channel">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#prepare-channel">
+             <!--[-->
+             <!--[-->
+             4. Messaging APIチャネルを準備する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            Messaging APIの機能を利用するには、Messaging APIチャネルを作成し、Webhook URLを登録する必要があります。作成していない場合は、
+            <a class="" href="./getting-started/">
+             <!--[-->
+             <!--[-->
+             チャネルを作成
+             <!--]-->
+             <!--]-->
+            </a>
+            してください。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            LINE DevelopersコンソールのMessaging APIチャネルの［
+            <strong>
+             <!--[-->
+             Messaging API設定
+             <!--]-->
+            </strong>
+            ］タブで、
+            <a class="" href="/ja/docs/basics/channel-access-token/">
+             <!--[-->
+             <!--[-->
+             チャネルアクセストークン
+             <!--]-->
+             <!--]-->
+            </a>
+            を発行します。このトークンは、「
+            <a class="" href="#deploy-on-heroku">
+             <!--[-->
+             <!--[-->
+             Herokuでアプリをデプロイする
+             <!--]-->
+             <!--]-->
+            </a>
+            」で使用します。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="Messaging APIチャネルのチャネルアクセストークンセクションを示す画像" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-720" data-state="closed" src="/media/messaging-api/node-js-sample/channel-access-token-ja.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            次にWebhook URLを登録します。［
+            <strong>
+             <!--[-->
+             Messaging API設定
+             <!--]-->
+            </strong>
+            ］タブで、［
+            <strong>
+             <!--[-->
+             Webhook URL
+             <!--]-->
+            </strong>
+            ］に、「
+            <a class="" href="#set-up-heroku">
+             <!--[-->
+             <!--[-->
+             Herokuの設定
+             <!--]-->
+             <!--]-->
+            </a>
+            」で取得したHerokuのURLを元に、サーバーがWebhookをListenするURLを入力します。URLは
+            <code>
+             <!--[-->
+             https://{Name of your app}.herokuapp.com/webhook
+             <!--]-->
+            </code>
+            という形式になっています。［
+            <strong>
+             <!--[-->
+             Webhook URL
+             <!--]-->
+            </strong>
+            ］は
+            <code>
+             <!--[-->
+             https://{Name of your app}.herokuapp.com/
+             <!--]-->
+            </code>
+            ではないので注意してください。
+            <!--]-->
+           </p>
+           <div class="tip custom-block">
+            <div class="custom-block-title">
+             <i class="las la-check-circle mr-2">
+             </i>
+             <span>
+              HerokuのURLを忘れてしまったら
+             </span>
+            </div>
+            <div>
+             <!--[-->
+             <p>
+              <!--[-->
+              HerokuのURLを忘れてしまった場合は、
+              <a class="" href="https://dashboard.heroku.com/" rel="nofollow" target="_blank">
+               <!--[-->
+               <!--[-->
+               Heroku Dashboard
+               <!--]-->
+               <!--]-->
+              </a>
+              で確認できます。
+              <!--]-->
+             </p>
+             <!--]-->
+            </div>
+           </div>
+           <p>
+            <!--[-->
+            ［
+            <strong>
+             <!--[-->
+             Webhookの利用
+             <!--]-->
+            </strong>
+            ］を有効にします。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="Messaging API設定タブの「Webhookの利用」設定" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-480" data-state="closed" src="/media/messaging-api/node-js-sample/enable-webhook-ja.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            ボットをテストするために、［
+            <strong>
+             <!--[-->
+             Messaging API設定
+             <!--]-->
+            </strong>
+            ］タブのQRコードを読み取って、ボットに紐づけられたLINE公式アカウントを友だちとして追加します。テストのために、［
+            <strong>
+             <!--[-->
+             応答メッセージ
+             <!--]-->
+            </strong>
+            ］と［
+            <strong>
+             <!--[-->
+             あいさつメッセージ
+             <!--]-->
+            </strong>
+            ］は無効にしてください。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            これで、Messaging APIチャネルの準備が整いました。
+            <!--]-->
+           </p>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="deploy-on-heroku">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#deploy-on-heroku">
+             <!--[-->
+             <!--[-->
+             5. Herokuでアプリをデプロイする
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            先ほど「
+            <a class="" href="#global-config">
+             <!--[-->
+             <!--[-->
+             グローバル設定
+             <!--]-->
+             <!--]-->
+            </a>
+            」で、環境変数
+            <code>
+             <!--[-->
+             LINE_ACCESS_TOKEN
+             <!--]-->
+            </code>
+            の値をチャネルアクセストークンとして使うように設定しました。Herokuにデプロイしたアプリを正常に動作させるために、環境変数
+            <code>
+             <!--[-->
+             LINE_ACCESS_TOKEN
+             <!--]-->
+            </code>
+            を登録する必要があります。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            環境変数にチャネルアクセストークンを登録するために、ターミナルまたはコマンドラインツールで、以下のコマンドを実行してください。
+            <code>
+             <!--[-->
+             LINE_ACCESS_TOKEN
+             <!--]-->
+            </code>
+            には、「
+            <a class="" href="#prepare-channel">
+             <!--[-->
+             <!--[-->
+             Messaging APIチャネルを準備する
+             <!--]-->
+             <!--]-->
+            </a>
+            」で取得したチャネルアクセストークンを設定します。
+            <!--]-->
+           </p>
+           <div class="relative" code="heroku config:set LINE_ACCESS_TOKEN={チャネルアクセストークンをここに入力してください}
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">heroku</span><span class="s9uIt"> config:set</span><span class="s9uIt"> LINE_ACCESS_TOKEN={チャネルアクセストークンをここに入力してください}
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            これで、アプリをHerokuにデプロイする準備が整いました。作成したコードをHerokuにプッシュしましょう。ターミナルまたはコマンドラインツールで、以下のコマンドを実行してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='git add .
+git commit -m "First commit"
+git push heroku main
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">git</span><span class="s9uIt"> add</span><span class="s9uIt"> .
+</span></span><span class="line" line="2"><span class="sQhOw">git</span><span class="s9uIt"> commit</span><span class="sFSAA"> -m</span><span class="s9uIt"> "First commit"
+</span></span><span class="line" line="3"><span class="sQhOw">git</span><span class="s9uIt"> push</span><span class="s9uIt"> heroku</span><span class="s9uIt"> main
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="verify-webhook-url">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#verify-webhook-url">
+             <!--[-->
+             <!--[-->
+             Webhook URLを検証する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            ボットをテストする前に、Webhookが正常に動作しているか確認しましょう。「
+            <a class="" href="#prepare-channel">
+             <!--[-->
+             <!--[-->
+             Messaging APIチャネルを準備する
+             <!--]-->
+             <!--]-->
+            </a>
+            」で作成したチャネルの［
+            <strong>
+             <!--[-->
+             Messaging API設定
+             <!--]-->
+            </strong>
+            ］タブに移動します。［
+            <strong>
+             <!--[-->
+             Webhook URL
+             <!--]-->
+            </strong>
+            ］の［
+            <strong>
+             <!--[-->
+             検証
+             <!--]-->
+            </strong>
+            ］をクリックし、Webhookが動作するかを確認します。Webhook URLに問題がない場合、「成功」のメッセージが表示されます。これでサンプルボットが完成しました。
+            <!--]-->
+           </p>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="try-bot">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#try-bot">
+             <!--[-->
+             <!--[-->
+             ボットを試す
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            LINEでボットにメッセージを送ってみてください。このようなメッセージが届くはずです。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="サンプルボットとの会話イメージ" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border w-fix-320" data-state="closed" src="/media/messaging-api/node-js-sample/sample-bot-test.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="troubleshoot-bot">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#troubleshoot-bot">
+             <!--[-->
+             <!--[-->
+             トラブルシューティング
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            ボットが正常に動作していない場合は、以下のコマンドを実行することでHerokuのログを確認できます。
+            <!--]-->
+           </p>
+           <div class="relative" code="heroku logs --tail
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">heroku</span><span class="s9uIt"> logs</span><span class="sFSAA"> --tail
+</span></span></code><!--]--></pre>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="further-development">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#further-development">
+             <!--[-->
+             <!--[-->
+             次のステップ
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            このボットには、さまざまな機能を追加できます。その例をいくつかご紹介します。
+            <!--]-->
+           </p>
+           <ul>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a class="" href="/ja/reference/messaging-api/#rich-menu">
+              <!--[-->
+              <!--[-->
+              リッチメニュー
+              <!--]-->
+              <!--]-->
+             </a>
+             を使って、ユーザーがタップ可能なオプションを追加する。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             ユーザーが特定のアクションを実行したときに送信される
+             <a class="" href="/ja/reference/messaging-api/#action-objects">
+              <!--[-->
+              <!--[-->
+              アクションオブジェクト
+              <!--]-->
+              <!--]-->
+             </a>
+             を使って、レスポンスを送信する。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="/ja/reference/messaging-api/#get-profile">
+              <!--[-->
+              <!--[-->
+              ユーザープロフィールを取得
+              <!--]-->
+              <!--]-->
+             </a>
+             して、カスタマイズしたメッセージを送信する。
+             <!--]-->
+            </li>
+            <!--]-->
+           </ul>
+           <p>
+            <!--[-->
+            前述の通り、
+            <a class="" href="https://line.github.io/line-bot-sdk-nodejs/" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             LINE Messaging API SDK for nodejs
+             <!--]-->
+             <!--]-->
+            </a>
+            を使えば、より素早くボットを開発できます。こちらもぜひご検討ください。
+            <!--]-->
+           </p>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="references">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#references">
+             <!--[-->
+             <!--[-->
+             関連ドキュメント
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <ul>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a class="" href="/ja/reference/messaging-api/">
+              <!--[-->
+              <!--[-->
+              Messaging APIリファレンス
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="./overview/">
+              <!--[-->
+              <!--[-->
+              Messaging APIの概要
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="https://nodejs.org/api/https.html#https_https_request_options_callback" rel="nofollow" target="_blank">
+              <!--[-->
+              <!--[-->
+              https.requestの仕様（Node.js）
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <!--]-->
+           </ul>
+           <style>
+            html pre.shiki code .sQhOw, html code.shiki .sQhOw{--shiki-default:#FFA657}html pre.shiki code .s9uIt, html code.shiki .s9uIt{--shiki-default:#A5D6FF}html .default .shiki span {color: var(--shiki-default);background: var(--shiki-default-bg);font-style: var(--shiki-default-font-style);font-weight: var(--shiki-default-font-weight);text-decoration: var(--shiki-default-text-decoration);}html .shiki span {color: var(--shiki-default);background: var(--shiki-default-bg);font-style: var(--shiki-default-font-style);font-weight: var(--shiki-default-font-weight);text-decoration: var(--shiki-default-text-decoration);}html pre.shiki code .sFSAA, html code.shiki .sFSAA{--shiki-default:#79C0FF}html pre.shiki code .sZEs4, html code.shiki .sZEs4{--shiki-default:#E6EDF3}html pre.shiki code .sPWt5, html code.shiki .sPWt5{--shiki-default:#7EE787}html pre.shiki code .suJrU, html code.shiki .suJrU{--shiki-default:#FF7B72}html pre.shiki code .sc3cj, html code.shiki .sc3cj{--shiki-default:#D2A8FF}html pre.shiki code .sH3jZ, html code.shiki .sH3jZ{--shiki-default:#8B949E}
+           </style>
+          </div>
+         </main>
+         <!--]-->
+         <!--]-->
+        </div>
+        <div class="toc text-caption-docs-side hide-scrollbar sticky top-48 overflow-y-auto 2xl:top-40" data-v-70444712="" data-v-856df627="" id="side-toc">
+         <ul data-v-70444712="">
+          <!--[-->
+          <li data-v-70444712="">
+           <a class="mb-[8px] custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#before-starting">
+            始める前に
+           </a>
+           <ul class="font-caption-docs-side dark:border-ldsgray-750 mb-8 flex flex-col gap-5 border-l pr-3 pl-5" data-v-70444712="">
+            <!--[-->
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#what-you-will-need">
+              準備
+             </a>
+            </li>
+            <!--]-->
+           </ul>
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#set-up-heroku">
+            1. Herokuの設定
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#create-package-json">
+            2. プロジェクトの設定
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-[8px] custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#start-developing">
+            3. ボットの実装
+           </a>
+           <ul class="font-caption-docs-side dark:border-ldsgray-750 mb-8 flex flex-col gap-5 border-l pr-3 pl-5" data-v-70444712="">
+            <!--[-->
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#global-config">
+              3-1. グローバル設定
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#middleware-config">
+              3-2. ミドルウェアの設定
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#routing-config">
+              3-3. ルーティングの設定
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#send-reply">
+              3-4. 応答メッセージを送る
+             </a>
+            </li>
+            <!--]-->
+           </ul>
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#prepare-channel">
+            4. Messaging APIチャネルを準備する
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-[8px] custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#deploy-on-heroku">
+            5. Herokuでアプリをデプロイする
+           </a>
+           <ul class="font-caption-docs-side dark:border-ldsgray-750 mb-8 flex flex-col gap-5 border-l pr-3 pl-5" data-v-70444712="">
+            <!--[-->
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#verify-webhook-url">
+              Webhook URLを検証する
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#try-bot">
+              ボットを試す
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#troubleshoot-bot">
+              トラブルシューティング
+             </a>
+            </li>
+            <!--]-->
+           </ul>
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#further-development">
+            次のステップ
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#references">
+            関連ドキュメント
+           </a>
+           <!-- -->
+          </li>
+          <!--]-->
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+     <footer class="font-main-card-text-product dark:border-ldsgray-750 content-wrapper w-full border-t py-8 text-black dark:bg-black dark:text-white" data-v-856df627="" id="footer">
+      <div class="content-container mx-auto">
+       <div class="footer-copyright-en w-full whitespace-nowrap">
+        © LY Corporation
+       </div>
+       <div class="flex flex-col justify-between lg:flex-row">
+        <div>
+         <ul class="my-6 flex flex-col gap-y-2 p-0 md:my-2 md:flex-row md:items-center md:gap-x-4">
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/about/">
+            LINE Developersサイトとは
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/terms-and-policies/">
+            規約とポリシー
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/trademark/">
+            商標について
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white no-external-icon" href="https://api.line-status.info/" target="_blank">
+            <!--[-->
+            LINE API Status
+            <span class="ml-1 inline-block">
+             <span class="las la-arrow-out-square text-xs opacity-50">
+             </span>
+            </span>
+            <!--]-->
+           </a>
+          </li>
+         </ul>
+        </div>
+        <div class="flex flex-row items-center justify-start gap-7">
+         <!--[-->
+         <!--[-->
+         <!--[-->
+         <button class="focus-visible:outline-primary hover:text-default transition-colors custom flex h-full cursor-pointer items-center text-black dark:text-white" data-grace-area-trigger="" data-state="closed" type="button" variant="link">
+          <!--[-->
+          <!--[-->
+          Family Sites
+          <span class="lar la-chevron-down la-xs relative ml-1">
+          </span>
+          <!--]-->
+          <!--]-->
+         </button>
+         <!--]-->
+         <!-- -->
+         <!--v-if-->
+         <!--]-->
+         <!--]-->
+         <div class="flex items-center gap-3">
+          <!-- -->
+          <a class="custom no-external-icon" href="https://twitter.com/lycorptech_jp" target="_blank">
+           <span class="lapr la-x-com la-lg">
+           </span>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </footer>
+     <!-- -->
+    </div>
+   </div>
+   <div data-v-856df627="">
+    <!--[-->
+    <!-- -->
+    <!-- -->
+    <!--v-if-->
+    <!--]-->
+   </div>
+   <!-- -->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+   <!--[-->
+   <!--]-->
+   <!--v-if-->
+   <!--]-->
+   <!--[-->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+  </div>
+  <div id="teleports">
+  </div>
+  <script>
+   window.__NUXT__={};window.__NUXT__.config={public:{gtag:{enabled:true,initMode:"auto",id:"G-K94RFW73WS",initCommands:[],config:{},tags:[],loadingStrategy:"defer",url:"https://www.googletagmanager.com/gtag/js"},mdc:{components:{prose:true,map:{accordion:"ProseAccordion","accordion-item":"ProseAccordionItem",badge:"ProseBadge",callout:"ProseCallout",card:"ProseCard","card-group":"ProseCardGroup",caution:"ProseCaution","code-collapse":"ProseCodeCollapse","code-group":"ProseCodeGroup","code-icon":"ProseCodeIcon","code-preview":"ProseCodePreview","code-tree":"ProseCodeTree",collapsible:"ProseCollapsible",field:"ProseField","field-group":"ProseFieldGroup",icon:"ProseIcon",kbd:"ProseKbd",note:"ProseNote",steps:"ProseSteps",tabs:"ProseTabs","tabs-item":"ProseTabsItem",tip:"ProseTip",warning:"ProseWarning"},customElements:[]},headings:{anchorLinks:{h1:false,h2:true,h3:true,h4:true,h5:false,h6:false}},highlight:{theme:"github-dark-default",noApiRoute:true,langs:["csharp","css","scss","go","groovy","html","java","javascript","json","objective-c","perl","php","python","ruby","shellscript","sh","swift","ts","typescript","xml","yaml"],wrapperStyle:true,highlighter:"shiki",shikiEngine:"oniguruma"}},content:{wsUrl:""},i18n:{baseUrl:"/",defaultLocale:"",rootRedirect:"",redirectStatusCode:302,skipSettingLocaleOnNavigate:false,locales:[{code:"en",name:"EN",language:"en-US"},{code:"ja",name:"JP",language:"ja-JP"}],detectBrowserLanguage:false,experimental:{localeDetector:"",typedPages:true,typedOptionsAndMessages:false,alternateLinkCanonicalQueries:true,devCache:false,cacheLifetime:"",stripMessagesPayload:false,preload:false,strictSeo:false,nitroContextDetection:true,httpCacheDuration:10},domainLocales:{en:{domain:""},ja:{domain:""}}}},app:{baseURL:"/",buildId:"b7cd7a21-3fab-4351-b588-f3a82989c407",buildAssetsDir:"/_nuxt/",cdnURL:""}}
+  </script>
+  <script data-nuxt-data="nuxt-app" data-src="/ja/docs/messaging-api/nodejs-sample/_payload.json?b7cd7a21-3fab-4351-b588-f3a82989c407" data-ssr="true" id="__NUXT_DATA__" type="application/json">
+   [{"state":1,"once":14,"_errors":15,"serverRendered":5,"path":17,"pinia":18,"prerenderedAt":55},["Reactive",2],{"$scolor-mode":3,"$si18n:cached-locale-configs":7,"$si18n:resolved-locale":12,"$stoasts":13},{"preference":4,"value":4,"unknown":5,"forced":6},"system",true,false,{"en":8,"ja":10},{"fallbacks":9,"cacheable":5},[],{"fallbacks":11,"cacheable":5},[],"ja",[],["Set"],["ShallowReactive",16],{"h2281345326":-1,"h3909627427":-1,"h914467694":-1},"/ja/docs/messaging-api/nodejs-sample/",["Reactive",19],{"devdocs":20},{"userData":21,"feedbackForm":23,"socialPlugins":24,"ui":25},{"isInitialized":6,"isLoading":6,"isLoggedIn":6,"profileData":22,"showNewNewsNotificationBadge":6},{},{"isInitialized":6,"isLoading":6,"isAvailable":6,"isShown":6},{"userAgreement":6},{"isHome":6,"isErrorPage":6,"isMobileSidebarOpen":6,"isMobileSecondarySidebarOpen":6,"isMobileNarrow":6,"isMobile":6,"isWide":6,"navDropdown":26,"isNavBgTransparent":6,"isDarkMode":6,"apiRefBlockToOpen":27,"apiRefBlockOpened":27,"toc":28,"isDisabledScrollToAnchor":6,"isActiveSetHashOnScroll":5,"isSearchModalOpen":6,"breadcrumbNewsPageTitle":27},{"isShown":6,"type":27,"label":27,"contents":27},"",[29,52],{"id":30,"depth":31,"text":32,"children":33},"set-default-rich-menu",2,"デフォルトのリッチメニューを設定する",[34,38,41,44],{"id":35,"depth":36,"text":37},"prepare-a-rich-menu-image",3,"1. リッチメニューの画像を準備する",{"id":39,"depth":36,"text":40},"create-a-rich-menu","2. リッチメニューを作成する",{"id":42,"depth":36,"text":43},"upload-the-rich-menu-image","3. リッチメニューに画像をアップロードして添付する",{"id":45,"depth":36,"text":46,"children":47},"set-the-default-rich-menu","4. デフォルトのリッチメニューを設定する",[48],{"id":49,"depth":50,"text":51},"check-the-rich-menu",4,"4-1. リッチメニューの表示を確認する",{"id":53,"depth":31,"text":54},"about-per-user-rich-menu","ユーザー単位のリッチメニューについて",1776129205032]
+  </script>
+ </body>
+</html>

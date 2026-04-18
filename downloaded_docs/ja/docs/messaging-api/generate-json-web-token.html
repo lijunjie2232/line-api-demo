@@ -1,0 +1,3236 @@
+<!DOCTYPE html>
+<html class="" lang="ja-JP" style="">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <style id="nuxt-ui-colors">
+   @layer theme {
+  :root, :host {
+  --ui-color-primary-50: var(--color-green-50, oklch(98.2% 0.018 155.826));
+  --ui-color-primary-100: var(--color-green-100, oklch(96.2% 0.044 156.743));
+  --ui-color-primary-200: var(--color-green-200, oklch(92.5% 0.084 155.995));
+  --ui-color-primary-300: var(--color-green-300, oklch(87.1% 0.15 154.449));
+  --ui-color-primary-400: var(--color-green-400, oklch(79.2% 0.209 151.711));
+  --ui-color-primary-500: var(--color-green-500, oklch(72.3% 0.219 149.579));
+  --ui-color-primary-600: var(--color-green-600, oklch(62.7% 0.194 149.214));
+  --ui-color-primary-700: var(--color-green-700, oklch(52.7% 0.154 150.069));
+  --ui-color-primary-800: var(--color-green-800, oklch(44.8% 0.119 151.328));
+  --ui-color-primary-900: var(--color-green-900, oklch(39.3% 0.095 152.535));
+  --ui-color-primary-950: var(--color-green-950, oklch(26.6% 0.065 152.934));
+  --ui-color-secondary-50: var(--color-blue-50, oklch(97% 0.014 254.604));
+  --ui-color-secondary-100: var(--color-blue-100, oklch(93.2% 0.032 255.585));
+  --ui-color-secondary-200: var(--color-blue-200, oklch(88.2% 0.059 254.128));
+  --ui-color-secondary-300: var(--color-blue-300, oklch(80.9% 0.105 251.813));
+  --ui-color-secondary-400: var(--color-blue-400, oklch(70.7% 0.165 254.624));
+  --ui-color-secondary-500: var(--color-blue-500, oklch(62.3% 0.214 259.815));
+  --ui-color-secondary-600: var(--color-blue-600, oklch(54.6% 0.245 262.881));
+  --ui-color-secondary-700: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  --ui-color-secondary-800: var(--color-blue-800, oklch(42.4% 0.199 265.638));
+  --ui-color-secondary-900: var(--color-blue-900, oklch(37.9% 0.146 265.522));
+  --ui-color-secondary-950: var(--color-blue-950, oklch(28.2% 0.091 267.935));
+  --ui-color-success-50: var(--color-green-50, oklch(98.2% 0.018 155.826));
+  --ui-color-success-100: var(--color-green-100, oklch(96.2% 0.044 156.743));
+  --ui-color-success-200: var(--color-green-200, oklch(92.5% 0.084 155.995));
+  --ui-color-success-300: var(--color-green-300, oklch(87.1% 0.15 154.449));
+  --ui-color-success-400: var(--color-green-400, oklch(79.2% 0.209 151.711));
+  --ui-color-success-500: var(--color-green-500, oklch(72.3% 0.219 149.579));
+  --ui-color-success-600: var(--color-green-600, oklch(62.7% 0.194 149.214));
+  --ui-color-success-700: var(--color-green-700, oklch(52.7% 0.154 150.069));
+  --ui-color-success-800: var(--color-green-800, oklch(44.8% 0.119 151.328));
+  --ui-color-success-900: var(--color-green-900, oklch(39.3% 0.095 152.535));
+  --ui-color-success-950: var(--color-green-950, oklch(26.6% 0.065 152.934));
+  --ui-color-info-50: var(--color-blue-50, oklch(97% 0.014 254.604));
+  --ui-color-info-100: var(--color-blue-100, oklch(93.2% 0.032 255.585));
+  --ui-color-info-200: var(--color-blue-200, oklch(88.2% 0.059 254.128));
+  --ui-color-info-300: var(--color-blue-300, oklch(80.9% 0.105 251.813));
+  --ui-color-info-400: var(--color-blue-400, oklch(70.7% 0.165 254.624));
+  --ui-color-info-500: var(--color-blue-500, oklch(62.3% 0.214 259.815));
+  --ui-color-info-600: var(--color-blue-600, oklch(54.6% 0.245 262.881));
+  --ui-color-info-700: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  --ui-color-info-800: var(--color-blue-800, oklch(42.4% 0.199 265.638));
+  --ui-color-info-900: var(--color-blue-900, oklch(37.9% 0.146 265.522));
+  --ui-color-info-950: var(--color-blue-950, oklch(28.2% 0.091 267.935));
+  --ui-color-warning-50: var(--color-yellow-50, oklch(98.7% 0.026 102.212));
+  --ui-color-warning-100: var(--color-yellow-100, oklch(97.3% 0.071 103.193));
+  --ui-color-warning-200: var(--color-yellow-200, oklch(94.5% 0.129 101.54));
+  --ui-color-warning-300: var(--color-yellow-300, oklch(90.5% 0.182 98.111));
+  --ui-color-warning-400: var(--color-yellow-400, oklch(85.2% 0.199 91.936));
+  --ui-color-warning-500: var(--color-yellow-500, oklch(79.5% 0.184 86.047));
+  --ui-color-warning-600: var(--color-yellow-600, oklch(68.1% 0.162 75.834));
+  --ui-color-warning-700: var(--color-yellow-700, oklch(55.4% 0.135 66.442));
+  --ui-color-warning-800: var(--color-yellow-800, oklch(47.6% 0.114 61.907));
+  --ui-color-warning-900: var(--color-yellow-900, oklch(42.1% 0.095 57.708));
+  --ui-color-warning-950: var(--color-yellow-950, oklch(28.6% 0.066 53.813));
+  --ui-color-error-50: var(--color-red-50, oklch(97.1% 0.013 17.38));
+  --ui-color-error-100: var(--color-red-100, oklch(93.6% 0.032 17.717));
+  --ui-color-error-200: var(--color-red-200, oklch(88.5% 0.062 18.334));
+  --ui-color-error-300: var(--color-red-300, oklch(80.8% 0.114 19.571));
+  --ui-color-error-400: var(--color-red-400, oklch(70.4% 0.191 22.216));
+  --ui-color-error-500: var(--color-red-500, oklch(63.7% 0.237 25.331));
+  --ui-color-error-600: var(--color-red-600, oklch(57.7% 0.245 27.325));
+  --ui-color-error-700: var(--color-red-700, oklch(50.5% 0.213 27.518));
+  --ui-color-error-800: var(--color-red-800, oklch(44.4% 0.177 26.899));
+  --ui-color-error-900: var(--color-red-900, oklch(39.6% 0.141 25.723));
+  --ui-color-error-950: var(--color-red-950, oklch(25.8% 0.092 26.042));
+  --ui-color-neutral-50: var(--color-slate-50, oklch(98.4% 0.003 247.858));
+  --ui-color-neutral-100: var(--color-slate-100, oklch(96.8% 0.007 247.896));
+  --ui-color-neutral-200: var(--color-slate-200, oklch(92.9% 0.013 255.508));
+  --ui-color-neutral-300: var(--color-slate-300, oklch(86.9% 0.022 252.894));
+  --ui-color-neutral-400: var(--color-slate-400, oklch(70.4% 0.04 256.788));
+  --ui-color-neutral-500: var(--color-slate-500, oklch(55.4% 0.046 257.417));
+  --ui-color-neutral-600: var(--color-slate-600, oklch(44.6% 0.043 257.281));
+  --ui-color-neutral-700: var(--color-slate-700, oklch(37.2% 0.044 257.287));
+  --ui-color-neutral-800: var(--color-slate-800, oklch(27.9% 0.041 260.031));
+  --ui-color-neutral-900: var(--color-slate-900, oklch(20.8% 0.042 265.755));
+  --ui-color-neutral-950: var(--color-slate-950, oklch(12.9% 0.042 264.695));
+  }
+  :root, :host, .light {
+  --ui-primary: var(--ui-color-primary-500);
+  --ui-secondary: var(--ui-color-secondary-500);
+  --ui-success: var(--ui-color-success-500);
+  --ui-info: var(--ui-color-info-500);
+  --ui-warning: var(--ui-color-warning-500);
+  --ui-error: var(--ui-color-error-500);
+  }
+  .dark {
+  --ui-primary: var(--ui-color-primary-400);
+  --ui-secondary: var(--ui-color-secondary-400);
+  --ui-success: var(--ui-color-success-400);
+  --ui-info: var(--ui-color-info-400);
+  --ui-warning: var(--ui-color-warning-400);
+  --ui-error: var(--ui-color-error-400);
+  }
+}
+  </style>
+  <title>
+   チャネルアクセストークンv2.1を発行する | LINE Developers
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="https://static.line-scdn.net/laicon/edge/latest/laicon.min.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/entry.RjUY_jqM.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/BaseLayout.DryLLHoQ.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/TransitionExpand.C7MR6gY2.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/MarkdownControls.BbnXTJ19.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/HeaderAnchor.DXszml2g.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/ProsePre.D5orA6B_.css" rel="stylesheet"/>
+  <link as="fetch" crossorigin="anonymous" href="./generate-json-web-token/_payload.json?b7cd7a21-3fab-4351-b588-f3a82989c407" rel="preload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C4Qefsoz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/D7tIDfdc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DS7rYW_M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DlAUqK2U.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DLfO8wDK.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/Ccjmmn3c.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CEXHtn8H.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B4DL1Cgs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B0gykE3i.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BFu_P-Ux.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DJi4jbM6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DZRjkML6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BJRELFIM.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C0hVKBUl.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CUpphwBz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BheWnx7M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C0MXvZso.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/vST1u8lx.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BffxFq_0.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CyAW9Z2F.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BUNJUvUR.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C945TDiu.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/bTg4ECcz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DYazWEBN.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/xOr79HUc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CTeDT3Cq.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CoRt-dtU.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/ClbflBZs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/5rLYfZ6F.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B6sVujaj.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DEKEuJU2.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BPUzo62M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C308N652.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CmV3vphY.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DMRlQYjX.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CMRidz-K.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CnrI_PHs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DP-8-zy_.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/ByRlcCLv.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DkhTipoD.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DUpy5nRH.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/pJdh5yQe.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BIQOJEGl.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CudgkPls.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C1EJ6VMG.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BZrkcSa6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C3hkkU40.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/SU5N3tJc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/D5ri4A5D.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CAodJV2Y.js" rel="modulepreload"/>
+  <script crossorigin="" src="/_nuxt/C4Qefsoz.js" type="module">
+  </script>
+  <meta content="チャネルアクセストークンv2.1を発行する" property="og:title"/>
+  <meta content="https://developers.line.biz/images/ogtags/twitter-ogtag.jpg" property="og:image"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta content="@LINE_DEV" name="twitter:site:id"/>
+  <meta content="https://developers.line.biz/images/ogtags/twitter-ogtag.jpg" name="twitter:image"/>
+  <link href="./generate-json-web-token/" id="i18n-can" rel="canonical"/>
+  <meta content="https://developers.line.biz/ja/docs/messaging-api/generate-json-web-token/" property="og:url"/>
+  <meta content="ja_JP" id="i18n-og" property="og:locale"/>
+  <meta content="en_US" id="i18n-og-alt-en-US" property="og:locale:alternate"/>
+  <meta content="LINEプラットフォームでは、4種類のチャネルアクセストークンが利用可能です。このうち、チャネルアクセストークンv2.1とステートレスチャネルアクセストークンは、JSON Web Token（JWT）を用いて生成することができます。このページでは、アサーション署名キーの仕様と、署名キーからJWTを生成する方法、また生成..." property="og:description"/>
+  <meta content="チャネルアクセストークンv2.1を発行する" name="twitter:title"/>
+  <meta content="LINEプラットフォームでは、4種類のチャネルアクセストークンが利用可能です。このうち、チャネルアクセストークンv2.1とステートレスチャネルアクセストークンは、JSON Web Token（JWT）を用いて生成することができます。このページでは、アサーション署名キーの仕様と、署名キーからJWTを生成する方法、また生成..." name="twitter:description"/>
+  <script>
+   "use strict";(()=>{const t=window,e=document.documentElement,c=["dark","light"],n=getStorageValue("localStorage","nuxt-color-mode")||"system";let i=n==="system"?u():n;const r=e.getAttribute("data-color-mode-forced");r&&(i=r),l(i),t["__NUXT_COLOR_MODE__"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=""+o+"",a="";e.classList?e.classList.add(s):e.className+=" "+s,a&&e.setAttribute("data-"+a,o)}function d(o){const s=""+o+"",a="";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,"g"),""),a&&e.removeAttribute("data-"+a)}function f(o){return t.matchMedia("(prefers-color-scheme"+o+")")}function u(){if(t.matchMedia&&f("").media!=="not all"){for(const o of c)if(f(":"+o).matches)return o}return"light"}})();function getStorageValue(t,e){switch(t){case"localStorage":return window.localStorage.getItem(e);case"sessionStorage":return window.sessionStorage.getItem(e);case"cookie":return getCookie(e);default:return null}}function getCookie(t){const c=("; "+window.document.cookie).split("; "+t+"=");if(c.length===2)return c.pop()?.split(";").shift()}
+  </script>
+ </head>
+ <body class="" style="">
+  <div class="isolate" id="__nuxt">
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <div class="nuxt-loading-indicator" style="position:fixed;top:0;right:0;left:0;pointer-events:none;width:auto;height:3px;opacity:0;background:repeating-linear-gradient(to right,#00dc82 0%,#34cdfe 50%,#0047e1 100%);background-size:0% auto;transform:scaleX(0%);transform-origin:left;transition:transform 0.1s, height 0.4s, opacity 0.4s;z-index:999999;">
+   </div>
+   <!--[-->
+   <!--[-->
+   <div class="relative h-screen" data-v-856df627="">
+    <header class="h-[64px] border-b bg-white px-5 transition sm:px-8 md:h-[89px] dark:bg-black fixed z-50 w-full bg-white" data-v-856df627="" data-v-d701af64="" id="navbar">
+     <div class="flex h-full items-center justify-between" data-v-d701af64="">
+      <div class="flex h-full items-center justify-between gap-14 overflow-x-hidden" data-v-d701af64="">
+       <a class="" data-v-d701af64="" href="/ja/">
+        <div class="logo relative" data-v-d701af64="">
+         <img alt="LINE Developers" class="logo logo-default" data-v-d701af64="" id="logo-black" src="/images/common/logo-black.svg"/>
+         <img alt="LINE Developers" class="logo transition" data-v-d701af64="" id="logo-white" src="/images/common/logo-white.svg"/>
+        </div>
+       </a>
+       <div class="navlinks-wrapper hidden-on-search dark:border-ldsgray-750 top-0 bottom-0 left-0 hidden h-full w-10/12 max-w-full transform flex-col justify-between gap-6 overflow-x-hidden overflow-y-auto border-0 bg-transparent px-0 py-0 text-black lg:flex dark:bg-transparent dark:text-white" data-v-d701af64="" id="navlinks-wrapper">
+        <div class="hide-scrollbar flex h-full items-center justify-between overflow-x-auto" data-v-d701af64="" id="navlinks">
+         <!--[-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/about/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            About
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/news/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            ニュース
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/services/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            プロダクト
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4 router-link-active" data-v-0a8e869e="" data-v-d701af64="" href="/ja/docs/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            ドキュメント
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/tips/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            Tips
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/faq/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            FAQ
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/glossary/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            用語集
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4 cursor-default" data-v-0a8e869e="" data-v-d701af64="">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            その他
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--]-->
+        </div>
+       </div>
+      </div>
+      <div class="h-full" data-v-d701af64="">
+       <div class="flex h-full items-center justify-between gap-3" data-v-d701af64="">
+        <!--[-->
+        <!--[-->
+        <button class="custom header-nav-item h-[36px] rounded px-2 transition hover:opacity-60" data-grace-area-trigger="" data-state="closed" data-v-d701af64="">
+         <span class="lar la-search">
+         </span>
+        </button>
+        <!--v-if-->
+        <!--]-->
+        <!--]-->
+        <!--[-->
+        <!--[-->
+        <!--[-->
+        <button class="focus-visible:outline-primary text-muted hidden! lg:flex! custom header-nav-item flex h-[36px] min-h-[32px] cursor-pointer items-center gap-1 rounded px-2 transition-opacity hover:text-inherit hover:no-underline hover:opacity-60 dark:hover:text-inherit" data-grace-area-trigger="" data-state="closed" type="button" variant="link">
+         <!--[-->
+         <!--[-->
+         <span class="lar la-earth">
+         </span>
+         <span class="lar la-caret-down la-xs">
+         </span>
+         <!--]-->
+         <!--]-->
+        </button>
+        <!--]-->
+        <!-- -->
+        <!--v-if-->
+        <!--]-->
+        <!--]-->
+        <!--[-->
+        <!--[-->
+        <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse bg-elevated light:bg-gray-300 h-[36px] w-32 rounded-full dark:bg-gray-700" role="alert">
+         <!--[-->
+         <!--]-->
+        </div>
+        <!--]-->
+        <!--]-->
+        <a class="text-white custom hidden-on-search navbar-btn group relative flex h-[36px] w-[36px] items-center justify-center overflow-hidden rounded-full transition hidden lg:flex" data-v-d701af64="" href="#">
+         <div class="bg-ldsgray-800 navbar-btn-bg absolute left-0 z-0 h-full w-full rounded-full transition group-hover:opacity-80">
+         </div>
+         <span class="lar la-sun la-lg z-10">
+         </span>
+        </a>
+        <!--[-->
+        <!--[-->
+        <button class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:text-primary/75 active:text-primary/75 disabled:text-primary aria-disabled:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary p-1.5 ml-1 lg:hidden!" data-slot="base" data-v-d701af64="" type="button">
+         <!--[-->
+         <!--[-->
+         <!-- -->
+         <!--]-->
+         <!--[-->
+         <div aria-expanded="false" class="vp-toggle-sidebar-button" data-v-d701af64="" role="button" tabindex="0" title="Toggle side nav">
+          <div aria-hidden="true" class="icon">
+           <span class="btn-mobile-sidebar">
+           </span>
+           <span class="btn-mobile-sidebar">
+           </span>
+           <span class="btn-mobile-sidebar">
+           </span>
+          </div>
+         </div>
+         <!--]-->
+         <!--[-->
+         <!-- -->
+         <!--]-->
+         <!--]-->
+        </button>
+        <!--]-->
+        <!--]-->
+       </div>
+      </div>
+     </div>
+     <!--[-->
+     <!--[-->
+     <span class="hidden" data-grace-area-trigger="" data-state="closed" data-v-d701af64="">
+     </span>
+     <!-- -->
+     <!--v-if-->
+     <!--]-->
+     <!--]-->
+     <!-- -->
+    </header>
+    <div class="sidebar-mask fixed top-0 left-0 z-40 h-full w-full backdrop-blur-sm" data-v-856df627="" style="display:none;">
+    </div>
+    <div class="theme-container flex min-h-screen flex-col pt-[64px] md:pt-[89px]" data-v-856df627="" id="page-wrapper">
+     <div class="content-wrapper z-10 text-white bg-page-header-blue lg:h-[140px]" data-v-856df627="" data-v-f9b4630c="" id="pageHeader">
+      <!-- -->
+      <div class="flex h-full items-center" data-v-f9b4630c="">
+       <div class="w-full" data-v-f9b4630c="">
+        <div class="content-container relative mx-auto py-4 sm:py-8" data-v-5de5e8ce="" data-v-f9b4630c="">
+         <div class="flex items-center gap-5 overflow-hidden sm:gap-12" data-v-117ee8c6="" data-v-5de5e8ce="">
+          <a class="hover:bg-white/20 custom flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center rounded-md border border-white/50 text-sm text-white transition" data-v-117ee8c6="" href="#">
+           <span class="lar la-chevron-left" data-v-117ee8c6="">
+           </span>
+          </a>
+          <div class="hide-scrollbar transparent-edges h-[56px] flex-shrink-1 overflow-x-scroll text-black" data-v-117ee8c6="">
+           <!--[-->
+           <div class="loading-skeleton-wrapper flex gap-4 overflow-hidden opacity-30 sm:gap-6 md:gap-8" data-v-117ee8c6="">
+            <!--[-->
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <!--]-->
+           </div>
+           <!--]-->
+          </div>
+          <a class="hover:bg-white/20 custom flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center rounded-md border border-white/50 text-sm text-white transition" data-v-117ee8c6="" href="#">
+           <span class="lar la-chevron-right" data-v-117ee8c6="">
+           </span>
+          </a>
+         </div>
+         <!-- -->
+        </div>
+       </div>
+      </div>
+     </div>
+     <nav aria-label="breadcrumb" class="breadcrumb-nav border-b content-wrapper" data-v-5647f7c2="" data-v-856df627="" id="breadcrumbNav">
+      <ol class="content-container breadcrumb-nav mx-auto flex flex-wrap gap-x-2 py-4 text-sm" data-v-5647f7c2="">
+       <!--[-->
+       <li class="breadcrumb-item" data-v-5647f7c2="">
+        <span class="text-ldsgray-650 dark:text-ldsgray-400 cursor-default" data-v-5647f7c2="">
+         Home
+        </span>
+       </li>
+       <!--]-->
+       <li class="breadcrumb-item inline-flex h-full items-center" data-v-5647f7c2="">
+        <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 mt-[3px] inline-block h-4 w-24" data-v-5647f7c2="" role="alert">
+         <!--[-->
+         <!--]-->
+        </div>
+       </li>
+      </ol>
+     </nav>
+     <!-- -->
+     <!-- -->
+     <div class="content-wrapper mt-0 grow" data-v-856df627="" id="content-wrapper" style="min-height:calc(100dvh - 560px);">
+      <div class="mt-0 2xl:mt-[80px] 2xl:gap-[80px] 2xl:pt-8 mb-[200px] docs-content-container 3xl:mr-auto mr-auto ml-auto 2xl:mr-0 2xl:grid" data-v-856df627="" style="grid-template-columns:160px 1fr;">
+       <div class="sidebar hide-scrollbar sticky top-40 w-full overflow-x-hidden z-30 hidden flex-shrink-0 2xl:block" data-v-2fa9d756="" data-v-856df627="">
+        <ul class="p-0" data-v-2fa9d756="">
+         <!--[-->
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             APIリファレンス
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             開発ガイドライン
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-transparent" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-linegreen font-bold custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             クイックスタート
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-90 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <div class="border-ldsgray-300 dark:border-ldsgray-700 border-collapse rounded border" data-v-d147b524="">
+            <ul data-v-d147b524="">
+             <!--[-->
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./overview/">
+               <!--[-->
+               Messaging APIの概要
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./message-types/">
+               <!--[-->
+               メッセージタイプ
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./getting-started/">
+               <!--[-->
+               Messaging APIを始めよう
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a aria-current="page" class="router-link-active router-link-exact-active bg-linegreen !dark:text-white relative gap-3 rounded font-bold !text-white custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./generate-json-web-token/">
+               <!--[-->
+               チャネルアクセストークンv2.1を発行する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./building-bot/">
+               <!--[-->
+               ボットを作成する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./pricing/">
+               <!--[-->
+               Messaging APIの料金
+               <!--]-->
+              </a>
+             </li>
+             <!--]-->
+            </ul>
+           </div>
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             ガイド
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             Webhook
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リッチメニュー
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             LINE Bot Designer
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             Flex Message
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             概念
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リファレンス
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リソース
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700 border-b-0" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             導入事例
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <!--]-->
+        </ul>
+       </div>
+       <div class="content-container mt-[80px] 2xl:mt-0 lg:grid lg:gap-[60px]" data-v-856df627="" style="grid-template-columns:1fr 180px;">
+        <div class="content-with-sidebars" data-v-856df627="">
+         <!--[-->
+         <!--[-->
+         <main class="markdown-content">
+          <div>
+           <h1 class="text-4xl text-highlighted font-bold mb-8 scroll-mt-[calc(45px+var(--ui-header-height))] lg:scroll-mt-(--ui-header-height)" id="">
+            <!--[-->
+            チャネルアクセストークンv2.1を発行する
+            <!--]-->
+           </h1>
+           <div class="-mt-12 mb-12 flex flex-wrap items-center justify-start gap-1.5 text-xs sm:-mt-16 sm:mb-16" data-v-48a65092="">
+            <button class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white" data-v-48a65092="">
+             <span class="lar la-regular la-copy" data-v-48a65092="">
+             </span>
+             LLM用にコピー
+            </button>
+            <a class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white no-external-icon" data-v-48a65092="" href="./generate-json-web-token/index.html.md" rel="nofollow" target="_blank">
+             <!--[-->
+             <span class="lar la-regular la-markdown" data-v-48a65092="">
+             </span>
+             Markdownで表示
+             <!--]-->
+            </a>
+            <a class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white no-external-icon" data-v-48a65092="" href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/generate-json-web-token/index.html.md" rel="nofollow" target="_blank">
+             <!--[-->
+             <span class="la lapr" data-v-48a65092="" role="img" style="height:1em;aspect-ratio:1;display:inline-grid;place-items:stretch;">
+              <svg data-laicon-version="5.1" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+               <g transform="translate(-2 -2)">
+                <path d="M2 11.873a9.874 9.874 0 0 0 6.752 9.368c.494.09.674-.215.674-.477 0-.234-.008-.855-.013-1.679-2.746.6-3.326-1.323-3.326-1.323a2.611 2.611 0 0 0-1.1-1.444c-.9-.613.068-.6.068-.6a2.073 2.073 0 0 1 1.512 1.017 2.1 2.1 0 0 0 2.873.821 2.1 2.1 0 0 1 .627-1.32c-2.192-.249-4.5-1.1-4.5-4.88A3.821 3.821 0 0 1 6.59 8.707a3.547 3.547 0 0 1 .1-2.612s.826-.266 2.71 1.012a9.338 9.338 0 0 1 4.943 0C16.23 5.829 17.057 6.1 17.057 6.1a3.538 3.538 0 0 1 .1 2.612 3.811 3.811 0 0 1 1.015 2.649c0 3.793-2.308 4.628-4.508 4.872a2.354 2.354 0 0 1 .671 1.828c0 1.32-.012 2.385-.012 2.708 0 .264.177.572.678.475A9.873 9.873 0 1 0 2 11.873z">
+                </path>
+               </g>
+              </svg>
+             </span>
+             GitHubで表示
+             <!--]-->
+            </a>
+           </div>
+           <p>
+            <!--[-->
+            LINEプラットフォームでは、
+            <a class="" href="/ja/docs/basics/channel-access-token/#channel-access-token-types">
+             <!--[-->
+             <!--[-->
+             4種類のチャネルアクセストークン
+             <!--]-->
+             <!--]-->
+            </a>
+            が利用可能です。このうち、チャネルアクセストークンv2.1とステートレスチャネルアクセストークンは、JSON Web Token（JWT）を用いて生成することができます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            このページでは、アサーション署名キーの仕様と、署名キーからJWTを生成する方法、また生成したJWTを用いてチャネルアクセストークンを発行する方法について、チャネルアクセストークンv2.1を対象に説明します。
+            <!--]-->
+           </p>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="issue-channel-access-token-v2-1-diagram">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#issue-channel-access-token-v2-1-diagram">
+             <!--[-->
+             <!--[-->
+             チャネルアクセストークンv2.1の発行手順
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            チャネルアクセストークンv2.1の発行手順は下図のとおりです。この図は、次の3つの手順を表しています。
+            <!--]-->
+           </p>
+           <ul>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a aria-current="page" class="router-link-active router-link-exact-active" href="./generate-json-web-token/#create-an-assertion-signing-key">
+              <!--[-->
+              <!--[-->
+              アサーション署名キーを発行する
+              <!--]-->
+              <!--]-->
+             </a>
+             （図の手順1）
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a aria-current="page" class="router-link-active router-link-exact-active" href="./generate-json-web-token/#generate-jwt">
+              <!--[-->
+              <!--[-->
+              JWTを生成する
+              <!--]-->
+              <!--]-->
+             </a>
+             （図の手順6）
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a aria-current="page" class="router-link-active router-link-exact-active" href="./generate-json-web-token/#issue_a_channel_access_token_v2_1">
+              <!--[-->
+              <!--[-->
+              チャネルアクセストークンv2.1を発行する
+              <!--]-->
+              <!--]-->
+             </a>
+             （図の手順7）
+             <!--]-->
+            </li>
+            <!--]-->
+           </ul>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in w-fix-960 bg-border" data-state="closed" src="/media/messaging-api/channel-access-token/channel-access-token-issue-flow.svg" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <div class="tip custom-block">
+            <div class="custom-block-title">
+             <i class="las la-check-circle mr-2">
+             </i>
+             <span>
+              チャネルアクセストークンv2.1の仕様
+             </span>
+            </div>
+            <div>
+             <!--[-->
+             <p>
+              <!--[-->
+              チャネルアクセストークンv2.1の発行における認証方式は
+              <a class="" href="https://datatracker.ietf.org/doc/html/rfc7523#section-2.1" rel="nofollow" target="_blank">
+               <!--[-->
+               <!--[-->
+               「Using JWTs as Authorization Grants」（RFC 7523）
+               <!--]-->
+               <!--]-->
+              </a>
+              に準拠しています。これは
+              <a class="" href="https://datatracker.ietf.org/doc/html/rfc7521#section-4.1" rel="nofollow" target="_blank">
+               <!--[-->
+               <!--[-->
+               OAuth Assertion Framework（RFC 7521）
+               <!--]-->
+               <!--]-->
+              </a>
+              のAssertion Frameworkにおいて
+              <a class="" href="https://datatracker.ietf.org/doc/html/rfc7519" rel="nofollow" target="_blank">
+               <!--[-->
+               <!--[-->
+               JSON Web Token（RFC 7519）
+               <!--]-->
+               <!--]-->
+              </a>
+              を利用したものです。
+              <!--]-->
+             </p>
+             <!--]-->
+            </div>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="create-an-assertion-signing-key">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#create-an-assertion-signing-key">
+             <!--[-->
+             <!--[-->
+             アサーション署名キーを発行する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            アサーション署名キーの発行は、次の2つの手順で行います。
+            <!--]-->
+           </p>
+           <ul>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a class="" href="#generate-a-key-pair-for-the-assertion-signing-key">
+              <!--[-->
+              <!--[-->
+              1. アサーション署名キーのキーペアを生成する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#register-public-key-and-get-kid">
+              <!--[-->
+              <!--[-->
+              2. 公開鍵を登録し、
+              <code>
+               <!--[-->
+               kid
+               <!--]-->
+              </code>
+              を取得する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <!--]-->
+           </ul>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="generate-a-key-pair-for-the-assertion-signing-key">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#generate-a-key-pair-for-the-assertion-signing-key">
+             <!--[-->
+             <!--[-->
+             1. アサーション署名キーのキーペアを生成する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            JWTを生成するには、アサーション署名キーのキーペア（秘密鍵・公開鍵）をあらかじめ生成する必要があります。
+            <!--]-->
+           </p>
+           <h4 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="assertion-signing-key-specification">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#assertion-signing-key-specification">
+             <!--[-->
+             <!--[-->
+             アサーション署名キーの仕様
+             <!--]-->
+             <!--]-->
+            </a>
+           </h4>
+           <p>
+            <!--[-->
+            以下の基準を満たす
+            <a class="" href="https://datatracker.ietf.org/doc/html/rfc7517" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             JSON Web Key（RFC7517）
+             <!--]-->
+             <!--]-->
+            </a>
+            をJWTのアサーション署名キーとして利用できます。
+            <!--]-->
+           </p>
+           <ol>
+            <!--[-->
+            <li>
+             <!--[-->
+             RSA公開鍵である（
+             <code>
+              <!--[-->
+              kty
+              <!--]-->
+             </code>
+             プロパティに
+             <code>
+              <!--[-->
+              RSA
+              <!--]-->
+             </code>
+             が設定されている）こと。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             RSA鍵長が2048bitであること。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             署名アルゴリズムにRS256（RSASSA-PKCS1-v1_5 with SHA256）が使われている（
+             <code>
+              <!--[-->
+              alg
+              <!--]-->
+             </code>
+             プロパティに
+             <code>
+              <!--[-->
+              RS256
+              <!--]-->
+             </code>
+             が設定されている）こと。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             公開鍵を署名に利用することが明示されている（
+             <code>
+              <!--[-->
+              use
+              <!--]-->
+             </code>
+             や
+             <code>
+              <!--[-->
+              key_ops
+              <!--]-->
+             </code>
+             が下表のように設定されている）こと。
+             <!--]-->
+            </li>
+            <!--]-->
+           </ol>
+           <p>
+            <!--[-->
+            したがって、アサーション署名キーの公開鍵には、以下のフィールドが含まれている必要があります。
+            <!--]-->
+           </p>
+           <table class="parameter-table">
+            <!--[-->
+            <thead>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <th>
+               <!--[-->
+               プロパティ
+               <!--]-->
+              </th>
+              <th>
+               <!--[-->
+               説明
+               <!--]-->
+              </th>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </thead>
+            <tbody>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                kty
+                <!--]-->
+               </code>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               鍵で使用される暗号アルゴリズムファミリー。
+               <code>
+                <!--[-->
+                RSA
+                <!--]-->
+               </code>
+               を指定してください。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                alg
+                <!--]-->
+               </code>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               鍵で使用されるアルゴリズム。
+               <code>
+                <!--[-->
+                RS256
+                <!--]-->
+               </code>
+               を指定してください。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                use
+                <!--]-->
+               </code>
+               <sup>
+                *1
+               </sup>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               鍵の用途。
+               <code>
+                <!--[-->
+                sig
+                <!--]-->
+               </code>
+               を指定してください。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                key_ops
+                <!--]-->
+               </code>
+               <sup>
+                *1
+               </sup>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               鍵の利用が想定されているオペレーション。
+               <code>
+                <!--[-->
+                ["verify"]
+                <!--]-->
+               </code>
+               のみを指定してください。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                e
+                <!--]-->
+               </code>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               公開鍵を復元するための絶対値
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                n
+                <!--]-->
+               </code>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               公開鍵を復元するための暗号指数
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </tbody>
+            <!--]-->
+           </table>
+           <p>
+            <!--[-->
+            *1
+            <code>
+             <!--[-->
+             use
+             <!--]-->
+            </code>
+            か
+            <code>
+             <!--[-->
+             key_ops
+             <!--]-->
+            </code>
+            のいずれかを指定してください。
+            <!--]-->
+           </p>
+           <div class="warning custom-block">
+            <div class="custom-block-title">
+             <i class="las la-exclamation-circle mr-2">
+             </i>
+             <span>
+              公開鍵を登録する前に確認すること
+             </span>
+            </div>
+            <div>
+             <!--[-->
+             <p>
+              <!--[-->
+              登録する公開鍵に
+              <code>
+               <!--[-->
+               kid
+               <!--]-->
+              </code>
+              プロパティがないことを確認してください。アサーション署名キーの公開鍵に
+              <code>
+               <!--[-->
+               kid
+               <!--]-->
+              </code>
+              プロパティが含まれているとエラーになります。これは
+              <code>
+               <!--[-->
+               kid
+               <!--]-->
+              </code>
+              がLINE Developersコンソールで公開鍵を登録したときにのみ発行されるためです。
+              <!--]-->
+             </p>
+             <!--]-->
+            </div>
+           </div>
+           <p>
+            <!--[-->
+            アサーション署名キーのキーペアは、公開仕様をもとに開発者が自らプログラムを作成して生成することもできますが、仕様を満たすライブラリ等を利用するとより簡単に生成できます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            以下、アサーション署名キーを生成する手順の例を紹介します。
+            <!--]-->
+           </p>
+           <ul>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a class="" href="#use-go-lang">
+              <!--[-->
+              <!--[-->
+              jwx（Go言語のライブラリ）でキーペアを生成する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#use-python">
+              <!--[-->
+              <!--[-->
+              JWCrypto（Pythonのライブラリ）でキーペアを生成する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="#use-browser">
+              <!--[-->
+              <!--[-->
+              ブラウザでキーペアを生成する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <!--]-->
+           </ul>
+           <h4 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="use-go-lang">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#use-go-lang">
+             <!--[-->
+             <!--[-->
+             jwx（Go言語のライブラリ）でキーペアを生成する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h4>
+           <p>
+            <!--[-->
+            <a class="" href="https://github.com/lestrrat-go/jwx/tree/develop/v2/cmd/jwx" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             jwxコマンドラインツール
+             <!--]-->
+             <!--]-->
+            </a>
+            でキーペアを生成できます。このコマンドラインツールは、オープンソースのGo言語ライブラリである
+            <a class="" href="https://github.com/lestrrat-go/jwx" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             jwx
+             <!--]-->
+             <!--]-->
+            </a>
+            の一部で、JWTの実装に使用されます。Go言語の開発環境が整っていない場合は、
+            <a class="" href="https://go.dev/doc/install" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             Go言語の公式サイト
+             <!--]-->
+             <!--]-->
+            </a>
+            からGoをダウンロードしてください。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            以下の手順でアサーション署名キーを発行してください。
+            <!--]-->
+           </p>
+           <h5 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="install-command-line-tool">
+            </div>
+            <!--[-->
+            <!--[-->
+            1. jwxコマンドラインツールをインストールする
+            <!--]-->
+            <!--]-->
+           </h5>
+           <p>
+            <!--[-->
+            以下のコマンドを実行し、jwxコマンドラインツールをインストールします。
+            <!--]-->
+           </p>
+           <div class="relative" code="$ git clone https://github.com/lestrrat-go/jwx.git
+$ cd jwx
+$ make jwx
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">$</span><span class="s9uIt"> git</span><span class="s9uIt"> clone</span><span class="s9uIt"> https://github.com/lestrrat-go/jwx.git
+</span></span><span class="line" line="2"><span class="sQhOw">$</span><span class="s9uIt"> cd</span><span class="s9uIt"> jwx
+</span></span><span class="line" line="3"><span class="sQhOw">$</span><span class="s9uIt"> make</span><span class="s9uIt"> jwx
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            インストール完了後、jwxコマンドラインツールがインストールされたパスが表示されます。
+            <!--]-->
+           </p>
+           <div class="relative" code="// インストールされたパスの表示例
+Installed jwx in {インストールされたパス}
+">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             text
+            </span>
+            <pre class="language-text"><!--[--><code>// インストールされたパスの表示例
+Installed jwx in {インストールされたパス}
+</code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            以降の手順でコマンドが実行できるよう、パスの設定を行ってください。
+            <!--]-->
+           </p>
+           <h5 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="generate-private-and-public-key">
+            </div>
+            <!--[-->
+            <!--[-->
+            2. 秘密鍵と公開鍵を生成する
+            <!--]-->
+            <!--]-->
+           </h5>
+           <p>
+            <!--[-->
+            以下のコマンドを実行し秘密鍵を生成します。
+            <!--]-->
+           </p>
+           <div class="relative" code="$ jwx jwk generate --type RSA --keysize 2048 --template '{&quot;alg&quot;:&quot;RS256&quot;,&quot;use&quot;:&quot;sig&quot;}' &gt; private.key
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">$</span><span class="s9uIt"> jwx</span><span class="s9uIt"> jwk</span><span class="s9uIt"> generate</span><span class="sFSAA"> --type</span><span class="s9uIt"> RSA</span><span class="sFSAA"> --keysize</span><span class="sFSAA"> 2048</span><span class="sFSAA"> --template</span><span class="s9uIt"> '{"alg":"RS256","use":"sig"}'</span><span class="suJrU"> &gt;</span><span class="s9uIt"> private.key
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            秘密鍵をもとに公開鍵を生成します。
+            <!--]-->
+           </p>
+           <div class="relative" code="$ jwx jwk format --public-key private.key &gt; public.key
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">$</span><span class="s9uIt"> jwx</span><span class="s9uIt"> jwk</span><span class="s9uIt"> format</span><span class="sFSAA"> --public-key</span><span class="s9uIt"> private.key</span><span class="suJrU"> &gt;</span><span class="s9uIt"> public.key
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            成功すると以下のような秘密鍵と公開鍵が生成されます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <strong>
+             <!--[-->
+             秘密鍵の例：
+             <!--]-->
+            </strong>
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "alg": "RS256",
+  "d": "JeSJWnvZ......",
+  "dp": "gBDRXGg7......",
+  "dq": "MjFJ4xM9......",
+  "e": "AQ......",
+  "kty": "RSA",
+  "n": "pTS2jGso......",
+  "p": "xQibzkW6......",
+  "q": "1qWtyQ9s......",
+  "qi": "sdVGblc......",
+  "use": "sig"
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "alg"</span><span class="sZEs4">: </span><span class="s9uIt">"RS256"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "d"</span><span class="sZEs4">: </span><span class="s9uIt">"JeSJWnvZ......"</span><span class="sZEs4">,
+</span></span><span class="line" line="4"><span class="sPWt5">  "dp"</span><span class="sZEs4">: </span><span class="s9uIt">"gBDRXGg7......"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">  "dq"</span><span class="sZEs4">: </span><span class="s9uIt">"MjFJ4xM9......"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">  "e"</span><span class="sZEs4">: </span><span class="s9uIt">"AQ......"</span><span class="sZEs4">,
+</span></span><span class="line" line="7"><span class="sPWt5">  "kty"</span><span class="sZEs4">: </span><span class="s9uIt">"RSA"</span><span class="sZEs4">,
+</span></span><span class="line" line="8"><span class="sPWt5">  "n"</span><span class="sZEs4">: </span><span class="s9uIt">"pTS2jGso......"</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="sPWt5">  "p"</span><span class="sZEs4">: </span><span class="s9uIt">"xQibzkW6......"</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="sPWt5">  "q"</span><span class="sZEs4">: </span><span class="s9uIt">"1qWtyQ9s......"</span><span class="sZEs4">,
+</span></span><span class="line" line="11"><span class="sPWt5">  "qi"</span><span class="sZEs4">: </span><span class="s9uIt">"sdVGblc......"</span><span class="sZEs4">,
+</span></span><span class="line" line="12"><span class="sPWt5">  "use"</span><span class="sZEs4">: </span><span class="s9uIt">"sig"
+</span></span><span class="line" line="13"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            <strong>
+             <!--[-->
+             公開鍵の例：
+             <!--]-->
+            </strong>
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "alg": "RS256",
+  "e": "AQ......",
+  "kty": "RSA",
+  "n": "pTS2jGso......",
+  "use": "sig"
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "alg"</span><span class="sZEs4">: </span><span class="s9uIt">"RS256"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "e"</span><span class="sZEs4">: </span><span class="s9uIt">"AQ......"</span><span class="sZEs4">,
+</span></span><span class="line" line="4"><span class="sPWt5">  "kty"</span><span class="sZEs4">: </span><span class="s9uIt">"RSA"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">  "n"</span><span class="sZEs4">: </span><span class="s9uIt">"pTS2jGso......"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">  "use"</span><span class="sZEs4">: </span><span class="s9uIt">"sig"
+</span></span><span class="line" line="7"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h4 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="use-python">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#use-python">
+             <!--[-->
+             <!--[-->
+             JWCrypto（Pythonのライブラリ）でキーペアを生成する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h4>
+           <p>
+            <!--[-->
+            JWTを実装するためのオープンソースのPythonライブラリである
+            <a class="" href="https://github.com/latchset/jwcrypto" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             JWCrypto
+             <!--]-->
+             <!--]-->
+            </a>
+            でキーペアを生成できます。JWCryptoを使用するには、Python3とpipがインストールされている必要があります。Python3がインストールされていない場合は、
+            <a class="" href="https://www.python.org/downloads/" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             Pythonの公式サイト
+             <!--]-->
+             <!--]-->
+            </a>
+            からお使いのOSに対応したインストーラーをダウンロードし、インストールを進めてください。Python3がインストールされると、pipもインストールされます。Python3はインストールされているがpipがインストールされていない場合は、『
+            <a class="" href="https://pip.pypa.io/en/stable/installation/" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             pip documentation
+             <!--]-->
+             <!--]-->
+            </a>
+            』を参照し、インストールしてください。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            以下の手順でアサーション署名キーを発行してください。
+            <!--]-->
+           </p>
+           <h5 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="install-jwcrypto">
+            </div>
+            <!--[-->
+            <!--[-->
+            1. JWCryptoをインストールする
+            <!--]-->
+            <!--]-->
+           </h5>
+           <p>
+            <!--[-->
+            以下のコマンドを実行しJWCryptoをインストールします。
+            <!--]-->
+           </p>
+           <div class="relative" code="$ pip install jwcrypto
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             python
+            </span>
+            <pre class="language-python shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sjcI2">$</span><span class="sZEs4"> pip install jwcrypto
+</span></span></code><!--]--></pre>
+           </div>
+           <h5 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="generate-private-and-public-key-python">
+            </div>
+            <!--[-->
+            <!--[-->
+            2. 秘密鍵と公開鍵を生成するコードを書く
+            <!--]-->
+            <!--]-->
+           </h5>
+           <p>
+            <!--[-->
+            以下のように、
+            <code>
+             <!--[-->
+             kty
+             <!--]-->
+            </code>
+            を
+            <code>
+             <!--[-->
+             RSA
+             <!--]-->
+            </code>
+            、
+            <code>
+             <!--[-->
+             alg
+             <!--]-->
+            </code>
+            を
+            <code>
+             <!--[-->
+             RS256
+             <!--]-->
+            </code>
+            、
+            <code>
+             <!--[-->
+             use
+             <!--]-->
+            </code>
+            を
+            <code>
+             <!--[-->
+             sig
+             <!--]-->
+            </code>
+            、
+            <code>
+             <!--[-->
+             size
+             <!--]-->
+            </code>
+            を
+            <code>
+             <!--[-->
+             2048
+             <!--]-->
+            </code>
+            として引数に指定して、秘密鍵と公開鍵を生成するpythonファイルを作成します。
+            <!--]-->
+           </p>
+           <div class="relative" code="from jwcrypto import jwk
+import json
+key = jwk.JWK.generate(kty='RSA', alg='RS256', use='sig', size=2048)
+
+private_key = key.export_private()
+public_key = key.export_public()
+
+print(&quot;=== private key ===\n&quot;+json.dumps(json.loads(private_key),indent=2))
+print(&quot;=== public key ===\n&quot;+json.dumps(json.loads(public_key),indent=2))
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             python
+            </span>
+            <pre class="language-python shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="suJrU">from</span><span class="sZEs4"> jwcrypto </span><span class="suJrU">import</span><span class="sZEs4"> jwk
+</span></span><span class="line" line="2"><span class="suJrU">import</span><span class="sZEs4"> json
+</span></span><span class="line" line="3"><span class="sZEs4">key </span><span class="suJrU">=</span><span class="sZEs4"> jwk.</span><span class="sFSAA">JWK</span><span class="sZEs4">.generate(</span><span class="sQhOw">kty</span><span class="suJrU">=</span><span class="s9uIt">'RSA'</span><span class="sZEs4">, </span><span class="sQhOw">alg</span><span class="suJrU">=</span><span class="s9uIt">'RS256'</span><span class="sZEs4">, </span><span class="sQhOw">use</span><span class="suJrU">=</span><span class="s9uIt">'sig'</span><span class="sZEs4">, </span><span class="sQhOw">size</span><span class="suJrU">=</span><span class="sFSAA">2048</span><span class="sZEs4">)
+</span></span><span class="line" line="4"><span emptylineplaceholder="true">
+</span></span><span class="line" line="5"><span class="sZEs4">private_key </span><span class="suJrU">=</span><span class="sZEs4"> key.export_private()
+</span></span><span class="line" line="6"><span class="sZEs4">public_key </span><span class="suJrU">=</span><span class="sZEs4"> key.export_public()
+</span></span><span class="line" line="7"><span emptylineplaceholder="true">
+</span></span><span class="line" line="8"><span class="sFSAA">print</span><span class="sZEs4">(</span><span class="s9uIt">"=== private key ===</span><span class="suJrU">\n</span><span class="s9uIt">"</span><span class="suJrU">+</span><span class="sZEs4">json.dumps(json.loads(private_key),</span><span class="sQhOw">indent</span><span class="suJrU">=</span><span class="sFSAA">2</span><span class="sZEs4">))
+</span></span><span class="line" line="9"><span class="sFSAA">print</span><span class="sZEs4">(</span><span class="s9uIt">"=== public key ===</span><span class="suJrU">\n</span><span class="s9uIt">"</span><span class="suJrU">+</span><span class="sZEs4">json.dumps(json.loads(public_key),</span><span class="sQhOw">indent</span><span class="suJrU">=</span><span class="sFSAA">2</span><span class="sZEs4">))
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            pythonファイルは任意のファイル名で保存してください。ここでは、
+            <code>
+             <!--[-->
+             app.py
+             <!--]-->
+            </code>
+            とします。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            保存したpythonファイルと同じディレクトリで、以下のコマンドを実行し、秘密鍵をもとに公開鍵を生成します。
+            <!--]-->
+           </p>
+           <div class="relative" code="$ python app.py
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">$</span><span class="s9uIt"> python</span><span class="s9uIt"> app.py
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            成功すると以下のような秘密鍵と公開鍵が標準出力されます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <strong>
+             <!--[-->
+             秘密鍵の例：
+             <!--]-->
+            </strong>
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "alg": "RS256",
+  "d": "zKh7iwIIPXXFKYQS...",
+  "dp": "u1qKg_43UeuGpZFI...",
+  "dq": "69AzYgpcg0ckypUrv...",
+  "e": "AQ..",
+  "kty": "RSA",
+  "n": "_RzHf7cgG_i6Pdo_...",
+  "p": "_20iRavoSrMIwWuRPxo...",
+  "q": "_a5QodMBbEriAgztXvHi...",
+  "qi": "JozdjTtK57IFLeVAB...",
+  "use": "sig"
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "alg"</span><span class="sZEs4">: </span><span class="s9uIt">"RS256"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "d"</span><span class="sZEs4">: </span><span class="s9uIt">"zKh7iwIIPXXFKYQS..."</span><span class="sZEs4">,
+</span></span><span class="line" line="4"><span class="sPWt5">  "dp"</span><span class="sZEs4">: </span><span class="s9uIt">"u1qKg_43UeuGpZFI..."</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">  "dq"</span><span class="sZEs4">: </span><span class="s9uIt">"69AzYgpcg0ckypUrv..."</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">  "e"</span><span class="sZEs4">: </span><span class="s9uIt">"AQ.."</span><span class="sZEs4">,
+</span></span><span class="line" line="7"><span class="sPWt5">  "kty"</span><span class="sZEs4">: </span><span class="s9uIt">"RSA"</span><span class="sZEs4">,
+</span></span><span class="line" line="8"><span class="sPWt5">  "n"</span><span class="sZEs4">: </span><span class="s9uIt">"_RzHf7cgG_i6Pdo_..."</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="sPWt5">  "p"</span><span class="sZEs4">: </span><span class="s9uIt">"_20iRavoSrMIwWuRPxo..."</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="sPWt5">  "q"</span><span class="sZEs4">: </span><span class="s9uIt">"_a5QodMBbEriAgztXvHi..."</span><span class="sZEs4">,
+</span></span><span class="line" line="11"><span class="sPWt5">  "qi"</span><span class="sZEs4">: </span><span class="s9uIt">"JozdjTtK57IFLeVAB..."</span><span class="sZEs4">,
+</span></span><span class="line" line="12"><span class="sPWt5">  "use"</span><span class="sZEs4">: </span><span class="s9uIt">"sig"
+</span></span><span class="line" line="13"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            <strong>
+             <!--[-->
+             公開鍵の例：
+             <!--]-->
+            </strong>
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "alg": "RS256",
+  "e": "AQAB",
+  "kty": "RSA",
+  "n": "_RzHf7cgG_i6Pdo...",
+  "use": "sig"
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "alg"</span><span class="sZEs4">: </span><span class="s9uIt">"RS256"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "e"</span><span class="sZEs4">: </span><span class="s9uIt">"AQAB"</span><span class="sZEs4">,
+</span></span><span class="line" line="4"><span class="sPWt5">  "kty"</span><span class="sZEs4">: </span><span class="s9uIt">"RSA"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">  "n"</span><span class="sZEs4">: </span><span class="s9uIt">"_RzHf7cgG_i6Pdo..."</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">  "use"</span><span class="sZEs4">: </span><span class="s9uIt">"sig"
+</span></span><span class="line" line="7"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h4 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="use-browser">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#use-browser">
+             <!--[-->
+             <!--[-->
+             ブラウザでキーペアを生成する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h4>
+           <p>
+            <!--[-->
+            <a class="" href="https://developer.mozilla.org/ja/docs/Web/API/Web_Crypto_API" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             Web Crypto API
+             <!--]-->
+             <!--]-->
+            </a>
+            に対応しているウェブブラウザを使用している場合、
+            <a class="" href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/generateKey" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             <code>
+              <!--[-->
+              SubtleCrypto.generateKey()
+              <!--]-->
+             </code>
+             <!--]-->
+             <!--]-->
+            </a>
+            メソッドを使って秘密鍵と公開鍵を生成できます。たとえば、Google Chromeを使用している場合は、Chromeのデベロッパーツールのコンソールから以下のコードを入力して実行します。
+            <!--]-->
+           </p>
+           <div class="relative" code='(async () =&gt; {
+  const pair = await crypto.subtle.generateKey(
+    {
+      name: "RSASSA-PKCS1-v1_5",
+      modulusLength: 2048,
+      publicExponent: new Uint8Array([1, 0, 1]),
+      hash: "SHA-256",
+    },
+    true,
+    ["sign", "verify"],
+  );
+
+  console.log("=== private key ===");
+  console.log(
+    JSON.stringify(
+      await crypto.subtle.exportKey("jwk", pair.privateKey),
+      null,
+      "  ",
+    ),
+  );
+
+  console.log("=== public key ===");
+  console.log(
+    JSON.stringify(
+      await crypto.subtle.exportKey("jwk", pair.publicKey),
+      null,
+      "  ",
+    ),
+  );
+})();
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             javascript
+            </span>
+            <pre class="language-javascript shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">(</span><span class="suJrU">async</span><span class="sZEs4"> () </span><span class="suJrU">=&gt;</span><span class="sZEs4"> {
+</span></span><span class="line" line="2"><span class="suJrU">  const</span><span class="sFSAA"> pair</span><span class="suJrU"> =</span><span class="suJrU"> await</span><span class="sZEs4"> crypto.subtle.</span><span class="sc3cj">generateKey</span><span class="sZEs4">(
+</span></span><span class="line" line="3"><span class="sZEs4">    {
+</span></span><span class="line" line="4"><span class="sZEs4">      name: </span><span class="s9uIt">"RSASSA-PKCS1-v1_5"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sZEs4">      modulusLength: </span><span class="sFSAA">2048</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sZEs4">      publicExponent: </span><span class="suJrU">new</span><span class="sc3cj"> Uint8Array</span><span class="sZEs4">([</span><span class="sFSAA">1</span><span class="sZEs4">, </span><span class="sFSAA">0</span><span class="sZEs4">, </span><span class="sFSAA">1</span><span class="sZEs4">]),
+</span></span><span class="line" line="7"><span class="sZEs4">      hash: </span><span class="s9uIt">"SHA-256"</span><span class="sZEs4">,
+</span></span><span class="line" line="8"><span class="sZEs4">    },
+</span></span><span class="line" line="9"><span class="sFSAA">    true</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="sZEs4">    [</span><span class="s9uIt">"sign"</span><span class="sZEs4">, </span><span class="s9uIt">"verify"</span><span class="sZEs4">],
+</span></span><span class="line" line="11"><span class="sZEs4">  );
+</span></span><span class="line" line="12"><span emptylineplaceholder="true">
+</span></span><span class="line" line="13"><span class="sZEs4">  console.</span><span class="sc3cj">log</span><span class="sZEs4">(</span><span class="s9uIt">"=== private key ==="</span><span class="sZEs4">);
+</span></span><span class="line" line="14"><span class="sZEs4">  console.</span><span class="sc3cj">log</span><span class="sZEs4">(
+</span></span><span class="line" line="15"><span class="sFSAA">    JSON</span><span class="sZEs4">.</span><span class="sc3cj">stringify</span><span class="sZEs4">(
+</span></span><span class="line" line="16"><span class="suJrU">      await</span><span class="sZEs4"> crypto.subtle.</span><span class="sc3cj">exportKey</span><span class="sZEs4">(</span><span class="s9uIt">"jwk"</span><span class="sZEs4">, pair.privateKey),
+</span></span><span class="line" line="17"><span class="sFSAA">      null</span><span class="sZEs4">,
+</span></span><span class="line" line="18"><span class="s9uIt">      "  "</span><span class="sZEs4">,
+</span></span><span class="line" line="19"><span class="sZEs4">    ),
+</span></span><span class="line" line="20"><span class="sZEs4">  );
+</span></span><span class="line" line="21"><span emptylineplaceholder="true">
+</span></span><span class="line" line="22"><span class="sZEs4">  console.</span><span class="sc3cj">log</span><span class="sZEs4">(</span><span class="s9uIt">"=== public key ==="</span><span class="sZEs4">);
+</span></span><span class="line" line="23"><span class="sZEs4">  console.</span><span class="sc3cj">log</span><span class="sZEs4">(
+</span></span><span class="line" line="24"><span class="sFSAA">    JSON</span><span class="sZEs4">.</span><span class="sc3cj">stringify</span><span class="sZEs4">(
+</span></span><span class="line" line="25"><span class="suJrU">      await</span><span class="sZEs4"> crypto.subtle.</span><span class="sc3cj">exportKey</span><span class="sZEs4">(</span><span class="s9uIt">"jwk"</span><span class="sZEs4">, pair.publicKey),
+</span></span><span class="line" line="26"><span class="sFSAA">      null</span><span class="sZEs4">,
+</span></span><span class="line" line="27"><span class="s9uIt">      "  "</span><span class="sZEs4">,
+</span></span><span class="line" line="28"><span class="sZEs4">    ),
+</span></span><span class="line" line="29"><span class="sZEs4">  );
+</span></span><span class="line" line="30"><span class="sZEs4">})();
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            成功すると以下のような秘密鍵と公開鍵が生成されます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <strong>
+             <!--[-->
+             秘密鍵の例：
+             <!--]-->
+            </strong>
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "alg": "RS256",
+  "d": "GaDzOmc4......",
+  "dp": "WAByrYmh......",
+  "dq": "WLwjYun0......",
+  "e": "AQ......",
+  "ext": true,
+  "key_ops": [
+    "sign"
+  ],
+  "kty": "RSA",
+  "n": "vsbOUoFA......",
+  "p": "5QJitCu9......",
+  "q": "1ULfGui5......",
+  "qi": "2cK4apee......"
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "alg"</span><span class="sZEs4">: </span><span class="s9uIt">"RS256"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "d"</span><span class="sZEs4">: </span><span class="s9uIt">"GaDzOmc4......"</span><span class="sZEs4">,
+</span></span><span class="line" line="4"><span class="sPWt5">  "dp"</span><span class="sZEs4">: </span><span class="s9uIt">"WAByrYmh......"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">  "dq"</span><span class="sZEs4">: </span><span class="s9uIt">"WLwjYun0......"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">  "e"</span><span class="sZEs4">: </span><span class="s9uIt">"AQ......"</span><span class="sZEs4">,
+</span></span><span class="line" line="7"><span class="sPWt5">  "ext"</span><span class="sZEs4">: </span><span class="sFSAA">true</span><span class="sZEs4">,
+</span></span><span class="line" line="8"><span class="sPWt5">  "key_ops"</span><span class="sZEs4">: [
+</span></span><span class="line" line="9"><span class="s9uIt">    "sign"
+</span></span><span class="line" line="10"><span class="sZEs4">  ],
+</span></span><span class="line" line="11"><span class="sPWt5">  "kty"</span><span class="sZEs4">: </span><span class="s9uIt">"RSA"</span><span class="sZEs4">,
+</span></span><span class="line" line="12"><span class="sPWt5">  "n"</span><span class="sZEs4">: </span><span class="s9uIt">"vsbOUoFA......"</span><span class="sZEs4">,
+</span></span><span class="line" line="13"><span class="sPWt5">  "p"</span><span class="sZEs4">: </span><span class="s9uIt">"5QJitCu9......"</span><span class="sZEs4">,
+</span></span><span class="line" line="14"><span class="sPWt5">  "q"</span><span class="sZEs4">: </span><span class="s9uIt">"1ULfGui5......"</span><span class="sZEs4">,
+</span></span><span class="line" line="15"><span class="sPWt5">  "qi"</span><span class="sZEs4">: </span><span class="s9uIt">"2cK4apee......"
+</span></span><span class="line" line="16"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            <strong>
+             <!--[-->
+             公開鍵の例：
+             <!--]-->
+            </strong>
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "alg": "RS256",
+  "e": "AQ......",
+  "ext": true,
+  "key_ops": [
+    "verify"
+  ],
+  "kty": "RSA",
+  "n": "vsbOUoFA......"
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "alg"</span><span class="sZEs4">: </span><span class="s9uIt">"RS256"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "e"</span><span class="sZEs4">: </span><span class="s9uIt">"AQ......"</span><span class="sZEs4">,
+</span></span><span class="line" line="4"><span class="sPWt5">  "ext"</span><span class="sZEs4">: </span><span class="sFSAA">true</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">  "key_ops"</span><span class="sZEs4">: [
+</span></span><span class="line" line="6"><span class="s9uIt">    "verify"
+</span></span><span class="line" line="7"><span class="sZEs4">  ],
+</span></span><span class="line" line="8"><span class="sPWt5">  "kty"</span><span class="sZEs4">: </span><span class="s9uIt">"RSA"</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="sPWt5">  "n"</span><span class="sZEs4">: </span><span class="s9uIt">"vsbOUoFA......"
+</span></span><span class="line" line="10"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="register-public-key-and-get-kid">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#register-public-key-and-get-kid">
+             <!--[-->
+             <!--[-->
+             2. 公開鍵を登録し、
+             <code>
+              <!--[-->
+              kid
+              <!--]-->
+             </code>
+             を取得する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            キーペアを生成したら、
+            <a class="" href="/console/">
+             <!--[-->
+             <!--[-->
+             LINE Developersコンソール
+             <!--]-->
+             <!--]-->
+            </a>
+            に公開鍵を登録し、
+            <code>
+             <!--[-->
+             kid
+             <!--]-->
+            </code>
+            を取得します。公開鍵を登録するには、コンソールにアクセスし、自分のチャネルのチャネル設定を開きます。［
+            <strong>
+             <!--[-->
+             チャネル基本設定
+             <!--]-->
+            </strong>
+            ］タブをクリックし、次に、アサーション署名キーの横にある［
+            <strong>
+             <!--[-->
+             公開鍵を登録する
+             <!--]-->
+            </strong>
+            ］ボタンをクリックします。公開鍵を入力し、［
+            <strong>
+             <!--[-->
+             登録
+             <!--]-->
+            </strong>
+            ］ボタンで登録を確定します。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            公開鍵の登録に成功すると、
+            <code>
+             <!--[-->
+             kid
+             <!--]-->
+            </code>
+            を取得できます。
+            <!--]-->
+           </p>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="generate-jwt">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#generate-jwt">
+             <!--[-->
+             <!--[-->
+             JWTを生成する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            JWTは、ヘッダー、ペイロード、署名からなる文字列です。すべての項目が必須フィールドです。JWTを生成するには、任意の
+            <a class="" href="https://www.jwt.io/ja/libraries" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             JWTライブラリ
+             <!--]-->
+             <!--]-->
+            </a>
+            を使用することもできますし、アサーション署名キーを使って独自のコードをスクラッチで書くこともできます。
+            <!--]-->
+           </p>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="header">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#header">
+             <!--[-->
+             <!--[-->
+             ヘッダー
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            ヘッダーには以下のプロパティを含める必要があります。
+            <!--]-->
+           </p>
+           <table class="parameter-table">
+            <!--[-->
+            <thead>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <th>
+               <!--[-->
+               プロパティ
+               <!--]-->
+              </th>
+              <th>
+               <!--[-->
+               型
+               <!--]-->
+              </th>
+              <th>
+               <!--[-->
+               説明
+               <!--]-->
+              </th>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </thead>
+            <tbody>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                alg
+                <!--]-->
+               </code>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               String
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               JWT生成のアルゴリズム。
+               <code>
+                <!--[-->
+                RS256
+                <!--]-->
+               </code>
+               を指定します。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                typ
+                <!--]-->
+               </code>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               String
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               トークンのタイプ。
+               <code>
+                <!--[-->
+                JWT
+                <!--]-->
+               </code>
+               を指定します。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                kid
+                <!--]-->
+               </code>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               String
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               キーID。「
+               <a class="" href="#register-public-key-and-get-kid">
+                <!--[-->
+                <!--[-->
+                2. 公開鍵を登録し、kidを取得する
+                <!--]-->
+                <!--]-->
+               </a>
+               」で取得した
+               <code>
+                <!--[-->
+                kid
+                <!--]-->
+               </code>
+               の値を指定します。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </tbody>
+            <!--]-->
+           </table>
+           <p>
+            <!--[-->
+            以下は、ヘッダーの値をデコードした例です。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "alg": "RS256",
+  "typ": "JWT",
+  "kid": "536e453c-aa93-4449-8e90-add2608783c6"
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "alg"</span><span class="sZEs4">: </span><span class="s9uIt">"RS256"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "typ"</span><span class="sZEs4">: </span><span class="s9uIt">"JWT"</span><span class="sZEs4">,
+</span></span><span class="line" line="4"><span class="sPWt5">  "kid"</span><span class="sZEs4">: </span><span class="s9uIt">"536e453c-aa93-4449-8e90-add2608783c6"
+</span></span><span class="line" line="5"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="payload">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#payload">
+             <!--[-->
+             <!--[-->
+             ペイロード
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            ペイロードには以下のプロパティを含める必要があります。
+            <!--]-->
+           </p>
+           <table class="parameter-table">
+            <!--[-->
+            <thead>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <th>
+               <!--[-->
+               プロパティ
+               <!--]-->
+              </th>
+              <th>
+               <!--[-->
+               タイプ
+               <!--]-->
+              </th>
+              <th>
+               <!--[-->
+               説明
+               <!--]-->
+              </th>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </thead>
+            <tbody>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                iss
+                <!--]-->
+               </code>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               String
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               チャネルID。
+               <a class="" href="/console/">
+                <!--[-->
+                <!--[-->
+                LINE Developersコンソール
+                <!--]-->
+                <!--]-->
+               </a>
+               で取得できます。このプロパティの値は
+               <code>
+                <!--[-->
+                sub
+                <!--]-->
+               </code>
+               と同じにする必要があります。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                sub
+                <!--]-->
+               </code>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               String
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               チャネルID。
+               <a class="" href="/console/">
+                <!--[-->
+                <!--[-->
+                LINE Developersコンソール
+                <!--]-->
+                <!--]-->
+               </a>
+               で取得できます。このプロパティの値は
+               <code>
+                <!--[-->
+                iss
+                <!--]-->
+               </code>
+               と同じにする必要があります。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                aud
+                <!--]-->
+               </code>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               String
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                https://api.line.me/
+                <!--]-->
+               </code>
+               を指定します。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                exp
+                <!--]-->
+               </code>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               Number
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               JWTの有効期限をUNIX時間（秒）で指定します。JWTアサーションの最大有効期間は30分です。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <code>
+                <!--[-->
+                token_exp
+                <!--]-->
+               </code>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               Number
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               チャネルアクセストークンの有効期間を秒単位で指定します。チャネルアクセストークンの最大有効期間は30日です。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </tbody>
+            <!--]-->
+           </table>
+           <p>
+            <!--[-->
+            以下は、デコードされたペイロードの例です。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "iss": "1234567890",
+  "sub": "1234567890",
+  "aud": "https://api.line.me/",
+  "exp": 1559702522,
+  "token_exp": 86400
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "iss"</span><span class="sZEs4">: </span><span class="s9uIt">"1234567890"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "sub"</span><span class="sZEs4">: </span><span class="s9uIt">"1234567890"</span><span class="sZEs4">,
+</span></span><span class="line" line="4"><span class="sPWt5">  "aud"</span><span class="sZEs4">: </span><span class="s9uIt">"https://api.line.me/"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">  "exp"</span><span class="sZEs4">: </span><span class="sFSAA">1559702522</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">  "token_exp"</span><span class="sZEs4">: </span><span class="sFSAA">86400
+</span></span><span class="line" line="7"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="signature">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#signature">
+             <!--[-->
+             <!--[-->
+             署名
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            JWTを生成するには、ヘッダーとペイロードに署名する必要があります。
+            <a class="" href="#jwt-use-nodejs">
+             <!--[-->
+             <!--[-->
+             node-jose
+             <!--]-->
+             <!--]-->
+            </a>
+            （Node.jsのライブラリ）または
+            <a class="" href="#jwt-use-python">
+             <!--[-->
+             <!--[-->
+             PyJWT
+             <!--]-->
+             <!--]-->
+            </a>
+            （Pythonのライブラリ）を利用して、署名を作成し、それを使ってJWTを生成する方法を説明します。
+            <!--]-->
+           </p>
+           <h4 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="jwt-use-nodejs">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#jwt-use-nodejs">
+             <!--[-->
+             <!--[-->
+             node-jose（Node.jsのライブラリ）でJWTを生成する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h4>
+           <p>
+            <!--[-->
+            Node.jsのライブラリであるnode-joseを使って署名を作成し、JWTを生成するには、
+            <a class="" href="https://nodejs.org/en" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             Node.js
+             <!--]-->
+             <!--]-->
+            </a>
+            と
+            <a class="" href="https://github.com/cisco/node-jose#installing" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             node-jose
+             <!--]-->
+             <!--]-->
+            </a>
+            がインストールされていることを確認してください。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            以下は、node-joseを使って
+            <strong>
+             <!--[-->
+             秘密鍵
+             <!--]-->
+            </strong>
+            で署名してJWTを生成するコードの例です。このコードを使って自分のJWTを生成する場合は、
+            <code>
+             <!--[-->
+             privateKey
+             <!--]-->
+            </code>
+            を自分のアサーション署名キーの
+            <strong>
+             <!--[-->
+             秘密鍵
+             <!--]-->
+            </strong>
+            の値に変更し、
+            <code>
+             <!--[-->
+             header
+             <!--]-->
+            </code>
+            と
+            <code>
+             <!--[-->
+             payload
+             <!--]-->
+            </code>
+            の値をそれぞれ変更してから実行します。内容が改ざんされていないことを証明するために、必ず
+            <strong>
+             <!--[-->
+             秘密鍵
+             <!--]-->
+            </strong>
+            で署名します。node-joseの使い方について詳しくは、
+            <a class="" href="https://github.com/cisco/node-jose#installing" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             node-jose
+             <!--]-->
+             <!--]-->
+            </a>
+            を参照してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='let jose = require("node-jose");
+
+let privateKey = `
+{
+    "p": "4h8yEw4q9VkzhXMgXZsIZVkEuZ49EmtWYk9zs0hPTa24ejjRMA6KTYh_va0GlaChO9t0MVQVuduznt-OFZyRAinr4svU4MKD2A3gTHJJCxs0xICva8rkHXqxfPwXngpb5L_xFURbXcSTzMcKckWuOpyPznAgY4XsZxw0t7ewj9E",
+    "kty": "RSA",
+    "q": "pVhBdRN5K3MEiZzU4__TsrtSBJDD_stu60m73iIvsHIrvK3Dmfl-J1zhsyOvi3NH9mVXpUimBwP8nTe-BlVM71G7_EotFHeKH1zTmBlx6AOngmrc40W2Hd__OZW0NfC_xOTvI_Ea2BNGoGtcrIGVFLTivJ4y9wAVOKA058zJ0ls",
+    "d": "ObzE_-TROJazDm-ry-8TKRBMGzwcwTK6lMFSk7n-Xp6h7cDauSdRRYnZivC1lh5plVG3I9aUmPTRbVk7nrPqOlp4WWKQ27lyLd5IogbArpXgnBSkp9Zy0lWzvOsI3gHNnYuehyksHB53FIK93t838JfDQoXUUzalNoNwAGfkTNZxT4GIXGMGzNck2Z_urOATMf8-wdad-u4a5IB2KfHugwH2kw-Zig7fbdcN4_DeKWpuigdesa48Yj_hRJRws-mVFp-xHlGJehumnM_v8FLD85ap8L1hwvBqdJQeurcLXYzZbtdp9a5GpJI7gzOTMoEdxIKlEIIbaOKv4rkkztdhoQ",
+    "e": "AQAB",
+    "use": "sig",
+    "kid": "536e453c-aa93-4449-8e90-add2608783c6",
+    "qi": "XQ2puK9LT5yimyJXlXb4nHEBzPGe3sYbaZW_gMK4iHuM8cseImwLNP8ZIeGaNx5X_hZ6ZOzkjtYJjY85fvaWa2UDGdGlEw3ZO-Nk0Qu_exBrqZgZAsua75TjpJRw01Yd1TNBx5MYuvhltJLsjW-uSjcE-rZoO74FEe9pYYeQjI4",
+    "dp": "Qq_wlK4Y_ULRbwoFAZY3Y6xdOGDyofwF_fhwpu8sdDxHq8QV7ZZcM4GOKuJcjsRQyNZv7hxeS_H_h1tnC_igy4KRjtGOdrrnJ1DwVZte72eWqF1LXv73R7pnnfS7AmELuOriruL6Dy1qaXpKGmlyeNazkq5-3tsgXUh0Q7po2AE",
+    "alg": "RS256",
+    "dq": "Wj1ovDT8lLIZb-Ggby9YotuJT-SSk6UDzHZZikquLGajaD6N2qNILsOKivKXBEzOobN9uj-EHaAXZtbdZyd27cZ2CqORJvJ299b5xLFecXpNGeio1YFee7-c1BjYWfgjMZqgycT1GairizINSjkO3FY8ySSuPBBXhKgrN7eVDrE",
+    "n": "kgwP0NPaoAwhSh9iLlRaT7FSRbNsl6T5-j-bB3xAT1UbsxOJ9v06S3_54bpYlEAkjlrO-i1vmSzfSVnqFXnjWThWRvPmBDth3Ka7hQm9UXjiAvTzYxXGFjyhALqa_-DQCtdrqIhi8E4hAuSu--kGgnFKg3G-21KJuqnVzsXrClGkxbmVufx0MJjJxr1YGfkTMG8i0dovS9tnkioDAkt1knupiYk5ir_WiNy4T-70T5s3ktC5_4Uz10hS-rWeUxiihzG8G7ceg84-Kt5jKP_AgUnel-ksRyfgSJCYC9nHyz913a3ALj3Dzt7TBaxwAjlxESrdNz5RE9DNDZfPmNWRSw"
+  }
+`;
+
+let header = {
+  alg: "RS256",
+  typ: "JWT",
+  kid: "536e453c-aa93-4449-8e90-add2608783c6",
+};
+
+let payload = {
+  iss: "1234567890",
+  sub: "1234567890",
+  aud: "https://api.line.me/",
+  exp: Math.floor(new Date().getTime() / 1000) + 60 * 30,
+  token_exp: 60 * 60 * 24 * 30,
+};
+
+jose.JWS.createSign(
+  { format: "compact", fields: header },
+  JSON.parse(privateKey),
+)
+  .update(JSON.stringify(payload))
+  .final()
+  .then((result) =&gt; {
+    console.log(result);
+  });
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             javascript
+            </span>
+            <pre class="language-javascript shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="suJrU">let</span><span class="sZEs4"> jose </span><span class="suJrU">=</span><span class="sc3cj"> require</span><span class="sZEs4">(</span><span class="s9uIt">"node-jose"</span><span class="sZEs4">);
+</span></span><span class="line" line="2"><span emptylineplaceholder="true">
+</span></span><span class="line" line="3"><span class="suJrU">let</span><span class="sZEs4"> privateKey </span><span class="suJrU">=</span><span class="s9uIt"> `
+</span></span><span class="line" line="4"><span class="s9uIt">{
+</span></span><span class="line" line="5"><span class="s9uIt">    "p": "4h8yEw4q9VkzhXMgXZsIZVkEuZ49EmtWYk9zs0hPTa24ejjRMA6KTYh_va0GlaChO9t0MVQVuduznt-OFZyRAinr4svU4MKD2A3gTHJJCxs0xICva8rkHXqxfPwXngpb5L_xFURbXcSTzMcKckWuOpyPznAgY4XsZxw0t7ewj9E",
+</span></span><span class="line" line="6"><span class="s9uIt">    "kty": "RSA",
+</span></span><span class="line" line="7"><span class="s9uIt">    "q": "pVhBdRN5K3MEiZzU4__TsrtSBJDD_stu60m73iIvsHIrvK3Dmfl-J1zhsyOvi3NH9mVXpUimBwP8nTe-BlVM71G7_EotFHeKH1zTmBlx6AOngmrc40W2Hd__OZW0NfC_xOTvI_Ea2BNGoGtcrIGVFLTivJ4y9wAVOKA058zJ0ls",
+</span></span><span class="line" line="8"><span class="s9uIt">    "d": "ObzE_-TROJazDm-ry-8TKRBMGzwcwTK6lMFSk7n-Xp6h7cDauSdRRYnZivC1lh5plVG3I9aUmPTRbVk7nrPqOlp4WWKQ27lyLd5IogbArpXgnBSkp9Zy0lWzvOsI3gHNnYuehyksHB53FIK93t838JfDQoXUUzalNoNwAGfkTNZxT4GIXGMGzNck2Z_urOATMf8-wdad-u4a5IB2KfHugwH2kw-Zig7fbdcN4_DeKWpuigdesa48Yj_hRJRws-mVFp-xHlGJehumnM_v8FLD85ap8L1hwvBqdJQeurcLXYzZbtdp9a5GpJI7gzOTMoEdxIKlEIIbaOKv4rkkztdhoQ",
+</span></span><span class="line" line="9"><span class="s9uIt">    "e": "AQAB",
+</span></span><span class="line" line="10"><span class="s9uIt">    "use": "sig",
+</span></span><span class="line" line="11"><span class="s9uIt">    "kid": "536e453c-aa93-4449-8e90-add2608783c6",
+</span></span><span class="line" line="12"><span class="s9uIt">    "qi": "XQ2puK9LT5yimyJXlXb4nHEBzPGe3sYbaZW_gMK4iHuM8cseImwLNP8ZIeGaNx5X_hZ6ZOzkjtYJjY85fvaWa2UDGdGlEw3ZO-Nk0Qu_exBrqZgZAsua75TjpJRw01Yd1TNBx5MYuvhltJLsjW-uSjcE-rZoO74FEe9pYYeQjI4",
+</span></span><span class="line" line="13"><span class="s9uIt">    "dp": "Qq_wlK4Y_ULRbwoFAZY3Y6xdOGDyofwF_fhwpu8sdDxHq8QV7ZZcM4GOKuJcjsRQyNZv7hxeS_H_h1tnC_igy4KRjtGOdrrnJ1DwVZte72eWqF1LXv73R7pnnfS7AmELuOriruL6Dy1qaXpKGmlyeNazkq5-3tsgXUh0Q7po2AE",
+</span></span><span class="line" line="14"><span class="s9uIt">    "alg": "RS256",
+</span></span><span class="line" line="15"><span class="s9uIt">    "dq": "Wj1ovDT8lLIZb-Ggby9YotuJT-SSk6UDzHZZikquLGajaD6N2qNILsOKivKXBEzOobN9uj-EHaAXZtbdZyd27cZ2CqORJvJ299b5xLFecXpNGeio1YFee7-c1BjYWfgjMZqgycT1GairizINSjkO3FY8ySSuPBBXhKgrN7eVDrE",
+</span></span><span class="line" line="16"><span class="s9uIt">    "n": "kgwP0NPaoAwhSh9iLlRaT7FSRbNsl6T5-j-bB3xAT1UbsxOJ9v06S3_54bpYlEAkjlrO-i1vmSzfSVnqFXnjWThWRvPmBDth3Ka7hQm9UXjiAvTzYxXGFjyhALqa_-DQCtdrqIhi8E4hAuSu--kGgnFKg3G-21KJuqnVzsXrClGkxbmVufx0MJjJxr1YGfkTMG8i0dovS9tnkioDAkt1knupiYk5ir_WiNy4T-70T5s3ktC5_4Uz10hS-rWeUxiihzG8G7ceg84-Kt5jKP_AgUnel-ksRyfgSJCYC9nHyz913a3ALj3Dzt7TBaxwAjlxESrdNz5RE9DNDZfPmNWRSw"
+</span></span><span class="line" line="17"><span class="s9uIt">  }
+</span></span><span class="line" line="18"><span class="s9uIt">`</span><span class="sZEs4">;
+</span></span><span class="line" line="19"><span emptylineplaceholder="true">
+</span></span><span class="line" line="20"><span class="suJrU">let</span><span class="sZEs4"> header </span><span class="suJrU">=</span><span class="sZEs4"> {
+</span></span><span class="line" line="21"><span class="sZEs4">  alg: </span><span class="s9uIt">"RS256"</span><span class="sZEs4">,
+</span></span><span class="line" line="22"><span class="sZEs4">  typ: </span><span class="s9uIt">"JWT"</span><span class="sZEs4">,
+</span></span><span class="line" line="23"><span class="sZEs4">  kid: </span><span class="s9uIt">"536e453c-aa93-4449-8e90-add2608783c6"</span><span class="sZEs4">,
+</span></span><span class="line" line="24"><span class="sZEs4">};
+</span></span><span class="line" line="25"><span emptylineplaceholder="true">
+</span></span><span class="line" line="26"><span class="suJrU">let</span><span class="sZEs4"> payload </span><span class="suJrU">=</span><span class="sZEs4"> {
+</span></span><span class="line" line="27"><span class="sZEs4">  iss: </span><span class="s9uIt">"1234567890"</span><span class="sZEs4">,
+</span></span><span class="line" line="28"><span class="sZEs4">  sub: </span><span class="s9uIt">"1234567890"</span><span class="sZEs4">,
+</span></span><span class="line" line="29"><span class="sZEs4">  aud: </span><span class="s9uIt">"https://api.line.me/"</span><span class="sZEs4">,
+</span></span><span class="line" line="30"><span class="sZEs4">  exp: Math.</span><span class="sc3cj">floor</span><span class="sZEs4">(</span><span class="suJrU">new</span><span class="sc3cj"> Date</span><span class="sZEs4">().</span><span class="sc3cj">getTime</span><span class="sZEs4">() </span><span class="suJrU">/</span><span class="sFSAA"> 1000</span><span class="sZEs4">) </span><span class="suJrU">+</span><span class="sFSAA"> 60</span><span class="suJrU"> *</span><span class="sFSAA"> 30</span><span class="sZEs4">,
+</span></span><span class="line" line="31"><span class="sZEs4">  token_exp: </span><span class="sFSAA">60</span><span class="suJrU"> *</span><span class="sFSAA"> 60</span><span class="suJrU"> *</span><span class="sFSAA"> 24</span><span class="suJrU"> *</span><span class="sFSAA"> 30</span><span class="sZEs4">,
+</span></span><span class="line" line="32"><span class="sZEs4">};
+</span></span><span class="line" line="33"><span emptylineplaceholder="true">
+</span></span><span class="line" line="34"><span class="sZEs4">jose.</span><span class="sFSAA">JWS</span><span class="sZEs4">.</span><span class="sc3cj">createSign</span><span class="sZEs4">(
+</span></span><span class="line" line="35"><span class="sZEs4">  { format: </span><span class="s9uIt">"compact"</span><span class="sZEs4">, fields: header },
+</span></span><span class="line" line="36"><span class="sFSAA">  JSON</span><span class="sZEs4">.</span><span class="sc3cj">parse</span><span class="sZEs4">(privateKey),
+</span></span><span class="line" line="37"><span class="sZEs4">)
+</span></span><span class="line" line="38"><span class="sZEs4">  .</span><span class="sc3cj">update</span><span class="sZEs4">(</span><span class="sFSAA">JSON</span><span class="sZEs4">.</span><span class="sc3cj">stringify</span><span class="sZEs4">(payload))
+</span></span><span class="line" line="39"><span class="sZEs4">  .</span><span class="sc3cj">final</span><span class="sZEs4">()
+</span></span><span class="line" line="40"><span class="sZEs4">  .</span><span class="sc3cj">then</span><span class="sZEs4">((</span><span class="sQhOw">result</span><span class="sZEs4">) </span><span class="suJrU">=&gt;</span><span class="sZEs4"> {
+</span></span><span class="line" line="41"><span class="sZEs4">    console.</span><span class="sc3cj">log</span><span class="sZEs4">(result);
+</span></span><span class="line" line="42"><span class="sZEs4">  });
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            Base64形式でエンコードされたヘッダーとクレーム・セット、および秘密鍵（rsa_private.pemファイルなど）を、ヘッダーで定義したアルゴリズムを使用して署名します。署名後、Base64形式でエンコードされた結果がJWTです。以下はJWTの例です。
+            <!--]-->
+           </p>
+           <div class="relative" code="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJjNjU4NWYzLThkZGQtNDZjNC05YmUyLWI1NGE3MGFhOTRlYSJ9.eyJpc3MiOiIxNjUzOTQ3MTcyIiwic3ViIjoiMTY1Mzk0NzE3MiIsImF1ZCI6Imh0dHBzOi8vYXBpLmxpbmUubWUvIiwiZXhwIjoiMTU4NTIwMDA2MiIsInRva2VuX2V4cCI6IjI1OTIwMDAifQ.UVG6PAEub-OPbZ3nJuVxRRPjY6Sz_eIHJV9DTTAHCR79YsG4yWvoa9AeIctibb6IJQKgTEV7mF7LsUDmXldEDqYwyEmKs38zj_995Ntc9SYBFphHpr09NqfMoqMphwKqms2NOnqgcHreFs27d9Q0Qv8Rtv2t7SB2cVO__KrsjzYNs3miTvDdkqYLXFo5fXwuzNtHOCAJomd6bhMR8Yd1-vJmtMCBPK4hmA98w8fG_NhcyLbw-B9AuxQ6z92zXiRhNyPlK_3ce2T7HtgUluJ4xJl4xdLJ_C6hvTAqtQxmSiJKzbjUiANF6hVBTomU8vkaIjEKjnlT1uPMihfrsA3pzQ
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJjNjU4NWYzLThkZGQtNDZjNC05YmUyLWI1NGE3MGFhOTRlYSJ9.eyJpc3MiOiIxNjUzOTQ3MTcyIiwic3ViIjoiMTY1Mzk0NzE3MiIsImF1ZCI6Imh0dHBzOi8vYXBpLmxpbmUubWUvIiwiZXhwIjoiMTU4NTIwMDA2MiIsInRva2VuX2V4cCI6IjI1OTIwMDAifQ.UVG6PAEub-OPbZ3nJuVxRRPjY6Sz_eIHJV9DTTAHCR79YsG4yWvoa9AeIctibb6IJQKgTEV7mF7LsUDmXldEDqYwyEmKs38zj_995Ntc9SYBFphHpr09NqfMoqMphwKqms2NOnqgcHreFs27d9Q0Qv8Rtv2t7SB2cVO__KrsjzYNs3miTvDdkqYLXFo5fXwuzNtHOCAJomd6bhMR8Yd1-vJmtMCBPK4hmA98w8fG_NhcyLbw-B9AuxQ6z92zXiRhNyPlK_3ce2T7HtgUluJ4xJl4xdLJ_C6hvTAqtQxmSiJKzbjUiANF6hVBTomU8vkaIjEKjnlT1uPMihfrsA3pzQ
+</span></span></code><!--]--></pre>
+           </div>
+           <h4 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="jwt-use-python">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#jwt-use-python">
+             <!--[-->
+             <!--[-->
+             PyJWT（Pythonのライブラリ）でJWTを生成する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h4>
+           <p>
+            <!--[-->
+            PyJWTを使って署名し、JWTを生成するには、
+            <a class="" href="https://www.python.org/downloads/" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             Python
+             <!--]-->
+             <!--]-->
+            </a>
+            と
+            <a class="" href="https://github.com/jpadilla/pyjwt" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             PyJWT
+             <!--]-->
+             <!--]-->
+            </a>
+            がインストールされている必要があります。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            以下は、PyJWTを使って
+            <strong>
+             <!--[-->
+             秘密鍵
+             <!--]-->
+            </strong>
+            で署名してJWTを生成するコードの例です。このコードを使って自分のJWTを作成する場合は、
+            <code>
+             <!--[-->
+             privateKey
+             <!--]-->
+            </code>
+            を自分のアサーション署名キーの
+            <strong>
+             <!--[-->
+             秘密鍵
+             <!--]-->
+            </strong>
+            の値に変更し、
+            <code>
+             <!--[-->
+             headers
+             <!--]-->
+            </code>
+            の
+            <code>
+             <!--[-->
+             kid
+             <!--]-->
+            </code>
+            と
+            <code>
+             <!--[-->
+             payload
+             <!--]-->
+            </code>
+            の値をそれぞれ変更してから実行します。コンテンツが改ざんされていないことを証明するために、必ず
+            <strong>
+             <!--[-->
+             秘密鍵
+             <!--]-->
+            </strong>
+            で署名します。PyJWTの使い方について詳しくは、
+            <a class="" href="https://github.com/jpadilla/pyjwt#installing" rel="nofollow" target="_blank">
+             <!--[-->
+             <!--[-->
+             PyJWT
+             <!--]-->
+             <!--]-->
+            </a>
+            を参照してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='import jwt
+from jwt.algorithms import RSAAlgorithm
+import time
+
+privateKey = {
+  "alg": "RS256",
+  "d": "dcA-LXLBRecBQbW7a8LKAriFJhnpXzwu2uNoVF_8-QmGVzI5682FWh_CWhl_B6J0fpmA-d7_EP0WCB3AGhxlyTP6ROoYJo7nygb_KMLREM7n64LFGbvNtw4jk7dmISXl_JuEX6CG09BBx4GLh9AGHSaK4v9B-dDvrNZlAo2mIjISHNcAPENbOl_XIOmZpJd56znjjc1gGKaYGbIm8unxHnPhL66IVYGRu8gxKfG6JUP7o370-VDfFOeaAR0HshTycP6M41jcDSjL6z9-J-Sh0zSZXqGS4u82TNtmwtRTzVwd0w30KQ0TTROTiNsz5apVHjpMvmAxRlbvcW41xIq8sQ",
+  "dp": "PAWBMzwnwgc-yixarV30gemH6Wk15HfSUYpR4wJZUHemGx_LE5GXdnKoyy8G9DAl6XMpm7YVH8cPXgXYNh-JlAggvzUeH5A7KAV4ZPTNak4CI844GSbYIu_dPBcVAg0O6sxQWugYpPbPnMDpE7qf4KilSSVG3JKqEMxkYySjZZE",
+  "dq": "LBA_q2YYnglCL41-1b3BmzCm-hs7Q-N__otDWO01I03VYnzU-vEQmxy6Fzrh2Y4Fgwp6D8iScu42AOyhE-T-qDNbAsCB0iZeFqm84g6VQAfDbknjIUZtcGvQgzy-zlrl253_QdyJvl2b44KT1hfoF0tDNA1rhOy7WlBM__rH0Pc",
+  "e": "AQAB",
+  "kty": "RSA",
+  "n": "x2glWJ7baQV4vdElnAXA5yu8yFk4LpszkHW3Ey-BKGT3kGVLy3Jk3OvkwjBFOglXWeyTWe_rJkMYkBKuon5syZVjrjb24CmViAXGr6d6IvrYWj8IGZ6ElVABfnjGgZMVywmBb7hIh2p8QR0L8UJEuWjBU5nlwkMBpvnY2HXAVhvir8CN7WRj_GBMxxgg7wSuW1tV-7Qf44grMqJ0Je7zjflS4-TpI8Ox3nhamn0d7NIdQ3jNdTP7IZF61IvETgb_6NdFnfsN-aifJC-Ea3ZwhVcEGJ5z3MMoKSoChJmkJMiV9CldqGRnEDWwBugZHeEtn71eGVE3DAXAzrf525YHYQ",
+  "p": "7eH8LAzNkITH6t7CWU5tPAmQlGQPkby66Yfq52tSZ43pQRz0CdtDYCQnGoBXvHzAHhzH4MjmNLOSGVimZK_dIRg5lJaPvVe6hgQ3pYud5WzPWsnQTsC7agQ2rfQglyFUtjwd1gWBIY4gwHj4BYG6Up3g0TlX1sf_juZxcLhkOsc",
+  "q": "1pf-Pj2ZPL1nGqVcMVH_hfziIOBtjxc5vMGyHwTaLAA9y2xKfe_SRU8kUK2q5ZykJ8wMckR9Pduuyn-vp4q2FANVSN69G01pUKM2ppkgXuil2S3REmzniGdajZjkpWKaZ6z1tJ_xSv9ghx06Dbro8n___KnpBq6afb022anRxJc",
+  "qi": "6L6SgH_pkyqq1Tb6QXPAGmtqVZT58Ljf3QTw6Tx5OdZ9NNvDReHHb64MgbUMLhLzGMeXGqDI5j0WLhtXv4ddCKWkF7OeKLUNuRP7yLpyYMazn8TEOjKHsgLAklenxcSgYaoO_wULh1mze1_ZO2PJNgvkIx_Xzr0XDUAqUp4W0jk",
+  "use": "sig"
+}
+
+headers = {
+    "alg": "RS256",
+    "typ": "JWT",
+    "kid": "9869e446-3489-4516-a83f-ec9214ad94d0"
+}
+
+payload = {
+  "iss": "1234567890",
+  "sub": "1234567890",
+  "aud": "https://api.line.me/",
+  "exp":int(time.time())+(60 * 30),
+  "token_exp": 60 * 60 * 24 * 30
+}
+
+key = RSAAlgorithm.from_jwk(privateKey)
+
+JWT = jwt.encode(payload, key, algorithm="RS256", headers=headers, json_encoder=None)
+print(JWT)
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             python
+            </span>
+            <pre class="language-python shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="suJrU">import</span><span class="sZEs4"> jwt
+</span></span><span class="line" line="2"><span class="suJrU">from</span><span class="sZEs4"> jwt.algorithms </span><span class="suJrU">import</span><span class="sZEs4"> RSAAlgorithm
+</span></span><span class="line" line="3"><span class="suJrU">import</span><span class="sZEs4"> time
+</span></span><span class="line" line="4"><span emptylineplaceholder="true">
+</span></span><span class="line" line="5"><span class="sZEs4">privateKey </span><span class="suJrU">=</span><span class="sZEs4"> {
+</span></span><span class="line" line="6"><span class="s9uIt">  "alg"</span><span class="sZEs4">: </span><span class="s9uIt">"RS256"</span><span class="sZEs4">,
+</span></span><span class="line" line="7"><span class="s9uIt">  "d"</span><span class="sZEs4">: </span><span class="s9uIt">"dcA-LXLBRecBQbW7a8LKAriFJhnpXzwu2uNoVF_8-QmGVzI5682FWh_CWhl_B6J0fpmA-d7_EP0WCB3AGhxlyTP6ROoYJo7nygb_KMLREM7n64LFGbvNtw4jk7dmISXl_JuEX6CG09BBx4GLh9AGHSaK4v9B-dDvrNZlAo2mIjISHNcAPENbOl_XIOmZpJd56znjjc1gGKaYGbIm8unxHnPhL66IVYGRu8gxKfG6JUP7o370-VDfFOeaAR0HshTycP6M41jcDSjL6z9-J-Sh0zSZXqGS4u82TNtmwtRTzVwd0w30KQ0TTROTiNsz5apVHjpMvmAxRlbvcW41xIq8sQ"</span><span class="sZEs4">,
+</span></span><span class="line" line="8"><span class="s9uIt">  "dp"</span><span class="sZEs4">: </span><span class="s9uIt">"PAWBMzwnwgc-yixarV30gemH6Wk15HfSUYpR4wJZUHemGx_LE5GXdnKoyy8G9DAl6XMpm7YVH8cPXgXYNh-JlAggvzUeH5A7KAV4ZPTNak4CI844GSbYIu_dPBcVAg0O6sxQWugYpPbPnMDpE7qf4KilSSVG3JKqEMxkYySjZZE"</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="s9uIt">  "dq"</span><span class="sZEs4">: </span><span class="s9uIt">"LBA_q2YYnglCL41-1b3BmzCm-hs7Q-N__otDWO01I03VYnzU-vEQmxy6Fzrh2Y4Fgwp6D8iScu42AOyhE-T-qDNbAsCB0iZeFqm84g6VQAfDbknjIUZtcGvQgzy-zlrl253_QdyJvl2b44KT1hfoF0tDNA1rhOy7WlBM__rH0Pc"</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="s9uIt">  "e"</span><span class="sZEs4">: </span><span class="s9uIt">"AQAB"</span><span class="sZEs4">,
+</span></span><span class="line" line="11"><span class="s9uIt">  "kty"</span><span class="sZEs4">: </span><span class="s9uIt">"RSA"</span><span class="sZEs4">,
+</span></span><span class="line" line="12"><span class="s9uIt">  "n"</span><span class="sZEs4">: </span><span class="s9uIt">"x2glWJ7baQV4vdElnAXA5yu8yFk4LpszkHW3Ey-BKGT3kGVLy3Jk3OvkwjBFOglXWeyTWe_rJkMYkBKuon5syZVjrjb24CmViAXGr6d6IvrYWj8IGZ6ElVABfnjGgZMVywmBb7hIh2p8QR0L8UJEuWjBU5nlwkMBpvnY2HXAVhvir8CN7WRj_GBMxxgg7wSuW1tV-7Qf44grMqJ0Je7zjflS4-TpI8Ox3nhamn0d7NIdQ3jNdTP7IZF61IvETgb_6NdFnfsN-aifJC-Ea3ZwhVcEGJ5z3MMoKSoChJmkJMiV9CldqGRnEDWwBugZHeEtn71eGVE3DAXAzrf525YHYQ"</span><span class="sZEs4">,
+</span></span><span class="line" line="13"><span class="s9uIt">  "p"</span><span class="sZEs4">: </span><span class="s9uIt">"7eH8LAzNkITH6t7CWU5tPAmQlGQPkby66Yfq52tSZ43pQRz0CdtDYCQnGoBXvHzAHhzH4MjmNLOSGVimZK_dIRg5lJaPvVe6hgQ3pYud5WzPWsnQTsC7agQ2rfQglyFUtjwd1gWBIY4gwHj4BYG6Up3g0TlX1sf_juZxcLhkOsc"</span><span class="sZEs4">,
+</span></span><span class="line" line="14"><span class="s9uIt">  "q"</span><span class="sZEs4">: </span><span class="s9uIt">"1pf-Pj2ZPL1nGqVcMVH_hfziIOBtjxc5vMGyHwTaLAA9y2xKfe_SRU8kUK2q5ZykJ8wMckR9Pduuyn-vp4q2FANVSN69G01pUKM2ppkgXuil2S3REmzniGdajZjkpWKaZ6z1tJ_xSv9ghx06Dbro8n___KnpBq6afb022anRxJc"</span><span class="sZEs4">,
+</span></span><span class="line" line="15"><span class="s9uIt">  "qi"</span><span class="sZEs4">: </span><span class="s9uIt">"6L6SgH_pkyqq1Tb6QXPAGmtqVZT58Ljf3QTw6Tx5OdZ9NNvDReHHb64MgbUMLhLzGMeXGqDI5j0WLhtXv4ddCKWkF7OeKLUNuRP7yLpyYMazn8TEOjKHsgLAklenxcSgYaoO_wULh1mze1_ZO2PJNgvkIx_Xzr0XDUAqUp4W0jk"</span><span class="sZEs4">,
+</span></span><span class="line" line="16"><span class="s9uIt">  "use"</span><span class="sZEs4">: </span><span class="s9uIt">"sig"
+</span></span><span class="line" line="17"><span class="sZEs4">}
+</span></span><span class="line" line="18"><span emptylineplaceholder="true">
+</span></span><span class="line" line="19"><span class="sZEs4">headers </span><span class="suJrU">=</span><span class="sZEs4"> {
+</span></span><span class="line" line="20"><span class="s9uIt">    "alg"</span><span class="sZEs4">: </span><span class="s9uIt">"RS256"</span><span class="sZEs4">,
+</span></span><span class="line" line="21"><span class="s9uIt">    "typ"</span><span class="sZEs4">: </span><span class="s9uIt">"JWT"</span><span class="sZEs4">,
+</span></span><span class="line" line="22"><span class="s9uIt">    "kid"</span><span class="sZEs4">: </span><span class="s9uIt">"9869e446-3489-4516-a83f-ec9214ad94d0"
+</span></span><span class="line" line="23"><span class="sZEs4">}
+</span></span><span class="line" line="24"><span emptylineplaceholder="true">
+</span></span><span class="line" line="25"><span class="sZEs4">payload </span><span class="suJrU">=</span><span class="sZEs4"> {
+</span></span><span class="line" line="26"><span class="s9uIt">  "iss"</span><span class="sZEs4">: </span><span class="s9uIt">"1234567890"</span><span class="sZEs4">,
+</span></span><span class="line" line="27"><span class="s9uIt">  "sub"</span><span class="sZEs4">: </span><span class="s9uIt">"1234567890"</span><span class="sZEs4">,
+</span></span><span class="line" line="28"><span class="s9uIt">  "aud"</span><span class="sZEs4">: </span><span class="s9uIt">"https://api.line.me/"</span><span class="sZEs4">,
+</span></span><span class="line" line="29"><span class="s9uIt">  "exp"</span><span class="sZEs4">:</span><span class="sFSAA">int</span><span class="sZEs4">(time.time())</span><span class="suJrU">+</span><span class="sZEs4">(</span><span class="sFSAA">60</span><span class="suJrU"> *</span><span class="sFSAA"> 30</span><span class="sZEs4">),
+</span></span><span class="line" line="30"><span class="s9uIt">  "token_exp"</span><span class="sZEs4">: </span><span class="sFSAA">60</span><span class="suJrU"> *</span><span class="sFSAA"> 60</span><span class="suJrU"> *</span><span class="sFSAA"> 24</span><span class="suJrU"> *</span><span class="sFSAA"> 30
+</span></span><span class="line" line="31"><span class="sZEs4">}
+</span></span><span class="line" line="32"><span emptylineplaceholder="true">
+</span></span><span class="line" line="33"><span class="sZEs4">key </span><span class="suJrU">=</span><span class="sZEs4"> RSAAlgorithm.from_jwk(privateKey)
+</span></span><span class="line" line="34"><span emptylineplaceholder="true">
+</span></span><span class="line" line="35"><span class="sFSAA">JWT</span><span class="suJrU"> =</span><span class="sZEs4"> jwt.encode(payload, key, </span><span class="sQhOw">algorithm</span><span class="suJrU">=</span><span class="s9uIt">"RS256"</span><span class="sZEs4">, </span><span class="sQhOw">headers</span><span class="suJrU">=</span><span class="sZEs4">headers, </span><span class="sQhOw">json_encoder</span><span class="suJrU">=</span><span class="sFSAA">None</span><span class="sZEs4">)
+</span></span><span class="line" line="36"><span class="sFSAA">print</span><span class="sZEs4">(</span><span class="sFSAA">JWT</span><span class="sZEs4">)
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            Base64形式でエンコードされたヘッダーとクレーム・セット、および秘密鍵を、ヘッダーで定義したアルゴリズムを使用して署名します。署名後、Base64形式でエンコードされた結果がJWTです。以下はJWTの例です。
+            <!--]-->
+           </p>
+           <div class="relative" code="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ijk4NjllNDQ2LTM0ODktNDUxNi1hODNmLWVjOTIxNGFkOTRkMCJ9.eyJpc3MiOiIxMjM0NTY3ODkwIiwic3ViIjoiMTIzNDU2Nzg5MCIsImF1ZCI6Imh0dHBzOi8vYXBpLmxpbmUubWUvIiwiZXhwIjoxNjIzOTk1NTk5LCJ0b2tlbl9leHAiOjI1OTIwMDB9.Zf32xTqgUHSYw2C2Mlmunqz_AtkaqvGh0msx9XJMX6QYLPT4m4QYF3PsER-zfbhbByNT4rH09JEMRP7bzcNMQ8l4n_WXwTyLkNciZYzF-sTiVHiZu4ucJm4_l8ni5NaqOVEntsCp1wQi8-VLjaMpQlQ7crCdouEMFFeyVwgERfH8ui6UZaJeIlJKRZTnO6iYvKYuLyUsqzowfwZo0hcnnZIXKnjZ81ukjH3_78EHXOD5ivovAT7CtmBoglm3Bvsi0N6PlEONLhHqpCleaYTXRmCykxDLP600JRvi5TYApaN-8n2Bo3FskXJLuxquWLP-LTfMDlkakmfEfcQCiz7daQ
+" meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             sh
+            </span>
+            <pre class="language-sh shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sQhOw">eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ijk4NjllNDQ2LTM0ODktNDUxNi1hODNmLWVjOTIxNGFkOTRkMCJ9.eyJpc3MiOiIxMjM0NTY3ODkwIiwic3ViIjoiMTIzNDU2Nzg5MCIsImF1ZCI6Imh0dHBzOi8vYXBpLmxpbmUubWUvIiwiZXhwIjoxNjIzOTk1NTk5LCJ0b2tlbl9leHAiOjI1OTIwMDB9.Zf32xTqgUHSYw2C2Mlmunqz_AtkaqvGh0msx9XJMX6QYLPT4m4QYF3PsER-zfbhbByNT4rH09JEMRP7bzcNMQ8l4n_WXwTyLkNciZYzF-sTiVHiZu4ucJm4_l8ni5NaqOVEntsCp1wQi8-VLjaMpQlQ7crCdouEMFFeyVwgERfH8ui6UZaJeIlJKRZTnO6iYvKYuLyUsqzowfwZo0hcnnZIXKnjZ81ukjH3_78EHXOD5ivovAT7CtmBoglm3Bvsi0N6PlEONLhHqpCleaYTXRmCykxDLP600JRvi5TYApaN-8n2Bo3FskXJLuxquWLP-LTfMDlkakmfEfcQCiz7daQ
+</span></span></code><!--]--></pre>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="issue_a_channel_access_token_v2_1">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#issue_a_channel_access_token_v2_1">
+             <!--[-->
+             <!--[-->
+             チャネルアクセストークンv2.1を発行する
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            <a class="" href="#generate-jwt">
+             <!--[-->
+             <!--[-->
+             生成した
+             <!--]-->
+             <!--]-->
+            </a>
+            JWTアサーションを指定して、
+            <a class="" href="/ja/reference/messaging-api/#issue-channel-access-token-v2-1">
+             <!--[-->
+             <!--[-->
+             チャネルアクセストークンv2.1を発行
+             <!--]-->
+             <!--]-->
+            </a>
+            できます。
+            <!--]-->
+           </p>
+           <div class="warning custom-block">
+            <div class="custom-block-title">
+             <i class="las la-exclamation-circle mr-2">
+             </i>
+             <span>
+              キーIDを使ってチャネルアクセストークンv2.1を管理する
+             </span>
+            </div>
+            <div>
+             <!--[-->
+             <ul>
+              <!--[-->
+              <li>
+               <!--[-->
+               チャネルアクセストークンv2.1をリクエストすると、チャネルアクセストークンと一意のキーID（
+               <code>
+                <!--[-->
+                key_id
+                <!--]-->
+               </code>
+               ）のペアがレスポンスとして返されます。チャネルアクセストークンを適切に管理するため、チャネルアクセストークンとキーIDのペアを安全に保管するようにしてください。
+               <!--]-->
+              </li>
+              <li>
+               <!--[-->
+               キーIDは、2020年6月22日にMessaging APIに追加された識別子です。キーIDを持たないチャネルアクセストークンv2.1を使用している場合は、チャネルアクセストークンv2.1を再発行し、トークンとキーIDのペアを保管することをお勧めします。チャネルアクセストークンを再発行した場合は、新しいトークンを使用するようにボットを更新してください。
+               <!--]-->
+              </li>
+              <!--]-->
+             </ul>
+             <!--]-->
+            </div>
+           </div>
+           <p>
+            <!--[-->
+            チャネルアクセストークンv2.1を取得する手順は以下のとおりです。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in w-fix-840" data-state="closed" src="/media/messaging-api/channel-access-token/using_keyID_procedure_01.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <ol>
+            <!--[-->
+            <li>
+             <!--[-->
+             生成したJWTを指定して、
+             <a class="" href="/ja/reference/messaging-api/#issue-channel-access-token-v2-1">
+              <!--[-->
+              <!--[-->
+              チャネルアクセストークンv2.1を発行する
+              <!--]-->
+              <!--]-->
+             </a>
+             エンドポイントを実行し、チャネルアクセストークンを発行します。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             チャネルアクセストークンとキーIDがLINEプラットフォームから返ります。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             チャネルアクセストークンとキーIDをペアにしてデータベースなどに保管します。
+             <!--]-->
+            </li>
+            <!--]-->
+           </ol>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="revoke-channel-access-token-version-2-1">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#revoke-channel-access-token-version-2-1">
+             <!--[-->
+             <!--[-->
+             チャネルアクセストークンv2.1を取り消す
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            <a class="" href="/ja/reference/messaging-api/#revoke-channel-access-token-v2-1">
+             <!--[-->
+             <!--[-->
+             チャネルアクセストークンv2.1を取り消す
+             <!--]-->
+             <!--]-->
+            </a>
+            エンドポイントを実行することで、有効なチャネルアクセストークンを取り消すことができます。
+            <!--]-->
+           </p>
+           <div class="warning custom-block">
+            <div class="custom-block-title">
+             <i class="las la-exclamation-circle mr-2">
+             </i>
+             <span>
+              有効なチャネルアクセストークンの識別
+             </span>
+            </div>
+            <div>
+             <!--[-->
+             <p>
+              <!--[-->
+              無効なチャネルアクセストークンを指定して、
+              <a class="" href="/ja/reference/messaging-api/#revoke-channel-access-token-v2-1">
+               <!--[-->
+               <!--[-->
+               チャネルアクセストークンv2.1を取り消す
+               <!--]-->
+               <!--]-->
+              </a>
+              エンドポイントを実行した場合も、エラーレスポンスは発生しません。
+              <a class="" href="/ja/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1">
+               <!--[-->
+               <!--[-->
+               すべての有効なチャネルアクセストークンv2.1のキーIDを取得する
+               <!--]-->
+               <!--]-->
+              </a>
+              エンドポイントを使って、現在有効なチャネルアクセストークンとペアになるキーIDを取得できます。取得したキーIDを、データベースなどに保管したチャネルアクセストークンとキーIDのペアと照合することで、有効なチャネルアクセストークンを識別できます。
+              <!--]-->
+             </p>
+             <!--]-->
+            </div>
+           </div>
+           <p>
+            <!--[-->
+            チャネルアクセストークンv2.1を取り消す手順は以下のとおりです。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in w-fix-920" data-state="closed" src="/media/messaging-api/channel-access-token/using_keyID_procedure_02.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <ol>
+            <!--[-->
+            <li>
+             <!--[-->
+             保存したアサーション署名キーからJWTを再生成します。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             JWTを使って
+             <a class="" href="/ja/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1">
+              <!--[-->
+              <!--[-->
+              すべての有効なチャネルアクセストークンv2.1のキーIDを取得する
+              <!--]-->
+              <!--]-->
+             </a>
+             エンドポイントを実行します。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             有効なチャネルアクセストークンのキーIDがLINEプラットフォームから返ります。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             取得したキーIDをデータベースと照合します。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             取得したキーIDと一致する、チャネルアクセストークンとキーIDのペアがあるかどうかを確認します。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             有効なチャネルアクセストークンを取得します。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             有効なチャネルアクセストークンを指定して、
+             <a class="" href="/ja/reference/messaging-api/#revoke-channel-access-token-v2-1">
+              <!--[-->
+              <!--[-->
+              チャネルアクセストークンv2.1を取り消す
+              <!--]-->
+              <!--]-->
+             </a>
+             エンドポイントを実行します。
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             LINEプラットフォームによってチャネルアクセストークンが取り消されます。
+             <!--]-->
+            </li>
+            <!--]-->
+           </ol>
+           <style>
+            html pre.shiki code .sQhOw, html code.shiki .sQhOw{--shiki-default:#FFA657}html pre.shiki code .s9uIt, html code.shiki .s9uIt{--shiki-default:#A5D6FF}html .default .shiki span {color: var(--shiki-default);background: var(--shiki-default-bg);font-style: var(--shiki-default-font-style);font-weight: var(--shiki-default-font-weight);text-decoration: var(--shiki-default-text-decoration);}html .shiki span {color: var(--shiki-default);background: var(--shiki-default-bg);font-style: var(--shiki-default-font-style);font-weight: var(--shiki-default-font-weight);text-decoration: var(--shiki-default-text-decoration);}html pre.shiki code .sFSAA, html code.shiki .sFSAA{--shiki-default:#79C0FF}html pre.shiki code .suJrU, html code.shiki .suJrU{--shiki-default:#FF7B72}html pre.shiki code .sZEs4, html code.shiki .sZEs4{--shiki-default:#E6EDF3}html pre.shiki code .sPWt5, html code.shiki .sPWt5{--shiki-default:#7EE787}html pre.shiki code .sjcI2, html code.shiki .sjcI2{--shiki-default:#FFA198;--shiki-default-font-style:italic}html pre.shiki code .sc3cj, html code.shiki .sc3cj{--shiki-default:#D2A8FF}
+           </style>
+          </div>
+         </main>
+         <!--]-->
+         <!--]-->
+        </div>
+        <div class="toc text-caption-docs-side hide-scrollbar sticky top-48 overflow-y-auto 2xl:top-40" data-v-70444712="" data-v-856df627="" id="side-toc">
+         <ul data-v-70444712="">
+          <!--[-->
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#issue-channel-access-token-v2-1-diagram">
+            チャネルアクセストークンv2.1の発行手順
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-[8px] custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#create-an-assertion-signing-key">
+            アサーション署名キーを発行する
+           </a>
+           <ul class="font-caption-docs-side dark:border-ldsgray-750 mb-8 flex flex-col gap-5 border-l pr-3 pl-5" data-v-70444712="">
+            <!--[-->
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#generate-a-key-pair-for-the-assertion-signing-key">
+              1. アサーション署名キーのキーペアを生成する
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#register-public-key-and-get-kid">
+              2. 公開鍵を登録し、kidを取得する
+             </a>
+            </li>
+            <!--]-->
+           </ul>
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-[8px] custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#generate-jwt">
+            JWTを生成する
+           </a>
+           <ul class="font-caption-docs-side dark:border-ldsgray-750 mb-8 flex flex-col gap-5 border-l pr-3 pl-5" data-v-70444712="">
+            <!--[-->
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#header">
+              ヘッダー
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#payload">
+              ペイロード
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#signature">
+              署名
+             </a>
+            </li>
+            <!--]-->
+           </ul>
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-[8px] custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#issue_a_channel_access_token_v2_1">
+            チャネルアクセストークンv2.1を発行する
+           </a>
+           <ul class="font-caption-docs-side dark:border-ldsgray-750 mb-8 flex flex-col gap-5 border-l pr-3 pl-5" data-v-70444712="">
+            <!--[-->
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#revoke-channel-access-token-version-2-1">
+              チャネルアクセストークンv2.1を取り消す
+             </a>
+            </li>
+            <!--]-->
+           </ul>
+          </li>
+          <!--]-->
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+     <footer class="font-main-card-text-product dark:border-ldsgray-750 content-wrapper w-full border-t py-8 text-black dark:bg-black dark:text-white" data-v-856df627="" id="footer">
+      <div class="content-container mx-auto">
+       <div class="footer-copyright-en w-full whitespace-nowrap">
+        © LY Corporation
+       </div>
+       <div class="flex flex-col justify-between lg:flex-row">
+        <div>
+         <ul class="my-6 flex flex-col gap-y-2 p-0 md:my-2 md:flex-row md:items-center md:gap-x-4">
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/about/">
+            LINE Developersサイトとは
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/terms-and-policies/">
+            規約とポリシー
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/trademark/">
+            商標について
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white no-external-icon" href="https://api.line-status.info/" target="_blank">
+            <!--[-->
+            LINE API Status
+            <span class="ml-1 inline-block">
+             <span class="las la-arrow-out-square text-xs opacity-50">
+             </span>
+            </span>
+            <!--]-->
+           </a>
+          </li>
+         </ul>
+        </div>
+        <div class="flex flex-row items-center justify-start gap-7">
+         <!--[-->
+         <!--[-->
+         <!--[-->
+         <button class="focus-visible:outline-primary hover:text-default transition-colors custom flex h-full cursor-pointer items-center text-black dark:text-white" data-grace-area-trigger="" data-state="closed" type="button" variant="link">
+          <!--[-->
+          <!--[-->
+          Family Sites
+          <span class="lar la-chevron-down la-xs relative ml-1">
+          </span>
+          <!--]-->
+          <!--]-->
+         </button>
+         <!--]-->
+         <!-- -->
+         <!--v-if-->
+         <!--]-->
+         <!--]-->
+         <div class="flex items-center gap-3">
+          <!-- -->
+          <a class="custom no-external-icon" href="https://twitter.com/lycorptech_jp" target="_blank">
+           <span class="lapr la-x-com la-lg">
+           </span>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </footer>
+     <!-- -->
+    </div>
+   </div>
+   <div data-v-856df627="">
+    <!--[-->
+    <!-- -->
+    <!-- -->
+    <!--v-if-->
+    <!--]-->
+   </div>
+   <!-- -->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+   <!--[-->
+   <!--]-->
+   <!--v-if-->
+   <!--]-->
+   <!--[-->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+  </div>
+  <div id="teleports">
+  </div>
+  <script>
+   window.__NUXT__={};window.__NUXT__.config={public:{gtag:{enabled:true,initMode:"auto",id:"G-K94RFW73WS",initCommands:[],config:{},tags:[],loadingStrategy:"defer",url:"https://www.googletagmanager.com/gtag/js"},mdc:{components:{prose:true,map:{accordion:"ProseAccordion","accordion-item":"ProseAccordionItem",badge:"ProseBadge",callout:"ProseCallout",card:"ProseCard","card-group":"ProseCardGroup",caution:"ProseCaution","code-collapse":"ProseCodeCollapse","code-group":"ProseCodeGroup","code-icon":"ProseCodeIcon","code-preview":"ProseCodePreview","code-tree":"ProseCodeTree",collapsible:"ProseCollapsible",field:"ProseField","field-group":"ProseFieldGroup",icon:"ProseIcon",kbd:"ProseKbd",note:"ProseNote",steps:"ProseSteps",tabs:"ProseTabs","tabs-item":"ProseTabsItem",tip:"ProseTip",warning:"ProseWarning"},customElements:[]},headings:{anchorLinks:{h1:false,h2:true,h3:true,h4:true,h5:false,h6:false}},highlight:{theme:"github-dark-default",noApiRoute:true,langs:["csharp","css","scss","go","groovy","html","java","javascript","json","objective-c","perl","php","python","ruby","shellscript","sh","swift","ts","typescript","xml","yaml"],wrapperStyle:true,highlighter:"shiki",shikiEngine:"oniguruma"}},content:{wsUrl:""},i18n:{baseUrl:"/",defaultLocale:"",rootRedirect:"",redirectStatusCode:302,skipSettingLocaleOnNavigate:false,locales:[{code:"en",name:"EN",language:"en-US"},{code:"ja",name:"JP",language:"ja-JP"}],detectBrowserLanguage:false,experimental:{localeDetector:"",typedPages:true,typedOptionsAndMessages:false,alternateLinkCanonicalQueries:true,devCache:false,cacheLifetime:"",stripMessagesPayload:false,preload:false,strictSeo:false,nitroContextDetection:true,httpCacheDuration:10},domainLocales:{en:{domain:""},ja:{domain:""}}}},app:{baseURL:"/",buildId:"b7cd7a21-3fab-4351-b588-f3a82989c407",buildAssetsDir:"/_nuxt/",cdnURL:""}}
+  </script>
+  <script data-nuxt-data="nuxt-app" data-src="/ja/docs/messaging-api/generate-json-web-token/_payload.json?b7cd7a21-3fab-4351-b588-f3a82989c407" data-ssr="true" id="__NUXT_DATA__" type="application/json">
+   [{"state":1,"once":14,"_errors":15,"serverRendered":5,"path":17,"pinia":18,"prerenderedAt":58},["Reactive",2],{"$scolor-mode":3,"$si18n:cached-locale-configs":7,"$si18n:resolved-locale":12,"$stoasts":13},{"preference":4,"value":4,"unknown":5,"forced":6},"system",true,false,{"en":8,"ja":10},{"fallbacks":9,"cacheable":5},[],{"fallbacks":11,"cacheable":5},[],"ja",[],["Set"],["ShallowReactive",16],{"h2199030887":-1,"h2022481820":-1,"h133133991":-1},"/ja/docs/messaging-api/generate-json-web-token/",["Reactive",19],{"devdocs":20},{"userData":21,"feedbackForm":23,"socialPlugins":24,"ui":25},{"isInitialized":6,"isLoading":6,"isLoggedIn":6,"profileData":22,"showNewNewsNotificationBadge":6},{},{"isInitialized":6,"isLoading":6,"isAvailable":6,"isShown":6},{"userAgreement":6},{"isHome":6,"isErrorPage":6,"isMobileSidebarOpen":6,"isMobileSecondarySidebarOpen":6,"isMobileNarrow":6,"isMobile":6,"isWide":6,"navDropdown":26,"isNavBgTransparent":6,"isDarkMode":6,"apiRefBlockToOpen":27,"apiRefBlockOpened":27,"toc":28,"isDisabledScrollToAnchor":6,"isActiveSetHashOnScroll":5,"isSearchModalOpen":6,"breadcrumbNewsPageTitle":27},{"isShown":6,"type":27,"label":27,"contents":27},"",[29,41,44,51],{"id":30,"depth":31,"text":32,"children":33},"group-chat-types",2,"複数のユーザーとのトークの種類",[34,38],{"id":35,"depth":36,"text":37},"group",3,"グループトーク",{"id":39,"depth":36,"text":40},"room","複数人トーク",{"id":42,"depth":31,"text":43},"add-bot-group-room","グループトークや複数人トークにLINE公式アカウントを招待する",{"id":45,"depth":31,"text":46,"children":47},"receiving-webhook-events","Webhookイベントを受け取る",[48],{"id":49,"depth":36,"text":50},"tip-for-using-message-events","メッセージイベント利用時のヒント",{"id":52,"depth":31,"text":53,"children":54},"sending-request-to-endpoint","エンドポイントにリクエストを送る",[55],{"id":56,"depth":36,"text":57},"tip-for-sending-messages","メッセージ送信時のヒント",1776129201139]
+  </script>
+ </body>
+</html>

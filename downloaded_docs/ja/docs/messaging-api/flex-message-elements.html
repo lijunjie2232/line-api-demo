@@ -1,0 +1,3223 @@
+<!DOCTYPE html>
+<html class="" lang="ja-JP" style="">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <style id="nuxt-ui-colors">
+   @layer theme {
+  :root, :host {
+  --ui-color-primary-50: var(--color-green-50, oklch(98.2% 0.018 155.826));
+  --ui-color-primary-100: var(--color-green-100, oklch(96.2% 0.044 156.743));
+  --ui-color-primary-200: var(--color-green-200, oklch(92.5% 0.084 155.995));
+  --ui-color-primary-300: var(--color-green-300, oklch(87.1% 0.15 154.449));
+  --ui-color-primary-400: var(--color-green-400, oklch(79.2% 0.209 151.711));
+  --ui-color-primary-500: var(--color-green-500, oklch(72.3% 0.219 149.579));
+  --ui-color-primary-600: var(--color-green-600, oklch(62.7% 0.194 149.214));
+  --ui-color-primary-700: var(--color-green-700, oklch(52.7% 0.154 150.069));
+  --ui-color-primary-800: var(--color-green-800, oklch(44.8% 0.119 151.328));
+  --ui-color-primary-900: var(--color-green-900, oklch(39.3% 0.095 152.535));
+  --ui-color-primary-950: var(--color-green-950, oklch(26.6% 0.065 152.934));
+  --ui-color-secondary-50: var(--color-blue-50, oklch(97% 0.014 254.604));
+  --ui-color-secondary-100: var(--color-blue-100, oklch(93.2% 0.032 255.585));
+  --ui-color-secondary-200: var(--color-blue-200, oklch(88.2% 0.059 254.128));
+  --ui-color-secondary-300: var(--color-blue-300, oklch(80.9% 0.105 251.813));
+  --ui-color-secondary-400: var(--color-blue-400, oklch(70.7% 0.165 254.624));
+  --ui-color-secondary-500: var(--color-blue-500, oklch(62.3% 0.214 259.815));
+  --ui-color-secondary-600: var(--color-blue-600, oklch(54.6% 0.245 262.881));
+  --ui-color-secondary-700: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  --ui-color-secondary-800: var(--color-blue-800, oklch(42.4% 0.199 265.638));
+  --ui-color-secondary-900: var(--color-blue-900, oklch(37.9% 0.146 265.522));
+  --ui-color-secondary-950: var(--color-blue-950, oklch(28.2% 0.091 267.935));
+  --ui-color-success-50: var(--color-green-50, oklch(98.2% 0.018 155.826));
+  --ui-color-success-100: var(--color-green-100, oklch(96.2% 0.044 156.743));
+  --ui-color-success-200: var(--color-green-200, oklch(92.5% 0.084 155.995));
+  --ui-color-success-300: var(--color-green-300, oklch(87.1% 0.15 154.449));
+  --ui-color-success-400: var(--color-green-400, oklch(79.2% 0.209 151.711));
+  --ui-color-success-500: var(--color-green-500, oklch(72.3% 0.219 149.579));
+  --ui-color-success-600: var(--color-green-600, oklch(62.7% 0.194 149.214));
+  --ui-color-success-700: var(--color-green-700, oklch(52.7% 0.154 150.069));
+  --ui-color-success-800: var(--color-green-800, oklch(44.8% 0.119 151.328));
+  --ui-color-success-900: var(--color-green-900, oklch(39.3% 0.095 152.535));
+  --ui-color-success-950: var(--color-green-950, oklch(26.6% 0.065 152.934));
+  --ui-color-info-50: var(--color-blue-50, oklch(97% 0.014 254.604));
+  --ui-color-info-100: var(--color-blue-100, oklch(93.2% 0.032 255.585));
+  --ui-color-info-200: var(--color-blue-200, oklch(88.2% 0.059 254.128));
+  --ui-color-info-300: var(--color-blue-300, oklch(80.9% 0.105 251.813));
+  --ui-color-info-400: var(--color-blue-400, oklch(70.7% 0.165 254.624));
+  --ui-color-info-500: var(--color-blue-500, oklch(62.3% 0.214 259.815));
+  --ui-color-info-600: var(--color-blue-600, oklch(54.6% 0.245 262.881));
+  --ui-color-info-700: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  --ui-color-info-800: var(--color-blue-800, oklch(42.4% 0.199 265.638));
+  --ui-color-info-900: var(--color-blue-900, oklch(37.9% 0.146 265.522));
+  --ui-color-info-950: var(--color-blue-950, oklch(28.2% 0.091 267.935));
+  --ui-color-warning-50: var(--color-yellow-50, oklch(98.7% 0.026 102.212));
+  --ui-color-warning-100: var(--color-yellow-100, oklch(97.3% 0.071 103.193));
+  --ui-color-warning-200: var(--color-yellow-200, oklch(94.5% 0.129 101.54));
+  --ui-color-warning-300: var(--color-yellow-300, oklch(90.5% 0.182 98.111));
+  --ui-color-warning-400: var(--color-yellow-400, oklch(85.2% 0.199 91.936));
+  --ui-color-warning-500: var(--color-yellow-500, oklch(79.5% 0.184 86.047));
+  --ui-color-warning-600: var(--color-yellow-600, oklch(68.1% 0.162 75.834));
+  --ui-color-warning-700: var(--color-yellow-700, oklch(55.4% 0.135 66.442));
+  --ui-color-warning-800: var(--color-yellow-800, oklch(47.6% 0.114 61.907));
+  --ui-color-warning-900: var(--color-yellow-900, oklch(42.1% 0.095 57.708));
+  --ui-color-warning-950: var(--color-yellow-950, oklch(28.6% 0.066 53.813));
+  --ui-color-error-50: var(--color-red-50, oklch(97.1% 0.013 17.38));
+  --ui-color-error-100: var(--color-red-100, oklch(93.6% 0.032 17.717));
+  --ui-color-error-200: var(--color-red-200, oklch(88.5% 0.062 18.334));
+  --ui-color-error-300: var(--color-red-300, oklch(80.8% 0.114 19.571));
+  --ui-color-error-400: var(--color-red-400, oklch(70.4% 0.191 22.216));
+  --ui-color-error-500: var(--color-red-500, oklch(63.7% 0.237 25.331));
+  --ui-color-error-600: var(--color-red-600, oklch(57.7% 0.245 27.325));
+  --ui-color-error-700: var(--color-red-700, oklch(50.5% 0.213 27.518));
+  --ui-color-error-800: var(--color-red-800, oklch(44.4% 0.177 26.899));
+  --ui-color-error-900: var(--color-red-900, oklch(39.6% 0.141 25.723));
+  --ui-color-error-950: var(--color-red-950, oklch(25.8% 0.092 26.042));
+  --ui-color-neutral-50: var(--color-slate-50, oklch(98.4% 0.003 247.858));
+  --ui-color-neutral-100: var(--color-slate-100, oklch(96.8% 0.007 247.896));
+  --ui-color-neutral-200: var(--color-slate-200, oklch(92.9% 0.013 255.508));
+  --ui-color-neutral-300: var(--color-slate-300, oklch(86.9% 0.022 252.894));
+  --ui-color-neutral-400: var(--color-slate-400, oklch(70.4% 0.04 256.788));
+  --ui-color-neutral-500: var(--color-slate-500, oklch(55.4% 0.046 257.417));
+  --ui-color-neutral-600: var(--color-slate-600, oklch(44.6% 0.043 257.281));
+  --ui-color-neutral-700: var(--color-slate-700, oklch(37.2% 0.044 257.287));
+  --ui-color-neutral-800: var(--color-slate-800, oklch(27.9% 0.041 260.031));
+  --ui-color-neutral-900: var(--color-slate-900, oklch(20.8% 0.042 265.755));
+  --ui-color-neutral-950: var(--color-slate-950, oklch(12.9% 0.042 264.695));
+  }
+  :root, :host, .light {
+  --ui-primary: var(--ui-color-primary-500);
+  --ui-secondary: var(--ui-color-secondary-500);
+  --ui-success: var(--ui-color-success-500);
+  --ui-info: var(--ui-color-info-500);
+  --ui-warning: var(--ui-color-warning-500);
+  --ui-error: var(--ui-color-error-500);
+  }
+  .dark {
+  --ui-primary: var(--ui-color-primary-400);
+  --ui-secondary: var(--ui-color-secondary-400);
+  --ui-success: var(--ui-color-success-400);
+  --ui-info: var(--ui-color-info-400);
+  --ui-warning: var(--ui-color-warning-400);
+  --ui-error: var(--ui-color-error-400);
+  }
+}
+  </style>
+  <title>
+   Flex Messageの要素 | LINE Developers
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="https://static.line-scdn.net/laicon/edge/latest/laicon.min.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/entry.RjUY_jqM.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/BaseLayout.DryLLHoQ.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/TransitionExpand.C7MR6gY2.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/MarkdownControls.BbnXTJ19.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/HeaderAnchor.DXszml2g.css" rel="stylesheet"/>
+  <link crossorigin="" href="/_nuxt/ProsePre.D5orA6B_.css" rel="stylesheet"/>
+  <link as="fetch" crossorigin="anonymous" href="./flex-message-elements/_payload.json?b7cd7a21-3fab-4351-b588-f3a82989c407" rel="preload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C4Qefsoz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/D7tIDfdc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DS7rYW_M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DlAUqK2U.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DLfO8wDK.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/Ccjmmn3c.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CEXHtn8H.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B4DL1Cgs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B0gykE3i.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BFu_P-Ux.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DJi4jbM6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DZRjkML6.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BJRELFIM.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C0hVKBUl.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CUpphwBz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BheWnx7M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C0MXvZso.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/vST1u8lx.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BffxFq_0.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CyAW9Z2F.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BUNJUvUR.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C945TDiu.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/bTg4ECcz.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DYazWEBN.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/xOr79HUc.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CTeDT3Cq.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CoRt-dtU.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/ClbflBZs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/5rLYfZ6F.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/B6sVujaj.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DEKEuJU2.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BIQOJEGl.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BPUzo62M.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C308N652.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C3hkkU40.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CmV3vphY.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DUpy5nRH.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DMRlQYjX.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CMRidz-K.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CnrI_PHs.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DP-8-zy_.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/ByRlcCLv.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/DkhTipoD.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CudgkPls.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/C1EJ6VMG.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/pJdh5yQe.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/CAodJV2Y.js" rel="modulepreload"/>
+  <link as="script" crossorigin="" href="/_nuxt/BZrkcSa6.js" rel="modulepreload"/>
+  <script crossorigin="" src="/_nuxt/C4Qefsoz.js" type="module">
+  </script>
+  <meta content="Flex Messageの要素" property="og:title"/>
+  <meta content="https://developers.line.biz/images/ogtags/twitter-ogtag.jpg" property="og:image"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta content="@LINE_DEV" name="twitter:site:id"/>
+  <meta content="https://developers.line.biz/images/ogtags/twitter-ogtag.jpg" name="twitter:image"/>
+  <link href="./flex-message-elements/" id="i18n-can" rel="canonical"/>
+  <meta content="https://developers.line.biz/ja/docs/messaging-api/flex-message-elements/" property="og:url"/>
+  <meta content="ja_JP" id="i18n-og" property="og:locale"/>
+  <meta content="en_US" id="i18n-og-alt-en-US" property="og:locale:alternate"/>
+  <meta content="Flex Messageは、3層の階層構造で構成されています。最上位層のコンテナ、そしてブロック（ヘッダー、ヒーロー、ボディ、フッター）、コンポーネントの順で続きます。ここでは、Flex Messageを構成する要素について例を挙げて説明します。コンテナは、Flex Messageの最上位の構造です。以下のタイプのコン..." property="og:description"/>
+  <meta content="Flex Messageの要素" name="twitter:title"/>
+  <meta content="Flex Messageは、3層の階層構造で構成されています。最上位層のコンテナ、そしてブロック（ヘッダー、ヒーロー、ボディ、フッター）、コンポーネントの順で続きます。ここでは、Flex Messageを構成する要素について例を挙げて説明します。コンテナは、Flex Messageの最上位の構造です。以下のタイプのコン..." name="twitter:description"/>
+  <script>
+   "use strict";(()=>{const t=window,e=document.documentElement,c=["dark","light"],n=getStorageValue("localStorage","nuxt-color-mode")||"system";let i=n==="system"?u():n;const r=e.getAttribute("data-color-mode-forced");r&&(i=r),l(i),t["__NUXT_COLOR_MODE__"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=""+o+"",a="";e.classList?e.classList.add(s):e.className+=" "+s,a&&e.setAttribute("data-"+a,o)}function d(o){const s=""+o+"",a="";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,"g"),""),a&&e.removeAttribute("data-"+a)}function f(o){return t.matchMedia("(prefers-color-scheme"+o+")")}function u(){if(t.matchMedia&&f("").media!=="not all"){for(const o of c)if(f(":"+o).matches)return o}return"light"}})();function getStorageValue(t,e){switch(t){case"localStorage":return window.localStorage.getItem(e);case"sessionStorage":return window.sessionStorage.getItem(e);case"cookie":return getCookie(e);default:return null}}function getCookie(t){const c=("; "+window.document.cookie).split("; "+t+"=");if(c.length===2)return c.pop()?.split(";").shift()}
+  </script>
+ </head>
+ <body class="" style="">
+  <div class="isolate" id="__nuxt">
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <!--[-->
+   <div class="nuxt-loading-indicator" style="position:fixed;top:0;right:0;left:0;pointer-events:none;width:auto;height:3px;opacity:0;background:repeating-linear-gradient(to right,#00dc82 0%,#34cdfe 50%,#0047e1 100%);background-size:0% auto;transform:scaleX(0%);transform-origin:left;transition:transform 0.1s, height 0.4s, opacity 0.4s;z-index:999999;">
+   </div>
+   <!--[-->
+   <!--[-->
+   <div class="relative h-screen" data-v-856df627="">
+    <header class="h-[64px] border-b bg-white px-5 transition sm:px-8 md:h-[89px] dark:bg-black fixed z-50 w-full bg-white" data-v-856df627="" data-v-d701af64="" id="navbar">
+     <div class="flex h-full items-center justify-between" data-v-d701af64="">
+      <div class="flex h-full items-center justify-between gap-14 overflow-x-hidden" data-v-d701af64="">
+       <a class="" data-v-d701af64="" href="/ja/">
+        <div class="logo relative" data-v-d701af64="">
+         <img alt="LINE Developers" class="logo logo-default" data-v-d701af64="" id="logo-black" src="/images/common/logo-black.svg"/>
+         <img alt="LINE Developers" class="logo transition" data-v-d701af64="" id="logo-white" src="/images/common/logo-white.svg"/>
+        </div>
+       </a>
+       <div class="navlinks-wrapper hidden-on-search dark:border-ldsgray-750 top-0 bottom-0 left-0 hidden h-full w-10/12 max-w-full transform flex-col justify-between gap-6 overflow-x-hidden overflow-y-auto border-0 bg-transparent px-0 py-0 text-black lg:flex dark:bg-transparent dark:text-white" data-v-d701af64="" id="navlinks-wrapper">
+        <div class="hide-scrollbar flex h-full items-center justify-between overflow-x-auto" data-v-d701af64="" id="navlinks">
+         <!--[-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/about/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            About
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/news/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            ニュース
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/services/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            プロダクト
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4 router-link-active" data-v-0a8e869e="" data-v-d701af64="" href="/ja/docs/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            ドキュメント
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/tips/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            Tips
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/faq/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            FAQ
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4" data-v-0a8e869e="" data-v-d701af64="" href="/ja/glossary/">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            用語集
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--[-->
+         <a class="nav-link custom header-nav-item line-seed-700 flex h-full items-center leading-7 whitespace-nowrap transition lg:px-4 cursor-default" data-v-0a8e869e="" data-v-d701af64="">
+          <div class="relative" data-v-0a8e869e="">
+           <div class="has-animated-underline" data-v-0a8e869e="">
+            <!--[-->
+            その他
+            <!--]-->
+           </div>
+           <!-- -->
+          </div>
+         </a>
+         <!--]-->
+         <!--]-->
+        </div>
+       </div>
+      </div>
+      <div class="h-full" data-v-d701af64="">
+       <div class="flex h-full items-center justify-between gap-3" data-v-d701af64="">
+        <!--[-->
+        <!--[-->
+        <button class="custom header-nav-item h-[36px] rounded px-2 transition hover:opacity-60" data-grace-area-trigger="" data-state="closed" data-v-d701af64="">
+         <span class="lar la-search">
+         </span>
+        </button>
+        <!--v-if-->
+        <!--]-->
+        <!--]-->
+        <!--[-->
+        <!--[-->
+        <!--[-->
+        <button class="focus-visible:outline-primary text-muted hidden! lg:flex! custom header-nav-item flex h-[36px] min-h-[32px] cursor-pointer items-center gap-1 rounded px-2 transition-opacity hover:text-inherit hover:no-underline hover:opacity-60 dark:hover:text-inherit" data-grace-area-trigger="" data-state="closed" type="button" variant="link">
+         <!--[-->
+         <!--[-->
+         <span class="lar la-earth">
+         </span>
+         <span class="lar la-caret-down la-xs">
+         </span>
+         <!--]-->
+         <!--]-->
+        </button>
+        <!--]-->
+        <!-- -->
+        <!--v-if-->
+        <!--]-->
+        <!--]-->
+        <!--[-->
+        <!--[-->
+        <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse bg-elevated light:bg-gray-300 h-[36px] w-32 rounded-full dark:bg-gray-700" role="alert">
+         <!--[-->
+         <!--]-->
+        </div>
+        <!--]-->
+        <!--]-->
+        <a class="text-white custom hidden-on-search navbar-btn group relative flex h-[36px] w-[36px] items-center justify-center overflow-hidden rounded-full transition hidden lg:flex" data-v-d701af64="" href="#">
+         <div class="bg-ldsgray-800 navbar-btn-bg absolute left-0 z-0 h-full w-full rounded-full transition group-hover:opacity-80">
+         </div>
+         <span class="lar la-sun la-lg z-10">
+         </span>
+        </a>
+        <!--[-->
+        <!--[-->
+        <button class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:text-primary/75 active:text-primary/75 disabled:text-primary aria-disabled:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary p-1.5 ml-1 lg:hidden!" data-slot="base" data-v-d701af64="" type="button">
+         <!--[-->
+         <!--[-->
+         <!-- -->
+         <!--]-->
+         <!--[-->
+         <div aria-expanded="false" class="vp-toggle-sidebar-button" data-v-d701af64="" role="button" tabindex="0" title="Toggle side nav">
+          <div aria-hidden="true" class="icon">
+           <span class="btn-mobile-sidebar">
+           </span>
+           <span class="btn-mobile-sidebar">
+           </span>
+           <span class="btn-mobile-sidebar">
+           </span>
+          </div>
+         </div>
+         <!--]-->
+         <!--[-->
+         <!-- -->
+         <!--]-->
+         <!--]-->
+        </button>
+        <!--]-->
+        <!--]-->
+       </div>
+      </div>
+     </div>
+     <!--[-->
+     <!--[-->
+     <span class="hidden" data-grace-area-trigger="" data-state="closed" data-v-d701af64="">
+     </span>
+     <!-- -->
+     <!--v-if-->
+     <!--]-->
+     <!--]-->
+     <!-- -->
+    </header>
+    <div class="sidebar-mask fixed top-0 left-0 z-40 h-full w-full backdrop-blur-sm" data-v-856df627="" style="display:none;">
+    </div>
+    <div class="theme-container flex min-h-screen flex-col pt-[64px] md:pt-[89px]" data-v-856df627="" id="page-wrapper">
+     <div class="content-wrapper z-10 text-white bg-page-header-blue lg:h-[140px]" data-v-856df627="" data-v-f9b4630c="" id="pageHeader">
+      <!-- -->
+      <div class="flex h-full items-center" data-v-f9b4630c="">
+       <div class="w-full" data-v-f9b4630c="">
+        <div class="content-container relative mx-auto py-4 sm:py-8" data-v-5de5e8ce="" data-v-f9b4630c="">
+         <div class="flex items-center gap-5 overflow-hidden sm:gap-12" data-v-117ee8c6="" data-v-5de5e8ce="">
+          <a class="hover:bg-white/20 custom flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center rounded-md border border-white/50 text-sm text-white transition" data-v-117ee8c6="" href="#">
+           <span class="lar la-chevron-left" data-v-117ee8c6="">
+           </span>
+          </a>
+          <div class="hide-scrollbar transparent-edges h-[56px] flex-shrink-1 overflow-x-scroll text-black" data-v-117ee8c6="">
+           <!--[-->
+           <div class="loading-skeleton-wrapper flex gap-4 overflow-hidden opacity-30 sm:gap-6 md:gap-8" data-v-117ee8c6="">
+            <!--[-->
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 block h-full w-[56px] shrink-0" data-v-117ee8c6="" role="alert">
+             <!--[-->
+             <!--]-->
+            </div>
+            <!--]-->
+           </div>
+           <!--]-->
+          </div>
+          <a class="hover:bg-white/20 custom flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center rounded-md border border-white/50 text-sm text-white transition" data-v-117ee8c6="" href="#">
+           <span class="lar la-chevron-right" data-v-117ee8c6="">
+           </span>
+          </a>
+         </div>
+         <!-- -->
+        </div>
+       </div>
+      </div>
+     </div>
+     <nav aria-label="breadcrumb" class="breadcrumb-nav border-b content-wrapper" data-v-5647f7c2="" data-v-856df627="" id="breadcrumbNav">
+      <ol class="content-container breadcrumb-nav mx-auto flex flex-wrap gap-x-2 py-4 text-sm" data-v-5647f7c2="">
+       <!--[-->
+       <li class="breadcrumb-item" data-v-5647f7c2="">
+        <span class="text-ldsgray-650 dark:text-ldsgray-400 cursor-default" data-v-5647f7c2="">
+         Home
+        </span>
+       </li>
+       <!--]-->
+       <li class="breadcrumb-item inline-flex h-full items-center" data-v-5647f7c2="">
+        <div aria-busy="true" aria-label="loading" aria-live="polite" class="animate-pulse rounded-md bg-ldsgray-150 dark:bg-ldsgray-800 mt-[3px] inline-block h-4 w-24" data-v-5647f7c2="" role="alert">
+         <!--[-->
+         <!--]-->
+        </div>
+       </li>
+      </ol>
+     </nav>
+     <!-- -->
+     <!-- -->
+     <div class="content-wrapper mt-0 grow" data-v-856df627="" id="content-wrapper" style="min-height:calc(100dvh - 560px);">
+      <div class="mt-0 2xl:mt-[80px] 2xl:gap-[80px] 2xl:pt-8 mb-[200px] docs-content-container 3xl:mr-auto mr-auto ml-auto 2xl:mr-0 2xl:grid" data-v-856df627="" style="grid-template-columns:160px 1fr;">
+       <div class="sidebar hide-scrollbar sticky top-40 w-full overflow-x-hidden z-30 hidden flex-shrink-0 2xl:block" data-v-2fa9d756="" data-v-856df627="">
+        <ul class="p-0" data-v-2fa9d756="">
+         <!--[-->
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             APIリファレンス
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             開発ガイドライン
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             クイックスタート
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             ガイド
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             Webhook
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リッチメニュー
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             LINE Bot Designer
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-transparent" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-linegreen font-bold custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             Flex Message
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-90 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <div class="border-ldsgray-300 dark:border-ldsgray-700 border-collapse rounded border" data-v-d147b524="">
+            <ul data-v-d147b524="">
+             <!--[-->
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./using-flex-messages/">
+               <!--[-->
+               Flex Messageを送信する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a aria-current="page" class="router-link-active router-link-exact-active bg-linegreen !dark:text-white relative gap-3 rounded font-bold !text-white custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./flex-message-elements/">
+               <!--[-->
+               Flex Messageの要素
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./flex-message-layout/">
+               <!--[-->
+               Flex Messageのレイアウト
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./create-flex-message-including-video/">
+               <!--[-->
+               動画を含むFlex Messageを作成する
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="./using-flex-message-simulator/">
+               <!--[-->
+               チュートリアル - Flex Message Simulatorを使う
+               <!--]-->
+              </a>
+             </li>
+             <li class="[&amp;:not(:last-child)]:mb-1" data-v-d147b524="">
+              <a class="text-ldsgray-700 dark:text-ldsgray-400 hover:bg-ldsgray-200 dark:hover:bg-ldsgray-800 custom text-caption-docs-side -m-px block flex items-center justify-between gap-1 rounded px-3 py-2.5 transition" data-v-d147b524="" href="https://developers.line.biz/flex-simulator/" target="_blank">
+               <!--[-->
+               Flex Message Simulator
+               <!--]-->
+              </a>
+             </li>
+             <!--]-->
+            </ul>
+           </div>
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             概念
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リファレンス
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             リソース
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <li class="mb-3" data-v-2fa9d756="">
+          <section class="sidebar-group mb-3 border-b pb-3 transition border-ldsgray-300 dark:border-ldsgray-700 border-b-0" data-v-2fa9d756="" data-v-d147b524="">
+           <a class="text-black hover:opacity-60 dark:text-white custom sidebar-heading text-caption-docs-side-title flex justify-between py-2 transition" data-v-d147b524="" href="#">
+            <span data-v-d147b524="">
+             導入事例
+            </span>
+            <span class="block flex h-5 w-5 flex-shrink-0 items-center justify-center" data-v-d147b524="">
+             <span class="la-rotate-270 las la-chevron-left text-xs transition-transform" data-v-d147b524="">
+             </span>
+            </span>
+           </a>
+           <!-- -->
+          </section>
+         </li>
+         <!--]-->
+        </ul>
+       </div>
+       <div class="content-container mt-[80px] 2xl:mt-0 lg:grid lg:gap-[60px]" data-v-856df627="" style="grid-template-columns:1fr 180px;">
+        <div class="content-with-sidebars" data-v-856df627="">
+         <!--[-->
+         <!--[-->
+         <main class="markdown-content">
+          <div>
+           <h1 class="text-4xl text-highlighted font-bold mb-8 scroll-mt-[calc(45px+var(--ui-header-height))] lg:scroll-mt-(--ui-header-height)" id="">
+            <!--[-->
+            Flex Messageの要素
+            <!--]-->
+           </h1>
+           <div class="-mt-12 mb-12 flex flex-wrap items-center justify-start gap-1.5 text-xs sm:-mt-16 sm:mb-16" data-v-48a65092="">
+            <button class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white" data-v-48a65092="">
+             <span class="lar la-regular la-copy" data-v-48a65092="">
+             </span>
+             LLM用にコピー
+            </button>
+            <a class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white no-external-icon" data-v-48a65092="" href="./flex-message-elements/index.html.md" rel="nofollow" target="_blank">
+             <!--[-->
+             <span class="lar la-regular la-markdown" data-v-48a65092="">
+             </span>
+             Markdownで表示
+             <!--]-->
+            </a>
+            <a class="custom btn-md-control border-ldsgray-300 group hover:bg-linegreen dark:border-ldsgray-750 flex items-center justify-between gap-1.5 rounded-md border px-3 py-1 text-black transition-all hover:border-black hover:text-white dark:text-white no-external-icon" data-v-48a65092="" href="https://github.com/line/line-developers-docs-source/blob/main/docs/ja/docs/messaging-api/flex-message-elements/index.html.md" rel="nofollow" target="_blank">
+             <!--[-->
+             <span class="la lapr" data-v-48a65092="" role="img" style="height:1em;aspect-ratio:1;display:inline-grid;place-items:stretch;">
+              <svg data-laicon-version="5.1" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+               <g transform="translate(-2 -2)">
+                <path d="M2 11.873a9.874 9.874 0 0 0 6.752 9.368c.494.09.674-.215.674-.477 0-.234-.008-.855-.013-1.679-2.746.6-3.326-1.323-3.326-1.323a2.611 2.611 0 0 0-1.1-1.444c-.9-.613.068-.6.068-.6a2.073 2.073 0 0 1 1.512 1.017 2.1 2.1 0 0 0 2.873.821 2.1 2.1 0 0 1 .627-1.32c-2.192-.249-4.5-1.1-4.5-4.88A3.821 3.821 0 0 1 6.59 8.707a3.547 3.547 0 0 1 .1-2.612s.826-.266 2.71 1.012a9.338 9.338 0 0 1 4.943 0C16.23 5.829 17.057 6.1 17.057 6.1a3.538 3.538 0 0 1 .1 2.612 3.811 3.811 0 0 1 1.015 2.649c0 3.793-2.308 4.628-4.508 4.872a2.354 2.354 0 0 1 .671 1.828c0 1.32-.012 2.385-.012 2.708 0 .264.177.572.678.475A9.873 9.873 0 1 0 2 11.873z">
+                </path>
+               </g>
+              </svg>
+             </span>
+             GitHubで表示
+             <!--]-->
+            </a>
+           </div>
+           <p>
+            <!--[-->
+            Flex Messageは、3層の階層構造で構成されています。最上位層の
+            <a class="" href="#container">
+             <!--[-->
+             <!--[-->
+             コンテナ
+             <!--]-->
+             <!--]-->
+            </a>
+            、そして
+            <a class="" href="#block">
+             <!--[-->
+             <!--[-->
+             ブロック（ヘッダー、ヒーロー、ボディ、フッター）
+             <!--]-->
+             <!--]-->
+            </a>
+            、
+            <a class="" href="#component">
+             <!--[-->
+             <!--[-->
+             コンポーネント
+             <!--]-->
+             <!--]-->
+            </a>
+            の順で続きます。ここでは、Flex Messageを構成する要素について例を挙げて説明します。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="Flex Messageの構造" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border" data-state="closed" src="/media/messaging-api/using-flex-messages/overviewSample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="container">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#container">
+             <!--[-->
+             <!--[-->
+             コンテナ
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            コンテナは、Flex Messageの最上位の構造です。以下のタイプのコンテナを利用できます。
+            <!--]-->
+           </p>
+           <table>
+            <!--[-->
+            <thead>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <th>
+               <!--[-->
+               タイプ
+               <!--]-->
+              </th>
+              <th>
+               <!--[-->
+               説明
+               <!--]-->
+              </th>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </thead>
+            <tbody>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <a class="" href="#bubble">
+                <!--[-->
+                <!--[-->
+                バブル
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               単体のメッセージバブルを表示するコンテナ
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <a class="" href="#carousel">
+                <!--[-->
+                <!--[-->
+                カルーセル
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               複数のメッセージバブルを横に並べて表示するコンテナ
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </tbody>
+            <!--]-->
+           </table>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="bubble">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#bubble">
+             <!--[-->
+             <!--[-->
+             バブル
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            バブルは、1つのメッセージバブルを構成するコンテナです。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#bubble">
+             <!--[-->
+             <!--[-->
+             バブル
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="バブルの例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border" data-state="closed" src="/media/messaging-api/flex-message-elements/bubbleSample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="carousel">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#carousel">
+             <!--[-->
+             <!--[-->
+             カルーセル
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            カルーセルは、1つ以上のバブルを要素に持つコンテナです。カルーセル内のバブルは、横にスクロールして閲覧できます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="カルーセルの例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border" data-state="closed" src="/media/messaging-api/flex-message-elements/carouselSample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#f-carousel">
+             <!--[-->
+             <!--[-->
+             カルーセル
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "wrap": true
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "style": "primary",
+            "action": {
+              "type": "uri",
+              "label": "Go",
+              "uri": "https://example.com"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Hello, World!",
+            "wrap": true
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "style": "primary",
+            "action": {
+              "type": "uri",
+              "label": "Go",
+              "uri": "https://example.com"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"carousel"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="4"><span class="sZEs4">    {
+</span></span><span class="line" line="5"><span class="sPWt5">      "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">      "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="7"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="8"><span class="sPWt5">        "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"horizontal"</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="sPWt5">        "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="10"><span class="sZEs4">          {
+</span></span><span class="line" line="11"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="12"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</span><span class="sZEs4">,
+</span></span><span class="line" line="13"><span class="sPWt5">            "wrap"</span><span class="sZEs4">: </span><span class="sFSAA">true
+</span></span><span class="line" line="14"><span class="sZEs4">          }
+</span></span><span class="line" line="15"><span class="sZEs4">        ]
+</span></span><span class="line" line="16"><span class="sZEs4">      },
+</span></span><span class="line" line="17"><span class="sPWt5">      "footer"</span><span class="sZEs4">: {
+</span></span><span class="line" line="18"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="19"><span class="sPWt5">        "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"horizontal"</span><span class="sZEs4">,
+</span></span><span class="line" line="20"><span class="sPWt5">        "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="21"><span class="sZEs4">          {
+</span></span><span class="line" line="22"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"button"</span><span class="sZEs4">,
+</span></span><span class="line" line="23"><span class="sPWt5">            "style"</span><span class="sZEs4">: </span><span class="s9uIt">"primary"</span><span class="sZEs4">,
+</span></span><span class="line" line="24"><span class="sPWt5">            "action"</span><span class="sZEs4">: {
+</span></span><span class="line" line="25"><span class="sPWt5">              "type"</span><span class="sZEs4">: </span><span class="s9uIt">"uri"</span><span class="sZEs4">,
+</span></span><span class="line" line="26"><span class="sPWt5">              "label"</span><span class="sZEs4">: </span><span class="s9uIt">"Go"</span><span class="sZEs4">,
+</span></span><span class="line" line="27"><span class="sPWt5">              "uri"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com"
+</span></span><span class="line" line="28"><span class="sZEs4">            }
+</span></span><span class="line" line="29"><span class="sZEs4">          }
+</span></span><span class="line" line="30"><span class="sZEs4">        ]
+</span></span><span class="line" line="31"><span class="sZEs4">      }
+</span></span><span class="line" line="32"><span class="sZEs4">    },
+</span></span><span class="line" line="33"><span class="sZEs4">    {
+</span></span><span class="line" line="34"><span class="sPWt5">      "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="35"><span class="sPWt5">      "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="36"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="37"><span class="sPWt5">        "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"horizontal"</span><span class="sZEs4">,
+</span></span><span class="line" line="38"><span class="sPWt5">        "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="39"><span class="sZEs4">          {
+</span></span><span class="line" line="40"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="41"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"Hello, World!"</span><span class="sZEs4">,
+</span></span><span class="line" line="42"><span class="sPWt5">            "wrap"</span><span class="sZEs4">: </span><span class="sFSAA">true
+</span></span><span class="line" line="43"><span class="sZEs4">          }
+</span></span><span class="line" line="44"><span class="sZEs4">        ]
+</span></span><span class="line" line="45"><span class="sZEs4">      },
+</span></span><span class="line" line="46"><span class="sPWt5">      "footer"</span><span class="sZEs4">: {
+</span></span><span class="line" line="47"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="48"><span class="sPWt5">        "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"horizontal"</span><span class="sZEs4">,
+</span></span><span class="line" line="49"><span class="sPWt5">        "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="50"><span class="sZEs4">          {
+</span></span><span class="line" line="51"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"button"</span><span class="sZEs4">,
+</span></span><span class="line" line="52"><span class="sPWt5">            "style"</span><span class="sZEs4">: </span><span class="s9uIt">"primary"</span><span class="sZEs4">,
+</span></span><span class="line" line="53"><span class="sPWt5">            "action"</span><span class="sZEs4">: {
+</span></span><span class="line" line="54"><span class="sPWt5">              "type"</span><span class="sZEs4">: </span><span class="s9uIt">"uri"</span><span class="sZEs4">,
+</span></span><span class="line" line="55"><span class="sPWt5">              "label"</span><span class="sZEs4">: </span><span class="s9uIt">"Go"</span><span class="sZEs4">,
+</span></span><span class="line" line="56"><span class="sPWt5">              "uri"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com"
+</span></span><span class="line" line="57"><span class="sZEs4">            }
+</span></span><span class="line" line="58"><span class="sZEs4">          }
+</span></span><span class="line" line="59"><span class="sZEs4">        ]
+</span></span><span class="line" line="60"><span class="sZEs4">      }
+</span></span><span class="line" line="61"><span class="sZEs4">    }
+</span></span><span class="line" line="62"><span class="sZEs4">  ]
+</span></span><span class="line" line="63"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="block">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#block">
+             <!--[-->
+             <!--[-->
+             ブロック
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            ブロックは、バブルを構成する構造です。以下のタイプのブロックを利用できます。
+            <!--]-->
+           </p>
+           <table>
+            <!--[-->
+            <thead>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <th>
+               <!--[-->
+               タイプ
+               <!--]-->
+              </th>
+              <th>
+               <!--[-->
+               説明
+               <!--]-->
+              </th>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </thead>
+            <tbody>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               ヘッダー
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               メッセージの件名や見出しを表示するブロック
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               ヒーロー
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               画像などの主要なコンテンツを表示するブロック
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               ボディ
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               主要なメッセージコンテンツを表示するブロック
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               フッター
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               ボタンや補足情報を表示するブロック
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </tbody>
+            <!--]-->
+           </table>
+           <p>
+            <!--[-->
+            ヘッダー、ヒーロー、ボディ、フッターは、この順番でバブルの上から表示されます。1つのバブルに対して、すべてのブロックを使用する必要はありません。どのブロックもバブル内で1つだけ指定できます。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#bubble">
+             <!--[-->
+             <!--[-->
+             バブル
+             <!--]-->
+             <!--]-->
+            </a>
+            」の
+            <code>
+             <!--[-->
+             header
+             <!--]-->
+            </code>
+            プロパティ、
+            <code>
+             <!--[-->
+             hero
+             <!--]-->
+            </code>
+            プロパティ、
+            <code>
+             <!--[-->
+             body
+             <!--]-->
+            </code>
+            プロパティ、
+            <code>
+             <!--[-->
+             footer
+             <!--]-->
+            </code>
+            プロパティを参照してください。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="ブロックスタイルの例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border" data-state="closed" src="/media/messaging-api/flex-message-elements/blockStylesSample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "bubble",
+  "styles": {
+    "header": {
+      "backgroundColor": "#ffaaaa"
+    },
+    "body": {
+      "backgroundColor": "#aaffaa"
+    },
+    "footer": {
+      "backgroundColor": "#aaaaff"
+    }
+  },
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "header"
+      }
+    ]
+  },
+  "hero": {
+    "type": "image",
+    "url": "https://example.com/flex/images/image.jpg",
+    "size": "full",
+    "aspectRatio": "2:1"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "body"
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "footer"
+      }
+    ]
+  }
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "styles"</span><span class="sZEs4">: {
+</span></span><span class="line" line="4"><span class="sPWt5">    "header"</span><span class="sZEs4">: {
+</span></span><span class="line" line="5"><span class="sPWt5">      "backgroundColor"</span><span class="sZEs4">: </span><span class="s9uIt">"#ffaaaa"
+</span></span><span class="line" line="6"><span class="sZEs4">    },
+</span></span><span class="line" line="7"><span class="sPWt5">    "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="8"><span class="sPWt5">      "backgroundColor"</span><span class="sZEs4">: </span><span class="s9uIt">"#aaffaa"
+</span></span><span class="line" line="9"><span class="sZEs4">    },
+</span></span><span class="line" line="10"><span class="sPWt5">    "footer"</span><span class="sZEs4">: {
+</span></span><span class="line" line="11"><span class="sPWt5">      "backgroundColor"</span><span class="sZEs4">: </span><span class="s9uIt">"#aaaaff"
+</span></span><span class="line" line="12"><span class="sZEs4">    }
+</span></span><span class="line" line="13"><span class="sZEs4">  },
+</span></span><span class="line" line="14"><span class="sPWt5">  "header"</span><span class="sZEs4">: {
+</span></span><span class="line" line="15"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="16"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"vertical"</span><span class="sZEs4">,
+</span></span><span class="line" line="17"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="18"><span class="sZEs4">      {
+</span></span><span class="line" line="19"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="20"><span class="sPWt5">        "text"</span><span class="sZEs4">: </span><span class="s9uIt">"header"
+</span></span><span class="line" line="21"><span class="sZEs4">      }
+</span></span><span class="line" line="22"><span class="sZEs4">    ]
+</span></span><span class="line" line="23"><span class="sZEs4">  },
+</span></span><span class="line" line="24"><span class="sPWt5">  "hero"</span><span class="sZEs4">: {
+</span></span><span class="line" line="25"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"image"</span><span class="sZEs4">,
+</span></span><span class="line" line="26"><span class="sPWt5">    "url"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com/flex/images/image.jpg"</span><span class="sZEs4">,
+</span></span><span class="line" line="27"><span class="sPWt5">    "size"</span><span class="sZEs4">: </span><span class="s9uIt">"full"</span><span class="sZEs4">,
+</span></span><span class="line" line="28"><span class="sPWt5">    "aspectRatio"</span><span class="sZEs4">: </span><span class="s9uIt">"2:1"
+</span></span><span class="line" line="29"><span class="sZEs4">  },
+</span></span><span class="line" line="30"><span class="sPWt5">  "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="31"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="32"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"vertical"</span><span class="sZEs4">,
+</span></span><span class="line" line="33"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="34"><span class="sZEs4">      {
+</span></span><span class="line" line="35"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="36"><span class="sPWt5">        "text"</span><span class="sZEs4">: </span><span class="s9uIt">"body"
+</span></span><span class="line" line="37"><span class="sZEs4">      }
+</span></span><span class="line" line="38"><span class="sZEs4">    ]
+</span></span><span class="line" line="39"><span class="sZEs4">  },
+</span></span><span class="line" line="40"><span class="sPWt5">  "footer"</span><span class="sZEs4">: {
+</span></span><span class="line" line="41"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="42"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"vertical"</span><span class="sZEs4">,
+</span></span><span class="line" line="43"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="44"><span class="sZEs4">      {
+</span></span><span class="line" line="45"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="46"><span class="sPWt5">        "text"</span><span class="sZEs4">: </span><span class="s9uIt">"footer"
+</span></span><span class="line" line="47"><span class="sZEs4">      }
+</span></span><span class="line" line="48"><span class="sZEs4">    ]
+</span></span><span class="line" line="49"><span class="sZEs4">  }
+</span></span><span class="line" line="50"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="component">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#component">
+             <!--[-->
+             <!--[-->
+             コンポーネント
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <p>
+            <!--[-->
+            コンポーネントは、
+            <a class="" href="#block">
+             <!--[-->
+             <!--[-->
+             ブロック
+             <!--]-->
+             <!--]-->
+            </a>
+            を構成する要素です。以下のコンポーネントを利用できます。
+            <!--]-->
+           </p>
+           <table>
+            <!--[-->
+            <thead>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <th>
+               <!--[-->
+               コンポーネント
+               <!--]-->
+              </th>
+              <th>
+               <!--[-->
+               説明
+               <!--]-->
+              </th>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </thead>
+            <tbody>
+             <!--[-->
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <a class="" href="#box">
+                <!--[-->
+                <!--[-->
+                ボックス
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               水平または垂直のレイアウト方向を定義し、他のコンポーネントを含むことができるコンポーネント
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <a class="" href="#button">
+                <!--[-->
+                <!--[-->
+                ボタン
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               ボタンを描画するコンポーネント。ユーザーがタップすると、指定したアクションが実行されます。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <a class="" href="#image">
+                <!--[-->
+                <!--[-->
+                画像
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               画像を描画するコンポーネント
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <a class="" href="#video">
+                <!--[-->
+                <!--[-->
+                動画
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               動画を描画するコンポーネント
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <a class="" href="#icon">
+                <!--[-->
+                <!--[-->
+                アイコン
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               アイコンを描画するコンポーネント
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <a class="" href="#text">
+                <!--[-->
+                <!--[-->
+                テキスト
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               文字列を描画するコンポーネント。色、サイズ、および太さを指定できます。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <a class="" href="#span">
+                <!--[-->
+                <!--[-->
+                スパン
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               スタイルが異なる複数の文字列を描画するコンポーネント。色、サイズ、太さ、および装飾を指定できます。
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <a class="" href="#separator">
+                <!--[-->
+                <!--[-->
+                セパレータ
+                <!--]-->
+                <!--]-->
+               </a>
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               分割線を描画するコンポーネント
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <tr>
+              <!--[-->
+              <td>
+               <!--[-->
+               <a class="" href="#filler">
+                <!--[-->
+                <!--[-->
+                フィラー
+                <!--]-->
+                <!--]-->
+               </a>
+               （非推奨）
+               <!--]-->
+              </td>
+              <td>
+               <!--[-->
+               スペースを作るためのコンポーネント
+               <!--]-->
+              </td>
+              <!--]-->
+             </tr>
+             <!--]-->
+            </tbody>
+            <!--]-->
+           </table>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="box">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#box">
+             <!--[-->
+             <!--[-->
+             ボックス
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            ボックスは、水平または垂直にコンポーネントをレイアウトするためのコンポーネントです。ボックスを含む、他のコンポーネントを含めることができます。レイアウトについて詳しくは、「
+            <a class="" href="./flex-message-layout/">
+             <!--[-->
+             <!--[-->
+             Flex Messageのレイアウト
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#box">
+             <!--[-->
+             <!--[-->
+             ボックス
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="button">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#button">
+             <!--[-->
+             <!--[-->
+             ボタン
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            ボタンを描画するコンポーネントです。ユーザーが、ボタンをタップしたときに実行される、
+            <a class="" href="./actions/">
+             <!--[-->
+             <!--[-->
+             アクション
+             <!--]-->
+             <!--]-->
+            </a>
+            を指定できます。以下のように、ボタンには3つのスタイルがあり、それぞれでボタンの色を変更できます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="ボタンの例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border" data-state="closed" src="/media/messaging-api/flex-message-elements/buttonSample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#button">
+             <!--[-->
+             <!--[-->
+             ボタン
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "action": {
+          "type": "uri",
+          "label": "Primary style button",
+          "uri": "https://example.com"
+        }
+      },
+      {
+        "type": "button",
+        "style": "secondary",
+        "action": {
+          "type": "uri",
+          "label": "Secondary style button",
+          "uri": "https://example.com"
+        }
+      },
+      {
+        "type": "button",
+        "style": "link",
+        "action": {
+          "type": "uri",
+          "label": "Link style button",
+          "uri": "https://example.com"
+        }
+      }
+    ]
+  }
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="4"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"vertical"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">    "spacing"</span><span class="sZEs4">: </span><span class="s9uIt">"md"</span><span class="sZEs4">,
+</span></span><span class="line" line="7"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="8"><span class="sZEs4">      {
+</span></span><span class="line" line="9"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"button"</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="sPWt5">        "style"</span><span class="sZEs4">: </span><span class="s9uIt">"primary"</span><span class="sZEs4">,
+</span></span><span class="line" line="11"><span class="sPWt5">        "action"</span><span class="sZEs4">: {
+</span></span><span class="line" line="12"><span class="sPWt5">          "type"</span><span class="sZEs4">: </span><span class="s9uIt">"uri"</span><span class="sZEs4">,
+</span></span><span class="line" line="13"><span class="sPWt5">          "label"</span><span class="sZEs4">: </span><span class="s9uIt">"Primary style button"</span><span class="sZEs4">,
+</span></span><span class="line" line="14"><span class="sPWt5">          "uri"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com"
+</span></span><span class="line" line="15"><span class="sZEs4">        }
+</span></span><span class="line" line="16"><span class="sZEs4">      },
+</span></span><span class="line" line="17"><span class="sZEs4">      {
+</span></span><span class="line" line="18"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"button"</span><span class="sZEs4">,
+</span></span><span class="line" line="19"><span class="sPWt5">        "style"</span><span class="sZEs4">: </span><span class="s9uIt">"secondary"</span><span class="sZEs4">,
+</span></span><span class="line" line="20"><span class="sPWt5">        "action"</span><span class="sZEs4">: {
+</span></span><span class="line" line="21"><span class="sPWt5">          "type"</span><span class="sZEs4">: </span><span class="s9uIt">"uri"</span><span class="sZEs4">,
+</span></span><span class="line" line="22"><span class="sPWt5">          "label"</span><span class="sZEs4">: </span><span class="s9uIt">"Secondary style button"</span><span class="sZEs4">,
+</span></span><span class="line" line="23"><span class="sPWt5">          "uri"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com"
+</span></span><span class="line" line="24"><span class="sZEs4">        }
+</span></span><span class="line" line="25"><span class="sZEs4">      },
+</span></span><span class="line" line="26"><span class="sZEs4">      {
+</span></span><span class="line" line="27"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"button"</span><span class="sZEs4">,
+</span></span><span class="line" line="28"><span class="sPWt5">        "style"</span><span class="sZEs4">: </span><span class="s9uIt">"link"</span><span class="sZEs4">,
+</span></span><span class="line" line="29"><span class="sPWt5">        "action"</span><span class="sZEs4">: {
+</span></span><span class="line" line="30"><span class="sPWt5">          "type"</span><span class="sZEs4">: </span><span class="s9uIt">"uri"</span><span class="sZEs4">,
+</span></span><span class="line" line="31"><span class="sPWt5">          "label"</span><span class="sZEs4">: </span><span class="s9uIt">"Link style button"</span><span class="sZEs4">,
+</span></span><span class="line" line="32"><span class="sPWt5">          "uri"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com"
+</span></span><span class="line" line="33"><span class="sZEs4">        }
+</span></span><span class="line" line="34"><span class="sZEs4">      }
+</span></span><span class="line" line="35"><span class="sZEs4">    ]
+</span></span><span class="line" line="36"><span class="sZEs4">  }
+</span></span><span class="line" line="37"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="image">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#image">
+             <!--[-->
+             <!--[-->
+             画像
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            画像を描画するコンポーネントです。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="画像の例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border" data-state="closed" src="/media/messaging-api/flex-message-elements/imageSample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#f-image">
+             <!--[-->
+             <!--[-->
+             画像
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://example.com/flex/images/image.jpg",
+        "size": "md"
+      }
+    ]
+  }
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="4"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"horizontal"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="7"><span class="sZEs4">      {
+</span></span><span class="line" line="8"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"image"</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="sPWt5">        "url"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com/flex/images/image.jpg"</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="sPWt5">        "size"</span><span class="sZEs4">: </span><span class="s9uIt">"md"
+</span></span><span class="line" line="11"><span class="sZEs4">      }
+</span></span><span class="line" line="12"><span class="sZEs4">    ]
+</span></span><span class="line" line="13"><span class="sZEs4">  }
+</span></span><span class="line" line="14"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="video">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#video">
+             <!--[-->
+             <!--[-->
+             動画
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            動画を描画するコンポーネントです。動画の使い方について詳しくは、「
+            <a class="" href="./create-flex-message-including-video/">
+             <!--[-->
+             <!--[-->
+             動画を含むFlex Messageを作成する
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="動画の例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in w-fix-280" data-state="closed" src="/media/messaging-api/flex-message-elements/video-sample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#f-video">
+             <!--[-->
+             <!--[-->
+             動画
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "bubble",
+  "size": "mega",
+  "hero": {
+    "type": "video",
+    "url": "https://example.com/video.mp4",
+    "previewUrl": "https://example.com/video_preview.jpg",
+    "altContent": {
+      "type": "image",
+      "size": "full",
+      "aspectRatio": "20:13",
+      "aspectMode": "cover",
+      "url": "https://example.com/image.jpg"
+    },
+    "aspectRatio": "20:13"
+  }
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "size"</span><span class="sZEs4">: </span><span class="s9uIt">"mega"</span><span class="sZEs4">,
+</span></span><span class="line" line="4"><span class="sPWt5">  "hero"</span><span class="sZEs4">: {
+</span></span><span class="line" line="5"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"video"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">    "url"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com/video.mp4"</span><span class="sZEs4">,
+</span></span><span class="line" line="7"><span class="sPWt5">    "previewUrl"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com/video_preview.jpg"</span><span class="sZEs4">,
+</span></span><span class="line" line="8"><span class="sPWt5">    "altContent"</span><span class="sZEs4">: {
+</span></span><span class="line" line="9"><span class="sPWt5">      "type"</span><span class="sZEs4">: </span><span class="s9uIt">"image"</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="sPWt5">      "size"</span><span class="sZEs4">: </span><span class="s9uIt">"full"</span><span class="sZEs4">,
+</span></span><span class="line" line="11"><span class="sPWt5">      "aspectRatio"</span><span class="sZEs4">: </span><span class="s9uIt">"20:13"</span><span class="sZEs4">,
+</span></span><span class="line" line="12"><span class="sPWt5">      "aspectMode"</span><span class="sZEs4">: </span><span class="s9uIt">"cover"</span><span class="sZEs4">,
+</span></span><span class="line" line="13"><span class="sPWt5">      "url"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com/image.jpg"
+</span></span><span class="line" line="14"><span class="sZEs4">    },
+</span></span><span class="line" line="15"><span class="sPWt5">    "aspectRatio"</span><span class="sZEs4">: </span><span class="s9uIt">"20:13"
+</span></span><span class="line" line="16"><span class="sZEs4">  }
+</span></span><span class="line" line="17"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="icon">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#icon">
+             <!--[-->
+             <!--[-->
+             アイコン
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            隣接するテキストを装飾するために、アイコンを描画するコンポーネントです。このコンポーネントは、
+            <a class="" href="./flex-message-layout/#baseline-box">
+             <!--[-->
+             <!--[-->
+             ベースラインボックス
+             <!--]-->
+             <!--]-->
+            </a>
+            内でのみ使用できます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="アイコンの例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border" data-state="closed" src="/media/messaging-api/flex-message-elements/iconSample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#icon">
+             <!--[-->
+             <!--[-->
+             アイコン
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "icon",
+            "url": "https://example.com/flex/images/icon.png",
+            "size": "md"
+          },
+          {
+            "type": "text",
+            "text": "The quick brown fox jumps over the lazy dog",
+            "size": "md"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "icon",
+            "url": "https://example.com/flex/images/icon.png",
+            "size": "lg"
+          },
+          {
+            "type": "text",
+            "text": "The quick brown fox jumps over the lazy dog",
+            "size": "lg"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "icon",
+            "url": "https://example.com/flex/images/icon.png",
+            "size": "xl"
+          },
+          {
+            "type": "text",
+            "text": "The quick brown fox jumps over the lazy dog",
+            "size": "xl"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "icon",
+            "url": "https://example.com/flex/images/icon.png",
+            "size": "xxl"
+          },
+          {
+            "type": "text",
+            "text": "The quick brown fox jumps over the lazy dog",
+            "size": "xxl"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "icon",
+            "url": "https://example.com/flex/images/icon.png",
+            "size": "3xl"
+          },
+          {
+            "type": "text",
+            "text": "The quick brown fox jumps over the lazy dog",
+            "size": "3xl"
+          }
+        ]
+      }
+    ]
+  }
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="4"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"vertical"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="7"><span class="sZEs4">      {
+</span></span><span class="line" line="8"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="sPWt5">        "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"baseline"</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="sPWt5">        "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="11"><span class="sZEs4">          {
+</span></span><span class="line" line="12"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"icon"</span><span class="sZEs4">,
+</span></span><span class="line" line="13"><span class="sPWt5">            "url"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com/flex/images/icon.png"</span><span class="sZEs4">,
+</span></span><span class="line" line="14"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"md"
+</span></span><span class="line" line="15"><span class="sZEs4">          },
+</span></span><span class="line" line="16"><span class="sZEs4">          {
+</span></span><span class="line" line="17"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="18"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"The quick brown fox jumps over the lazy dog"</span><span class="sZEs4">,
+</span></span><span class="line" line="19"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"md"
+</span></span><span class="line" line="20"><span class="sZEs4">          }
+</span></span><span class="line" line="21"><span class="sZEs4">        ]
+</span></span><span class="line" line="22"><span class="sZEs4">      },
+</span></span><span class="line" line="23"><span class="sZEs4">      {
+</span></span><span class="line" line="24"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="25"><span class="sPWt5">        "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"baseline"</span><span class="sZEs4">,
+</span></span><span class="line" line="26"><span class="sPWt5">        "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="27"><span class="sZEs4">          {
+</span></span><span class="line" line="28"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"icon"</span><span class="sZEs4">,
+</span></span><span class="line" line="29"><span class="sPWt5">            "url"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com/flex/images/icon.png"</span><span class="sZEs4">,
+</span></span><span class="line" line="30"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"lg"
+</span></span><span class="line" line="31"><span class="sZEs4">          },
+</span></span><span class="line" line="32"><span class="sZEs4">          {
+</span></span><span class="line" line="33"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="34"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"The quick brown fox jumps over the lazy dog"</span><span class="sZEs4">,
+</span></span><span class="line" line="35"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"lg"
+</span></span><span class="line" line="36"><span class="sZEs4">          }
+</span></span><span class="line" line="37"><span class="sZEs4">        ]
+</span></span><span class="line" line="38"><span class="sZEs4">      },
+</span></span><span class="line" line="39"><span class="sZEs4">      {
+</span></span><span class="line" line="40"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="41"><span class="sPWt5">        "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"baseline"</span><span class="sZEs4">,
+</span></span><span class="line" line="42"><span class="sPWt5">        "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="43"><span class="sZEs4">          {
+</span></span><span class="line" line="44"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"icon"</span><span class="sZEs4">,
+</span></span><span class="line" line="45"><span class="sPWt5">            "url"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com/flex/images/icon.png"</span><span class="sZEs4">,
+</span></span><span class="line" line="46"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"xl"
+</span></span><span class="line" line="47"><span class="sZEs4">          },
+</span></span><span class="line" line="48"><span class="sZEs4">          {
+</span></span><span class="line" line="49"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="50"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"The quick brown fox jumps over the lazy dog"</span><span class="sZEs4">,
+</span></span><span class="line" line="51"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"xl"
+</span></span><span class="line" line="52"><span class="sZEs4">          }
+</span></span><span class="line" line="53"><span class="sZEs4">        ]
+</span></span><span class="line" line="54"><span class="sZEs4">      },
+</span></span><span class="line" line="55"><span class="sZEs4">      {
+</span></span><span class="line" line="56"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="57"><span class="sPWt5">        "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"baseline"</span><span class="sZEs4">,
+</span></span><span class="line" line="58"><span class="sPWt5">        "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="59"><span class="sZEs4">          {
+</span></span><span class="line" line="60"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"icon"</span><span class="sZEs4">,
+</span></span><span class="line" line="61"><span class="sPWt5">            "url"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com/flex/images/icon.png"</span><span class="sZEs4">,
+</span></span><span class="line" line="62"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"xxl"
+</span></span><span class="line" line="63"><span class="sZEs4">          },
+</span></span><span class="line" line="64"><span class="sZEs4">          {
+</span></span><span class="line" line="65"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="66"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"The quick brown fox jumps over the lazy dog"</span><span class="sZEs4">,
+</span></span><span class="line" line="67"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"xxl"
+</span></span><span class="line" line="68"><span class="sZEs4">          }
+</span></span><span class="line" line="69"><span class="sZEs4">        ]
+</span></span><span class="line" line="70"><span class="sZEs4">      },
+</span></span><span class="line" line="71"><span class="sZEs4">      {
+</span></span><span class="line" line="72"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="73"><span class="sPWt5">        "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"baseline"</span><span class="sZEs4">,
+</span></span><span class="line" line="74"><span class="sPWt5">        "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="75"><span class="sZEs4">          {
+</span></span><span class="line" line="76"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"icon"</span><span class="sZEs4">,
+</span></span><span class="line" line="77"><span class="sPWt5">            "url"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com/flex/images/icon.png"</span><span class="sZEs4">,
+</span></span><span class="line" line="78"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"3xl"
+</span></span><span class="line" line="79"><span class="sZEs4">          },
+</span></span><span class="line" line="80"><span class="sZEs4">          {
+</span></span><span class="line" line="81"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="82"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"The quick brown fox jumps over the lazy dog"</span><span class="sZEs4">,
+</span></span><span class="line" line="83"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"3xl"
+</span></span><span class="line" line="84"><span class="sZEs4">          }
+</span></span><span class="line" line="85"><span class="sZEs4">        ]
+</span></span><span class="line" line="86"><span class="sZEs4">      }
+</span></span><span class="line" line="87"><span class="sZEs4">    ]
+</span></span><span class="line" line="88"><span class="sZEs4">  }
+</span></span><span class="line" line="89"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="text">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#text">
+             <!--[-->
+             <!--[-->
+             テキスト
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            文字列を描画するコンポーネントです。色、サイズ、および太さを指定できます。長いテキストを
+            <a class="" href="#text-wrap">
+             <!--[-->
+             <!--[-->
+             折り返し
+             <!--]-->
+             <!--]-->
+            </a>
+            たり、折り返したテキストの行間を調整したりできます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="テキストの例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border" data-state="closed" src="/media/messaging-api/flex-message-elements/textSample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#f-text">
+             <!--[-->
+             <!--[-->
+             テキスト
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Closing the distance",
+        "size": "md",
+        "align": "center",
+        "color": "#ff0000"
+      },
+      {
+        "type": "text",
+        "text": "Closing the distance",
+        "size": "lg",
+        "align": "center",
+        "color": "#00ff00"
+      },
+      {
+        "type": "text",
+        "text": "Closing the distance",
+        "size": "xl",
+        "align": "center",
+        "weight": "bold",
+        "color": "#0000ff"
+      }
+    ]
+  }
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="4"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"vertical"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="7"><span class="sZEs4">      {
+</span></span><span class="line" line="8"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="sPWt5">        "text"</span><span class="sZEs4">: </span><span class="s9uIt">"Closing the distance"</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="sPWt5">        "size"</span><span class="sZEs4">: </span><span class="s9uIt">"md"</span><span class="sZEs4">,
+</span></span><span class="line" line="11"><span class="sPWt5">        "align"</span><span class="sZEs4">: </span><span class="s9uIt">"center"</span><span class="sZEs4">,
+</span></span><span class="line" line="12"><span class="sPWt5">        "color"</span><span class="sZEs4">: </span><span class="s9uIt">"#ff0000"
+</span></span><span class="line" line="13"><span class="sZEs4">      },
+</span></span><span class="line" line="14"><span class="sZEs4">      {
+</span></span><span class="line" line="15"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="16"><span class="sPWt5">        "text"</span><span class="sZEs4">: </span><span class="s9uIt">"Closing the distance"</span><span class="sZEs4">,
+</span></span><span class="line" line="17"><span class="sPWt5">        "size"</span><span class="sZEs4">: </span><span class="s9uIt">"lg"</span><span class="sZEs4">,
+</span></span><span class="line" line="18"><span class="sPWt5">        "align"</span><span class="sZEs4">: </span><span class="s9uIt">"center"</span><span class="sZEs4">,
+</span></span><span class="line" line="19"><span class="sPWt5">        "color"</span><span class="sZEs4">: </span><span class="s9uIt">"#00ff00"
+</span></span><span class="line" line="20"><span class="sZEs4">      },
+</span></span><span class="line" line="21"><span class="sZEs4">      {
+</span></span><span class="line" line="22"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="23"><span class="sPWt5">        "text"</span><span class="sZEs4">: </span><span class="s9uIt">"Closing the distance"</span><span class="sZEs4">,
+</span></span><span class="line" line="24"><span class="sPWt5">        "size"</span><span class="sZEs4">: </span><span class="s9uIt">"xl"</span><span class="sZEs4">,
+</span></span><span class="line" line="25"><span class="sPWt5">        "align"</span><span class="sZEs4">: </span><span class="s9uIt">"center"</span><span class="sZEs4">,
+</span></span><span class="line" line="26"><span class="sPWt5">        "weight"</span><span class="sZEs4">: </span><span class="s9uIt">"bold"</span><span class="sZEs4">,
+</span></span><span class="line" line="27"><span class="sPWt5">        "color"</span><span class="sZEs4">: </span><span class="s9uIt">"#0000ff"
+</span></span><span class="line" line="28"><span class="sZEs4">      }
+</span></span><span class="line" line="29"><span class="sZEs4">    ]
+</span></span><span class="line" line="30"><span class="sZEs4">  }
+</span></span><span class="line" line="31"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h4 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="text-wrap">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#text-wrap">
+             <!--[-->
+             <!--[-->
+             テキストを折り返す
+             <!--]-->
+             <!--]-->
+            </a>
+           </h4>
+           <p>
+            <!--[-->
+            デフォルトでは、テキストの幅を超える部分は省略記号に置き換えられます。以下は、長いテキストが省略される場合の例です。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="折り返しなしの例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border" data-state="closed" src="/media/messaging-api/flex-message-elements/nowrapSample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      }
+    ]
+  }
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="4"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"horizontal"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="7"><span class="sZEs4">      {
+</span></span><span class="line" line="8"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="sPWt5">        "text"</span><span class="sZEs4">: </span><span class="s9uIt">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+</span></span><span class="line" line="10"><span class="sZEs4">      }
+</span></span><span class="line" line="11"><span class="sZEs4">    ]
+</span></span><span class="line" line="12"><span class="sZEs4">  }
+</span></span><span class="line" line="13"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <p>
+            <!--[-->
+            テキストを折り返して表示することで、テキストの省略を避けることができます。テキストを折り返して表示するには、
+            <code>
+             <!--[-->
+             wrap
+             <!--]-->
+            </code>
+            プロパティに
+            <code>
+             <!--[-->
+             true
+             <!--]-->
+            </code>
+            を指定します。また、改行文字（
+            <code>
+             <!--[-->
+             \n
+             <!--]-->
+            </code>
+            ）を使って改行できます。以下は、テキストの折り返しと改行を使用したFlex Messageの例です。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="折り返しありの例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in w-fix-280" data-state="closed" src="/media/messaging-api/flex-message-elements/wrap-sample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <div class="warning custom-block">
+            <div class="custom-block-title">
+             <i class="las la-exclamation-circle mr-2">
+             </i>
+             <span>
+              注意
+             </span>
+            </div>
+            <div>
+             <!--[-->
+             <p>
+              <!--[-->
+              テキストの最後に改行文字（
+              <code>
+               <!--[-->
+               \n
+               <!--]-->
+              </code>
+              ）を入力した場合の描画結果は、環境によって異なる可能性があります。
+              <!--]-->
+             </p>
+             <!--]-->
+            </div>
+           </div>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+            <code>
+             <!--[-->
+             wrap
+             <!--]-->
+            </code>
+            プロパティに
+            <code>
+             <!--[-->
+             true
+             <!--]-->
+            </code>
+            を設定しています。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n tempor incididunt ut labore et dolore magna aliqua.",
+        "wrap": true
+      }
+    ]
+  }
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="4"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"horizontal"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="7"><span class="sZEs4">      {
+</span></span><span class="line" line="8"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="sPWt5">        "text"</span><span class="sZEs4">: </span><span class="s9uIt">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</span><span class="suJrU">\n</span><span class="s9uIt"> tempor incididunt ut labore et dolore magna aliqua."</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="sPWt5">        "wrap"</span><span class="sZEs4">: </span><span class="sFSAA">true
+</span></span><span class="line" line="11"><span class="sZEs4">      }
+</span></span><span class="line" line="12"><span class="sZEs4">    ]
+</span></span><span class="line" line="13"><span class="sZEs4">  }
+</span></span><span class="line" line="14"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h5 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="text-line-spacing">
+            </div>
+            <!--[-->
+            <!--[-->
+            テキスト内の行間を広げる
+            <!--]-->
+            <!--]-->
+           </h5>
+           <p>
+            <!--[-->
+            折り返したテキストの行間は、
+            <code>
+             <!--[-->
+             lineSpacing
+             <!--]-->
+            </code>
+            プロパティで指定できます。
+            <!--]-->
+           </p>
+           <div class="warning custom-block">
+            <div class="custom-block-title">
+             <i class="las la-exclamation-circle mr-2">
+             </i>
+             <span>
+              行間を指定できる範囲
+             </span>
+            </div>
+            <div>
+             <!--[-->
+             <p>
+              <!--[-->
+              <code>
+               <!--[-->
+               lineSpacing
+               <!--]-->
+              </code>
+              プロパティは、テキスト内の行間にのみ適用されます。そのため、開始行の上部と最終行の下部には適用されません。
+              <!--]-->
+             </p>
+             <!--]-->
+            </div>
+           </div>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="テキスト内の行間を広げた例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in w-fix-280" data-state="closed" src="/media/messaging-api/flex-message-elements/line-spacing-sample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。
+            <code>
+             <!--[-->
+             lineSpacing
+             <!--]-->
+            </code>
+            プロパティに
+            <code>
+             <!--[-->
+             20px
+             <!--]-->
+            </code>
+            を設定しています。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n tempor incididunt ut labore et dolore magna aliqua.",
+        "wrap": true,
+        "lineSpacing": "20px"
+      }
+    ]
+  }
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="4"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"horizontal"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="7"><span class="sZEs4">      {
+</span></span><span class="line" line="8"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="sPWt5">        "text"</span><span class="sZEs4">: </span><span class="s9uIt">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</span><span class="suJrU">\n</span><span class="s9uIt"> tempor incididunt ut labore et dolore magna aliqua."</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="sPWt5">        "wrap"</span><span class="sZEs4">: </span><span class="sFSAA">true</span><span class="sZEs4">,
+</span></span><span class="line" line="11"><span class="sPWt5">        "lineSpacing"</span><span class="sZEs4">: </span><span class="s9uIt">"20px"
+</span></span><span class="line" line="12"><span class="sZEs4">      }
+</span></span><span class="line" line="13"><span class="sZEs4">    ]
+</span></span><span class="line" line="14"><span class="sZEs4">  }
+</span></span><span class="line" line="15"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="span">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#span">
+             <!--[-->
+             <!--[-->
+             スパン
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            スタイルが異なる複数の文字列を描画するコンポーネントです。色、サイズ、太さ、および装飾を指定できます。スパンは、
+            <a class="" href="#text">
+             <!--[-->
+             <!--[-->
+             テキスト
+             <!--]-->
+             <!--]-->
+            </a>
+            の
+            <code>
+             <!--[-->
+             contents
+             <!--]-->
+            </code>
+            プロパティに設定します。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="スパンの例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border" data-state="closed" src="/media/messaging-api/flex-message-elements/spanSample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#span">
+             <!--[-->
+             <!--[-->
+             スパン
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "text",
+        "text": "hello, world",
+        "contents": [
+          {
+            "type": "span",
+            "text": "Hello, world!",
+            "decoration": "line-through"
+          },
+          {
+            "type": "span",
+            "text": "\nClosing",
+            "color": "#ff0000",
+            "size": "sm",
+            "weight": "bold",
+            "decoration": "none"
+          },
+          {
+            "type": "span",
+            "text": " "
+          },
+          {
+            "type": "span",
+            "text": "the",
+            "size": "lg",
+            "color": "#00ff00",
+            "decoration": "underline",
+            "weight": "bold"
+          },
+          {
+            "type": "span",
+            "text": " "
+          },
+          {
+            "type": "span",
+            "text": "distance",
+            "color": "#0000ff",
+            "weight": "bold",
+            "size": "xxl"
+          }
+        ],
+        "wrap": true,
+        "align": "center"
+      }
+    ]
+  }
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="4"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"horizontal"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="7"><span class="sZEs4">      {
+</span></span><span class="line" line="8"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="sPWt5">        "text"</span><span class="sZEs4">: </span><span class="s9uIt">"hello, world"</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="sPWt5">        "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="11"><span class="sZEs4">          {
+</span></span><span class="line" line="12"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"span"</span><span class="sZEs4">,
+</span></span><span class="line" line="13"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"Hello, world!"</span><span class="sZEs4">,
+</span></span><span class="line" line="14"><span class="sPWt5">            "decoration"</span><span class="sZEs4">: </span><span class="s9uIt">"line-through"
+</span></span><span class="line" line="15"><span class="sZEs4">          },
+</span></span><span class="line" line="16"><span class="sZEs4">          {
+</span></span><span class="line" line="17"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"span"</span><span class="sZEs4">,
+</span></span><span class="line" line="18"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"</span><span class="suJrU">\n</span><span class="s9uIt">Closing"</span><span class="sZEs4">,
+</span></span><span class="line" line="19"><span class="sPWt5">            "color"</span><span class="sZEs4">: </span><span class="s9uIt">"#ff0000"</span><span class="sZEs4">,
+</span></span><span class="line" line="20"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"sm"</span><span class="sZEs4">,
+</span></span><span class="line" line="21"><span class="sPWt5">            "weight"</span><span class="sZEs4">: </span><span class="s9uIt">"bold"</span><span class="sZEs4">,
+</span></span><span class="line" line="22"><span class="sPWt5">            "decoration"</span><span class="sZEs4">: </span><span class="s9uIt">"none"
+</span></span><span class="line" line="23"><span class="sZEs4">          },
+</span></span><span class="line" line="24"><span class="sZEs4">          {
+</span></span><span class="line" line="25"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"span"</span><span class="sZEs4">,
+</span></span><span class="line" line="26"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">" "
+</span></span><span class="line" line="27"><span class="sZEs4">          },
+</span></span><span class="line" line="28"><span class="sZEs4">          {
+</span></span><span class="line" line="29"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"span"</span><span class="sZEs4">,
+</span></span><span class="line" line="30"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"the"</span><span class="sZEs4">,
+</span></span><span class="line" line="31"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"lg"</span><span class="sZEs4">,
+</span></span><span class="line" line="32"><span class="sPWt5">            "color"</span><span class="sZEs4">: </span><span class="s9uIt">"#00ff00"</span><span class="sZEs4">,
+</span></span><span class="line" line="33"><span class="sPWt5">            "decoration"</span><span class="sZEs4">: </span><span class="s9uIt">"underline"</span><span class="sZEs4">,
+</span></span><span class="line" line="34"><span class="sPWt5">            "weight"</span><span class="sZEs4">: </span><span class="s9uIt">"bold"
+</span></span><span class="line" line="35"><span class="sZEs4">          },
+</span></span><span class="line" line="36"><span class="sZEs4">          {
+</span></span><span class="line" line="37"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"span"</span><span class="sZEs4">,
+</span></span><span class="line" line="38"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">" "
+</span></span><span class="line" line="39"><span class="sZEs4">          },
+</span></span><span class="line" line="40"><span class="sZEs4">          {
+</span></span><span class="line" line="41"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"span"</span><span class="sZEs4">,
+</span></span><span class="line" line="42"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"distance"</span><span class="sZEs4">,
+</span></span><span class="line" line="43"><span class="sPWt5">            "color"</span><span class="sZEs4">: </span><span class="s9uIt">"#0000ff"</span><span class="sZEs4">,
+</span></span><span class="line" line="44"><span class="sPWt5">            "weight"</span><span class="sZEs4">: </span><span class="s9uIt">"bold"</span><span class="sZEs4">,
+</span></span><span class="line" line="45"><span class="sPWt5">            "size"</span><span class="sZEs4">: </span><span class="s9uIt">"xxl"
+</span></span><span class="line" line="46"><span class="sZEs4">          }
+</span></span><span class="line" line="47"><span class="sZEs4">        ],
+</span></span><span class="line" line="48"><span class="sPWt5">        "wrap"</span><span class="sZEs4">: </span><span class="sFSAA">true</span><span class="sZEs4">,
+</span></span><span class="line" line="49"><span class="sPWt5">        "align"</span><span class="sZEs4">: </span><span class="s9uIt">"center"
+</span></span><span class="line" line="50"><span class="sZEs4">      }
+</span></span><span class="line" line="51"><span class="sZEs4">    ]
+</span></span><span class="line" line="52"><span class="sZEs4">  }
+</span></span><span class="line" line="53"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="separator">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#separator">
+             <!--[-->
+             <!--[-->
+             セパレータ
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <p>
+            <!--[-->
+            <a class="" href="#box">
+             <!--[-->
+             <!--[-->
+             ボックス
+             <!--]-->
+             <!--]-->
+            </a>
+            内に分割線を描画するコンポーネントです。水平ボックスに含めた場合は垂直線、垂直ボックスに含めた場合は水平線が描画されます。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="セパレータの例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border" data-state="closed" src="/media/messaging-api/flex-message-elements/separatorSample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#separator">
+             <!--[-->
+             <!--[-->
+             セパレータ
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "spacing": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "orange"
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": "apple"
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "spacing": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "grape"
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": "lemon"
+          }
+        ]
+      }
+    ]
+  }
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="4"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"vertical"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">    "spacing"</span><span class="sZEs4">: </span><span class="s9uIt">"md"</span><span class="sZEs4">,
+</span></span><span class="line" line="7"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="8"><span class="sZEs4">      {
+</span></span><span class="line" line="9"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="10"><span class="sPWt5">        "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"horizontal"</span><span class="sZEs4">,
+</span></span><span class="line" line="11"><span class="sPWt5">        "spacing"</span><span class="sZEs4">: </span><span class="s9uIt">"md"</span><span class="sZEs4">,
+</span></span><span class="line" line="12"><span class="sPWt5">        "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="13"><span class="sZEs4">          {
+</span></span><span class="line" line="14"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="15"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"orange"
+</span></span><span class="line" line="16"><span class="sZEs4">          },
+</span></span><span class="line" line="17"><span class="sZEs4">          {
+</span></span><span class="line" line="18"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"separator"
+</span></span><span class="line" line="19"><span class="sZEs4">          },
+</span></span><span class="line" line="20"><span class="sZEs4">          {
+</span></span><span class="line" line="21"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="22"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"apple"
+</span></span><span class="line" line="23"><span class="sZEs4">          }
+</span></span><span class="line" line="24"><span class="sZEs4">        ]
+</span></span><span class="line" line="25"><span class="sZEs4">      },
+</span></span><span class="line" line="26"><span class="sZEs4">      {
+</span></span><span class="line" line="27"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"separator"
+</span></span><span class="line" line="28"><span class="sZEs4">      },
+</span></span><span class="line" line="29"><span class="sZEs4">      {
+</span></span><span class="line" line="30"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="31"><span class="sPWt5">        "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"horizontal"</span><span class="sZEs4">,
+</span></span><span class="line" line="32"><span class="sPWt5">        "spacing"</span><span class="sZEs4">: </span><span class="s9uIt">"md"</span><span class="sZEs4">,
+</span></span><span class="line" line="33"><span class="sPWt5">        "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="34"><span class="sZEs4">          {
+</span></span><span class="line" line="35"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="36"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"grape"
+</span></span><span class="line" line="37"><span class="sZEs4">          },
+</span></span><span class="line" line="38"><span class="sZEs4">          {
+</span></span><span class="line" line="39"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"separator"
+</span></span><span class="line" line="40"><span class="sZEs4">          },
+</span></span><span class="line" line="41"><span class="sZEs4">          {
+</span></span><span class="line" line="42"><span class="sPWt5">            "type"</span><span class="sZEs4">: </span><span class="s9uIt">"text"</span><span class="sZEs4">,
+</span></span><span class="line" line="43"><span class="sPWt5">            "text"</span><span class="sZEs4">: </span><span class="s9uIt">"lemon"
+</span></span><span class="line" line="44"><span class="sZEs4">          }
+</span></span><span class="line" line="45"><span class="sZEs4">        ]
+</span></span><span class="line" line="46"><span class="sZEs4">      }
+</span></span><span class="line" line="47"><span class="sZEs4">    ]
+</span></span><span class="line" line="48"><span class="sZEs4">  }
+</span></span><span class="line" line="49"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h3 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="filler">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#filler">
+             <!--[-->
+             <!--[-->
+             フィラー
+             <!--]-->
+             <!--]-->
+            </a>
+           </h3>
+           <div class="danger custom-block">
+            <div class="custom-block-title">
+             <i class="las la-exclamation-triangle mr-2">
+             </i>
+             <span>
+              フィラーは非推奨のコンポーネントです
+             </span>
+            </div>
+            <div>
+             <!--[-->
+             <p>
+              <!--[-->
+              スペースを作るには、フィラーの代わりに各コンポーネントのプロパティを使用してください。詳しくは、「
+              <a class="" href="./flex-message-layout/#component-position">
+               <!--[-->
+               <!--[-->
+               コンポーネントの位置
+               <!--]-->
+               <!--]-->
+              </a>
+              」を参照してください。
+              <!--]-->
+             </p>
+             <!--]-->
+            </div>
+           </div>
+           <p>
+            <!--[-->
+            スペースを作るためのコンポーネントです。ボックス内のコンポーネントの間、前、または後にスペースを入れることができます。以下の例では、画像の間にフィラーを挿入しています。
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            <!--[-->
+            <!-- -->
+            <!-- -->
+            <!--[-->
+            <img alt="フィラーの例" aria-expanded="false" aria-haspopup="dialog" class="rounded-md w-auto will-change-transform cursor-zoom-in border" data-state="closed" src="/media/messaging-api/flex-message-elements/fillerSample.png" type="button"/>
+            <!--v-if-->
+            <!--]-->
+            <!--]-->
+            <!--]-->
+           </p>
+           <p>
+            <!--[-->
+            上のFlex Messageを表現するには以下のようなJSONデータを指定します。JSONスキーマについて詳しくは、『Messaging APIリファレンス』の「
+            <a class="" href="/ja/reference/messaging-api/#filler">
+             <!--[-->
+             <!--[-->
+             フィラー
+             <!--]-->
+             <!--]-->
+            </a>
+            」を参照してください。
+            <!--]-->
+           </p>
+           <div class="relative" code='{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://example.com/flex/images/image.jpg"
+      },
+      {
+        "type": "filler"
+      },
+      {
+        "type": "image",
+        "url": "https://example.com/flex/images/image.jpg"
+      }
+    ]
+  }
+}
+' meta="" style="">
+            <span class="code-language-label text-ldsgray-600 absolute top-2 right-2 text-xs">
+             json
+            </span>
+            <pre class="language-json shiki shiki-themes github-dark-default"><!--[--><code><span class="line" line="1"><span class="sZEs4">{
+</span></span><span class="line" line="2"><span class="sPWt5">  "type"</span><span class="sZEs4">: </span><span class="s9uIt">"bubble"</span><span class="sZEs4">,
+</span></span><span class="line" line="3"><span class="sPWt5">  "body"</span><span class="sZEs4">: {
+</span></span><span class="line" line="4"><span class="sPWt5">    "type"</span><span class="sZEs4">: </span><span class="s9uIt">"box"</span><span class="sZEs4">,
+</span></span><span class="line" line="5"><span class="sPWt5">    "layout"</span><span class="sZEs4">: </span><span class="s9uIt">"horizontal"</span><span class="sZEs4">,
+</span></span><span class="line" line="6"><span class="sPWt5">    "contents"</span><span class="sZEs4">: [
+</span></span><span class="line" line="7"><span class="sZEs4">      {
+</span></span><span class="line" line="8"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"image"</span><span class="sZEs4">,
+</span></span><span class="line" line="9"><span class="sPWt5">        "url"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com/flex/images/image.jpg"
+</span></span><span class="line" line="10"><span class="sZEs4">      },
+</span></span><span class="line" line="11"><span class="sZEs4">      {
+</span></span><span class="line" line="12"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"filler"
+</span></span><span class="line" line="13"><span class="sZEs4">      },
+</span></span><span class="line" line="14"><span class="sZEs4">      {
+</span></span><span class="line" line="15"><span class="sPWt5">        "type"</span><span class="sZEs4">: </span><span class="s9uIt">"image"</span><span class="sZEs4">,
+</span></span><span class="line" line="16"><span class="sPWt5">        "url"</span><span class="sZEs4">: </span><span class="s9uIt">"https://example.com/flex/images/image.jpg"
+</span></span><span class="line" line="17"><span class="sZEs4">      }
+</span></span><span class="line" line="18"><span class="sZEs4">    ]
+</span></span><span class="line" line="19"><span class="sZEs4">  }
+</span></span><span class="line" line="20"><span class="sZEs4">}
+</span></span></code><!--]--></pre>
+           </div>
+           <h2 class="relative">
+            <div class="absolute -top-40 -left-1 h-px w-px" id="related-flex-message-elements-pages">
+            </div>
+            <a class="custom markdown-header-anchor text-inherit hover:no-underline" data-v-9962517b="" href="#related-flex-message-elements-pages">
+             <!--[-->
+             <!--[-->
+             関連ページ
+             <!--]-->
+             <!--]-->
+            </a>
+           </h2>
+           <ul>
+            <!--[-->
+            <li>
+             <!--[-->
+             <a class="" href="./using-flex-messages/">
+              <!--[-->
+              <!--[-->
+              Flex Messageを送信する
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="./flex-message-layout/">
+              <!--[-->
+              <!--[-->
+              Flex Messageのレイアウト
+              <!--]-->
+              <!--]-->
+             </a>
+             <!--]-->
+            </li>
+            <li>
+             <!--[-->
+             <a class="" href="/ja/reference/messaging-api/#flex-message">
+              <!--[-->
+              <!--[-->
+              Flex Message
+              <!--]-->
+              <!--]-->
+             </a>
+             （Messaging APIリファレンス）
+             <!--]-->
+            </li>
+            <!--]-->
+           </ul>
+           <style>
+            html pre.shiki code .sZEs4, html code.shiki .sZEs4{--shiki-default:#E6EDF3}html pre.shiki code .sPWt5, html code.shiki .sPWt5{--shiki-default:#7EE787}html pre.shiki code .s9uIt, html code.shiki .s9uIt{--shiki-default:#A5D6FF}html pre.shiki code .sFSAA, html code.shiki .sFSAA{--shiki-default:#79C0FF}html .default .shiki span {color: var(--shiki-default);background: var(--shiki-default-bg);font-style: var(--shiki-default-font-style);font-weight: var(--shiki-default-font-weight);text-decoration: var(--shiki-default-text-decoration);}html .shiki span {color: var(--shiki-default);background: var(--shiki-default-bg);font-style: var(--shiki-default-font-style);font-weight: var(--shiki-default-font-weight);text-decoration: var(--shiki-default-text-decoration);}html pre.shiki code .suJrU, html code.shiki .suJrU{--shiki-default:#FF7B72}
+           </style>
+          </div>
+         </main>
+         <!--]-->
+         <!--]-->
+        </div>
+        <div class="toc text-caption-docs-side hide-scrollbar sticky top-48 overflow-y-auto 2xl:top-40" data-v-70444712="" data-v-856df627="" id="side-toc">
+         <ul data-v-70444712="">
+          <!--[-->
+          <li data-v-70444712="">
+           <a class="mb-[8px] custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#container">
+            コンテナ
+           </a>
+           <ul class="font-caption-docs-side dark:border-ldsgray-750 mb-8 flex flex-col gap-5 border-l pr-3 pl-5" data-v-70444712="">
+            <!--[-->
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#bubble">
+              バブル
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#carousel">
+              カルーセル
+             </a>
+            </li>
+            <!--]-->
+           </ul>
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#block">
+            ブロック
+           </a>
+           <!-- -->
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-[8px] custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#component">
+            コンポーネント
+           </a>
+           <ul class="font-caption-docs-side dark:border-ldsgray-750 mb-8 flex flex-col gap-5 border-l pr-3 pl-5" data-v-70444712="">
+            <!--[-->
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#box">
+              ボックス
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#button">
+              ボタン
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#image">
+              画像
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#video">
+              動画
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#icon">
+              アイコン
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#text">
+              テキスト
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#span">
+              スパン
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#separator">
+              セパレータ
+             </a>
+            </li>
+            <li data-v-70444712="">
+             <a class="custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen transition" data-v-70444712="" href="#filler">
+              フィラー
+             </a>
+            </li>
+            <!--]-->
+           </ul>
+          </li>
+          <li data-v-70444712="">
+           <a class="mb-2 custom toc-link text-ldsgray-700 dark:text-ldsgray-400 hover:text-linegreen dark:hover:text-linegreen block py-2 pr-3" data-v-70444712="" href="#related-flex-message-elements-pages">
+            関連ページ
+           </a>
+           <!-- -->
+          </li>
+          <!--]-->
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+     <footer class="font-main-card-text-product dark:border-ldsgray-750 content-wrapper w-full border-t py-8 text-black dark:bg-black dark:text-white" data-v-856df627="" id="footer">
+      <div class="content-container mx-auto">
+       <div class="footer-copyright-en w-full whitespace-nowrap">
+        © LY Corporation
+       </div>
+       <div class="flex flex-col justify-between lg:flex-row">
+        <div>
+         <ul class="my-6 flex flex-col gap-y-2 p-0 md:my-2 md:flex-row md:items-center md:gap-x-4">
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/about/">
+            LINE Developersサイトとは
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/terms-and-policies/">
+            規約とポリシー
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white" href="/ja/trademark/">
+            商標について
+           </a>
+          </li>
+          <li class="hidden md:block">
+           <div class="border-ldsgray-250 dark:border-ldsgray-800 h-3 border-l">
+           </div>
+          </li>
+          <li>
+           <a class="custom whitespace-nowrap text-black hover:underline dark:text-white no-external-icon" href="https://api.line-status.info/" target="_blank">
+            <!--[-->
+            LINE API Status
+            <span class="ml-1 inline-block">
+             <span class="las la-arrow-out-square text-xs opacity-50">
+             </span>
+            </span>
+            <!--]-->
+           </a>
+          </li>
+         </ul>
+        </div>
+        <div class="flex flex-row items-center justify-start gap-7">
+         <!--[-->
+         <!--[-->
+         <!--[-->
+         <button class="focus-visible:outline-primary hover:text-default transition-colors custom flex h-full cursor-pointer items-center text-black dark:text-white" data-grace-area-trigger="" data-state="closed" type="button" variant="link">
+          <!--[-->
+          <!--[-->
+          Family Sites
+          <span class="lar la-chevron-down la-xs relative ml-1">
+          </span>
+          <!--]-->
+          <!--]-->
+         </button>
+         <!--]-->
+         <!-- -->
+         <!--v-if-->
+         <!--]-->
+         <!--]-->
+         <div class="flex items-center gap-3">
+          <!-- -->
+          <a class="custom no-external-icon" href="https://twitter.com/lycorptech_jp" target="_blank">
+           <span class="lapr la-x-com la-lg">
+           </span>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </footer>
+     <!-- -->
+    </div>
+   </div>
+   <div data-v-856df627="">
+    <!--[-->
+    <!-- -->
+    <!-- -->
+    <!--v-if-->
+    <!--]-->
+   </div>
+   <!-- -->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+   <!--[-->
+   <!--]-->
+   <!--v-if-->
+   <!--]-->
+   <!--[-->
+   <!--]-->
+   <!--]-->
+   <!--]-->
+  </div>
+  <div id="teleports">
+  </div>
+  <script>
+   window.__NUXT__={};window.__NUXT__.config={public:{gtag:{enabled:true,initMode:"auto",id:"G-K94RFW73WS",initCommands:[],config:{},tags:[],loadingStrategy:"defer",url:"https://www.googletagmanager.com/gtag/js"},mdc:{components:{prose:true,map:{accordion:"ProseAccordion","accordion-item":"ProseAccordionItem",badge:"ProseBadge",callout:"ProseCallout",card:"ProseCard","card-group":"ProseCardGroup",caution:"ProseCaution","code-collapse":"ProseCodeCollapse","code-group":"ProseCodeGroup","code-icon":"ProseCodeIcon","code-preview":"ProseCodePreview","code-tree":"ProseCodeTree",collapsible:"ProseCollapsible",field:"ProseField","field-group":"ProseFieldGroup",icon:"ProseIcon",kbd:"ProseKbd",note:"ProseNote",steps:"ProseSteps",tabs:"ProseTabs","tabs-item":"ProseTabsItem",tip:"ProseTip",warning:"ProseWarning"},customElements:[]},headings:{anchorLinks:{h1:false,h2:true,h3:true,h4:true,h5:false,h6:false}},highlight:{theme:"github-dark-default",noApiRoute:true,langs:["csharp","css","scss","go","groovy","html","java","javascript","json","objective-c","perl","php","python","ruby","shellscript","sh","swift","ts","typescript","xml","yaml"],wrapperStyle:true,highlighter:"shiki",shikiEngine:"oniguruma"}},content:{wsUrl:""},i18n:{baseUrl:"/",defaultLocale:"",rootRedirect:"",redirectStatusCode:302,skipSettingLocaleOnNavigate:false,locales:[{code:"en",name:"EN",language:"en-US"},{code:"ja",name:"JP",language:"ja-JP"}],detectBrowserLanguage:false,experimental:{localeDetector:"",typedPages:true,typedOptionsAndMessages:false,alternateLinkCanonicalQueries:true,devCache:false,cacheLifetime:"",stripMessagesPayload:false,preload:false,strictSeo:false,nitroContextDetection:true,httpCacheDuration:10},domainLocales:{en:{domain:""},ja:{domain:""}}}},app:{baseURL:"/",buildId:"b7cd7a21-3fab-4351-b588-f3a82989c407",buildAssetsDir:"/_nuxt/",cdnURL:""}}
+  </script>
+  <script data-nuxt-data="nuxt-app" data-src="/ja/docs/messaging-api/flex-message-elements/_payload.json?b7cd7a21-3fab-4351-b588-f3a82989c407" data-ssr="true" id="__NUXT_DATA__" type="application/json">
+   [{"state":1,"once":14,"_errors":15,"serverRendered":5,"path":17,"pinia":18,"prerenderedAt":60},["Reactive",2],{"$scolor-mode":3,"$si18n:cached-locale-configs":7,"$si18n:resolved-locale":12,"$stoasts":13},{"preference":4,"value":4,"unknown":5,"forced":6},"system",true,false,{"en":8,"ja":10},{"fallbacks":9,"cacheable":5},[],{"fallbacks":11,"cacheable":5},[],"ja",[],["Set"],["ShallowReactive",16],{"h58113255":-1,"h1903722204":-1,"h194254631":-1},"/ja/docs/messaging-api/flex-message-elements/",["Reactive",19],{"devdocs":20},{"userData":21,"feedbackForm":23,"socialPlugins":24,"ui":25},{"isInitialized":6,"isLoading":6,"isLoggedIn":6,"profileData":22,"showNewNewsNotificationBadge":6},{},{"isInitialized":6,"isLoading":6,"isAvailable":6,"isShown":6},{"userAgreement":6},{"isHome":6,"isErrorPage":6,"isMobileSidebarOpen":6,"isMobileSecondarySidebarOpen":6,"isMobileNarrow":6,"isMobile":6,"isWide":6,"navDropdown":26,"isNavBgTransparent":6,"isDarkMode":6,"apiRefBlockToOpen":27,"apiRefBlockOpened":27,"toc":28,"isDisabledScrollToAnchor":6,"isActiveSetHashOnScroll":5,"isSearchModalOpen":6,"breadcrumbNewsPageTitle":27},{"isShown":6,"type":27,"label":27,"contents":27},"",[29,38,57],{"id":30,"depth":31,"text":32,"children":33},"customise-icon-and-display-name",2,"アイコンと表示名をカスタマイズする",[34],{"id":35,"depth":36,"text":37},"example-request",3,"リクエストの例",{"id":39,"depth":31,"text":40,"children":41},"icon-and-display-name-customization-scope","アイコンと表示名のカスタマイズ範囲",[42,45,48,51,54],{"id":43,"depth":36,"text":44},"chat-room","トークルーム",{"id":46,"depth":36,"text":47},"message-search-result","メッセージ検索結果",{"id":49,"depth":36,"text":50},"chat-list-and-preview","トークリストとプレビュー",{"id":52,"depth":36,"text":53},"chat-list-search-screen","トークリスト検索画面",{"id":55,"depth":36,"text":56},"friend-list","友だちリスト",{"id":58,"depth":31,"text":59},"related-icon-nickname-switch-pages","関連ページ",1776129201132]
+  </script>
+ </body>
+</html>
