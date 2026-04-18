@@ -1,4 +1,4 @@
-name = "line-api-test-worker"
+name = "line-api-demo"
 main = "src/index.js"
 compatibility_date = "2024-04-18"
 
