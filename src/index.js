@@ -66,6 +66,9 @@ async function verifySignature(body, signature, secret) {
   return base64Mac === signature;
 }
 
+// Simple in-memory store for user preferences (Note: In production, use Cloudflare KV)
+const userPreferences = new Map();
+
 /**
  * Routes events to specific handlers
  */
@@ -94,18 +97,80 @@ async function handleEvent(event, env) {
  */
 async function handleTextMessage(event, env) {
   const replyToken = event.replyToken;
+  const userId = event.source.userId;
+  const userText = event.message.text.trim();
+
+  // Check for model selection commands
+  if (userText === "Select Model") {
+    return sendModelSelectionMenu(replyToken);
+  }
+
+  // Handle model selection from quick reply
+  if (userText.startsWith("Use ")) {
+    const selectedModel = userText.replace("Use ", "");
+    userPreferences.set(userId, selectedModel);
+    const body = JSON.stringify({
+      replyToken: replyToken,
+      messages: [
+        {
+          type: "text",
+          text: `Model switched to: ${selectedModel}`,
+        },
+      ],
+    });
+    return callLineApi("/v2/bot/message/reply", body, env);
+  }
+
+  // Get current model preference (default to 'GPT-4')
+  const currentModel = userPreferences.get(userId) || "GPT-4";
 
   const body = JSON.stringify({
     replyToken: replyToken,
     messages: [
       {
         type: "text",
-        text: `the bot under is constructing in chat, user msg: ${event.message.text}`,
+        text: `[${currentModel}] The bot is under construction. You are currently using the ${currentModel} model.`,
+        quickReply: {
+          items: [
+            {
+              type: "action",
+              action: {
+                type: "message",
+                label: "Change Model",
+                text: "Select Model"
+              }
+            }
+          ]
+        }
       },
     ],
   });
 
   return callLineApi("/v2/bot/message/reply", body, env);
+}
+
+/**
+ * Sends a menu with Quick Reply buttons to choose an LLM model
+ */
+async function sendModelSelectionMenu(replyToken) {
+  const body = JSON.stringify({
+    replyToken: replyToken,
+    messages: [
+      {
+        type: "text",
+        text: "Please select an LLM model:",
+        quickReply: {
+          items: [
+            { type: "action", action: { type: "message", label: "GPT-4", text: "Use GPT-4" } },
+            { type: "action", action: { type: "message", label: "Claude 3", text: "Use Claude 3" } },
+            { type: "action", action: { type: "message", label: "Llama 3", text: "Use Llama 3" } }
+          ]
+        }
+      },
+    ],
+  });
+
+  return callLineApi("/v2/bot/message/reply", body, {});
 }
 
 /**
