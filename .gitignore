@@ -215,5 +215,6 @@ cleaned_rag_docs/
 .py*
 py*
 uv.lock
+.venv/
 
 *docs/
