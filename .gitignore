@@ -211,5 +211,8 @@ node_modules/
 
 downloaded_docs/
 *.py
-.python-version
+.py*
+py*
+uv.lock
 
+*docs/
