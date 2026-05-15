@@ -101,7 +101,7 @@ async function handleTextMessage(event, env) {
   const userText = event.message.text.trim();
 
   // Check for model selection commands
-  if (userText === "Select Model") {
+  if (userText.toLowerCase() === "/model") {
     return sendModelSelectionMenu(replyToken);
   }
 
