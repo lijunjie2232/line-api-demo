@@ -66,9 +66,6 @@ async function verifySignature(body, signature, secret) {
   return base64Mac === signature;
 }
 
-// Simple in-memory store for user preferences (Note: In production, use Cloudflare KV)
-const userPreferences = new Map();
-
 /**
  * Routes events to specific handlers
  */
@@ -83,88 +80,35 @@ async function handleEvent(event, env) {
       break;
     case "follow":
       console.log(`User followed: ${event.source.userId}`);
-      // Send a welcome message with help info
-      const welcomeBody = JSON.stringify({
-        replyToken: event.replyToken,
-        messages: [
-          {
-            type: "text",
-            text: "Welcome! I am your LINE Bot.\n\nAvailable commands:\n/model - Select LLM model\n/help - Show this help message",
-          },
-        ],
-      });
-      return callLineApi("/v2/bot/message/reply", welcomeBody, env);
-    case "postback":
-      console.log(`Postback received: ${event.postback.data}`);
       break;
+    case "postback":
+      return handlePostback(event, env);
     default:
       console.log(`Unhandled event type: ${event.type}`);
   }
 }
 
 /**
- * Handles incoming text messages and replies with a fixed construction message
+ * Handles incoming text messages
  */
 async function handleTextMessage(event, env) {
-  const replyToken = event.replyToken;
+  const text = event.message.text.trim();
   const userId = event.source.userId;
-  const userText = event.message.text.trim();
 
-  // Handle commands
-  if (userText.toLowerCase() === "/models") {
-    return sendModelSelectionMenu(replyToken);
-  }
-  
-  if (userText.toLowerCase() === "/help") {
-    const body = JSON.stringify({
-      replyToken: replyToken,
-      messages: [
-        {
-          type: "text",
-          text: "🤖 *LINE Bot Commands*\n\n/model or /models - Choose an LLM model\n/help - Show this help message\n\nJust type any other text to chat!",
-        },
-      ],
-    });
-    return callLineApi("/v2/bot/message/reply", body, env);
+  // Command to show the model selection menu
+  if (text.toLowerCase() === "/model" || text.toLowerCase() === "menu") {
+    return sendModelMenu(event, env);
   }
 
-  // Handle model selection from quick reply
-  if (userText.startsWith("Use ")) {
-    const selectedModel = userText.replace("Use ", "");
-    userPreferences.set(userId, selectedModel);
-    const body = JSON.stringify({
-      replyToken: replyToken,
-      messages: [
-        {
-          type: "text",
-          text: `✅ Model switched to: ${selectedModel}`,
-        },
-      ],
-    });
-    return callLineApi("/v2/bot/message/reply", body, env);
-  }
-
-  // Get current model preference (default to 'GPT-4')
-  const currentModel = userPreferences.get(userId) || "GPT-4";
+  // Retrieve user's preferred model from KV (default to gpt-4o if not set)
+  const currentModel = await env.KV.get(`user_model:${userId}`) || "gpt-4o";
 
   const body = JSON.stringify({
-    replyToken: replyToken,
+    replyToken: event.replyToken,
     messages: [
       {
         type: "text",
-        text: `[${currentModel}] The bot is under construction. You are currently using the ${currentModel} model.\n\nType /help for commands.`,
-        quickReply: {
-          items: [
-            {
-              type: "action",
-              action: {
-                type: "message",
-                label: "Change Model",
-                text: "/model"
-              }
-            }
-          ]
-        }
+        text: `[Model: ${currentModel}] You said: ${text}\n\n(This is where the LLM response would go.)`,
       },
     ],
   });
@@ -173,27 +117,79 @@ async function handleTextMessage(event, env) {
 }
 
 /**
- * Sends a menu with Quick Reply buttons to choose an LLM model
+ * Sends a message with Quick Reply buttons to choose a model
  */
-async function sendModelSelectionMenu(replyToken) {
+async function sendModelMenu(event, env) {
   const body = JSON.stringify({
-    replyToken: replyToken,
+    replyToken: event.replyToken,
     messages: [
       {
         type: "text",
-        text: "Please select an LLM model:",
+        text: "Please select your preferred LLM model:",
         quickReply: {
           items: [
-            { type: "action", action: { type: "message", label: "GPT-4", text: "Use GPT-4" } },
-            { type: "action", action: { type: "message", label: "Claude 3", text: "Use Claude 3" } },
-            { type: "action", action: { type: "message", label: "Llama 3", text: "Use Llama 3" } }
+            {
+              type: "action",
+              action: {
+                type: "postback",
+                label: "GPT-4o",
+                data: "action=set_model&model=gpt-4o",
+                displayText: "Set model to GPT-4o"
+              }
+            },
+            {
+              type: "action",
+              action: {
+                type: "postback",
+                label: "Claude 3.5 Sonnet",
+                data: "action=set_model&model=claude-3-5-sonnet",
+                displayText: "Set model to Claude 3.5 Sonnet"
+              }
+            },
+            {
+              type: "action",
+              action: {
+                type: "postback",
+                label: "Gemini 1.5 Pro",
+                data: "action=set_model&model=gemini-1-5-pro",
+                displayText: "Set model to Gemini 1.5 Pro"
+              }
+            }
           ]
         }
-      },
-    ],
+      }
+    ]
   });
 
-  return callLineApi("/v2/bot/message/reply", body, {});
+  return callLineApi("/v2/bot/message/reply", body, env);
+}
+
+/**
+ * Handles postback events (e.g., from button clicks)
+ */
+async function handlePostback(event, env) {
+  const data = new URLSearchParams(event.postback.data);
+  const action = data.get("action");
+  const userId = event.source.userId;
+
+  if (action === "set_model") {
+    const model = data.get("model");
+    
+    // Persist the model preference in KV
+    await env.KV.put(`user_model:${userId}`, model);
+    
+    const body = JSON.stringify({
+      replyToken: event.replyToken,
+      messages: [
+        {
+          type: "text",
+          text: `Success! Your default model is now: ${model}`,
+        },
+      ],
+    });
+
+    return callLineApi("/v2/bot/message/reply", body, env);
+  }
 }
 
 /**
