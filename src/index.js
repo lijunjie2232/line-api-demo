@@ -90,18 +90,17 @@ async function handleEvent(event, env) {
 }
 
 /**
- * Handles incoming text messages and echoes them back
+ * Handles incoming text messages and replies with a fixed construction message
  */
 async function handleTextMessage(event, env) {
   const replyToken = event.replyToken;
-  const userText = event.message.text;
 
   const body = JSON.stringify({
     replyToken: replyToken,
     messages: [
       {
         type: "text",
-        text: `Echo: ${userText}`,
+        text: `the bot under is constructing in chat, user msg: ${event.message.text}`,
       },
     ],
   });
