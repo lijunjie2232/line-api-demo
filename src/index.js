@@ -83,7 +83,17 @@ async function handleEvent(event, env) {
       break;
     case "follow":
       console.log(`User followed: ${event.source.userId}`);
-      break;
+      // Send a welcome message with help info
+      const welcomeBody = JSON.stringify({
+        replyToken: event.replyToken,
+        messages: [
+          {
+            type: "text",
+            text: "Welcome! I am your LINE Bot.\n\nAvailable commands:\n/model - Select LLM model\n/help - Show this help message",
+          },
+        ],
+      });
+      return callLineApi("/v2/bot/message/reply", welcomeBody, env);
     case "postback":
       console.log(`Postback received: ${event.postback.data}`);
       break;
@@ -100,9 +110,22 @@ async function handleTextMessage(event, env) {
   const userId = event.source.userId;
   const userText = event.message.text.trim();
 
-  // Check for model selection commands
-  if (userText.toLowerCase() === "/model") {
+  // Handle commands
+  if (userText.toLowerCase() === "/models") {
     return sendModelSelectionMenu(replyToken);
+  }
+  
+  if (userText.toLowerCase() === "/help") {
+    const body = JSON.stringify({
+      replyToken: replyToken,
+      messages: [
+        {
+          type: "text",
+          text: "🤖 *LINE Bot Commands*\n\n/model or /models - Choose an LLM model\n/help - Show this help message\n\nJust type any other text to chat!",
+        },
+      ],
+    });
+    return callLineApi("/v2/bot/message/reply", body, env);
   }
 
   // Handle model selection from quick reply
@@ -114,7 +137,7 @@ async function handleTextMessage(event, env) {
       messages: [
         {
           type: "text",
-          text: `Model switched to: ${selectedModel}`,
+          text: `✅ Model switched to: ${selectedModel}`,
         },
       ],
     });
@@ -129,7 +152,7 @@ async function handleTextMessage(event, env) {
     messages: [
       {
         type: "text",
-        text: `[${currentModel}] The bot is under construction. You are currently using the ${currentModel} model.`,
+        text: `[${currentModel}] The bot is under construction. You are currently using the ${currentModel} model.\n\nType /help for commands.`,
         quickReply: {
           items: [
             {
@@ -137,7 +160,7 @@ async function handleTextMessage(event, env) {
               action: {
                 type: "message",
                 label: "Change Model",
-                text: "Select Model"
+                text: "/model"
               }
             }
           ]
